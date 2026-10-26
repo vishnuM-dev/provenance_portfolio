@@ -182,127 +182,27 @@ export default async function HomePage() {
               alignItems: 'center',
               position: 'relative',
               width: '100%',
-              maxWidth: '520px',
-              margin: '0 auto',
             }}>
-              {/* Laptop Device Container */}
               <div style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '460px',
+                maxWidth: '560px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                boxShadow: '0 24px 50px -12px rgba(160, 115, 75, 0.25), 0 0 0 1px rgba(220, 195, 170, 0.45)',
+                background: '#ffffff',
               }}>
-                {/* Laptop Screen Bezel */}
-                <div style={{
-                  background: '#241b14',
-                  borderRadius: '16px 16px 0 0',
-                  padding: '9px 9px 0 9px',
-                  boxShadow: '0 20px 45px -12px rgba(160, 115, 75, 0.22)',
-                  border: '1px solid rgba(220, 195, 170, 0.45)',
-                  borderBottom: 'none',
-                }}>
-                  {/* Top Bar with Camera Dot */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingBottom: '6px',
-                    position: 'relative',
-                  }}>
-                    <div style={{
-                      width: '5px',
-                      height: '5px',
-                      borderRadius: '50%',
-                      background: 'rgba(255, 255, 255, 0.25)',
-                    }} />
-                  </div>
-
-                  {/* Web Application Dashboard Screen */}
-                  <div style={{
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hero-devices.jpg"
+                  alt="Modern Web and Mobile Application Solutions"
+                  style={{
                     width: '100%',
-                    height: '240px',
-                    borderRadius: '8px 8px 0 0',
-                    overflow: 'hidden',
-                    background: '#ffffff',
-                    position: 'relative',
-                  }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
-                      alt="Web Application Dashboard Interface"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Laptop Keyboard Deck & Base */}
-                <div style={{
-                  height: '12px',
-                  background: 'linear-gradient(to bottom, #d6c8b8 0%, #b8a694 100%)',
-                  borderRadius: '0 0 14px 14px',
-                  position: 'relative',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  boxShadow: '0 12px 28px -4px rgba(140, 95, 55, 0.28)',
-                }}>
-                  {/* Trackpad Opening Notch */}
-                  <div style={{
-                    width: '60px',
-                    height: '4px',
-                    background: '#8f7e6f',
-                    borderRadius: '0 0 4px 4px',
-                  }} />
-                </div>
-
-                {/* Smartphone Device Overlap */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-22px',
-                  right: '-16px',
-                  width: '145px',
-                  height: '280px',
-                  background: '#1f1712',
-                  borderRadius: '26px',
-                  padding: '7px',
-                  boxShadow: '0 22px 40px -6px rgba(45, 35, 27, 0.38)',
-                  border: '2px solid rgba(240, 220, 200, 0.65)',
-                  zIndex: 2,
-                }}>
-                  {/* Phone Speaker Notch */}
-                  <div style={{
-                    width: '38px',
-                    height: '4px',
-                    background: 'rgba(255, 255, 255, 0.25)',
-                    borderRadius: 'var(--radius-full)',
-                    margin: '3px auto 6px',
-                  }} />
-
-                  {/* Phone Screen Display */}
-                  <div style={{
-                    width: '100%',
-                    height: 'calc(100% - 13px)',
-                    borderRadius: '20px',
-                    overflow: 'hidden',
-                    background: '#ffffff',
-                    position: 'relative',
-                  }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80"
-                      alt="Mobile App Interface"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                      }}
-                    />
-                  </div>
-                </div>
+                    height: 'auto',
+                    display: 'block',
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
             </div>
           </div>
