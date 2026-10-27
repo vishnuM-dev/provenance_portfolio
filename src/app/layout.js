@@ -1,9 +1,12 @@
 import './globals.css';
+import '@/components/CustomCursor.css';
+import '@/components/ServicesCards.css';
 import { Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import ScrollReveal from '@/components/ScrollReveal';
+import CustomCursor from '@/components/CustomCursor';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -66,6 +69,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
       <body>
+        <CustomCursor />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

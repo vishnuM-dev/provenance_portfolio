@@ -5,6 +5,7 @@ import { SEED_SERVICES } from '@/lib/seed-data';
 import AssetCard from '@/components/AssetCard';
 import TechnologiesSection from '@/components/TechnologiesSection';
 import HeroDevicesAnimation from '@/components/HeroDevicesAnimation';
+import '@/components/ServicesCards.css';
 import {
   Code2,
   Smartphone,
@@ -24,10 +25,75 @@ import {
   Clock,
   Laptop,
   Flame,
-  Award
+  Award,
+  Palette,
+  Star
 } from 'lucide-react';
 
 export const revalidate = 0;
+
+const SERVICE_THEMES = {
+  'srv-web': {
+    themeClass: 'service-theme-orange',
+    accentColor: '#ea580c',
+    cardBg: '#fff4ec',
+    borderColor: '#fcd9c0',
+    iconBg: '#ffe2cc',
+    ctaBg: '#ffffff',
+    ctaText: '#c2410c',
+    popular: true,
+  },
+  'srv-mobile': {
+    themeClass: 'service-theme-purple',
+    accentColor: '#8b5cf6',
+    cardBg: '#f6f0fd',
+    borderColor: '#e4d0fa',
+    iconBg: '#ebd8fb',
+    ctaBg: '#ffffff',
+    ctaText: '#6d28d9',
+    popular: false,
+  },
+  'srv-custom': {
+    themeClass: 'service-theme-blue',
+    accentColor: '#2563eb',
+    cardBg: '#edf4fe',
+    borderColor: '#cbe0fc',
+    iconBg: '#d2e5fc',
+    ctaBg: '#ffffff',
+    ctaText: '#1d4ed8',
+    popular: false,
+  },
+  'srv-fullstack': {
+    themeClass: 'service-theme-green',
+    accentColor: '#059669',
+    cardBg: '#eaf8f0',
+    borderColor: '#c4eed6',
+    iconBg: '#ccf0db',
+    ctaBg: '#ffffff',
+    ctaText: '#047857',
+    popular: false,
+  },
+  'srv-uiux': {
+    themeClass: 'service-theme-pink',
+    accentColor: '#e11d48',
+    cardBg: '#fdf0f2',
+    borderColor: '#f9cbce',
+    iconBg: '#f8d1d6',
+    ctaBg: '#ffffff',
+    ctaText: '#be123c',
+    popular: false,
+  },
+  'srv-cloud': {
+    themeClass: 'service-theme-amber',
+    accentColor: '#d97706',
+    cardBg: '#fdf6e6',
+    borderColor: '#f6dfaa',
+    iconBg: '#fae7bc',
+    ctaBg: '#ffffff',
+    ctaText: '#92400e',
+    popular: false,
+  },
+};
 
 export default async function HomePage() {
   const allProjects = await getAllAssets();
@@ -36,14 +102,15 @@ export default async function HomePage() {
   // Service icon resolver
   const getServiceIcon = (iconName) => {
     switch (iconName) {
-      case 'Layout': return <Layout size={24} />;
-      case 'Smartphone': return <Smartphone size={24} />;
-      case 'Cpu': return <Cpu size={24} />;
-      case 'Layers': return <Layers size={24} />;
-      case 'Database': return <Database size={24} />;
-      case 'LifeBuoy': return <LifeBuoy size={24} />;
-      case 'Terminal': return <Terminal size={24} />;
-      default: return <Code2 size={24} />;
+      case 'Layout': return <Layout size={26} strokeWidth={2.2} />;
+      case 'Smartphone': return <Smartphone size={26} strokeWidth={2.2} />;
+      case 'Cpu': return <Cpu size={26} strokeWidth={2.2} />;
+      case 'Layers': return <Layers size={26} strokeWidth={2.2} />;
+      case 'Palette': return <Palette size={26} strokeWidth={2.2} />;
+      case 'Database': return <Database size={26} strokeWidth={2.2} />;
+      case 'LifeBuoy': return <LifeBuoy size={26} strokeWidth={2.2} />;
+      case 'Terminal': return <Terminal size={26} strokeWidth={2.2} />;
+      default: return <Code2 size={26} strokeWidth={2.2} />;
     }
   };
 
@@ -56,34 +123,7 @@ export default async function HomePage() {
         overflow: 'visible',
         borderBottom: '1px solid var(--border-subtle)',
       }}>
-        {/* Geometric Polygonal Tech Network Background - Shifted right */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: "url('/images/hero-tech-bg.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'right center',
-          opacity: 0.35,
-          mixBlendMode: 'multiply',
-          pointerEvents: 'none',
-        }} />
-
-        {/* Directional Softening Gradient: Solid Warm Ivory on Left Text Side, Clear on Right Devices Side */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(90deg, #f6f1ea 0%, rgba(246, 241, 234, 0.98) 38%, rgba(246, 241, 234, 0.65) 62%, rgba(246, 241, 234, 0.2) 100%)',
-          pointerEvents: 'none',
-        }} />
-
-        {/* Subtle Top & Bottom Blending */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(180deg, rgba(246, 241, 234, 0.8) 0%, transparent 20%, transparent 80%, #f6f1ea 100%)',
-          pointerEvents: 'none',
-        }} />
-
+        <div className="hero-ambient-mesh" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{
             display: 'grid',
@@ -93,6 +133,18 @@ export default async function HomePage() {
           }}>
             {/* Left Column: Typography & Action Buttons */}
             <div>
+
+              {/* Eyebrow Badge */}
+              <div className="hero-badge-enter" style={{ marginBottom: '1.25rem' }}>
+                <span className="section-badge" style={{
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(220, 195, 170, 0.6)',
+                  boxShadow: '0 4px 14px rgba(235, 120, 33, 0.12)',
+                }}>
+                  <Sparkles size={14} color="var(--primary)" />
+                  Web &amp; Mobile Software Engineering Studio
+                </span>
+              </div>
 
               {/* Bold Headline with High Contrast */}
               <h1 className="hero-title-enter" style={{
@@ -174,104 +226,122 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. Core Services Overview */}
-      <section className="container reveal-on-scroll">
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3rem' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            color: 'var(--primary)',
-            fontSize: '0.8rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: '0.5rem',
-          }}>
-            <Sparkles size={14} />
-            What We Build
+      {/* 2. Core Services Overview - Modern Coordinated Pastel Cards Redesign */}
+      <section className="services-section-wrapper reveal-on-scroll" id="services">
+        {/* Soft abstract ambient background decorative shapes */}
+        <div className="services-ambient-glow-1" aria-hidden="true" />
+        <div className="services-ambient-glow-2" aria-hidden="true" />
+        <div className="services-ambient-glow-3" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          {/* Section Header */}
+          <div className="services-header-box">
+            <div className="section-badge-pill">
+              <Sparkles size={14} className="badge-sparkle-icon" />
+              <span>What We Build</span>
+            </div>
+            <h2 className="services-section-title">
+              Services Built for High-Impact Software
+            </h2>
+            <p className="services-section-subtitle">
+              From high-conversion web applications to responsive iOS and Android apps, our cross-functional team delivers production-ready code tailored to your exact business needs.
+            </p>
           </div>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 3.5vw, 2.7rem)',
-            fontWeight: 800,
-            letterSpacing: '-0.025em',
-            color: 'var(--text-primary)',
-            marginBottom: '0.85rem',
-          }}>
-            Services Built for High-Impact Software
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.65 }}>
-            From high-conversion web applications to responsive iOS and Android apps, our cross-functional team delivers production-ready code tailored to your exact business needs.
-          </p>
-        </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.75rem',
-          alignItems: 'stretch',
-        }}>
-          {SEED_SERVICES.map((srv) => (
-            <div
-              key={srv.id}
-              className="glass-panel"
-              style={{
-                padding: '2rem',
-                background: '#ffffff',
-                borderRadius: '28px',
-                border: '1px solid rgba(220, 195, 170, 0.45)',
-                boxShadow: '0 14px 34px -8px rgba(160, 115, 75, 0.08)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                height: '100%',
-              }}
-            >
-              <div>
-                <div style={{
-                  width: '52px',
-                  height: '52px',
-                  borderRadius: '16px',
-                  background: 'var(--primary-light)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--primary)',
-                  marginBottom: '1.25rem',
-                }}>
-                  {getServiceIcon(srv.icon)}
-                </div>
+          {/* 3-Column Modern Service Cards Grid - 6 Core Services */}
+          <div className="services-modern-grid">
+            {SEED_SERVICES.slice(0, 6).map((srv, index) => {
+              const theme = SERVICE_THEMES[srv.id] || {
+                themeClass: 'service-theme-orange',
+                accentColor: '#ea580c',
+                cardBg: '#fff4ec',
+                borderColor: '#fcd9c0',
+                iconBg: '#ffe2cc',
+                ctaBg: '#ffffff',
+                ctaText: '#c2410c',
+                popular: index === 0,
+              };
+              const isPopular = srv.id === 'srv-web' || theme.popular;
+              const displayTitle = srv.title === 'UI/UX Design & Design Systems' 
+                ? 'UI/UX Design & Development' 
+                : srv.title;
 
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem', minHeight: '32px', lineHeight: 1.25 }}>
-                  {srv.title}
-                </h3>
-
-                <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 600, marginBottom: '0.85rem', minHeight: '20px' }}>
-                  {srv.tagline}
-                </div>
-
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.25rem', minHeight: '64px' }}>
-                  {srv.description}
-                </p>
-              </div>
-
-              <div style={{ borderTop: '1px solid rgba(220, 195, 170, 0.35)', paddingTop: '1rem', marginTop: 'auto' }}>
-                <Link
-                  href="/services"
-                  className="btn btn-secondary btn-sm"
+              return (
+                <article
+                  key={srv.id}
+                  className={`modern-service-card ${theme.themeClass}`}
                   style={{
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
+                    backgroundColor: theme.cardBg,
+                    borderColor: theme.borderColor,
                   }}
                 >
-                  <span>Learn Capabilities</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
-            </div>
-          ))}
+                  {/* Card Header: Rounded-Square Icon Box & Optional Popular Pill */}
+                  <div className="service-card-top">
+                    <div
+                      className="service-icon-box"
+                      style={{
+                        backgroundColor: theme.iconBg,
+                        borderColor: theme.borderColor,
+                        color: theme.accentColor,
+                      }}
+                    >
+                      {getServiceIcon(srv.icon)}
+                    </div>
+
+                    {isPopular && (
+                      <span className="service-popular-pill">
+                        <Star size={12} className="popular-star-icon" fill="currentColor" />
+                        Popular
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Card Body: Title, Accent Subtitle, Description */}
+                  <div className="service-card-content">
+                    <h3 className="service-card-title">
+                      {displayTitle}
+                    </h3>
+
+                    <div
+                      className="service-card-tagline"
+                      style={{ color: theme.accentColor }}
+                    >
+                      {srv.tagline}
+                    </div>
+
+                    <p className="service-card-description">
+                      {srv.description}
+                    </p>
+                  </div>
+
+                  {/* Card Footer: Pill-shaped "Learn Capabilities" CTA with Circular Arrow */}
+                  <div className="service-card-footer">
+                    <Link
+                      href="/services"
+                      className="service-cta-pill"
+                      aria-label={`Learn Capabilities of ${displayTitle}`}
+                      style={{
+                        backgroundColor: theme.ctaBg,
+                        borderColor: theme.borderColor,
+                        color: theme.ctaText,
+                      }}
+                    >
+                      <span className="cta-label">Learn Capabilities</span>
+                      <span
+                        className="cta-arrow-circle"
+                        style={{
+                          backgroundColor: theme.accentColor,
+                          color: '#ffffff',
+                        }}
+                      >
+                        <ArrowRight size={15} />
+                      </span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -502,22 +572,22 @@ export default async function HomePage() {
           border: '1px solid rgba(220, 195, 170, 0.55)',
           boxShadow: '0 10px 30px rgba(180, 130, 90, 0.05)',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
+          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
             <Laptop size={18} color="var(--primary)" />
             <span>Online consultation</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
+          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
             <Code2 size={18} color="var(--primary)" />
             <span>Full-cycle development</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
+          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
             <ShieldCheck size={18} color="var(--primary)" />
             <span>SLA & maintenance</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
+          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
             <Smartphone size={18} color="var(--primary)" />
             <span>App Store & Cloud release</span>
           </div>
@@ -527,7 +597,7 @@ export default async function HomePage() {
 
       {/* 8. Final Call to Action - Featuring Brand Monogram Emblem */}
       <section className="container reveal-on-scroll">
-        <div className="glass-panel" style={{
+        <div className="glass-panel cta-banner-glow" style={{
           padding: '4.5rem 2.5rem',
           textAlign: 'center',
           borderRadius: '32px',

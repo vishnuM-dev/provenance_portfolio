@@ -106,18 +106,21 @@ export default function TechnologiesSection({ id = 'technologies' }) {
                     letterSpacing: '-0.015em',
                     marginTop: '0.4rem',
                     lineHeight: 1.3,
+                    minHeight: '2.6rem',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   {category.title}
                 </h3>
 
-                <p style={{ fontSize: '0.865rem', color: '#6e6054', lineHeight: 1.55, marginTop: '0.35rem' }}>
+                <p style={{ fontSize: '0.865rem', color: '#6e6054', lineHeight: 1.55, marginTop: '0.35rem', minHeight: '2.7rem' }}>
                   {category.description}
                 </p>
               </div>
 
               {/* Technologies List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: 'auto' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {category.technologies.map((tech) => (
                   <div
                     key={tech.name}

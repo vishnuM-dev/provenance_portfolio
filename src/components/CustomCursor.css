@@ -1,0 +1,243 @@
+/* ==========================================================================
+   Custom Cursor - Premium Purple & Pink Neon Dot + Circle Combo
+   Silky 144Hz GPU-accelerated requestAnimationFrame Architecture
+   ========================================================================== */
+
+/* 1. Global Viewport Layer - Completely non-blocking */
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none !important;
+  z-index: 9999999 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.custom-cursor-container.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Dim custom cursor when user hovers over text fields so the native I-beam is clear */
+.custom-cursor-container.cursor-on-input {
+  opacity: 0.15 !important;
+}
+
+/* 2. Position Translation Wrappers - Updated strictly via requestAnimationFrame */
+.custom-cursor-circle-wrapper,
+.custom-cursor-dot-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  will-change: transform;
+  contain: layout style;
+  user-select: none;
+}
+
+/* 3. Outer Follower Circle - Thin Purple Neon Circle with Breathing Aura */
+.custom-cursor-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  border: 1.8px solid rgba(168, 85, 247, 0.88);
+  background: radial-gradient(
+    circle, 
+    rgba(236, 72, 153, 0.16) 0%, 
+    rgba(168, 85, 247, 0.08) 60%, 
+    transparent 80%
+  );
+  box-shadow: 
+    0 0 16px rgba(168, 85, 247, 0.5),
+    0 0 32px rgba(236, 72, 153, 0.3),
+    inset 0 0 10px rgba(168, 85, 247, 0.22);
+  transform: translate(-50%, -50%) scale(1);
+  will-change: transform, border-color, box-shadow;
+  animation: cursorNeonBreathing 3.4s ease-in-out infinite alternate;
+  transition: 
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Organic breathing pulse between neon purple and bright pink */
+@keyframes cursorNeonBreathing {
+  0% {
+    border-color: rgba(168, 85, 247, 0.82);
+    box-shadow: 
+      0 0 14px rgba(168, 85, 247, 0.45),
+      0 0 28px rgba(236, 72, 153, 0.25),
+      inset 0 0 10px rgba(168, 85, 247, 0.18);
+  }
+  50% {
+    border-color: rgba(236, 72, 153, 0.92);
+    box-shadow: 
+      0 0 22px rgba(236, 72, 153, 0.55),
+      0 0 42px rgba(168, 85, 247, 0.36),
+      inset 0 0 14px rgba(236, 72, 153, 0.26);
+  }
+  100% {
+    border-color: rgba(192, 132, 252, 0.9);
+    box-shadow: 
+      0 0 18px rgba(192, 132, 252, 0.5),
+      0 0 36px rgba(236, 72, 153, 0.3),
+      inset 0 0 12px rgba(192, 132, 252, 0.22);
+  }
+}
+
+/* 4. Inner Precision Dot - Small, Bright Pink & Lavender Neon Core */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  background: linear-gradient(135deg, #ff2a85 0%, #ec4899 48%, #c084fc 100%);
+  box-shadow: 
+    0 0 8px rgba(255, 42, 133, 1),
+    0 0 18px rgba(192, 132, 252, 0.8),
+    0 0 28px rgba(236, 72, 153, 0.45);
+  transform: translate(-50%, -50%) scale(1);
+  will-change: transform, opacity;
+  transition: 
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* 5. Click Ripple Shockwave - Application Warm Amber Glow */
+.custom-cursor-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  border: 1.6px solid rgba(235, 120, 33, 0.9);
+  background: radial-gradient(circle, rgba(235, 120, 33, 0.25) 0%, transparent 70%);
+  box-shadow: 
+    0 0 18px rgba(235, 120, 33, 0.65),
+    0 0 32px rgba(244, 151, 79, 0.45);
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+.custom-cursor-ripple.is-active {
+  animation: cursorRippleExpand 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cursorRippleExpand {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  40% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+}
+
+/* 6. Interactive Hover State - Reduced Size & Application Brand Amber/Gold Color */
+.custom-cursor-circle.is-hovered {
+  animation: none !important;
+  transform: translate(-50%, -50%) scale(0.68) !important;
+  border-color: #eb7821 !important;
+  background: radial-gradient(
+    circle, 
+    rgba(235, 120, 33, 0.28) 0%, 
+    rgba(244, 151, 79, 0.12) 65%, 
+    transparent 85%
+  ) !important;
+  box-shadow: 
+    0 0 16px rgba(235, 120, 33, 0.8),
+    0 0 32px rgba(244, 151, 79, 0.5),
+    inset 0 0 8px rgba(235, 120, 33, 0.4) !important;
+}
+
+.custom-cursor-dot.is-hovered {
+  transform: translate(-50%, -50%) scale(0.7) !important;
+  opacity: 1 !important;
+  background: linear-gradient(135deg, #f4974f 0%, #eb7821 55%, #c45812 100%) !important;
+  box-shadow: 
+    0 0 10px rgba(235, 120, 33, 1),
+    0 0 20px rgba(244, 151, 79, 0.85) !important;
+}
+
+/* 7. Active Click State - Tactile Elastic Pinch */
+.custom-cursor-circle.is-clicking {
+  animation: none !important;
+  transform: translate(-50%, -50%) scale(0.78) !important;
+  border-color: #eb7821 !important;
+  box-shadow: 
+    0 0 22px rgba(235, 120, 33, 0.9),
+    0 0 42px rgba(244, 151, 79, 0.6),
+    inset 0 0 14px rgba(235, 120, 33, 0.5) !important;
+}
+
+.custom-cursor-circle.is-hovered.is-clicking {
+  animation: none !important;
+  transform: translate(-50%, -50%) scale(0.52) !important;
+}
+
+.custom-cursor-dot.is-clicking {
+  transform: translate(-50%, -50%) scale(0.65) !important;
+  box-shadow: 
+    0 0 14px rgba(235, 120, 33, 1),
+    0 0 26px rgba(244, 151, 79, 0.9) !important;
+}
+
+/* 8. Desktop Pointer Replacement - Hide native system arrow when custom is active */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor body * {
+  cursor: none !important;
+}
+
+/* Retain standard I-beam text cursor for inputs and textareas */
+html.has-custom-cursor input[type="text"],
+html.has-custom-cursor input[type="email"],
+html.has-custom-cursor input[type="tel"],
+html.has-custom-cursor input[type="number"],
+html.has-custom-cursor input[type="password"],
+html.has-custom-cursor input[type="search"],
+html.has-custom-cursor textarea,
+html.has-custom-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+
+/* 9. Mobile Touch Screen Isolation - Completely disabled on pure touch phones & tablets */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor body * {
+    cursor: auto !important;
+  }
+}
+
+/* 10. Accessibility - Reduced Motion Preference (Preserve cursor, remove pulsing animation) */
+.custom-cursor-container.reduced-motion .custom-cursor-circle,
+.custom-cursor-container.reduced-motion .custom-cursor-ripple {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-circle,
+  .custom-cursor-ripple {
+    animation: none !important;
+  }
+}

@@ -13,7 +13,7 @@ const nextConfig = {
       },
     ],
   },
-  allowedDevOrigins: ['192.168.1.12', 'localhost:3000'],
+  allowedDevOrigins: ['192.168.1.36', '192.168.1.12', 'localhost:3000'],
   async rewrites() {
     return [
       {

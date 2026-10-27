@@ -572,8 +572,8 @@ a {
   max-width: 1240px;
   margin: 0 auto;
   width: 100%;
-  height: 66px;
-  padding: 0.45rem 1.25rem 0.45rem 1.35rem;
+  height: 60px;
+  padding: 0.35rem 1.25rem 0.35rem 1.35rem;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -1400,3 +1400,523 @@ div[data-nextjs-toast-wrapper] {
 
 
 
+
+
+/* ========================================================
+   MODERN & PREMIUM ANIMATIONS & MICRO-INTERACTIONS SUITE
+   Inspired by ProvenanceTech Design System
+   ======================================================== */
+
+/* 8. Enhanced Page Transitions */
+.page-transition-wrapper {
+  animation: luxuryPageEntrance 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes luxuryPageEntrance {
+  0% {
+    opacity: 0.3;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 9. Hero Section Atmosphere & Ambient Shimmer */
+.hero-ambient-mesh {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(235, 120, 33, 0.08) 0%,
+    rgba(197, 155, 79, 0.04) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+  filter: blur(65px);
+  z-index: 0;
+  animation: heroMeshFloat 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroMeshFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-16px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px) scale(0.97);
+    opacity: 0.8;
+  }
+}
+
+/* 10. Interactive Buttons: Luxury Shimmer & Spring Lift */
+.btn {
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+}
+
+.btn-primary {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -130%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  left: 170%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 10px 28px rgba(235, 120, 33, 0.44);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 14px rgba(235, 120, 33, 0.3);
+}
+
+.btn-secondary {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.24s ease,
+              background 0.24s ease,
+              color 0.24s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2.5px);
+  background: #ffffff;
+  border-color: rgba(235, 120, 33, 0.45);
+  box-shadow: 0 8px 24px rgba(25, 22, 18, 0.08), 0 0 12px rgba(235, 120, 33, 0.06);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* 11. Animated Links & Underlines */
+.animated-link,
+.footer-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.24s ease;
+}
+
+.animated-link::after,
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: width 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animated-link:hover::after,
+.footer-nav-link:hover::after {
+  width: 100%;
+}
+
+/* 12. Cards, Elevation & Image Zoom Dynamics */
+.asset-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease !important;
+}
+
+.asset-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(235, 120, 33, 0.45) !important;
+  box-shadow: 0 22px 48px -10px rgba(25, 22, 18, 0.12), 0 0 20px rgba(235, 120, 33, 0.08) !important;
+}
+
+.asset-image-hover {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s ease;
+}
+
+.asset-card:hover .asset-image-hover {
+  transform: scale(1.06);
+  filter: brightness(1.02);
+}
+
+.service-card {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease !important;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(235, 120, 33, 0.42) !important;
+  box-shadow: 0 20px 42px -8px rgba(25, 22, 18, 0.1), 0 0 16px rgba(235, 120, 33, 0.06) !important;
+}
+
+.service-icon-box {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease;
+}
+
+.service-card:hover .service-icon-box,
+.glass-panel:hover .service-icon-box {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(235, 120, 33, 0.24);
+}
+
+.tech-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease,
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(235, 120, 33, 0.48) !important;
+  box-shadow: 0 18px 40px -8px rgba(25, 22, 18, 0.1), 0 0 16px rgba(235, 120, 33, 0.06) !important;
+}
+
+/* Feature Ribbon Micro-Lift */
+.feature-ribbon-item {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.2s ease;
+  cursor: default;
+}
+
+.feature-ribbon-item:hover {
+  transform: translateY(-2px);
+}
+
+.feature-ribbon-item:hover span {
+  color: var(--primary) !important;
+}
+
+/* 13. Navigation Bar Micro-Interactions */
+.brand-logo-icon {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo-link:hover .brand-logo-icon {
+  transform: scale(1.08) rotate(-2deg);
+  filter: drop-shadow(0 4px 14px rgba(235, 120, 33, 0.35));
+}
+
+.mobile-floating-link .nav-active-dot {
+  display: none !important;
+}
+
+/* 14. Form Inputs & Feedback Micro-Interactions */
+.form-input,
+.form-select,
+.form-textarea {
+  transition: border-color 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease;
+}
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover {
+  border-color: rgba(235, 120, 33, 0.38);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3.5px rgba(235, 120, 33, 0.2), 0 6px 18px rgba(235, 120, 33, 0.08) !important;
+  transform: translateY(-1.5px);
+}
+
+.status-alert-enter {
+  animation: alertSlideBounce 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes alertSlideBounce {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 15. Call To Action Banner Ambient Aura */
+.cta-banner-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(235, 120, 33, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: ctaAuraBreathe 6s ease-in-out infinite alternate;
+}
+
+@keyframes ctaAuraBreathe {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* 16. Comprehensive Reduced Motion Strict Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .page-transition-wrapper,
+  .hero-ambient-mesh,
+  .btn-primary::after,
+  .cta-banner-glow::before,
+  .status-alert-enter,
+  .reveal-init {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* 17. Footer Navigation Animated Underline & Glide */
+.footer-link-item {
+  position: relative;
+  display: inline-block;
+  color: var(--text-secondary);
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+
+.footer-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: width 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-link-item:hover {
+  color: var(--primary) !important;
+  transform: translateX(3px);
+}
+
+.footer-link-item:hover::after {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   Global Custom Cursor Styles Fallback
+   ========================================================================== */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor body * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor input[type="text"],
+html.has-custom-cursor input[type="email"],
+html.has-custom-cursor input[type="tel"],
+html.has-custom-cursor input[type="number"],
+html.has-custom-cursor input[type="password"],
+html.has-custom-cursor input[type="search"],
+html.has-custom-cursor textarea,
+html.has-custom-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none !important;
+  z-index: 9999999 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.custom-cursor-container.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.custom-cursor-container.cursor-on-input {
+  opacity: 0.15 !important;
+}
+
+.custom-cursor-circle-wrapper,
+.custom-cursor-dot-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  will-change: transform;
+  contain: layout style;
+  user-select: none;
+}
+
+.custom-cursor-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  border: 1.8px solid rgba(168, 85, 247, 0.88);
+  background: radial-gradient(
+    circle, 
+    rgba(236, 72, 153, 0.16) 0%, 
+    rgba(168, 85, 247, 0.08) 60%, 
+    transparent 80%
+  );
+  box-shadow: 
+    0 0 16px rgba(168, 85, 247, 0.5),
+    0 0 32px rgba(236, 72, 153, 0.3),
+    inset 0 0 10px rgba(168, 85, 247, 0.22);
+  transform: translate(-50%, -50%) scale(1);
+  will-change: transform, border-color, box-shadow;
+  animation: cursorNeonBreathing 3.4s ease-in-out infinite alternate;
+  transition: 
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  background: linear-gradient(135deg, #ff2a85 0%, #ec4899 48%, #c084fc 100%);
+  box-shadow: 
+    0 0 8px rgba(255, 42, 133, 1),
+    0 0 18px rgba(192, 132, 252, 0.8),
+    0 0 28px rgba(236, 72, 153, 0.45);
+  transform: translate(-50%, -50%) scale(1);
+  will-change: transform, opacity;
+  transition: 
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.custom-cursor-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  border: 1.6px solid rgba(255, 42, 133, 0.9);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+  box-shadow: 
+    0 0 18px rgba(255, 42, 133, 0.65),
+    0 0 32px rgba(168, 85, 247, 0.45);
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+.custom-cursor-ripple.is-active {
+  animation: cursorRippleExpand 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.custom-cursor-circle.is-hovered {
+  transform: translate(-50%, -50%) scale(0.68);
+  border-color: #eb7821;
+  background: radial-gradient(
+    circle, 
+    rgba(235, 120, 33, 0.28) 0%, 
+    rgba(244, 151, 79, 0.12) 65%, 
+    transparent 85%
+  );
+  box-shadow: 
+    0 0 16px rgba(235, 120, 33, 0.8),
+    0 0 32px rgba(244, 151, 79, 0.5),
+    inset 0 0 8px rgba(235, 120, 33, 0.4);
+
+}
+
+.custom-cursor-dot.is-hovered {
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 1;
+  background: #ffffff;
+  box-shadow: 
+    0 0 10px rgba(235, 120, 33, 1),
+    0 0 20px rgba(244, 151, 79, 0.85);
+}
+
+.custom-cursor-circle.is-clicking {
+  transform: translate(-50%, -50%) scale(0.8);
+  border-color: #eb7821;
+  box-shadow: 
+    0 0 22px rgba(235, 120, 33, 0.9),
+    0 0 42px rgba(244, 151, 79, 0.6),
+    inset 0 0 14px rgba(235, 120, 33, 0.5);
+}
+
+.custom-cursor-circle.is-hovered.is-clicking {
+  transform: translate(-50%, -50%) scale(0.52);
+}
+
+.custom-cursor-dot.is-clicking {
+  transform: translate(-50%, -50%) scale(0.68);
+  box-shadow: 
+    0 0 14px rgba(235, 120, 33, 1),
+    0 0 26px rgba(244, 151, 79, 0.9);
+}

@@ -67,6 +67,16 @@ export const TECHNOLOGY_CATEGORIES = [
           </svg>
         ),
       },
+      {
+        name: 'JavaScript (ES6+)',
+        role: 'Modern ECMAScript standard for clean, asynchronous logic & reactivity',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#F7DF1E" />
+            <path d="M7 18.5V13.5H8.7V17.1C8.7 17.5 9 17.7 9.4 17.7C9.8 17.7 10 17.5 10 17V13.5H11.7V17.1C11.7 18.3 10.8 18.9 9.3 18.9C7.8 18.9 7 18.2 7 18.5ZM13.2 18.5L14.3 17.3C14.9 17.8 15.6 18.1 16.3 18.1C17 18.1 17.4 17.8 17.4 17.3C17.4 16.7 16.9 16.5 15.7 16.1C14.2 15.6 13.4 15 13.4 13.8C13.4 12.3 14.6 11.4 16.2 11.4C17.3 11.4 18.2 11.7 18.8 12.2L17.7 13.3C17.2 12.9 16.6 12.7 16.1 12.7C15.5 12.7 15.1 13 15.1 13.4C15.1 13.9 15.5 14.2 16.7 14.6C18.3 15.1 19.1 15.8 19.1 17C19.1 18.5 17.8 19.4 16.1 19.4C14.9 19.4 13.9 19 13.2 18.5Z" fill="#1a130e" />
+          </svg>
+        ),
+      },
     ],
   },
   {
@@ -160,6 +170,33 @@ export const TECHNOLOGY_CATEGORIES = [
           </svg>
         ),
       },
+      {
+        name: 'Swift (iOS)',
+        role: 'Native iOS application engineering with modern Swift & SwiftUI',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#F05138" />
+            <path d="M18.5 17.5C15 20 9.5 18 6 13C8.5 15.5 12 16 14.5 14.5C11.5 13.5 9 10.5 8 8C10.5 10 13 10.5 15 9.5C13 8 11.5 5.5 11 4C14 6.5 17.5 11 18.5 17.5Z" fill="#ffffff" />
+          </svg>
+        ),
+      },
+      {
+        name: 'Kotlin (Android)',
+        role: 'Modern Android architecture with Jetpack Compose & Kotlin coroutines',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#7F52FF" />
+            <path d="M5 4H19L12 11.5L19 19H5V4Z" fill="url(#paint_kotlin)" />
+            <defs>
+              <linearGradient id="paint_kotlin" x1="5" y1="4" x2="19" y2="19" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#7F52FF" />
+                <stop offset="0.5" stopColor="#C711E1" />
+                <stop offset="1" stopColor="#E4485D" />
+              </linearGradient>
+            </defs>
+          </svg>
+        ),
+      },
     ],
   },
   {
@@ -200,6 +237,18 @@ export const TECHNOLOGY_CATEGORIES = [
             <path d="M12 4C8 4 6 7 6 10C6 14 8 16 10 17V20H14V17C16 16 18 14 18 10C18 7 16 4 12 4Z" fill="#ffffff" />
             <circle cx="10" cy="9" r="1" fill="#336791" />
             <circle cx="14" cy="9" r="1" fill="#336791" />
+          </svg>
+        ),
+      },
+      {
+        name: 'Redis',
+        role: 'In-memory caching, sub-millisecond session state & pub/sub streaming',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#DC382D" />
+            <path d="M5 8L12 4.5L19 8L12 11.5L5 8Z" fill="#ffffff" opacity="0.9" />
+            <path d="M5 11.5L12 15L19 11.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M5 15L12 18.5L19 15" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         ),
       },
@@ -289,6 +338,28 @@ export const TECHNOLOGY_CATEGORIES = [
             <path d="M17 14L14 17M14 17L11 14M14 17V11" stroke="#2d231b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <circle cx="10" cy="17" r="1.5" fill="#eb7821" />
             <circle cx="14" cy="7" r="1.5" fill="#2d231b" />
+          </svg>
+        ),
+      },
+      {
+        name: 'Stripe & Payment Gateways',
+        role: 'PCI-compliant checkout, multi-currency billing, subscriptions & webhooks',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#635BFF" />
+            <path d="M12.5 9.5C11.5 9.1 10.7 8.8 10.7 8.2C10.7 7.7 11.2 7.3 12 7.3C12.9 7.3 14 7.7 14.8 8.1L15.5 6.4C14.6 6 13.4 5.7 12 5.7C9.8 5.7 8.5 6.9 8.5 8.6C8.5 11 11.7 11.3 11.7 12.5C11.7 13.1 11.1 13.5 10.2 13.5C9.1 13.5 7.8 13 6.9 12.4L6.1 14.2C7.1 14.8 8.6 15.2 10.1 15.2C12.5 15.2 13.9 14 13.9 12.2C13.9 9.8 12.5 9.5 12.5 9.5Z" fill="#ffffff" />
+          </svg>
+        ),
+      },
+      {
+        name: 'WebSockets & Real-Time',
+        role: 'Low-latency bi-directional event broadcasting, chat & live telemetry streams',
+        icon: (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#059669" />
+            <path d="M8 7L5 12L8 17" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M16 7L19 12L16 17" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="12" r="2" fill="#ffffff" />
           </svg>
         ),
       },

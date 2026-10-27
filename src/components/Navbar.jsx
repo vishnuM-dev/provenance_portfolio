@@ -81,42 +81,31 @@ export default function Navbar() {
   return (
     <header className={`floating-header-wrapper ${scrolled ? 'header-scrolled' : ''} ${visible ? 'header-visible' : 'header-hidden'}`}>
       <div className="floating-navbar-container">
-        {/* Brand Logo & Monogram */}
+        {/* Brand Logo & Brand Name - Horizontally Aligned & Vertically Centered */}
         <Link
           href="/"
           className="brand-logo-link"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.85rem',
-            flexShrink: 0,
-            textDecoration: 'none',
-          }}
           aria-label="ProvenanceTech - Home"
         >
           <div className="brand-logo-icon">
             <Image
               src="/icon.png"
               alt="ProvenanceTech Monogram Logo"
-              width={38}
-              height={38}
+              width={34}
+              height={34}
               priority
               style={{
                 objectFit: 'contain',
                 width: 'auto',
                 height: '100%',
+                display: 'block',
                 filter: 'drop-shadow(0 2px 8px rgba(197, 155, 79, 0.25))',
               }}
             />
           </div>
-          <div className="brand-text-block">
-            <span className="brand-title">
-              PROVENANCE<span className="brand-title-accent">TECH</span>
-            </span>
-            <span className="brand-subtitle">
-              WEB APPLICATION & MOBILE APPLICATION
-            </span>
-          </div>
+          <span className="brand-title">
+            PROVENANCE<span className="brand-title-accent">TECH</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation Links - Exact Order: Home | About Us | Services | Projects | Blog | Contact */}
@@ -135,8 +124,7 @@ export default function Navbar() {
                     className={`floating-nav-link ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                   >
-                    <span>{item.label}</span>
-                    {active && <span className="nav-active-dot" aria-hidden="true" />}
+                    <span>{item.label}</span>{active && <span className="nav-active-dot" aria-hidden="true" />}
                   </Link>
                 </li>
               );
@@ -175,7 +163,7 @@ export default function Navbar() {
                     className={`mobile-floating-link ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                   >
-                    <span>{item.label}</span>
+                    <span>{item.label}</span>{active && <span className="nav-active-dot" aria-hidden="true" />}
                     {active && <span className="mobile-active-badge">Active</span>}
                   </Link>
                 </li>
@@ -187,4 +175,3 @@ export default function Navbar() {
     </header>
   );
 }
-
