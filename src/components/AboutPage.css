@@ -1,0 +1,848 @@
+/* ==========================================================================
+   ProvenanceTech - About Page Styles
+   Matches reference design: Warm ivory/cream background, peach accents,
+   refined cards, crisp typography, and responsive grid layouts.
+   ========================================================================== */
+
+.about-page-wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-base, #f6f1ea);
+  background: radial-gradient(ellipse at 50% 0%, #fdfbf8 0%, #f8f3eb 55%, #f4ede2 100%);
+  color: var(--text-primary, #141518);
+  padding-bottom: 3rem;
+}
+
+/* Background Ambient Lighting Effects */
+.about-ambient-glow-1 {
+  position: absolute;
+  top: -80px;
+  right: -60px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 120, 33, 0.08) 0%, rgba(235, 120, 33, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-ambient-glow-2 {
+  position: absolute;
+  top: 40%;
+  left: -100px;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 151, 79, 0.06) 0%, rgba(244, 151, 79, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Container Constraint */
+.about-container {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Badge Component
+   -------------------------------------------------------------------------- */
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  background: rgba(235, 120, 33, 0.08);
+  border: 1px solid rgba(235, 120, 33, 0.22);
+  border-radius: 9999px;
+  color: #ea580c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(235, 120, 33, 0.06);
+}
+
+.about-badge-spark {
+  color: #ea580c;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.about-hero-section {
+  padding: 3.5rem 0 4.5rem;
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.about-hero-title {
+  font-size: clamp(2.6rem, 4.8vw, 3.8rem);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: #141518;
+  margin-bottom: 0.85rem;
+}
+
+.about-hero-subtitle {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700;
+  color: #ea580c;
+  margin-bottom: 1.6rem;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.about-hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 620px;
+}
+
+.about-hero-p {
+  font-size: 1.03rem;
+  line-height: 1.75;
+  color: #554e46;
+  font-weight: 450;
+}
+
+.about-hero-p strong {
+  color: #141518;
+  font-weight: 700;
+}
+
+/* Hero Right Scene: Laptop & Floating Badges */
+.about-hero-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+}
+
+.about-hero-scene-stage {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Table surface hint */
+.about-table-surface {
+  position: relative;
+  padding: 2rem 1.5rem 2.5rem;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at 50% 60%, rgba(240, 226, 210, 0.45) 0%, rgba(247, 239, 228, 0.1) 75%);
+}
+
+/* Laptop Mockup */
+.about-laptop-wrap {
+  position: relative;
+  perspective: 1100px;
+  z-index: 2;
+  width: 82%;
+  margin: 0 auto;
+}
+
+.about-laptop-screen {
+  background: #111317;
+  border-radius: 14px 14px 3px 3px;
+  padding: 10px 10px 14px;
+  box-shadow: 0 24px 50px -10px rgba(20, 16, 12, 0.32), 0 4px 14px rgba(235, 120, 33, 0.08);
+  border: 2px solid #2d3139;
+  position: relative;
+  aspect-ratio: 16 / 10.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: rotateX(8deg);
+  transform-origin: bottom center;
+}
+
+.about-laptop-camera {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #3a3f4b;
+  border-radius: 50%;
+}
+
+.about-laptop-display {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  background: radial-gradient(circle at 70% 30%, #201b17 0%, #111215 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-laptop-display-glow {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 120, 33, 0.32) 0%, rgba(235, 120, 33, 0) 70%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.about-display-text-1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #f7f1eb;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.about-display-text-2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ea580c;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.about-display-text-3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #f7f1eb;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.about-laptop-base {
+  width: 108%;
+  height: 12px;
+  margin-left: -4%;
+  background: linear-gradient(180deg, #d8dee8 0%, #9ca3af 45%, #64748b 100%);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 16px 30px rgba(20, 16, 12, 0.28);
+  position: relative;
+  z-index: 3;
+}
+
+.about-laptop-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 4px;
+  background: #475569;
+  border-radius: 0 0 6px 6px;
+}
+
+/* Desk Plant SVG Element */
+.about-desk-plant {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 58px;
+  height: 72px;
+  z-index: 4;
+  filter: drop-shadow(0 8px 16px rgba(20, 16, 12, 0.12));
+}
+
+.about-desk-plant-top {
+  position: absolute;
+  top: 6%;
+  right: 18%;
+  width: 44px;
+  height: 56px;
+  z-index: 1;
+  filter: drop-shadow(0 6px 12px rgba(20, 16, 12, 0.1));
+}
+
+/* 3 Floating Badges to the Right of Laptop */
+.about-floating-cards-group {
+  position: absolute;
+  right: -10px;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  z-index: 5;
+}
+
+.about-floating-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  padding: 0.65rem 1.15rem 0.65rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(220, 206, 190, 0.8);
+  box-shadow: 0 8px 24px -4px rgba(45, 35, 27, 0.08), 0 2px 6px rgba(45, 35, 27, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-floating-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(235, 120, 33, 0.16);
+}
+
+.about-card-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(235, 120, 33, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  flex-shrink: 0;
+}
+
+.about-floating-card-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1f242d;
+  white-space: nowrap;
+}
+
+/* Handwritten Script Accent */
+.about-script-accent {
+  position: absolute;
+  bottom: 0px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  z-index: 5;
+}
+
+.about-script-text {
+  font-family: 'Caveat', 'Brush Script MT', 'Segoe Script', cursive, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #c25916;
+  letter-spacing: 0.01em;
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   Section Headers (Reusable across page)
+   -------------------------------------------------------------------------- */
+.about-section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+}
+
+.about-section-title {
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #141518;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.about-section-desc {
+  font-size: 1.02rem;
+  color: #5c554e;
+  line-height: 1.68;
+  font-weight: 450;
+}
+
+/* --------------------------------------------------------------------------
+   Section 2: Mission & Vision (2 Cards)
+   -------------------------------------------------------------------------- */
+.about-mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 5.5rem;
+}
+
+.about-mv-card {
+  background: #ffffff;
+  border-radius: 26px;
+  border: 1px solid #ebd9c8;
+  box-shadow: 0 10px 30px rgba(45, 35, 27, 0.04);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-mv-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(45, 35, 27, 0.08);
+}
+
+.about-mv-content {
+  flex: 1;
+}
+
+.about-mv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #ea580c;
+  margin-bottom: 0.65rem;
+}
+
+.about-mv-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #141518;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+}
+
+.about-mv-desc {
+  font-size: 0.985rem;
+  color: #554e46;
+  line-height: 1.68;
+  font-weight: 450;
+}
+
+.about-mv-art {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Section 3: What We Do (4-Card Grid)
+   -------------------------------------------------------------------------- */
+.about-capabilities-section {
+  margin-bottom: 5.5rem;
+}
+
+.about-cards-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.35rem;
+}
+
+.about-feature-card {
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid #ebd9c8;
+  box-shadow: 0 8px 24px rgba(45, 35, 27, 0.04);
+  padding: 2.2rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(235, 120, 33, 0.4);
+  box-shadow: 0 16px 36px rgba(235, 120, 33, 0.1);
+}
+
+.about-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(235, 120, 33, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  margin-bottom: 1.35rem;
+  flex-shrink: 0;
+}
+
+.about-feature-title {
+  font-size: 1.22rem;
+  font-weight: 750;
+  color: #141518;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.about-feature-desc {
+  font-size: 0.925rem;
+  color: #5c554e;
+  line-height: 1.65;
+  font-weight: 450;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 4: Technology Stack (Pill Group Cards)
+   -------------------------------------------------------------------------- */
+.about-tech-section {
+  background: #ffffff;
+  border-radius: 30px;
+  border: 1px solid #ebd9c8;
+  box-shadow: 0 12px 36px rgba(45, 35, 27, 0.04);
+  padding: 3.5rem 2.5rem;
+  margin-bottom: 5.5rem;
+}
+
+.about-tech-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.15rem;
+  margin-bottom: 2.25rem;
+}
+
+.about-tech-group-card {
+  background: #fbf8f4;
+  border-radius: 18px;
+  border: 1px solid #ebd9c8;
+  padding: 1.5rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-tech-group-card:hover {
+  transform: translateY(-3px);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(235, 120, 33, 0.08);
+  border-color: rgba(235, 120, 33, 0.35);
+}
+
+.about-tech-group-title {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #141518;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+  text-transform: capitalize;
+}
+
+.about-tech-items-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-tech-item-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.about-tech-icon-wrap {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-tech-item-name {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: #554e46;
+  white-space: nowrap;
+}
+
+.about-tech-footer-note {
+  text-align: center;
+  font-size: 0.925rem;
+  color: #6a6157;
+  font-weight: 450;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 5 & 6: Values & Why Choose (4 Cards)
+   -------------------------------------------------------------------------- */
+.about-values-section,
+.about-why-section {
+  margin-bottom: 5.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Section 7: Call to Action Banner
+   -------------------------------------------------------------------------- */
+.about-cta-card {
+  background: linear-gradient(135deg, #fffbf7 0%, #fef3e8 45%, #fce7d2 100%);
+  border-radius: 30px;
+  border: 1px solid #ebd9c8;
+  box-shadow: 0 16px 42px rgba(45, 35, 27, 0.05);
+  padding: 3.5rem 3.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.about-cta-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-cta-dash {
+  width: 28px;
+  height: 4px;
+  background: #ea580c;
+  border-radius: 2px;
+  margin-bottom: 1.15rem;
+}
+
+.about-cta-title {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 850;
+  color: #141518;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  margin-bottom: 0.85rem;
+}
+
+.about-cta-subtitle {
+  font-size: 1.12rem;
+  font-weight: 750;
+  color: #ea580c;
+  line-height: 1.45;
+  margin-bottom: 1.15rem;
+}
+
+.about-cta-desc {
+  font-size: 0.975rem;
+  color: #554e46;
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 2rem;
+  font-weight: 450;
+}
+
+.about-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 2.2rem;
+  background: #ea580c;
+  color: #ffffff;
+  font-size: 0.975rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-cta-button:hover {
+  background: #c2410c;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.45);
+}
+
+/* CTA Right Scene */
+.about-cta-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.about-cta-desk-visual {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* Floating "Have an Idea?" Speech Card */
+.about-idea-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ffffff;
+  padding: 1.15rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid rgba(220, 206, 190, 0.85);
+  box-shadow: 0 14px 34px -4px rgba(45, 35, 27, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  z-index: 4;
+}
+
+.about-idea-badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-idea-badge-small {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.about-idea-badge-bold {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ea580c;
+  line-height: 1.25;
+}
+
+.about-idea-badge-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ea580c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.about-idea-badge:hover .about-idea-badge-btn {
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .about-cards-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-tech-groups-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-hero-scene {
+    order: -1;
+    min-height: 360px;
+  }
+
+  .about-mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-cta-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-cta-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .about-cta-scene {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-tech-groups-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-tech-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .about-mv-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+  }
+
+  .about-mv-art {
+    margin: 1rem auto 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-cards-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .about-tech-groups-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .about-section-title {
+    font-size: 1.85rem;
+  }
+
+  .about-floating-cards-group {
+    position: static;
+    margin-top: 1.25rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-script-accent {
+    position: static;
+    margin-top: 0.75rem;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .about-floating-card,
+  .about-mv-card,
+  .about-feature-card,
+  .about-tech-group-card,
+  .about-cta-button {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
