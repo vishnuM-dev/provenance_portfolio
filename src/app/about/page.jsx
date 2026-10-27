@@ -124,7 +124,65 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="container" style={{ padding: '3.5rem 1.5rem 5.5rem' }}>
+    <div style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Complete Page Background Image */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/images/hero-tech-bg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.22,
+          mixBlendMode: 'multiply',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Radial Softening Gradient for optimal readability */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at 50% 15%, rgba(253, 251, 248, 0.45) 0%, rgba(246, 241, 234, 0.72) 55%, rgba(246, 241, 234, 0.92) 100%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Top & Bottom Seamless Edge Blending */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '140px',
+          background: 'linear-gradient(180deg, var(--bg-base, #f6f1ea) 0%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '140px',
+          background: 'linear-gradient(0deg, var(--bg-base, #f6f1ea) 0%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1, padding: '3.5rem 1.5rem 5.5rem' }}>
       {/* 1. Header / Hero Intro */}
       <div className="section-header" style={{ maxWidth: '840px', margin: '0 auto 3.75rem' }}>
         <div className="section-badge" style={{ background: '#ffffff', border: '1px solid var(--border-warm)', color: 'var(--primary)' }}>
@@ -576,6 +634,7 @@ export default function AboutPage() {
           <ArrowRight size={17} />
         </Link>
       </div>
+    </div>
     </div>
   );
 }

@@ -75,6 +75,23 @@ body {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* Completely hide visible scrollbar application-wide across all browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 body {
@@ -1363,6 +1380,18 @@ input::-ms-clear {
   transform: translateY(-4px);
   border-color: rgba(235, 120, 33, 0.36);
   box-shadow: 0 16px 36px rgba(25, 22, 18, 0.08);
+}
+
+/* 7. Hide Next.js Development Indicator Badge */
+nextjs-portal,
+#__next-build-watcher,
+[data-nextjs-dev-tools-indicator],
+[data-nextjs-toast],
+div[data-nextjs-toast-wrapper] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 
