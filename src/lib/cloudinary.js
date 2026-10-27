@@ -24,14 +24,14 @@ export async function uploadImage(bufferOrBase64, filename = 'asset') {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          folder: 'prevenance/assets',
+          folder: 'provenance/assets',
           resource_type: 'image',
           public_id: `${filename.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}`,
           transformation: [{ quality: 'auto', fetch_format: 'auto' }],
         },
         (error, result) => {
           if (error) {
-            console.error('[Prevenance Cloudinary Error]:', error);
+            console.error('[Provenance Cloudinary Error]:', error);
             return reject(error);
           }
           resolve({

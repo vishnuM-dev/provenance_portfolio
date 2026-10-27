@@ -11,7 +11,7 @@ import { SEED_ASSETS } from './seed-data.js';
 import fs from 'fs';
 import path from 'path';
 
-const TABLE_NAME = process.env.DYNAMODB_TABLE_NAME || 'PrevenanceAssets';
+const TABLE_NAME = process.env.DYNAMODB_TABLE_NAME || 'ProvenanceAssets';
 const AWS_REGION = process.env.AWS_REGION || 'us-east-1';
 
 // Detect whether AWS credentials are affirmatively configured
@@ -34,12 +34,12 @@ if (hasAwsCredentials) {
     });
     docClient = DynamoDBDocumentClient.from(rawClient);
   } catch (err) {
-    console.warn('[Prevenance] Failed to initialize AWS DynamoDB client, falling back to local store:', err.message);
+    console.warn('[Provenance] Failed to initialize AWS DynamoDB client, falling back to local store:', err.message);
   }
 }
 
 // Local persistent mock store for seamless development/testing without requiring active AWS account
-const LOCAL_STORE_FILE = path.join(process.cwd(), '.prevenance-db.json');
+const LOCAL_STORE_FILE = path.join(process.cwd(), '.provenance-db.json');
 
 function readLocalStore() {
   try {
@@ -51,7 +51,7 @@ function readLocalStore() {
       }
     }
   } catch (err) {
-    console.warn('[Prevenance] Error reading local store:', err.message);
+    console.warn('[Provenance] Error reading local store:', err.message);
   }
 
   // Seed with initial high-value assets
@@ -68,7 +68,7 @@ function writeLocalStore(items) {
   try {
     fs.writeFileSync(LOCAL_STORE_FILE, JSON.stringify(items, null, 2), 'utf-8');
   } catch (err) {
-    console.warn('[Prevenance] Error writing to local store:', err.message);
+    console.warn('[Provenance] Error writing to local store:', err.message);
   }
 }
 
@@ -93,7 +93,7 @@ export async function getAllAssets(filters = {}) {
 
       return filterAssetList(items, { search, category, status });
     } catch (err) {
-      console.warn('[Prevenance] AWS DynamoDB Scan failed, using local store:', err.message);
+      console.warn('[Provenance] AWS DynamoDB Scan failed, using local store:', err.message);
     }
   }
 
@@ -141,7 +141,7 @@ export async function getAssetById(id) {
       const response = await docClient.send(command);
       if (response.Item) return response.Item;
     } catch (err) {
-      console.warn('[Prevenance] AWS DynamoDB GetItem failed, searching local store:', err.message);
+      console.warn('[Provenance] AWS DynamoDB GetItem failed, searching local store:', err.message);
     }
   }
 
@@ -184,7 +184,7 @@ export async function createAsset(assetData) {
       });
       await docClient.send(command);
     } catch (err) {
-      console.warn('[Prevenance] AWS DynamoDB PutItem failed, saving to local store:', err.message);
+      console.warn('[Provenance] AWS DynamoDB PutItem failed, saving to local store:', err.message);
     }
   }
 
@@ -223,7 +223,7 @@ export async function updateAsset(id, updateData) {
       });
       await docClient.send(command);
     } catch (err) {
-      console.warn('[Prevenance] AWS DynamoDB update fallback:', err.message);
+      console.warn('[Provenance] AWS DynamoDB update fallback:', err.message);
     }
   }
 
@@ -247,7 +247,7 @@ export async function addProvenanceEvent(id, eventData) {
     custodian: eventData.custodian || asset.currentCustodian,
     location: eventData.location || 'Undisclosed',
     description: eventData.description || 'Chain-of-custody update logged.',
-    verifiedBy: eventData.verifiedBy || 'Prevenance Verification Officer',
+    verifiedBy: eventData.verifiedBy || 'Provenance Verification Officer',
   };
 
   const updatedEvents = [...events, newEvent];
@@ -275,7 +275,7 @@ export async function deleteAsset(id) {
       });
       await docClient.send(command);
     } catch (err) {
-      console.warn('[Prevenance] AWS DynamoDB DeleteItem fallback:', err.message);
+      console.warn('[Provenance] AWS DynamoDB DeleteItem fallback:', err.message);
     }
   }
 
@@ -311,7 +311,7 @@ export async function getDashboardMetrics() {
 /**
  * Record a consultation / contact inquiry
  */
-const LOCAL_INQUIRIES_FILE = path.join(process.cwd(), '.prevenance-inquiries.json');
+const LOCAL_INQUIRIES_FILE = path.join(process.cwd(), '.provenance-inquiries.json');
 
 export async function createInquiry(data) {
   const inquiry = {

@@ -127,34 +127,34 @@ export default function AboutPage() {
     <div className="container" style={{ padding: '3.5rem 1.5rem 5.5rem' }}>
       {/* 1. Header / Hero Intro */}
       <div className="section-header" style={{ maxWidth: '840px', margin: '0 auto 3.75rem' }}>
-        <div className="section-badge" style={{ background: '#ffffff', border: '1px solid #dfd5c8', color: '#c45318' }}>
+        <div className="section-badge" style={{ background: '#ffffff', border: '1px solid var(--border-warm)', color: 'var(--primary)' }}>
           <Sparkles size={14} color="var(--primary)" />
           ProvenanceTech Software Engineering
         </div>
 
-        <h1 className="section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', color: '#1a130e', marginBottom: '0.65rem' }}>
+        <h1 className="section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', color: 'var(--text-primary)', marginBottom: '0.65rem' }}>
           About ProvenanceTech
         </h1>
 
         <h2 style={{
           fontSize: '1.25rem',
           fontWeight: 700,
-          color: 'var(--primary, #df7a38)',
+          color: 'var(--primary)',
           marginBottom: '1.35rem',
           letterSpacing: '-0.01em',
         }}>
           Technology Built on Trust. Innovation Built for Growth.
         </h2>
 
-        <p className="section-desc" style={{ fontSize: '1.08rem', color: '#382e25', lineHeight: 1.75, maxWidth: '740px', fontWeight: 450 }}>
-          At <strong style={{ color: '#1a130e' }}>ProvenanceTech</strong>, we believe great software starts with understanding people, businesses, and the problems that matter most.
+        <p className="section-desc" style={{ fontSize: '1.08rem', color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '740px', fontWeight: 450 }}>
+          At <strong style={{ color: 'var(--text-primary)' }}>ProvenanceTech</strong>, we believe great software starts with understanding people, businesses, and the problems that matter most.
         </p>
 
-        <p style={{ fontSize: '0.985rem', color: '#6e6054', lineHeight: 1.72, maxWidth: '720px', margin: '0.85rem auto 0' }}>
+        <p style={{ fontSize: '0.985rem', color: 'var(--text-muted)', lineHeight: 1.72, maxWidth: '720px', margin: '0.85rem auto 0' }}>
           We are a software engineering company focused on building modern web applications, mobile experiences, and scalable digital solutions that help businesses turn ideas into reality.
         </p>
 
-        <p style={{ fontSize: '0.95rem', color: '#6e6054', lineHeight: 1.72, maxWidth: '720px', margin: '0.85rem auto 0' }}>
+        <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.72, maxWidth: '720px', margin: '0.85rem auto 0' }}>
           Our name reflects the values we believe in: transparency, reliability, and purposeful technology. From the first conversation to the final deployment, we focus on creating software that is practical, maintainable, and built with the future in mind.
         </p>
       </div>
@@ -531,30 +531,30 @@ export default function AboutPage() {
           width: '56px',
           height: '56px',
           borderRadius: '18px',
-          background: 'var(--primary, #df7a38)',
+          background: 'var(--primary)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#ffffff',
           margin: '0 auto 1.5rem',
-          boxShadow: '0 6px 18px rgba(223, 122, 56, 0.3)',
+          boxShadow: 'var(--primary-glow)',
         }}>
           <MessageSquare size={28} />
         </div>
 
-        <h2 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.5rem)', fontWeight: 800, color: '#1a130e', marginBottom: '0.85rem', letterSpacing: '-0.02em' }}>
+        <h2 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.85rem', letterSpacing: '-0.02em' }}>
           Let&apos;s Build Something Meaningful
         </h2>
 
-        <p style={{ color: '#382e25', fontSize: '1.05rem', maxWidth: '640px', margin: '0 auto 0.5rem', lineHeight: 1.65, fontWeight: 500 }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', maxWidth: '640px', margin: '0 auto 0.5rem', lineHeight: 1.65, fontWeight: 500 }}>
           Every great digital product begins with an idea and the right team to bring it to life.
         </p>
 
-        <p style={{ color: '#6e6054', fontSize: '0.95rem', maxWidth: '640px', margin: '0 auto 0.75rem', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '640px', margin: '0 auto 0.75rem', lineHeight: 1.6 }}>
           Whether you&apos;re launching a startup, modernizing an existing application, or exploring a new digital opportunity, ProvenanceTech is ready to help you take the next step.
         </p>
 
-        <p style={{ color: '#1a130e', fontSize: '1.025rem', fontWeight: 700, marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-primary)', fontSize: '1.025rem', fontWeight: 700, marginBottom: '2rem' }}>
           Have an idea? Let&apos;s turn it into reality.
         </p>
 
@@ -566,7 +566,7 @@ export default function AboutPage() {
             fontSize: '1rem',
             fontWeight: 700,
             borderRadius: '9999px',
-            boxShadow: '0 8px 24px rgba(223, 122, 56, 0.35)',
+            boxShadow: 'var(--primary-glow)',
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',

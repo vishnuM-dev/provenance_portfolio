@@ -4,8 +4,8 @@ import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
 
 export default function TechnologiesSection({ id = 'technologies' }) {
   return (
-    <section id={id} style={{ scrollMarginTop: '90px' }}>
-      <div className="container">
+    <section id={id} style={{ scrollMarginTop: '90px', padding: '4.5rem 0 5rem', width: '100%' }}>
+      <div className="container" style={{ maxWidth: '1120px', margin: '0 auto', padding: '0 1.5rem', width: '100%' }}>
         {/* Section Header */}
         <div className="section-header" style={{ maxWidth: '820px', margin: '0 auto 3.25rem' }}>
           <div
@@ -52,7 +52,15 @@ export default function TechnologiesSection({ id = 'technologies' }) {
         </div>
 
         {/* 6 Category Grid */}
-        <div className="tech-grid-3">
+        <div
+          className="tech-grid-3"
+          style={{
+            maxWidth: '1080px',
+            margin: '0 auto',
+            width: '100%',
+            justifyContent: 'center',
+          }}
+        >
           {TECHNOLOGY_CATEGORIES.map((category) => (
             <article
               key={category.id}
@@ -77,8 +85,8 @@ export default function TechnologiesSection({ id = 'technologies' }) {
                       fontWeight: 700,
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
-                      color: 'var(--primary, #df7a38)',
-                      background: 'rgba(223, 122, 56, 0.1)',
+                      color: 'var(--primary)',
+                      background: 'rgba(197, 155, 79, 0.12)',
                       padding: '0.2rem 0.6rem',
                       borderRadius: '9999px',
                     }}

@@ -43,7 +43,7 @@ function VerifyContent() {
       console.error(err);
       setResult({
         verified: false,
-        error: 'Communication error with Prevenance engineering registry nodes.',
+        error: 'Communication error with ProvenanceTech engineering registry nodes.',
       });
     } finally {
       setLoading(false);
@@ -95,7 +95,7 @@ function VerifyContent() {
           justifyContent: 'center',
           color: '#ffffff',
           margin: '0 auto 1.25rem',
-          boxShadow: '0 6px 20px rgba(223, 122, 56, 0.3)',
+          boxShadow: 'var(--primary-glow)',
         }}>
           <Terminal size={30} strokeWidth={2.2} />
         </div>
@@ -104,7 +104,7 @@ function VerifyContent() {
           Software Release & License Verification
         </h1>
         <p className="section-desc">
-          Input any Prevenance Release Token or Project ID to confirm production release authenticity, SLA uptime, and verified deployment milestones.
+          Input any ProvenanceTech Release Token or Project ID to confirm production release authenticity, SLA uptime, and verified deployment milestones.
         </p>
       </div>
 
@@ -119,7 +119,11 @@ function VerifyContent() {
       }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ flex: '1 1 300px', position: 'relative' }}>
+            <label htmlFor="verify-token-input" className="sr-only">
+              ProvenanceTech Release Token or Project ID
+            </label>
             <input
+              id="verify-token-input"
               type="text"
               placeholder="e.g. CERT-APEXPAY-2026-A109 or PRV-2026-APP01"
               value={inputCode}

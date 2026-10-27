@@ -22,21 +22,21 @@ export default function AssetCard({ asset }) {
         flexDirection: 'column',
         position: 'relative',
         background: '#ffffff',
-        border: '1px solid rgba(220, 195, 170, 0.45)',
+        border: '1px solid var(--border-subtle)',
         borderRadius: '28px',
-        boxShadow: '0 14px 34px -8px rgba(160, 115, 75, 0.09)',
+        boxShadow: 'var(--shadow-card)',
         padding: '1.25rem',
         transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
-      {/* Media Mockup Container with Soft Warm Aesthetic */}
+      {/* Media Mockup Container with Soft Champagne Aesthetic */}
       <div style={{
         position: 'relative',
         width: '100%',
         height: '220px',
         borderRadius: '20px',
         overflow: 'hidden',
-        background: 'radial-gradient(circle, #fcf4eb 0%, #f4e3d3 100%)',
+        background: 'radial-gradient(circle, #fcf8f0 0%, #f4ece0 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -89,7 +89,7 @@ export default function AssetCard({ asset }) {
             style={{
               background: isLive ? 'var(--accent-verified-bg)' : 'var(--accent-review-bg)',
               color: isLive ? 'var(--accent-verified)' : 'var(--accent-review)',
-              border: `1px solid ${isLive ? 'rgba(46, 125, 90, 0.25)' : 'rgba(223, 122, 56, 0.25)'}`,
+              border: `1px solid ${isLive ? 'rgba(46, 125, 90, 0.25)' : 'rgba(197, 155, 79, 0.35)'}`,
               boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
               backdropFilter: 'blur(8px)',
               fontSize: '0.725rem',

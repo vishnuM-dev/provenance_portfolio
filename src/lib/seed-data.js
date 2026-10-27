@@ -1,5 +1,5 @@
 /**
- * Curated software projects, services, team, and testimonials for Prevenance
+ * Curated software projects, services, team, and testimonials for Provenance
  * Web & Mobile Application Development Studio
  */
 
@@ -20,7 +20,7 @@ export const SEED_ASSETS = [
     medium: 'Cross-Platform Mobile Application & Cloud Backend',
     dimensions: 'iOS 16+, Android 13+, Web Dashboard',
     originLocation: 'San Francisco, CA & London, UK',
-    currentCustodian: 'ApexPay Production Ops & Prevenance Cloud SLA',
+    currentCustodian: 'ApexPay Production Ops & Provenance Cloud SLA',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     certificateCode: 'CERT-APEXPAY-2026-A109',
     description: 'A high-throughput financial application processing cross-border micro-transactions with zero-downtime failover and bank-grade end-to-end encryption.',
@@ -30,7 +30,7 @@ export const SEED_ASSETS = [
         id: 'evt_01',
         date: '2025-01-15',
         eventType: 'Discovery & System Architecture',
-        custodian: 'Prevenance Solutions Studio',
+        custodian: 'Provenance Solutions Studio',
         location: 'San Francisco, CA',
         description: 'Mapped transaction pipelines, data schema on DynamoDB, and interactive wireframe prototypes.',
         verifiedBy: 'Lead Solutions Architect'
@@ -39,7 +39,7 @@ export const SEED_ASSETS = [
         id: 'evt_02',
         date: '2025-04-10',
         eventType: 'Core API & Mobile Sprint',
-        custodian: 'Prevenance Engineering Team',
+        custodian: 'Provenance Engineering Team',
         location: 'Remote Global',
         description: 'Built React Native client, microservices, and integrated Stripe/Plaid webhooks.',
         verifiedBy: 'Principal Mobile Engineer'
@@ -81,7 +81,7 @@ export const SEED_ASSETS = [
     medium: 'Modern Web Application & Responsive Clinical Portal',
     dimensions: 'Responsive Web, iPad Pro, Desktop Workstations',
     originLocation: 'Boston, MA & Zurich, Switzerland',
-    currentCustodian: 'Pulse Clinical Operations & Prevenance Support',
+    currentCustodian: 'Pulse Clinical Operations & Provenance Support',
     imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
     certificateCode: 'CERT-PULSE-2025-H882',
     description: 'Comprehensive telemedicine platform facilitating thousands of daily remote consultations with encrypted EHR synchronization.',
@@ -91,7 +91,7 @@ export const SEED_ASSETS = [
         id: 'evt_05',
         date: '2025-02-10',
         eventType: 'Clinical Workflow Discovery',
-        custodian: 'Prevenance Healthcare Practice',
+        custodian: 'Provenance Healthcare Practice',
         location: 'Boston, MA',
         description: 'Interviewed 40+ medical specialists to draft user journeys and regulatory data boundaries.',
         verifiedBy: 'Lead Healthcare Product Designer'
@@ -100,7 +100,7 @@ export const SEED_ASSETS = [
         id: 'evt_06',
         date: '2025-05-18',
         eventType: 'Next.js App Router Architecture',
-        custodian: 'Prevenance Full-Stack Core',
+        custodian: 'Provenance Full-Stack Core',
         location: 'Remote Global',
         description: 'Engineered server-side rendered physician dashboards and WebRTC signaling gateways.',
         verifiedBy: 'Senior Full-Stack Engineer'
@@ -143,7 +143,7 @@ export const SEED_ASSETS = [
         id: 'evt_08',
         date: '2024-03-12',
         eventType: 'Architecture Inception',
-        custodian: 'Prevenance IoT & Cloud Practice',
+        custodian: 'Provenance IoT & Cloud Practice',
         location: 'Chicago, IL',
         description: 'Drafted high-throughput ingestion pipelines and dynamic Mapbox rendering layer.',
         verifiedBy: 'Chief Technology Officer'
@@ -195,7 +195,7 @@ export const SEED_ASSETS = [
         id: 'evt_11',
         date: '2025-01-20',
         eventType: 'Headless Architecture Blueprint',
-        custodian: 'Prevenance Web Commerce Team',
+        custodian: 'Provenance Web Commerce Team',
         location: 'New York, NY',
         description: 'Designed server-side caching strategy and DynamoDB single-table schema for product inventory.',
         verifiedBy: 'Lead Full-Stack Architect'
@@ -238,7 +238,7 @@ export const SEED_ASSETS = [
         id: 'evt_13',
         date: '2025-03-05',
         eventType: 'AI Model Optimization & Prototyping',
-        custodian: 'Prevenance Mobile AI Lab',
+        custodian: 'Provenance Mobile AI Lab',
         location: 'Austin, TX',
         description: 'Quantized computer vision models to execute smoothly on mobile NPUs.',
         verifiedBy: 'Principal Mobile AI Engineer'
@@ -281,7 +281,7 @@ export const SEED_ASSETS = [
         id: 'evt_15',
         date: '2024-04-18',
         eventType: 'Distributed Engine Design',
-        custodian: 'Prevenance Cloud Architecture Team',
+        custodian: 'Provenance Cloud Architecture Team',
         location: 'Seattle, WA',
         description: 'Architected time-series metric aggregators and DynamoDB partition key hashing strategies.',
         verifiedBy: 'Chief Cloud Architect'
@@ -305,9 +305,9 @@ export const SEED_SERVICES = [
     id: 'srv-web',
     title: 'Web Application Development',
     tagline: 'High-Performance Web Platforms & SaaS',
-    description: 'Custom business websites, admin panels, interactive dashboards, customer portals, and enterprise SaaS platforms engineered with Next.js and React.',
+    description: 'Custom business websites, web portals, interactive analytics dashboards, customer portals, and enterprise SaaS platforms engineered with Next.js and React.',
     icon: 'Layout',
-    deliverables: ['Custom Next.js / React Architecture', 'Server-Side Rendering & Turbopack Speed', 'REST & GraphQL API Integration', 'Role-Based Access Control & Auth'],
+    deliverables: ['Custom Next.js / React Architecture', 'Server-Side Rendering & Turbopack Speed', 'REST & GraphQL API Integration', 'Enterprise Security & Compliance'],
   },
   {
     id: 'srv-mobile',
@@ -331,7 +331,7 @@ export const SEED_SERVICES = [
     tagline: 'Complete Frontend, Backend & Database',
     description: 'End-to-end software delivery covering frontend interfaces, robust backend Route Handlers, microservices, and secure relational and NoSQL databases.',
     icon: 'Layers',
-    deliverables: ['Next.js App Router Architecture', 'Secure JWT & OAuth 2.0 Auth', 'Amazon DynamoDB & Cloud Backends', 'Third-Party Webhook Integrations'],
+    deliverables: ['Next.js App Router Architecture', 'Enterprise API & Cloud Integrations', 'Amazon DynamoDB & Cloud Backends', 'Third-Party Webhook Integrations'],
   },
   {
     id: 'srv-uiux',
@@ -396,7 +396,7 @@ export const SEED_TEAM = [
 
 export const SEED_TESTIMONIALS = [
   {
-    quote: 'Prevenance delivered our fintech mobile application two weeks ahead of schedule. The sub-5ms transaction speed on Amazon DynamoDB gave us an incredible competitive edge.',
+    quote: 'Provenance delivered our fintech mobile application two weeks ahead of schedule. The sub-5ms transaction speed on Amazon DynamoDB gave us an incredible competitive edge.',
     author: 'Sarah Jenkins',
     title: 'Founder & CEO, ApexPay Global',
     location: 'San Francisco, CA',
@@ -408,7 +408,7 @@ export const SEED_TESTIMONIALS = [
     location: 'Boston, MA',
   },
   {
-    quote: 'Handling real-time telemetry for 4,000+ trucks in transit was a monumental engineering challenge. Prevenance built an IoT dispatch dashboard that never lags.',
+    quote: 'Handling real-time telemetry for 4,000+ trucks in transit was a monumental engineering challenge. Provenance built an IoT dispatch dashboard that never lags.',
     author: 'Markus Van Der Berg',
     title: 'VP of Transportation Logistics, Omni Freight',
     location: 'Rotterdam, Netherlands',
@@ -417,8 +417,8 @@ export const SEED_TESTIMONIALS = [
 
 export const SEED_FAQS = [
   {
-    q: 'What types of applications does Prevenance develop?',
-    a: 'We develop custom web applications (dashboards, admin portals, SaaS platforms, customer-facing web apps), mobile applications (iOS, Android, React Native, Flutter), and custom business software tailored to your specific operational workflows.'
+    q: 'What types of applications does Provenance develop?',
+    a: 'We develop custom web applications (analytics dashboards, enterprise portals, SaaS platforms, customer-facing web apps), mobile applications (iOS, Android, React Native, Flutter), and custom business software tailored to your specific operational workflows.'
   },
   {
     q: 'Do you build native or cross-platform mobile apps?',

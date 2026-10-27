@@ -35,7 +35,7 @@ export async function GET(request, { params }) {
       totalRecordedEvents: asset.provenanceEvents?.length || 0,
       provenanceEvents: asset.provenanceEvents || [],
       imageUrl: asset.imageUrl,
-      verificationAuthority: 'Prevenance Global Asset Registry',
+      verificationAuthority: 'ProvenanceTech Verified Engineering Registry',
     });
   } catch (err) {
     console.error('Verification query failed:', err);

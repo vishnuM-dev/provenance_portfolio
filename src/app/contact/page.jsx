@@ -24,7 +24,7 @@ export default function ContactPage() {
     email: '',
     organization: '',
     projectType: 'Web Application Development',
-    budget: '$25,000 - $50,000',
+    budget: '₹2,50,000 - ₹5,00,000',
     timeline: '1 - 3 Months',
     message: '',
   });
@@ -55,7 +55,7 @@ export default function ContactPage() {
         email: '',
         organization: '',
         projectType: 'Web Application Development',
-        budget: '$25,000 - $50,000',
+        budget: '₹2,50,000 - ₹5,00,000',
         timeline: '1 - 3 Months',
         message: ''
       });
@@ -110,9 +110,9 @@ export default function ContactPage() {
                 <MapPin size={18} />
               </div>
               <div>
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>San Francisco Hub</div>
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Hyderabad Engineering Hub</div>
                 <div style={{ color: 'var(--text-secondary)', marginTop: '0.2rem', fontSize: '0.875rem' }}>
-                  548 Market Street, Suite 8920, San Francisco, CA 94104
+                  Mindspace Madhapur, HITEC City, Hyderabad, Telangana 500081, India
                 </div>
               </div>
             </div>
@@ -132,9 +132,9 @@ export default function ContactPage() {
                 <Building size={18} />
               </div>
               <div>
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>London Technical Office</div>
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Financial District Center</div>
                 <div style={{ color: 'var(--text-secondary)', marginTop: '0.2rem', fontSize: '0.875rem' }}>
-                  25 Bank Street, Canary Wharf, London E14 5JP, UK
+                  Nanakramguda, Financial District, Gachibowli, Hyderabad, Telangana 500032, India
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function ContactPage() {
               <div>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Direct Technical Dispatch</div>
                 <div style={{ color: 'var(--primary)', fontWeight: 600, marginTop: '0.2rem', fontSize: '0.875rem' }}>
-                  engineering@prevenance.io
+                  engineering@provenancetech.com
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function ContactPage() {
               <div>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Discovery Call Hours</div>
                 <div style={{ color: 'var(--text-secondary)', marginTop: '0.2rem', fontSize: '0.875rem' }}>
-                  Monday – Friday, 09:00 – 18:00 PST / GMT
+                  Monday – Friday, 6:00 PM – 12:00 AM IST
                 </div>
               </div>
             </div>
@@ -224,8 +224,9 @@ export default function ContactPage() {
           <form onSubmit={handleSubmit}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Full Name *</label>
+                <label htmlFor="contact-name" className="form-label">Full Name *</label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   placeholder="e.g. Alexander Mitchell"
@@ -236,8 +237,9 @@ export default function ContactPage() {
               </div>
 
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Work Email *</label>
+                <label htmlFor="contact-email" className="form-label">Work Email *</label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   placeholder="alexander@company.com"
@@ -250,8 +252,9 @@ export default function ContactPage() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Company / Organization</label>
+                <label htmlFor="contact-org" className="form-label">Company / Organization</label>
                 <input
+                  id="contact-org"
                   type="text"
                   placeholder="e.g. Horizon Labs Inc."
                   value={formData.organization}
@@ -261,8 +264,9 @@ export default function ContactPage() {
               </div>
 
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Service Focus</label>
+                <label htmlFor="contact-type" className="form-label">Service Focus</label>
                 <select
+                  id="contact-type"
                   value={formData.projectType}
                   onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                   className="form-select"
@@ -279,22 +283,24 @@ export default function ContactPage() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Estimated Budget</label>
+                <label htmlFor="contact-budget" className="form-label">Estimated Budget</label>
                 <select
+                  id="contact-budget"
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                   className="form-select"
                 >
-                  <option value="Under $25,000">&lt; $25,000</option>
-                  <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                  <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                  <option value="$100,000+">$100,000+</option>
+                  <option value="Under ₹2,50,000">&lt; ₹2,50,000</option>
+                  <option value="₹2,50,000 - ₹5,00,000">₹2,50,000 - ₹5,00,000</option>
+                  <option value="₹5,00,000 - ₹10,00,000">₹5,00,000 - ₹10,00,000</option>
+                  <option value="₹10,00,000+">₹10,00,000+</option>
                 </select>
               </div>
 
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">Target Timeline</label>
+                <label htmlFor="contact-timeline" className="form-label">Target Timeline</label>
                 <select
+                  id="contact-timeline"
                   value={formData.timeline}
                   onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                   className="form-select"
@@ -308,8 +314,9 @@ export default function ContactPage() {
             </div>
 
             <div className="form-group" style={{ marginBottom: '1.75rem' }}>
-              <label className="form-label">Project Requirements & Goals *</label>
+              <label htmlFor="contact-message" className="form-label">Project Requirements & Goals *</label>
               <textarea
+                id="contact-message"
                 required
                 rows={4}
                 placeholder="Describe what your web or mobile app needs to do, existing tech stack if any, and target launch timeline..."

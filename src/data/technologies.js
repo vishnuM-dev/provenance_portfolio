@@ -92,7 +92,7 @@ export const TECHNOLOGY_CATEGORIES = [
         icon: (
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="24" height="24" rx="6" fill="#1c150f" />
-            <path d="M7 16L12 8L17 16M12 12H16" stroke="#df7a38" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M7 16L12 8L17 16M12 12H16" stroke="#eb7821" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         ),
       },
@@ -122,8 +122,8 @@ export const TECHNOLOGY_CATEGORIES = [
         role: 'Standardized HTTP JSON contracts, pagination, and status handling',
         icon: (
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="5" width="20" height="14" rx="3" stroke="#df7a38" strokeWidth="1.8" />
-            <circle cx="6" cy="12" r="1.5" fill="#df7a38" />
+            <rect x="2" y="5" width="20" height="14" rx="3" stroke="#eb7821" strokeWidth="1.8" />
+            <circle cx="6" cy="12" r="1.5" fill="#eb7821" />
             <path d="M10 12H18M10 9H15M10 15H16" stroke="#2d231b" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         ),
@@ -255,8 +255,8 @@ export const TECHNOLOGY_CATEGORIES = [
         role: 'Continuous integration and continuous deployment delivery automation',
         icon: (
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 16A5 5 0 0 1 7 6C9.5 6 11 8 12 9.5C13 8 14.5 6 17 6A5 5 0 0 1 17 16C14.5 16 13 14 12 12.5C11 14 9.5 16 7 16Z" stroke="#df7a38" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="12" cy="12.5" r="1.5" fill="#df7a38" />
+            <path d="M7 16A5 5 0 0 1 7 6C9.5 6 11 8 12 9.5C13 8 14.5 6 17 6A5 5 0 0 1 17 16C14.5 16 13 14 12 12.5C11 14 9.5 16 7 16Z" stroke="#eb7821" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="12.5" r="1.5" fill="#eb7821" />
           </svg>
         ),
       },
@@ -285,9 +285,9 @@ export const TECHNOLOGY_CATEGORIES = [
         icon: (
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="24" height="24" rx="4" fill="#faf6f0" stroke="#dfd5c8" strokeWidth="1" />
-            <path d="M7 10L10 7M10 7L13 10M10 7V13" stroke="#df7a38" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M7 10L10 7M10 7L13 10M10 7V13" stroke="#eb7821" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M17 14L14 17M14 17L11 14M14 17V11" stroke="#2d231b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="10" cy="17" r="1.5" fill="#df7a38" />
+            <circle cx="10" cy="17" r="1.5" fill="#eb7821" />
             <circle cx="14" cy="7" r="1.5" fill="#2d231b" />
           </svg>
         ),

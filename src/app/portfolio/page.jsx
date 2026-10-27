@@ -529,7 +529,7 @@ export default function PortfolioPage() {
                       gap: '0.2rem',
                     }}
                   >
-                    <div style={{ color: '#df7a38', fontWeight: 700 }}>{`// ProvenanceTech Service Contract`}</div>
+                    <div style={{ color: 'var(--primary, #eb7821)', fontWeight: 700 }}>{`// ProvenanceTech Service Contract`}</div>
                     <div>const solution = await buildSolution(requirements);</div>
                     <div style={{ color: '#2a9d8f' }}>return solution.deploy({'{ mode: "scalable", audit: "clean" }'});</div>
                   </div>
@@ -1525,10 +1525,11 @@ export default function PortfolioPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
                   {/* Full Name */}
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
+                    <label htmlFor="portfolio-name" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
                       Full Name <span style={{ color: 'var(--primary)' }}>*</span>
                     </label>
                     <input
+                      id="portfolio-name"
                       type="text"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -1553,10 +1554,11 @@ export default function PortfolioPage() {
 
                   {/* Work Email */}
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
+                    <label htmlFor="portfolio-email" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
                       Work Email <span style={{ color: 'var(--primary)' }}>*</span>
                     </label>
                     <input
+                      id="portfolio-email"
                       type="email"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -1583,10 +1585,11 @@ export default function PortfolioPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
                   {/* Company Name */}
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
+                    <label htmlFor="portfolio-org" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
                       Company Name <span style={{ color: '#8d7d6f', fontWeight: 400 }}>(Optional)</span>
                     </label>
                     <input
+                      id="portfolio-org"
                       type="text"
                       value={form.organization}
                       onChange={(e) => setForm({ ...form, organization: e.target.value })}
@@ -1606,10 +1609,11 @@ export default function PortfolioPage() {
 
                   {/* Project Type */}
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
+                    <label htmlFor="portfolio-type" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
                       Project Type
                     </label>
                     <select
+                      id="portfolio-type"
                       value={form.projectType}
                       onChange={(e) => setForm({ ...form, projectType: e.target.value })}
                       style={{
@@ -1634,10 +1638,11 @@ export default function PortfolioPage() {
 
                 {/* Project Requirements */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
+                  <label htmlFor="portfolio-message" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
                     Project Requirements <span style={{ color: 'var(--primary)' }}>*</span>
                   </label>
                   <textarea
+                    id="portfolio-message"
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}

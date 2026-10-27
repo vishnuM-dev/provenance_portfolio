@@ -1,5 +1,5 @@
 /**
- * Utility functions for Prevenance platform
+ * Utility functions for Provenance platform
  */
 
 export function generateAssetId() {
@@ -37,9 +37,9 @@ export function formatDate(dateString) {
 
 export function formatCurrency(amount) {
   if (amount === undefined || amount === null || isNaN(amount)) return 'Confidential';
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     maximumFractionDigits: 0
   }).format(amount);
 }

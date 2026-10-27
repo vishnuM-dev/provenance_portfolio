@@ -32,9 +32,9 @@ export default function ServicesPage() {
       icon: <Globe size={26} strokeWidth={2.2} />,
       offerings: [
         'Responsive single-page and multi-page web applications',
-        'Customer self-service portals and administrative dashboards',
+        'Customer self-service portals and executive dashboards',
         'Next.js and React component architectures',
-        'Secure authentication, session management, and role-based access',
+        'Cloud data pipelines, API integrations, and scalable hosting',
       ],
     },
     {

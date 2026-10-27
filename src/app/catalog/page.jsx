@@ -67,6 +67,24 @@ export default function CatalogPage() {
     fetchAssets();
   };
 
+  const handleReset = async () => {
+    setSearch('');
+    setSelectedCategory('All');
+    setSelectedStatus('All');
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/assets');
+      if (!res.ok) throw new Error('Failed to fetch projects');
+      const data = await res.json();
+      setAssets(data.assets || []);
+    } catch {
+      setError('Could not connect to the project registry.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="container" style={{ padding: '3.5rem 1.5rem 5rem' }}>
       {/* Header */}
@@ -97,8 +115,12 @@ export default function CatalogPage() {
         {/* Search Input */}
         <form onSubmit={handleSearchSubmit} style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ flex: '1 1 300px', position: 'relative' }}>
+            <label htmlFor="catalog-search" className="sr-only">
+              Search projects by title, client, or tech stack
+            </label>
             <Search size={18} color="var(--primary)" style={{ position: 'absolute', left: '1.1rem', top: '50%', transform: 'translateY(-50%)' }} />
             <input
+              id="catalog-search"
               type="text"
               placeholder="Search projects by title, client, or tech stack (e.g. Next.js, React Native, DynamoDB)..."
               value={search}
@@ -120,6 +142,7 @@ export default function CatalogPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
+                aria-pressed={selectedCategory === cat}
                 style={{
                   padding: '0.35rem 0.95rem',
                   borderRadius: 'var(--radius-full)',
@@ -127,10 +150,10 @@ export default function CatalogPage() {
                   fontWeight: 600,
                   border: 'none',
                   cursor: 'pointer',
-                  background: selectedCategory === cat ? 'var(--primary)' : '#fdf6ef',
+                  background: selectedCategory === cat ? 'var(--primary)' : 'var(--bg-surface-elevated)',
                   color: selectedCategory === cat ? '#ffffff' : 'var(--text-secondary)',
                   transition: 'all 0.2s ease',
-                  boxShadow: selectedCategory === cat ? '0 4px 12px rgba(223, 122, 56, 0.25)' : 'none',
+                  boxShadow: selectedCategory === cat ? 'var(--primary-glow)' : 'none',
                 }}
               >
                 {cat}
@@ -144,6 +167,7 @@ export default function CatalogPage() {
               <button
                 key={st}
                 onClick={() => setSelectedStatus(st)}
+                aria-pressed={selectedStatus === st}
                 style={{
                   padding: '0.35rem 0.95rem',
                   borderRadius: 'var(--radius-full)',
@@ -193,7 +217,7 @@ export default function CatalogPage() {
             Try resetting your search query or choosing another platform category.
           </p>
           <button
-            onClick={() => { setSearch(''); setSelectedCategory('All'); setSelectedStatus('All'); }}
+            onClick={handleReset}
             className="btn btn-secondary btn-sm"
           >
             Reset Filters

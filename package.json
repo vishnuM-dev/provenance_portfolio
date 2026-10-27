@@ -1,7 +1,8 @@
 {
-  "name": "prevenance",
+  "name": "provenance",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,9 +13,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1156.0",
     "@aws-sdk/lib-dynamodb": "^3.1156.0",
-    "bcryptjs": "^3.0.3",
     "cloudinary": "^2.11.0",
-    "jose": "^6.2.13",
     "lucide-react": "^1.61.0",
     "next": "16.4.3",
     "react": "19.3.0",

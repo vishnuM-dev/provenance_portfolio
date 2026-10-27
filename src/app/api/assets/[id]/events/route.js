@@ -1,21 +1,12 @@
 import { NextResponse } from 'next/server';
 import { addProvenanceEvent } from '@/lib/dynamodb';
-import { getSession } from '@/lib/auth';
 
 export async function POST(request, { params }) {
   try {
-    const session = await getSession();
-    if (!session || session.role !== 'admin') {
-      return NextResponse.json(
-        { error: 'Unauthorized: Admin privileges required' },
-        { status: 403 }
-      );
-    }
-
     const { id } = await params;
     const body = await request.json();
 
-    const { date, eventType, custodian, location, description } = body;
+    const { date, eventType, custodian, location, description, verifiedBy } = body;
 
     if (!eventType || !custodian) {
       return NextResponse.json(
@@ -30,7 +21,7 @@ export async function POST(request, { params }) {
       custodian,
       location: location || 'Undisclosed',
       description: description || 'Custody transfer or inspection logged.',
-      verifiedBy: session.name || 'Prevenance Authenticator',
+      verifiedBy: verifiedBy || 'Provenance Authenticator',
     });
 
     return NextResponse.json(result, { status: 201 });

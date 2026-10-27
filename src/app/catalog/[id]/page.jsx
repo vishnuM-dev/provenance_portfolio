@@ -22,6 +22,28 @@ import { formatCurrency } from '@/lib/utils';
 
 export const revalidate = 0;
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const project = await getAssetById(id);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+      description: 'The requested software project could not be found.',
+    };
+  }
+
+  return {
+    title: `${project.title} | Case Study`,
+    description: project.description || `Case study and technical architecture overview for ${project.title}.`,
+    openGraph: {
+      title: `${project.title} | ProvenanceTech Case Study`,
+      description: project.description || `Technical specifications, architecture, and deployment timeline for ${project.title}.`,
+      images: project.imageUrl ? [{ url: project.imageUrl }] : [],
+    },
+  };
+}
+
 export default async function AssetDetailPage({ params }) {
   const { id } = await params;
   const project = await getAssetById(id);

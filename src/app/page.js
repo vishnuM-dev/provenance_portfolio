@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllAssets } from '@/lib/dynamodb';
 import { SEED_SERVICES } from '@/lib/seed-data';
 import AssetCard from '@/components/AssetCard';
 import TechnologiesSection from '@/components/TechnologiesSection';
+import HeroDevicesAnimation from '@/components/HeroDevicesAnimation';
 import {
   Code2,
   Smartphone,
@@ -50,9 +52,9 @@ export default async function HomePage() {
       {/* 1. Hero Section - Simplified & Modern Two-Column Layout */}
       <section style={{
         position: 'relative',
-        padding: '3.75rem 0 3.25rem',
-        overflow: 'hidden',
-        borderBottom: '1px solid rgba(220, 195, 170, 0.45)',
+        padding: '3.75rem 0 3.75rem',
+        overflow: 'visible',
+        borderBottom: '1px solid var(--border-subtle)',
       }}>
         {/* Geometric Polygonal Tech Network Background - Shifted right */}
         <div style={{
@@ -61,16 +63,16 @@ export default async function HomePage() {
           backgroundImage: "url('/images/hero-tech-bg.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'right center',
-          opacity: 0.42,
+          opacity: 0.35,
           mixBlendMode: 'multiply',
           pointerEvents: 'none',
         }} />
 
-        {/* Directional Softening Gradient: Solid Warm Sand on Left Text Side, Clear on Right Devices Side */}
+        {/* Directional Softening Gradient: Solid Warm Ivory on Left Text Side, Clear on Right Devices Side */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(90deg, #f7eee4 0%, rgba(247, 238, 228, 0.98) 38%, rgba(247, 238, 228, 0.65) 62%, rgba(247, 238, 228, 0.2) 100%)',
+          background: 'linear-gradient(90deg, #f6f1ea 0%, rgba(246, 241, 234, 0.98) 38%, rgba(246, 241, 234, 0.65) 62%, rgba(246, 241, 234, 0.2) 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -78,7 +80,7 @@ export default async function HomePage() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.8) 0%, transparent 20%, transparent 80%, #f7eee4 100%)',
+          background: 'linear-gradient(180deg, rgba(246, 241, 234, 0.8) 0%, transparent 20%, transparent 80%, #f6f1ea 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -91,41 +93,23 @@ export default async function HomePage() {
           }}>
             {/* Left Column: Typography & Action Buttons */}
             <div>
-              {/* Small introductory label */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.4rem 1.15rem',
-                borderRadius: 'var(--radius-full)',
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: '#c45318',
-                fontSize: '0.825rem',
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                marginBottom: '1.25rem',
-                boxShadow: '0 2px 10px rgba(45, 35, 27, 0.05)',
-              }}>
-                Web & Mobile App Development
-              </div>
 
               {/* Bold Headline with High Contrast */}
-              <h1 style={{
+              <h1 className="hero-title-enter" style={{
                 fontSize: 'clamp(2.5rem, 4.4vw, 3.8rem)',
                 fontWeight: 800,
                 lineHeight: 1.15,
                 letterSpacing: '-0.03em',
-                color: '#1a130e',
+                color: 'var(--text-primary)',
                 marginBottom: '1.25rem',
               }}>
-                We Build Digital Experiences That <span style={{ color: '#c45318' }}>Grow Your Business.</span>
+                We Build Digital Experiences That <span style={{ color: 'var(--primary)' }}>Grow Your Business.</span>
               </h1>
 
               {/* Short Description with Rich Contrast */}
-              <p style={{
+              <p className="hero-desc-enter" style={{
                 fontSize: '1.1rem',
-                color: '#382e25',
+                color: 'var(--text-secondary)',
                 lineHeight: 1.7,
                 maxWidth: '520px',
                 marginBottom: '2.25rem',
@@ -135,7 +119,7 @@ export default async function HomePage() {
               </p>
 
               {/* Two CTA Buttons with Crisp Contrast */}
-              <div style={{
+              <div className="hero-cta-enter" style={{
                 display: 'flex',
                 gap: '1rem',
                 flexWrap: 'wrap',
@@ -149,7 +133,7 @@ export default async function HomePage() {
                     fontSize: '0.975rem',
                     fontWeight: 700,
                     borderRadius: '9999px',
-                    boxShadow: '0 8px 24px rgba(223, 122, 56, 0.38)',
+                    boxShadow: '0 8px 24px rgba(197, 155, 79, 0.35)',
                   }}
                 >
                   Explore Our Work
@@ -165,9 +149,9 @@ export default async function HomePage() {
                     fontWeight: 600,
                     borderRadius: '9999px',
                     background: '#ffffff',
-                    color: '#2d231b',
-                    border: '1px solid #dfd5c8',
-                    boxShadow: '0 4px 14px rgba(45, 35, 27, 0.06)',
+                    color: 'var(--text-primary)',
+                    border: '1px solid var(--border-subtle)',
+                    boxShadow: '0 4px 14px rgba(25, 22, 18, 0.05)',
                   }}
                 >
                   Let&apos;s Talk
@@ -175,42 +159,23 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Clean Modern Laptop & Smartphone Visual */}
-            <div style={{
+            {/* Right Column: Premium Floating Laptop & Smartphone with Surrounding Technology Icons */}
+            <div className="hero-visual-enter" style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               position: 'relative',
               width: '100%',
+              overflow: 'visible',
             }}>
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '560px',
-                borderRadius: '24px',
-                overflow: 'hidden',
-                boxShadow: '0 24px 50px -12px rgba(160, 115, 75, 0.25), 0 0 0 1px rgba(220, 195, 170, 0.45)',
-                background: '#ffffff',
-              }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/hero-devices.jpg"
-                  alt="Modern Web and Mobile Application Solutions"
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
+              <HeroDevicesAnimation />
             </div>
           </div>
         </div>
       </section>
 
       {/* 2. Core Services Overview */}
-      <section className="container">
+      <section className="container reveal-on-scroll">
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3rem' }}>
           <div style={{
             display: 'inline-flex',
@@ -311,7 +276,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3. Featured Projects & Case Studies (Matching "Top List – Our mainstay menu") */}
-      <section className="container">
+      <section className="container reveal-on-scroll">
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -358,7 +323,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Why Choose Us (Practical Business Benefits) */}
-      <section className="container">
+      <section className="container reveal-on-scroll">
         <div className="glass-panel" style={{
           padding: '3.5rem 2.5rem',
           background: '#ffffff',
@@ -371,7 +336,7 @@ export default async function HomePage() {
               Engineering Edge
             </div>
             <h2 style={{ fontSize: '2.4rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-              Why Choose Prevenance?
+              Why Choose ProvenanceTech?
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
               We combine enterprise architectural rigor with agile delivery speed so your digital products launch faster and stay reliable.
@@ -460,7 +425,7 @@ export default async function HomePage() {
       </section>
 
       {/* 5. Five-Step Development Process */}
-      <section className="container">
+      <section className="container reveal-on-scroll">
         <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
           <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
             Agile Lifecycle
@@ -524,7 +489,7 @@ export default async function HomePage() {
       <TechnologiesSection id="technologies" />
 
       {/* 7. Horizontal Feature Ribbon (Matching Reference Design) */}
-      <section className="container">
+      <section className="container reveal-on-scroll">
         <div style={{
           display: 'flex',
           justifyContent: 'space-around',
@@ -560,28 +525,32 @@ export default async function HomePage() {
       </section>
 
 
-      {/* 9. Final Call to Action - Exact User Copy */}
-      <section className="container">
+      {/* 8. Final Call to Action - Featuring Brand Monogram Emblem */}
+      <section className="container reveal-on-scroll">
         <div className="glass-panel" style={{
           padding: '4.5rem 2.5rem',
           textAlign: 'center',
           borderRadius: '32px',
-          background: 'radial-gradient(circle at 50% 50%, #fff7ef 0%, #f7eee4 100%)',
-          border: '1px solid rgba(220, 195, 170, 0.45)',
-          boxShadow: '0 16px 40px -10px rgba(160, 115, 75, 0.1)',
+          background: 'radial-gradient(circle at 50% 50%, #fcf7f0 0%, #f6f1ea 100%)',
+          border: '1px solid var(--border-warm)',
+          boxShadow: 'var(--shadow-elevated)',
         }}>
           <div style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: '18px',
-            background: 'var(--primary-light)',
+            width: '64px',
+            height: '64px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--primary)',
             margin: '0 auto 1.5rem',
+            filter: 'drop-shadow(0 6px 16px rgba(197, 155, 79, 0.28))',
           }}>
-            <Code2 size={28} />
+            <Image
+              src="/icon.png"
+              alt="ProvenanceTech Monogram Logo"
+              width={64}
+              height={64}
+              style={{ objectFit: 'contain' }}
+            />
           </div>
 
           <h2 style={{
@@ -612,7 +581,6 @@ export default async function HomePage() {
                 padding: '0.9rem 2.5rem',
                 fontSize: '1.05rem',
                 fontWeight: 600,
-                boxShadow: '0 8px 24px rgba(223, 122, 56, 0.28)',
               }}
             >
               Start Your Project
@@ -626,6 +594,7 @@ export default async function HomePage() {
                 padding: '0.9rem 2.5rem',
                 fontSize: '1.05rem',
                 fontWeight: 600,
+                background: '#ffffff',
               }}
             >
               Explore Projects

@@ -2,6 +2,8 @@ import './globals.css';
 import { Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -11,9 +13,14 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'PREVENANCE | Web & Mobile Application Development Studio',
-  description: 'Prevenance is a high-performance web application, mobile application, and custom software development company engineering scalable digital products on Next.js, React Native, and Amazon DynamoDB.',
+  metadataBase: new URL('https://provenancetech.com'),
+  title: {
+    default: 'ProvenanceTech | Web & Mobile Application Development Studio',
+    template: '%s | ProvenanceTech',
+  },
+  description: 'ProvenanceTech is a high-performance web application, mobile application, and custom software development company engineering scalable digital products on Next.js, React Native, and Amazon DynamoDB.',
   keywords: [
+    'ProvenanceTech',
     'web application development',
     'mobile application development',
     'custom software company',
@@ -23,10 +30,35 @@ export const metadata = {
     'Next.js development',
     'Amazon DynamoDB',
     'SaaS development',
-    'Prevenance'
+    'full-stack engineering',
   ],
+  authors: [{ name: 'ProvenanceTech Engineering Team' }],
+  creator: 'ProvenanceTech',
+  publisher: 'ProvenanceTech Inc.',
+  formatDetection: {
+    email: true,
+    telephone: true,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://provenancetech.com',
+    siteName: 'ProvenanceTech',
+    title: 'ProvenanceTech | Web & Mobile Application Development Studio',
+    description: 'Engineering high-performance web applications, iOS and Android mobile apps, and scalable cloud solutions that help ambitious businesses grow.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ProvenanceTech | Web & Mobile Application Development Studio',
+    description: 'Engineering high-performance web applications, iOS and Android mobile apps, and scalable cloud solutions that help ambitious businesses grow.',
+  },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/icon.png', sizes: 'any', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/icon.png',
+    apple: '/apple-icon.png',
   },
 };
 
@@ -34,9 +66,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <ScrollReveal />
         <Navbar />
-        <main className="main-content">
-          {children}
+        <main id="main-content" className="main-content">
+          <PageTransition>
+            {children}
+          </PageTransition>
         </main>
         <Footer />
       </body>

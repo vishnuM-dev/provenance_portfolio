@@ -39,7 +39,7 @@ export default function CertificateBadge({ asset }) {
         width: '180px',
         height: '180px',
         borderRadius: '50%',
-        border: '8px dashed rgba(223, 122, 56, 0.12)',
+        border: '8px dashed rgba(197, 155, 79, 0.18)',
         pointerEvents: 'none',
       }} />
 
@@ -62,7 +62,7 @@ export default function CertificateBadge({ asset }) {
             alignItems: 'center',
             justifyContent: 'center',
             color: '#ffffff',
-            boxShadow: '0 4px 14px rgba(223, 122, 56, 0.28)',
+            boxShadow: '0 4px 14px rgba(197, 155, 79, 0.32)',
           }}>
             <Terminal size={24} strokeWidth={2.2} />
           </div>
@@ -71,7 +71,7 @@ export default function CertificateBadge({ asset }) {
               SOFTWARE RELEASE CERTIFICATE
             </h4>
             <div style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
-              Prevenance Engineering Registry
+              ProvenanceTech Engineering Registry
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function CertificateBadge({ asset }) {
         gap: '0.5rem',
       }}>
         <ShieldCheck size={14} color="var(--primary)" />
-        <span>Cryptographically signed with Jose JWT & Amazon DynamoDB point-in-time timestamping.</span>
+        <span>Cryptographically verified with Amazon DynamoDB point-in-time timestamping.</span>
       </div>
     </div>
   );
