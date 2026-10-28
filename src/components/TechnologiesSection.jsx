@@ -4,7 +4,7 @@ import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
 
 export default function TechnologiesSection({ id = 'technologies' }) {
   return (
-    <section id={id} style={{ scrollMarginTop: '90px', padding: '4.5rem 0 5rem', width: '100%' }}>
+    <section id={id} style={{ scrollMarginTop: '90px', padding: '3.75rem 0 1.25rem', width: '100%' }}>
       <div className="container" style={{ maxWidth: '1120px', margin: '0 auto', padding: '0 1.5rem', width: '100%' }}>
         {/* Section Header */}
         <div className="section-header" style={{ maxWidth: '820px', margin: '0 auto 3.25rem' }}>
@@ -188,7 +188,7 @@ export default function TechnologiesSection({ id = 'technologies' }) {
         {/* Bottom Context Pill */}
         <div
           style={{
-            marginTop: '3rem',
+            marginTop: '1rem',
             textAlign: 'center',
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(247, 238, 228, 0.7) 100%)',
             border: '1px solid #dfd5c8',

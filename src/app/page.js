@@ -27,7 +27,10 @@ import {
   Flame,
   Award,
   Palette,
-  Star
+  Star,
+  Rocket,
+  Heart,
+  MessageSquare,
 } from 'lucide-react';
 
 export const revalidate = 0;
@@ -115,110 +118,114 @@ export default async function HomePage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '5.5rem', paddingBottom: '4rem' }}>
-      {/* 1. Hero Section - Simplified & Modern Two-Column Layout */}
-      <section style={{
-        position: 'relative',
-        padding: '3.75rem 0 3.75rem',
-        overflow: 'visible',
-      }}>
-        <div className="hero-ambient-mesh" aria-hidden="true" />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem', paddingBottom: '4rem' }}>
+      {/* 1. Hero Section - Premium Asymmetric Two-Column Landing Architecture */}
+      <section className="hero-section-new" aria-label="Provenance Technologies Studio Introduction">
+        <div className="hero-ambient-mesh-new" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-            gap: '3.5rem',
-            alignItems: 'center',
-          }}>
-            {/* Left Column: Typography & Action Buttons */}
-            <div>
-
+          <div className="hero-split-grid">
+            {/* Left Column: Eyebrow Badge, Headline with Brush Underline, Paragraph, CTAs, and Benefits */}
+            <div className="hero-content-col">
               {/* Eyebrow Badge */}
-              <div className="hero-badge-enter" style={{ marginBottom: '1.25rem' }}>
-                <span className="section-badge" style={{
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  border: '1px solid rgba(220, 195, 170, 0.6)',
-                  boxShadow: '0 4px 14px rgba(235, 120, 33, 0.12)',
-                }}>
-                  <Sparkles size={14} color="var(--primary)" />
-                  Web &amp; Mobile Software Engineering Studio
-                </span>
+              <div className="hero-badge-pill">
+                <Sparkles size={14} className="hero-badge-sparkle" />
+                <span>Web &amp; Mobile Software Engineering Studio</span>
               </div>
 
-              {/* Bold Headline with High Contrast */}
-              <h1 className="hero-title-enter" style={{
-                fontSize: 'clamp(1.95rem, 4.4vw, 3.8rem)',
-                fontWeight: 800,
-                lineHeight: 1.15,
-                letterSpacing: '-0.03em',
-                color: 'var(--text-primary)',
-                marginBottom: '1.25rem',
-              }}>
-                We Build Digital Experiences That <span style={{ color: 'var(--primary)' }}>Grow Your Business.</span>
+              {/* Bold Headline with Hand-Drawn Brush Underline Accent */}
+              <h1 className="hero-title-main">
+                We Build Digital Experiences That{' '}
+                <span className="hero-title-highlight-box">
+                  Grow Your Business.
+                  <svg
+                    className="hero-title-underline-svg"
+                    viewBox="0 0 280 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 14C55 5 125 15 185 8C225 3 260 12 276 9"
+                      stroke="#ea580c"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M18 17C65 10 135 18 195 12C230 8 262 14 274 13"
+                      stroke="#f97316"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeOpacity="0.6"
+                    />
+                  </svg>
+                </span>
               </h1>
 
-              {/* Short Description with Rich Contrast */}
-              <p className="hero-desc-enter" style={{
-                fontSize: '1.1rem',
-                color: 'var(--text-secondary)',
-                lineHeight: 1.7,
-                maxWidth: '520px',
-                marginBottom: '2.25rem',
-                fontWeight: 450,
-              }}>
+              {/* Supporting Lead Description */}
+              <p className="hero-paragraph-lead">
                 We create modern web applications, mobile apps, and custom software solutions that help businesses work smarter and grow faster.
               </p>
 
-              {/* Two CTA Buttons with Crisp Contrast */}
-              <div className="hero-cta-enter" style={{
-                display: 'flex',
-                gap: '1rem',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-              }}>
+              {/* CTA Action Buttons */}
+              <div className="hero-cta-buttons-row">
                 <Link
                   href="/catalog"
-                  className="btn btn-primary"
-                  style={{
-                    padding: '0.85rem 2rem',
-                    fontSize: '0.975rem',
-                    fontWeight: 700,
-                    borderRadius: '9999px',
-                    boxShadow: '0 8px 24px rgba(197, 155, 79, 0.35)',
-                  }}
+                  className="hero-btn-explore"
                 >
-                  Explore Our Work
-                  <ArrowRight size={16} />
+                  <span>Explore Our Work</span>
+                  <ArrowRight size={17} className="hero-btn-arrow" />
                 </Link>
 
                 <Link
                   href="/contact"
-                  className="btn btn-secondary"
-                  style={{
-                    padding: '0.85rem 2rem',
-                    fontSize: '0.975rem',
-                    fontWeight: 600,
-                    borderRadius: '9999px',
-                    background: '#ffffff',
-                    color: 'var(--text-primary)',
-                    border: '1px solid var(--border-subtle)',
-                    boxShadow: '0 4px 14px rgba(25, 22, 18, 0.05)',
-                  }}
+                  className="hero-btn-talk"
                 >
-                  Let&apos;s Talk
+                  <span>Let&apos;s Talk</span>
+                  <MessageSquare size={16} className="hero-btn-chat-icon" />
                 </Link>
+              </div>
+
+              {/* Row of Three Distinct Key Benefits */}
+              <div className="hero-benefits-strip">
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon-box">
+                    <Rocket size={18} strokeWidth={2.2} />
+                  </div>
+                  <div className="hero-benefit-text">
+                    <span className="hero-benefit-title">Modern</span>
+                    <span className="hero-benefit-sub">Tech Stack</span>
+                  </div>
+                </div>
+
+                <div className="hero-benefit-divider" aria-hidden="true" />
+
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon-box">
+                    <ShieldCheck size={18} strokeWidth={2.2} />
+                  </div>
+                  <div className="hero-benefit-text">
+                    <span className="hero-benefit-title">Clean &amp;</span>
+                    <span className="hero-benefit-sub">Scalable Code</span>
+                  </div>
+                </div>
+
+                <div className="hero-benefit-divider" aria-hidden="true" />
+
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon-box">
+                    <Heart size={18} strokeWidth={2.2} />
+                  </div>
+                  <div className="hero-benefit-text">
+                    <span className="hero-benefit-title">On-Time</span>
+                    <span className="hero-benefit-sub">Delivery</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column: Premium Floating Laptop & Smartphone with Surrounding Technology Icons */}
-            <div className="hero-visual-enter" style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative',
-              width: '100%',
-              overflow: 'visible',
-            }}>
+            {/* Right Column: 3D Laptop, Smartphone, Floating Icons, Growth Pill, Plant & Handwritten Note */}
+            <div className="hero-visual-col">
               <HeroDevicesAnimation />
             </div>
           </div>
@@ -557,19 +564,19 @@ export default async function HomePage() {
       {/* 6. Technologies We Use (Categorized) */}
       <TechnologiesSection id="technologies" />
 
-      {/* 7. Horizontal Feature Ribbon (Matching Reference Design) */}
-      <section className="container reveal-on-scroll">
+      {/* 7. Horizontal Feature Ribbon (Clean Spacing) */}
+      <section className="container reveal-on-scroll" style={{ marginTop: '-2.5rem', marginBottom: '-1.75rem' }}>
         <div style={{
           display: 'flex',
           justifyContent: 'space-around',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1.25rem',
-          padding: '1.4rem 2rem',
-          background: 'rgba(255, 255, 255, 0.85)',
+          padding: '1.25rem 2rem',
+          background: 'rgba(255, 255, 255, 0.92)',
           borderRadius: 'var(--radius-full)',
           border: '1px solid rgba(220, 195, 170, 0.55)',
-          boxShadow: '0 10px 30px rgba(180, 130, 90, 0.05)',
+          boxShadow: '0 8px 24px rgba(180, 130, 90, 0.05)',
         }}>
           <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
             <Laptop size={18} color="var(--primary)" />
@@ -597,7 +604,7 @@ export default async function HomePage() {
       {/* 8. Final Call to Action - Featuring Brand Monogram Emblem */}
       <section className="container reveal-on-scroll">
         <div className="glass-panel cta-banner-glow" style={{
-          padding: '4.5rem 2.5rem',
+          padding: '3.5rem 2.25rem',
           textAlign: 'center',
           borderRadius: '32px',
           background: 'radial-gradient(circle at 50% 50%, #fcf7f0 0%, #f6f1ea 100%)',
