@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Custom Cursor - Premium Purple & Pink Neon Dot + Circle Combo
+   Custom Cursor - Premium Amber (#A6540C) Dot + Circle Combo
    Silky 144Hz GPU-accelerated requestAnimationFrame Architecture
    ========================================================================== */
 
@@ -39,23 +39,23 @@
   user-select: none;
 }
 
-/* 3. Outer Follower Circle - Thin Purple Neon Circle with Breathing Aura */
+/* 3. Outer Follower Circle - Thin Follower Circle with Breathing Aura */
 .custom-cursor-circle {
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   pointer-events: none !important;
-  border: 1.8px solid rgba(168, 85, 247, 0.88);
+  border: 1.5px solid rgba(166, 84, 12, 0.88);
   background: radial-gradient(
     circle, 
-    rgba(236, 72, 153, 0.16) 0%, 
-    rgba(168, 85, 247, 0.08) 60%, 
+    rgba(166, 84, 12, 0.16) 0%, 
+    rgba(166, 84, 12, 0.08) 60%, 
     transparent 80%
   );
   box-shadow: 
-    0 0 16px rgba(168, 85, 247, 0.5),
-    0 0 32px rgba(236, 72, 153, 0.3),
-    inset 0 0 10px rgba(168, 85, 247, 0.22);
+    0 0 12px rgba(166, 84, 12, 0.45),
+    0 0 22px rgba(166, 84, 12, 0.25),
+    inset 0 0 8px rgba(166, 84, 12, 0.18);
   transform: translate(-50%, -50%) scale(1);
   will-change: transform, border-color, box-shadow;
   animation: cursorNeonBreathing 3.4s ease-in-out infinite alternate;
@@ -66,42 +66,42 @@
     box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Organic breathing pulse between neon purple and bright pink */
+/* Organic breathing pulse for cursor glow */
 @keyframes cursorNeonBreathing {
   0% {
-    border-color: rgba(168, 85, 247, 0.82);
+    border-color: rgba(166, 84, 12, 0.82);
     box-shadow: 
-      0 0 14px rgba(168, 85, 247, 0.45),
-      0 0 28px rgba(236, 72, 153, 0.25),
-      inset 0 0 10px rgba(168, 85, 247, 0.18);
+      0 0 10px rgba(166, 84, 12, 0.4),
+      0 0 20px rgba(166, 84, 12, 0.22),
+      inset 0 0 8px rgba(166, 84, 12, 0.16);
   }
   50% {
-    border-color: rgba(236, 72, 153, 0.92);
+    border-color: rgba(166, 84, 12, 0.95);
     box-shadow: 
-      0 0 22px rgba(236, 72, 153, 0.55),
-      0 0 42px rgba(168, 85, 247, 0.36),
-      inset 0 0 14px rgba(236, 72, 153, 0.26);
+      0 0 16px rgba(166, 84, 12, 0.5),
+      0 0 30px rgba(166, 84, 12, 0.3),
+      inset 0 0 10px rgba(166, 84, 12, 0.22);
   }
   100% {
-    border-color: rgba(192, 132, 252, 0.9);
+    border-color: rgba(166, 84, 12, 0.9);
     box-shadow: 
-      0 0 18px rgba(192, 132, 252, 0.5),
-      0 0 36px rgba(236, 72, 153, 0.3),
-      inset 0 0 12px rgba(192, 132, 252, 0.22);
+      0 0 12px rgba(166, 84, 12, 0.45),
+      0 0 24px rgba(166, 84, 12, 0.25),
+      inset 0 0 8px rgba(166, 84, 12, 0.18);
   }
 }
 
-/* 4. Inner Precision Dot - Small, Bright Pink & Lavender Neon Core */
+/* 4. Inner Precision Dot - Small, Glowing #A6540C Core */
 .custom-cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   pointer-events: none !important;
-  background: linear-gradient(135deg, #ff2a85 0%, #ec4899 48%, #c084fc 100%);
+  background: #A6540C;
   box-shadow: 
-    0 0 8px rgba(255, 42, 133, 1),
-    0 0 18px rgba(192, 132, 252, 0.8),
-    0 0 28px rgba(236, 72, 153, 0.45);
+    0 0 6px rgba(166, 84, 12, 1),
+    0 0 14px rgba(166, 84, 12, 0.75),
+    0 0 20px rgba(166, 84, 12, 0.35);
   transform: translate(-50%, -50%) scale(1);
   will-change: transform, opacity;
   transition: 
@@ -109,43 +109,6 @@
     background 0.2s ease,
     box-shadow 0.2s ease,
     opacity 0.2s ease;
-}
-
-/* 5. Click Ripple Shockwave - Application Warm Amber Glow */
-.custom-cursor-ripple {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  pointer-events: none !important;
-  border: 1.6px solid rgba(235, 120, 33, 0.9);
-  background: radial-gradient(circle, rgba(235, 120, 33, 0.25) 0%, transparent 70%);
-  box-shadow: 
-    0 0 18px rgba(235, 120, 33, 0.65),
-    0 0 32px rgba(244, 151, 79, 0.45);
-  opacity: 0;
-  will-change: transform, opacity;
-  transform: translate(-50%, -50%) scale(0.6);
-}
-
-.custom-cursor-ripple.is-active {
-  animation: cursorRippleExpand 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes cursorRippleExpand {
-  0% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-  40% {
-    opacity: 0.55;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2.2);
-  }
 }
 
 /* 6. Interactive Hover State - Reduced Size & Application Brand Amber/Gold Color */
@@ -216,8 +179,8 @@ html.has-custom-cursor [contenteditable="true"] {
   cursor: text !important;
 }
 
-/* 9. Mobile Touch Screen Isolation - Completely disabled on pure touch phones & tablets */
-@media (hover: none) and (pointer: coarse) {
+/* 9. Mobile Touch Screen Isolation - Completely disabled on touch phones & tablets <= 768px */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
   .custom-cursor-container {
     display: none !important;
   }
@@ -230,14 +193,12 @@ html.has-custom-cursor [contenteditable="true"] {
 }
 
 /* 10. Accessibility - Reduced Motion Preference (Preserve cursor, remove pulsing animation) */
-.custom-cursor-container.reduced-motion .custom-cursor-circle,
-.custom-cursor-container.reduced-motion .custom-cursor-ripple {
+.custom-cursor-container.reduced-motion .custom-cursor-circle {
   animation: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .custom-cursor-circle,
-  .custom-cursor-ripple {
+  .custom-cursor-circle {
     animation: none !important;
   }
 }

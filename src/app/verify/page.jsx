@@ -118,7 +118,7 @@ function VerifyContent() {
         boxShadow: '0 14px 34px -8px rgba(160, 115, 75, 0.08)',
       }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ flex: '1 1 300px', position: 'relative' }}>
+          <div style={{ flex: '1 1 260px', minWidth: 0, width: '100%', position: 'relative' }}>
             <label htmlFor="verify-token-input" className="sr-only">
               ProvenanceTech Release Token or Project ID
             </label>
@@ -237,7 +237,7 @@ function VerifyContent() {
               {/* Project Summary */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
                 gap: '1.5rem',
                 marginBottom: '2rem',
               }}>

@@ -7,9 +7,9 @@ import './CustomCursor.css';
  * CustomCursor - Premium Dot + Circle Combo Cursor
  * 
  * Features:
- * - Rest: 8px glowing neon pink dot & 36px smooth thin purple follower ring.
+ * - Rest: 6px glowing #A6540C dot & 26px smooth thin #A6540C follower ring.
  * - Hover: Contracts down to a focused reticle (scale 0.68) and switches to ProvenanceTech brand amber/orange-gold (#eb7821 / #f4974f).
- * - Tactile Elastic Click: Crisp compression and shockwave ripple in brand amber.
+ * - Tactile Elastic Click: Crisp compression in brand amber.
  * - Native Text Cursor Protection: Dims cursor and preserves native I-beam on inputs/textareas.
  * - High-Precision 144Hz Physics: requestAnimationFrame lerp loop with zero lag or stutter.
  * - Mobile & Touch Isolation: Completely disabled on pure touchscreens and mobile devices.
@@ -25,7 +25,6 @@ export default function CustomCursor({
   const circleWrapperRef = useRef(null);
   const dotRef = useRef(null);
   const circleRef = useRef(null);
-  const rippleRef = useRef(null);
 
   const rafId = useRef(null);
   const mousePos = useRef({ x: -200, y: -200 });
@@ -181,22 +180,13 @@ export default function CustomCursor({
       showCursor();
     };
 
-    // 4. Click & Ripple Shockwave Handlers
+    // 4. Click State Handlers
     const handlePointerDown = (e) => {
       if (e.pointerType === 'touch' || isTouchActive.current) return;
       showCursor();
 
       circleRef.current?.classList.add('is-clicking');
       dotRef.current?.classList.add('is-clicking');
-
-      if (rippleRef.current) {
-        const x = e.clientX || mousePos.current.x;
-        const y = e.clientY || mousePos.current.y;
-        rippleRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-        rippleRef.current.classList.remove('is-active');
-        void rippleRef.current.offsetWidth; // Force CSS reflow
-        rippleRef.current.classList.add('is-active');
-      }
     };
 
     const handlePointerUp = () => {
@@ -286,12 +276,6 @@ export default function CustomCursor({
         transition: 'opacity 0.2s ease',
       }}
     >
-      {/* Click Neon Ripple Shockwave */}
-      <div
-        ref={rippleRef}
-        className="custom-cursor-ripple"
-      />
-
       {/* Outer Follower Circle */}
       <div
         ref={circleWrapperRef}

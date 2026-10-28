@@ -283,7 +283,6 @@ export default function PortfolioPage() {
       <section
         style={{
           padding: '4.5rem 0 4rem',
-          borderBottom: '1px solid #dfd5c8',
           background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%)',
         }}
       >
@@ -291,7 +290,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
               gap: '3.5rem',
               alignItems: 'center',
             }}
@@ -622,7 +621,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: '2rem',
             }}
           >
@@ -792,8 +791,6 @@ export default function PortfolioPage() {
         style={{
           padding: '5rem 0',
           background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(247, 238, 228, 0.4) 100%)',
-          borderTop: '1px solid #dfd5c8',
-          borderBottom: '1px solid #dfd5c8',
         }}
       >
         <div className="container">
@@ -841,7 +838,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
               gap: '1.5rem',
             }}
           >
@@ -974,7 +971,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
               gap: '1.5rem',
             }}
           >
@@ -1066,8 +1063,6 @@ export default function PortfolioPage() {
         style={{
           padding: '5rem 0',
           background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%)',
-          borderTop: '1px solid #dfd5c8',
-          borderBottom: '1px solid #dfd5c8',
         }}
       >
         <div className="container">
@@ -1116,7 +1111,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
               gap: '1.25rem',
               position: 'relative',
             }}
@@ -1242,7 +1237,7 @@ export default function PortfolioPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
               gap: '1.75rem',
             }}
           >
@@ -1309,8 +1304,6 @@ export default function PortfolioPage() {
         style={{
           padding: '5rem 0',
           background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(247, 238, 228, 0.5) 100%)',
-          borderTop: '1px solid #dfd5c8',
-          borderBottom: '1px solid #dfd5c8',
         }}
       >
         <div className="container" style={{ maxWidth: '820px', margin: '0 auto' }}>
@@ -1522,7 +1515,7 @@ export default function PortfolioPage() {
                   </div>
                 )}
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.25rem' }}>
                   {/* Full Name */}
                   <div>
                     <label htmlFor="portfolio-name" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
@@ -1582,7 +1575,7 @@ export default function PortfolioPage() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.25rem' }}>
                   {/* Company Name */}
                   <div>
                     <label htmlFor="portfolio-org" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>

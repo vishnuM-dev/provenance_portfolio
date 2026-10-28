@@ -834,6 +834,57 @@
   }
 }
 
+@media (max-width: 480px) {
+  .about-container {
+    padding: 0 1rem;
+  }
+
+  .about-hero-title {
+    font-size: clamp(1.85rem, 7vw, 2.3rem);
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .about-cta-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .about-cta-button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-table-surface {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .about-laptop-wrap {
+    width: 95%;
+  }
+
+  .about-laptop-display {
+    padding: 1rem 0.85rem;
+  }
+
+  .about-display-text-1,
+  .about-display-text-2 {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .about-container {
+    padding: 0 0.85rem;
+  }
+
+  .about-cta-card {
+    padding: 1.75rem 1rem;
+  }
+}
+
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   .about-floating-card,

@@ -27,6 +27,8 @@ export default function ProvenanceTimeline({ events = [], currentCustodian }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '0.85rem',
         marginBottom: '1.75rem',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import '@/components/ServicesPage.css';
 import {
   Globe,
   Smartphone,
@@ -9,12 +10,25 @@ import {
   LifeBuoy,
   Terminal,
   ArrowRight,
+  ArrowDown,
   Sparkles,
   CheckCircle2,
-  Compass,
-  Layout,
+  Cloud,
   Server,
-  ShieldCheck
+  Check,
+  Compass,
+  FileText,
+  Lightbulb,
+  Rocket,
+  Shield,
+  Bell,
+  Search,
+  Plus,
+  FolderGit2,
+  Users,
+  Box,
+  HardDrive,
+  Layout
 } from 'lucide-react';
 
 export const metadata = {
@@ -26,107 +40,67 @@ export default function ServicesPage() {
   const services = [
     {
       id: 'web-dev',
+      num: '01',
       title: 'Web Application Development',
       tagline: 'Modern Web Platforms & Dashboards',
       description: 'Build responsive websites, customer portals, dashboards, and modern web applications tailored to your business needs.',
-      icon: <Globe size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Responsive single-page and multi-page web applications',
-        'Customer self-service portals and executive dashboards',
-        'Next.js and React component architectures',
-        'Cloud data pipelines, API integrations, and scalable hosting',
-      ],
+      icon: <Globe size={22} strokeWidth={2.2} />,
     },
     {
       id: 'mobile-dev',
+      num: '02',
       title: 'Mobile Application Development',
       tagline: 'Cross-Platform iOS & Android Solutions',
       description: 'Create intuitive mobile experiences for Android and iOS using modern cross-platform development technologies.',
-      icon: <Smartphone size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Cross-platform mobile applications using React Native and Flutter',
-        'Intuitive mobile user interfaces and touch-friendly workflows',
-        'Offline data synchronization and local storage handling',
-        'Push notifications, device capabilities, and hardware integration',
-      ],
+      icon: <Smartphone size={22} strokeWidth={2.2} />,
     },
     {
       id: 'custom-software',
+      num: '03',
       title: 'Custom Software Development',
       tagline: 'Tailored Business & Operational Systems',
       description: 'Develop tailored software that streamlines business processes, improves productivity, and addresses specific operational challenges.',
-      icon: <Code2 size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Bespoke business workflow automation and rule engines',
-        'Legacy application modernization and feature refactoring',
-        'Departmental operational management tools and utilities',
-        'Tailored third-party service and payment integrations',
-      ],
+      icon: <Code2 size={22} strokeWidth={2.2} />,
     },
     {
       id: 'fullstack-dev',
+      num: '04',
       title: 'Full-Stack Development',
       tagline: 'End-to-End Application Architecture',
       description: 'Connect intuitive user interfaces with secure backend architectures, efficient route handlers, and scalable databases.',
-      icon: <Layers size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Complete frontend, backend, and data tier integration',
-        'RESTful API design and Next.js Route Handler endpoints',
-        'Structured request validation, error handling, and security',
-        'Webhook ingestion and asynchronous event processing',
-      ],
+      icon: <Layers size={20} strokeWidth={2.2} />,
     },
     {
       id: 'ui-ux',
+      num: '05',
       title: 'UI/UX Design',
       tagline: 'User-Centered Interfaces & Design Systems',
       description: 'Design clear, intuitive user experiences through research, wireframing, high-fidelity prototypes, and cohesive design systems.',
-      icon: <Palette size={26} strokeWidth={2.2} />,
-      offerings: [
-        'User journey mapping, information architecture, and wireframes',
-        'Interactive Figma prototypes and usability validation',
-        'Reusable design system tokens and component guidelines',
-        'Responsive layouts optimized for desktop, tablet, and mobile',
-      ],
+      icon: <Palette size={20} strokeWidth={2.2} />,
     },
     {
       id: 'cloud-db',
+      num: '06',
       title: 'Database & Cloud Solutions',
       tagline: 'Structured Data Storage & Cloud Delivery',
       description: 'Model data schemas and implement cloud storage architectures that keep business information reliable, secure, and accessible.',
-      icon: <Database size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Relational (MySQL, PostgreSQL) and NoSQL (Amazon DynamoDB) modeling',
-        'Cloud media storage and CDN optimization (Cloudinary, AWS S3)',
-        'Data access control policies and automated backup strategies',
-        'Database query tuning, indexing, and indexing optimization',
-      ],
+      icon: <Database size={20} strokeWidth={2.2} />,
     },
     {
       id: 'support-maintenance',
+      num: '07',
       title: 'Maintenance & Support',
       tagline: 'Ongoing Reliability & Technical Iteration',
       description: 'Ensure ongoing software stability, security updates, dependency maintenance, and feature enhancements after launch.',
-      icon: <LifeBuoy size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Scheduled dependency updates and framework security patching',
-        'Bug triage, resolution, and functional troubleshooting',
-        'Application health reviews and performance auditing',
-        'Agreed post-launch support and feature iteration cycles',
-      ],
+      icon: <Shield size={20} strokeWidth={2.2} />,
     },
     {
       id: 'devops-deploy',
+      num: '08',
       title: 'Deployment & DevOps',
       tagline: 'Predictable Builds & Release Pipelines',
       description: 'Establish automated build pipelines, containerized environments, and cloud infrastructure for predictable releases.',
-      icon: <Terminal size={26} strokeWidth={2.2} />,
-      offerings: [
-        'Docker containerization for consistent local and production environments',
-        'Automated CI/CD workflows using GitHub Actions',
-        'Environment variable configuration and secret management',
-        'Domain setup, SSL certificate provisioning, and release documentation',
-      ],
+      icon: <Terminal size={20} strokeWidth={2.2} />,
     },
   ];
 
@@ -135,444 +109,302 @@ export default function ServicesPage() {
       step: '01',
       title: 'Discovery & Planning',
       desc: 'Understand business goals, user requirements, technical feasibility, and project roadmap.',
-      icon: <Compass size={22} />,
+      icon: <Lightbulb size={20} />,
+      highlight: false,
     },
     {
       step: '02',
       title: 'Design & Architecture',
       desc: 'Define data models, system architecture, user journeys, wireframes, and design components.',
-      icon: <Layout size={22} />,
+      icon: <FileText size={20} />,
+      highlight: false,
     },
     {
       step: '03',
       title: 'Development & Integration',
       desc: 'Build frontend interfaces, backend endpoints, and third-party integrations using modern engineering practices.',
-      icon: <Code2 size={22} />,
+      icon: <Code2 size={20} />,
+      highlight: true,
     },
     {
       step: '04',
       title: 'Testing & Quality Assurance',
       desc: 'Verify functional correctness, cross-device responsiveness, security considerations, and edge cases.',
-      icon: <CheckCircle2 size={22} />,
+      icon: <CheckCircle2 size={20} />,
+      highlight: false,
     },
     {
       step: '05',
       title: 'Deployment & Support',
       desc: 'Deploy the solution to production, verify configuration, document the release, and provide agreed ongoing support.',
-      icon: <Server size={22} />,
+      icon: <Rocket size={20} />,
+      highlight: false,
     },
   ];
 
   return (
-    <div style={{ paddingBottom: '5rem' }}>
+    <div className="sp-page-wrapper">
       {/* ========================================================= */}
-      {/* 1. SERVICES PAGE HERO                                     */}
+      {/* 1. HERO SECTION                                           */}
       {/* ========================================================= */}
-      <section
-        style={{
-          padding: '4.5rem 0 3.5rem',
-          borderBottom: '1px solid #dfd5c8',
-          background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.85) 100%)',
-        }}
-      >
-        <div className="container" style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-          <div
-            className="section-badge"
-            style={{
-              background: '#ffffff',
-              border: '1px solid #dfd5c8',
-              color: 'var(--primary, #df7a38)',
-              fontSize: '0.8rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              marginBottom: '1.25rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.35rem 0.95rem',
-              borderRadius: '9999px',
-            }}
-          >
-            <Sparkles size={14} color="var(--primary, #df7a38)" />
-            OUR SERVICES
-          </div>
+      <section className="sp-hero-section">
+        <div className="sp-container">
+          <div className="sp-hero-grid">
+            {/* Left Content */}
+            <div className="sp-hero-content">
+              <div className="sp-badge">
+                <Sparkles size={14} className="sp-badge-icon" />
+                <span>Our Services</span>
+              </div>
 
-          <h1
-            style={{
-              fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              color: '#1a130e',
-              lineHeight: 1.15,
-              marginBottom: '1.35rem',
-            }}
-          >
-            Technology Solutions Designed Around Your Business
-          </h1>
+              <h1 className="sp-hero-title">
+                We Build Digital<br />
+                Solutions That Move<br />
+                Businesses Forward.
+              </h1>
 
-          <p
-            style={{
-              fontSize: '1.14rem',
-              color: '#4a3d31',
-              lineHeight: 1.7,
-              marginBottom: '2.25rem',
-              maxWidth: '680px',
-              marginInline: 'auto',
-              fontWeight: 450,
-            }}
-          >
-            We help businesses turn ideas into reliable digital products through modern web development, mobile applications, and custom software solutions.
-          </p>
+              <p className="sp-hero-desc">
+                From modern web applications to mobile solutions and custom software, we help businesses turn ideas into reliable, scalable digital products.
+              </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link
-              href="/contact"
-              className="btn btn-primary"
-              style={{
-                padding: '0.85rem 2rem',
-                borderRadius: '9999px',
-                fontWeight: 600,
-                fontSize: '0.96rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                boxShadow: '0 4px 16px rgba(223, 122, 56, 0.28)',
-              }}
-            >
-              Discuss Your Project
-              <ArrowRight size={16} />
-            </Link>
+              <div className="sp-hero-actions">
+                <Link href="/contact" className="sp-btn-primary">
+                  <span>Discuss Your Project</span>
+                  <ArrowRight size={15} />
+                </Link>
 
-            <Link
-              href="/portfolio"
-              className="btn btn-secondary"
-              style={{
-                padding: '0.85rem 1.85rem',
-                borderRadius: '9999px',
-                fontWeight: 600,
-                fontSize: '0.96rem',
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: '#2d231b',
-              }}
-            >
-              View Featured Work
-            </Link>
+                <a href="#services-overview" className="sp-btn-secondary">
+                  <span>Explore Our Services</span>
+                  <ArrowDown size={14} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Showcase Dashboard Graphic */}
+            <div className="sp-hero-showcase">
+              <div className="sp-showcase-stage">
+                {/* Floating Badges */}
+                <div className="sp-float-badge sp-float-badge-top-left" aria-hidden="true">
+                  <Code2 size={20} />
+                </div>
+                <div className="sp-float-badge sp-float-badge-top-right" aria-hidden="true">
+                  <Cloud size={20} />
+                </div>
+                <div className="sp-float-badge sp-float-badge-bottom" aria-hidden="true">
+                  <Database size={20} />
+                </div>
+
+                {/* Main Dashboard Window */}
+                <div className="sp-main-dashboard">
+                  {/* Dashboard Header Bar */}
+                  <div className="sp-dash-header">
+                    <span className="sp-dash-title">Dashboard</span>
+                    <div className="sp-dash-controls">
+                      <div className="sp-dash-pill" />
+                      <div className="sp-dash-avatar" />
+                    </div>
+                  </div>
+
+                  {/* Dashboard Metrics */}
+                  <div className="sp-dash-body">
+                    <div className="sp-dash-stats-row">
+                      <div className="sp-dash-stat-box">
+                        <div className="sp-dash-stat-label">Total Users</div>
+                        <div className="sp-dash-stat-val">
+                          <span>2,548</span>
+                          <span className="sp-dash-stat-growth">▲ +12%</span>
+                        </div>
+                      </div>
+
+                      <div className="sp-dash-stat-box">
+                        <div className="sp-dash-stat-label">Active Projects</div>
+                        <div className="sp-dash-stat-val">
+                          <span>12</span>
+                          <span className="sp-dash-stat-growth">▲ +23</span>
+                        </div>
+                      </div>
+
+                      <div className="sp-dash-stat-box">
+                        <div className="sp-dash-stat-label">Revenue</div>
+                        <div className="sp-dash-stat-val">
+                          <span>$24,780</span>
+                          <span className="sp-dash-stat-growth">▲ +18%</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Analytics Chart SVG Graphic */}
+                    <div className="sp-dash-chart-card">
+                      <svg className="sp-dash-chart-svg" viewBox="0 0 320 60" fill="none" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#ea580c" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#ea580c" stopOpacity="0.0" />
+                          </linearGradient>
+                        </defs>
+                        {/* Dashed Grid Lines */}
+                        <line x1="0" y1="15" x2="320" y2="15" stroke="#f0e6dc" strokeDasharray="3 3" />
+                        <line x1="0" y1="35" x2="320" y2="35" stroke="#f0e6dc" strokeDasharray="3 3" />
+                        <line x1="0" y1="55" x2="320" y2="55" stroke="#f0e6dc" strokeDasharray="3 3" />
+                        {/* Area Fill */}
+                        <path
+                          d="M 0 45 Q 40 48, 80 32 T 160 22 T 240 38 T 320 18 L 320 60 L 0 60 Z"
+                          fill="url(#chartGrad)"
+                        />
+                        {/* Curve Stroke */}
+                        <path
+                          d="M 0 45 Q 40 48, 80 32 T 160 22 T 240 38 T 320 18"
+                          fill="none"
+                          stroke="#ea580c"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Activity Log */}
+                    <div className="sp-dash-activity-title">Recent Activity</div>
+                    <div className="sp-dash-activity-item">
+                      <div>
+                        <span className="sp-dash-dot" />
+                        <span>New user registered</span>
+                      </div>
+                      <span style={{ color: '#9c8e80' }}>2m ago</span>
+                    </div>
+                    <div className="sp-dash-activity-item">
+                      <div>
+                        <span className="sp-dash-dot" />
+                        <span>Project updated</span>
+                      </div>
+                      <span style={{ color: '#9c8e80' }}>12m ago</span>
+                    </div>
+                    <div className="sp-dash-activity-item">
+                      <div>
+                        <span className="sp-dash-dot" />
+                        <span>Deployment successful</span>
+                      </div>
+                      <span style={{ color: '#9c8e80' }}>1h ago</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Overlapping Floating Code Card (bottom-left) */}
+                <div className="sp-float-code-card">
+                  <div className="sp-code-dots">
+                    <div className="sp-code-dot" style={{ background: '#ef4444' }} />
+                    <div className="sp-code-dot" style={{ background: '#f59e0b' }} />
+                    <div className="sp-code-dot" style={{ background: '#10b981' }} />
+                  </div>
+                  <pre className="sp-code-text">
+                    <code>
+                      <span className="sp-code-keyword">import</span> &#123; NextResponse &#125; <span className="sp-code-keyword">from</span> <span className="sp-code-string">&apos;next/server&apos;</span>;<br /><br />
+                      <span className="sp-code-keyword">export async function</span> <span className="sp-code-func">GET</span>() &#123;<br />
+                      &nbsp;&nbsp;<span className="sp-code-keyword">return</span> NextResponse.<span className="sp-code-func">json</span>(&#123;<br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;message: <span className="sp-code-string">&quot;Build, Scale, Grow&quot;</span><br />
+                      &nbsp;&nbsp;&#125;);<br />
+                      &#125;
+                    </code>
+                  </pre>
+                </div>
+
+                {/* Overlapping Floating Mobile Phone Preview (right) */}
+                <div className="sp-float-phone-card">
+                  <div className="sp-phone-notch" />
+                  <div className="sp-phone-title">Let&apos;s build something great.</div>
+                  <div className="sp-phone-widget">
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <FolderGit2 size={11} color="#ea580c" />
+                      <span>Projects</span>
+                    </span>
+                    <span style={{ color: '#ea580c', fontWeight: 700 }}>12 active</span>
+                  </div>
+                  <div className="sp-phone-widget">
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <CheckCircle2 size={11} color="#2563eb" />
+                      <span>Tasks</span>
+                    </span>
+                    <span>24 pending</span>
+                  </div>
+                  <div className="sp-phone-widget">
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <Users size={11} color="#8b5cf6" />
+                      <span>Team</span>
+                    </span>
+                    <span>8 members</span>
+                  </div>
+                  <div className="sp-phone-fab">+</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================= */}
-      {/* 2. EIGHT CORE SERVICES                                    */}
+      {/* 2. SERVICES OVERVIEW (ASYMMETRICAL 8-SERVICES GRID)       */}
       {/* ========================================================= */}
-      <section style={{ padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 3.25rem', textAlign: 'center' }}>
-            <div
-              className="section-badge"
-              style={{
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: 'var(--primary, #df7a38)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '0.75rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-              }}
-            >
-              <Sparkles size={14} color="var(--primary)" />
-              CAPABILITIES & EXPERTISE
+      <section id="services-overview" className="sp-services-section">
+        <div className="sp-container">
+          {/* Section Header */}
+          <div className="sp-section-header">
+            <div className="sp-badge">
+              <Sparkles size={14} className="sp-badge-icon" />
+              <span>Capabilities &amp; Expertise</span>
             </div>
 
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.8vw, 2.9rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.025em',
-                color: '#1a130e',
-                lineHeight: 1.2,
-                marginBottom: '0.85rem',
-              }}
-            >
+            <h2 className="sp-section-title">
               Comprehensive Software Engineering
             </h2>
 
-            <p style={{ fontSize: '1.05rem', color: '#5a4c3e', lineHeight: 1.65 }}>
+            <p className="sp-section-subtitle">
               From initial user experience design to production release, we deliver focused engineering services tailored to your technical requirements.
             </p>
           </div>
 
-          {/* 8 Service Cards Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */}
-          <div className="services-grid-3">
-            {services.map((srv) => (
-              <article
-                key={srv.id}
-                className="service-card"
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '24px',
-                  border: '1px solid #dfd5c8',
-                  padding: '2.25rem 2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  height: '100%',
-                  boxShadow: '0 6px 20px rgba(45, 35, 27, 0.04)',
-                }}
-              >
-                <div>
-                  {/* Icon */}
-                  <div
-                    style={{
-                      width: '54px',
-                      height: '54px',
-                      borderRadius: '16px',
-                      background: 'rgba(223, 122, 56, 0.1)',
-                      color: 'var(--primary, #df7a38)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '1.25rem',
-                    }}
-                  >
+          {/* Top Row: 3 Flagship Services */}
+          <div className="sp-services-top-row">
+            {services.slice(0, 3).map((srv) => (
+              <div key={srv.id} className="sp-service-card">
+                <div className="sp-card-top-row">
+                  <div className="sp-card-icon-box">
                     {srv.icon}
                   </div>
-
-                  {/* Title & Tagline */}
-                  <h3
-                    style={{
-                      fontSize: '1.28rem',
-                      fontWeight: 800,
-                      color: '#1a130e',
-                      letterSpacing: '-0.015em',
-                      marginBottom: '0.3rem',
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {srv.title}
-                  </h3>
-
-                  <div
-                    style={{
-                      fontSize: '0.82rem',
-                      color: 'var(--primary, #df7a38)',
-                      fontWeight: 700,
-                      marginBottom: '0.85rem',
-                    }}
-                  >
-                    {srv.tagline}
-                  </div>
-
-                  {/* Description */}
-                  <p
-                    style={{
-                      color: '#5a4c3e',
-                      fontSize: '0.9rem',
-                      lineHeight: 1.6,
-                      marginBottom: '1.4rem',
-                    }}
-                  >
-                    {srv.description}
-                  </p>
-
-                  {/* Key Offerings Bullet Points */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.6rem',
-                      marginBottom: '1.75rem',
-                      paddingTop: '0.75rem',
-                      borderTop: '1px solid #f2e8dc',
-                    }}
-                  >
-                    {srv.offerings.map((item, idx) => (
-                      <div
-                        key={idx}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '0.55rem',
-                          fontSize: '0.84rem',
-                          color: '#2d231b',
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        <CheckCircle2
-                          size={15}
-                          color="var(--primary)"
-                          style={{ flexShrink: 0, marginTop: '2px' }}
-                        />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <span className="sp-card-number">{srv.num}</span>
                 </div>
 
-                {/* Card Action Button: Consistent Discuss Your Project */}
-                <div style={{ paddingTop: '1.25rem', borderTop: '1px solid #f2e8dc' }}>
-                  <Link
-                    href="/contact"
-                    className="service-card-btn"
-                    style={{
-                      width: '100%',
-                      padding: '0.65rem 1.25rem',
-                      borderRadius: '12px',
-                      background: '#faf6f0',
-                      border: '1px solid #dfd5c8',
-                      color: '#1a130e',
-                      fontSize: '0.88rem',
-                      fontWeight: 700,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    <span>Discuss Your Project</span>
-                    <ArrowRight size={15} color="var(--primary)" />
+                <h3 className="sp-card-title">{srv.title}</h3>
+                <div className="sp-card-tagline">{srv.tagline}</div>
+                <p className="sp-card-desc">{srv.description}</p>
+
+                <div className="sp-card-footer">
+                  <Link href="/contact" className="sp-arrow-btn" aria-label={`Discuss ${srv.title}`}>
+                    <ArrowRight size={14} />
                   </Link>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ========================================================= */}
-      {/* 3. DEVELOPMENT PROCESS SECTION                            */}
-      {/* ========================================================= */}
-      <section
-        style={{
-          padding: '5rem 0',
-          background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.95) 100%)',
-          borderTop: '1px solid #dfd5c8',
-          borderBottom: '1px solid #dfd5c8',
-        }}
-      >
-        <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto 3.5rem', textAlign: 'center' }}>
-            <div
-              className="section-badge"
-              style={{
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: 'var(--primary, #df7a38)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '0.75rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-              }}
-            >
-              <Sparkles size={14} color="var(--primary)" />
-              HOW WE DELIVER
-            </div>
-
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.8vw, 2.9rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.025em',
-                color: '#1a130e',
-                lineHeight: 1.2,
-                marginBottom: '0.85rem',
-              }}
-            >
-              A Clear Process From Idea to Launch
-            </h2>
-
-            <p style={{ fontSize: '1.05rem', color: '#5a4c3e', lineHeight: 1.65 }}>
-              Our structured development methodology ensures clear communication, predictable milestones, and reliable software delivery.
-            </p>
-          </div>
-
-          {/* 5-Step Timeline Grid (Horizontal on desktop, stacked on mobile) */}
-          <div className="process-grid-5">
-            {processSteps.map((step) => (
-              <div
-                key={step.step}
-                className="process-step-card"
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '20px',
-                  border: '1px solid #dfd5c8',
-                  padding: '1.75rem 1.35rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  boxShadow: '0 6px 18px rgba(45, 35, 27, 0.04)',
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: '1.65rem',
-                      fontWeight: 900,
-                      color: 'var(--primary)',
-                      lineHeight: 1,
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
-                    {step.step}
-                  </span>
-
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
-                      background: 'rgba(223, 122, 56, 0.1)',
-                      color: 'var(--primary)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {step.icon}
+          {/* Bottom Row: 5 Specialized Services */}
+          <div className="sp-services-bottom-row">
+            {services.slice(3, 8).map((srv) => (
+              <div key={srv.id} className="sp-service-card">
+                <div className="sp-card-top-row">
+                  <div className="sp-card-icon-box">
+                    {srv.icon}
                   </div>
+                  <span className="sp-card-number">{srv.num}</span>
                 </div>
 
-                <h3
-                  style={{
-                    fontSize: '1.08rem',
-                    fontWeight: 800,
-                    color: '#1a130e',
-                    marginBottom: '0.55rem',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {step.title}
-                </h3>
+                <h3 className="sp-card-title" style={{ fontSize: '1.02rem' }}>{srv.title}</h3>
+                <div className="sp-card-tagline">{srv.tagline}</div>
+                <p className="sp-card-desc" style={{ fontSize: '0.84rem' }}>{srv.description}</p>
 
-                <p
-                  style={{
-                    fontSize: '0.85rem',
-                    color: '#6e6054',
-                    lineHeight: 1.55,
-                    marginTop: 'auto',
-                  }}
-                >
-                  {step.desc}
-                </p>
+                <div className="sp-card-footer">
+                  <Link href="/contact" className="sp-arrow-btn" aria-label={`Discuss ${srv.title}`}>
+                    <ArrowRight size={13} />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -580,84 +412,251 @@ export default function ServicesPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* 4. BOTTOM CONSULTATION CALL TO ACTION                     */}
+      {/* 3. END-TO-END DEVELOPMENT ARCHITECTURE                    */}
       {/* ========================================================= */}
-      <section style={{ padding: '5rem 0 2rem' }}>
-        <div className="container" style={{ maxWidth: '820px', margin: '0 auto' }}>
-          <div
-            style={{
-              textAlign: 'center',
-              padding: 'clamp(2.5rem, 5vw, 3.5rem) 2rem',
-              borderRadius: '28px',
-              background: '#ffffff',
-              border: '1px solid #dfd5c8',
-              boxShadow: '0 16px 44px rgba(45, 35, 27, 0.06)',
-            }}
-          >
-            <div
-              className="section-badge"
-              style={{
-                background: 'rgba(223, 122, 56, 0.1)',
-                border: '1px solid #dfd5c8',
-                color: 'var(--primary, #df7a38)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '1rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-              }}
-            >
-              <ShieldCheck size={14} color="var(--primary)" />
-              START THE CONVERSATION
+      <section className="sp-e2e-section">
+        <div className="sp-container">
+          <div className="sp-e2e-grid">
+            {/* Left Content */}
+            <div className="sp-e2e-content">
+              <div className="sp-badge">
+                <Code2 size={14} className="sp-badge-icon" />
+                <span>End-to-End Development</span>
+              </div>
+
+              <h2 className="sp-e2e-title">
+                From Frontend to Deployment<br />
+                Everything Connected
+              </h2>
+
+              <p className="sp-e2e-desc">
+                We build complete software solutions by connecting intuitive user interfaces with robust backend systems, secure databases, and reliable deployment pipelines.
+              </p>
+
+              <div className="sp-e2e-checklist">
+                <div className="sp-e2e-check-item">
+                  <span className="sp-check-circle"><Check size={12} strokeWidth={3} /></span>
+                  <span>Seamless frontend and backend integration</span>
+                </div>
+                <div className="sp-e2e-check-item">
+                  <span className="sp-check-circle"><Check size={12} strokeWidth={3} /></span>
+                  <span>Secure API design and third-party service connections</span>
+                </div>
+                <div className="sp-e2e-check-item">
+                  <span className="sp-check-circle"><Check size={12} strokeWidth={3} /></span>
+                  <span>Scalable databases and cloud infrastructure</span>
+                </div>
+                <div className="sp-e2e-check-item">
+                  <span className="sp-check-circle"><Check size={12} strokeWidth={3} /></span>
+                  <span>Automated deployment and monitoring</span>
+                </div>
+              </div>
+
+              <Link href="/contact" className="sp-btn-primary">
+                <span>Discuss Your Project</span>
+                <ArrowRight size={15} />
+              </Link>
             </div>
 
-            <h2
-              style={{
-                fontSize: 'clamp(1.9rem, 3.8vw, 2.6rem)',
-                fontWeight: 800,
-                color: '#1a130e',
-                marginBottom: '0.85rem',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.25,
-              }}
-            >
-              Ready to Build Your Next Software Solution?
+            {/* Right Connected Architecture Diagram */}
+            <div className="sp-arch-card">
+              <div className="sp-arch-diagram">
+                {/* Top Tier: Frontend <---> API <---> Backend */}
+                <div className="sp-arch-top-tier">
+                  {/* Frontend Node */}
+                  <div className="sp-node-box">
+                    <div className="sp-node-header">
+                      <Layout size={16} color="#ea580c" />
+                      <div>
+                        <div className="sp-node-title">Frontend</div>
+                        <div className="sp-node-sub">Next.js / React</div>
+                      </div>
+                    </div>
+                    <div className="sp-ui-wireframe">
+                      <div className="sp-wire-bar" />
+                      <div className="sp-wire-row">
+                        <div className="sp-wire-block" />
+                        <div className="sp-wire-block" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Central API Hub */}
+                  <div className="sp-api-hub">
+                    API
+                  </div>
+
+                  {/* Backend Node */}
+                  <div className="sp-node-box">
+                    <div className="sp-node-header">
+                      <Server size={16} color="#ea580c" />
+                      <div>
+                        <div className="sp-node-title">Backend</div>
+                        <div className="sp-node-sub">API &amp; Server Logic</div>
+                      </div>
+                    </div>
+                    <div className="sp-backend-code">
+                      <span style={{ color: '#f472b6' }}>export async function</span> POST() &#123;<br />
+                      &nbsp;&nbsp;<span style={{ color: '#6b7280' }}>// validate request</span><br />
+                      &nbsp;&nbsp;<span style={{ color: '#6b7280' }}>// process data</span><br />
+                      &nbsp;&nbsp;<span style={{ color: '#6b7280' }}>// return response</span><br />
+                      &#125;
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Tier: Database | Cloud Storage | Deployment */}
+                <div className="sp-arch-bottom-tier">
+                  {/* Database Node */}
+                  <div className="sp-node-box">
+                    <div className="sp-node-header">
+                      <Database size={16} color="#ea580c" />
+                      <div>
+                        <div className="sp-node-title">Database</div>
+                        <div className="sp-node-sub">MySQL / PostgreSQL / DynamoDB</div>
+                      </div>
+                    </div>
+                    <div className="sp-db-visual">
+                      <div className="sp-db-cylinders">
+                        <div className="sp-cylinder" />
+                        <div className="sp-cylinder" />
+                        <div className="sp-cylinder" />
+                      </div>
+                      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                        <div style={{ height: '6px', background: '#ebd9c8', borderRadius: '2px', width: '85%' }} />
+                        <div style={{ height: '6px', background: '#ebd9c8', borderRadius: '2px', width: '60%' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cloud Storage Node */}
+                  <div className="sp-node-box">
+                    <div className="sp-node-header">
+                      <Cloud size={16} color="#ea580c" />
+                      <div>
+                        <div className="sp-node-title">Cloud Storage</div>
+                        <div className="sp-node-sub">AWS S3 / Cloudinary</div>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '36px', background: '#faf7f2', borderRadius: '6px' }}>
+                      <Box size={22} color="#ea580c" />
+                    </div>
+                  </div>
+
+                  {/* Deployment Node */}
+                  <div className="sp-node-box">
+                    <div className="sp-node-header">
+                      <Terminal size={16} color="#ea580c" />
+                      <div>
+                        <div className="sp-node-title">Deployment</div>
+                        <div className="sp-node-sub">Docker / CI-CD</div>
+                      </div>
+                    </div>
+                    <div className="sp-deploy-list">
+                      <div className="sp-deploy-item">
+                        <Check size={11} className="sp-green-check" strokeWidth={3} />
+                        <span>Build</span>
+                      </div>
+                      <div className="sp-deploy-item">
+                        <Check size={11} className="sp-green-check" strokeWidth={3} />
+                        <span>Test</span>
+                      </div>
+                      <div className="sp-deploy-item">
+                        <Check size={11} className="sp-green-check" strokeWidth={3} />
+                        <span>Deploy</span>
+                      </div>
+                      <div className="sp-deploy-item">
+                        <Check size={11} className="sp-green-check" strokeWidth={3} />
+                        <span>Monitor</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* 4. HOW WE DELIVER (5-STEP PROCESS TIMELINE)               */}
+      {/* ========================================================= */}
+      <section className="sp-delivery-section">
+        <div className="sp-container">
+          {/* Section Header */}
+          <div className="sp-section-header">
+            <div className="sp-badge">
+              <Rocket size={14} className="sp-badge-icon" />
+              <span>How We Deliver</span>
+            </div>
+
+            <h2 className="sp-section-title">
+              A Clear Process From Idea to Launch
             </h2>
 
-            <p
-              style={{
-                color: '#5a4c3e',
-                fontSize: '1.02rem',
-                maxWidth: '600px',
-                margin: '0 auto 2rem',
-                lineHeight: 1.65,
-              }}
-            >
-              Tell us about your requirements, project scope, or technical challenges. Our engineering team is ready to help you plan the right digital solution.
+            <p className="sp-section-subtitle">
+              Our structured development methodology ensures clear communication, predictable milestones, and reliable software delivery.
             </p>
+          </div>
 
-            <Link
-              href="/contact"
-              className="btn btn-primary"
-              style={{
-                padding: '0.85rem 2.25rem',
-                fontSize: '0.96rem',
-                fontWeight: 600,
-                borderRadius: '9999px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.55rem',
-                boxShadow: '0 4px 16px rgba(223, 122, 56, 0.28)',
-              }}
-            >
-              Discuss Your Project
-              <ArrowRight size={16} />
-            </Link>
+          {/* 5-Step Horizontal Timeline Track */}
+          <div className="sp-timeline-track">
+            {processSteps.map((step, index) => (
+              <div
+                key={step.step}
+                className={`sp-step-card ${step.highlight ? 'sp-step-card-highlight' : ''}`}
+              >
+                <div className="sp-step-icon-wrap">
+                  {step.icon}
+                </div>
+
+                <div className="sp-step-num">{step.step}</div>
+                <h3 className="sp-step-title">{step.title}</h3>
+                <p className="sp-step-desc">{step.desc}</p>
+
+                {/* Connecting arrow line on desktop (except for the last item) */}
+                {index < processSteps.length - 1 && (
+                  <div className="sp-step-connector" aria-hidden="true" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* 5. FINAL CALL TO ACTION (BEFORE FOOTER)                   */}
+      {/* ========================================================= */}
+      <section className="sp-final-cta-section">
+        <div className="sp-container">
+          <div className="sp-final-cta-card">
+            {/* Decorative Ambient Rings */}
+            <div className="sp-cta-rings" aria-hidden="true" />
+            <div className="sp-cta-rings-inner" aria-hidden="true" />
+
+            {/* Left Content */}
+            <div className="sp-cta-content">
+              <div className="sp-badge" style={{ background: 'rgba(255, 255, 255, 0.9)' }}>
+                <Sparkles size={14} className="sp-badge-icon" />
+                <span>Start The Conversation</span>
+              </div>
+
+              <h2 className="sp-cta-title">
+                Ready to Build Your Next Software Solution?
+              </h2>
+
+              <p className="sp-cta-desc">
+                Tell us about your requirements, project scope, or technical challenges. Our engineering team is ready to help you plan the right digital solution.
+              </p>
+            </div>
+
+            {/* Right Action Button */}
+            <div className="sp-cta-btn-wrap">
+              <Link href="/contact" className="sp-cta-large-btn">
+                <span>Discuss Your Project</span>
+                <ArrowRight size={17} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

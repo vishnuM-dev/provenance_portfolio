@@ -7,7 +7,6 @@ export default function Footer() {
       style={{
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid var(--border-subtle, rgba(215, 198, 178, 0.4))',
         background: 'radial-gradient(ellipse at 75% 20%, #fcf9f4 0%, #f6f0e6 48%, #ede4d4 100%)',
         padding: '5rem 0 2.5rem',
         marginTop: '5rem',
@@ -295,9 +294,20 @@ export default function Footer() {
             >
               CONTACT US
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem' }}>
               <div>
-                <span style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#8c7e70', fontWeight: 700, marginBottom: '0.35rem' }}>
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: '0.75rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: '#8c7e70',
+                    fontWeight: 700,
+                    marginBottom: '0.45rem',
+                    lineHeight: 1.2,
+                  }}
+                >
                   WhatsApp Direct
                 </span>
                 <a
@@ -308,22 +318,52 @@ export default function Footer() {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.55rem',
+                    gap: '0.65rem',
                     fontSize: '0.925rem',
                     fontWeight: 600,
                     color: '#2b2520',
+                    lineHeight: 1,
                   }}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ color: '#25D366', flexShrink: 0 }}>
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.976.58 1.961.928 3.149.929 3.182 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.06-2.112-.527-1.424-.591-2.339-2.029-2.41-2.123-.07-.095-.578-.769-.578-1.467 0-.698.366-1.042.497-1.185.132-.144.288-.18.384-.18.096 0 .192.001.276.006.09.005.21-.034.329.252.126.301.431 1.05.468 1.127.037.077.062.167.012.268-.05.1-.075.163-.15.251-.075.088-.158.196-.226.264-.075.075-.153.157-.066.307.087.15.387.638.831 1.033.571.509 1.053.667 1.203.742.15.075.237.063.325-.038.087-.101.374-.436.474-.586.1-.15.199-.126.335-.075.136.05 8.64.407.994.472.13.065.217.1.25.152.033.052.033.303-.111.708z"/>
-                    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5.01L2 22l5.18-1.31C8.61 21.53 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm.03 16.94c-1.19 0-2.31-.34-3.28-.94l-.23-.14-2.43.64.65-2.37-.15-.24C6.01 14.93 5.5 13.5 5.5 11.94c0-3.6 2.93-6.53 6.53-6.53 3.6 0 6.53 2.93 6.53 6.53 0 3.6-2.93 6.53-6.53 6.53z"/>
-                  </svg>
-                  <span>8074407095</span>
+                  <span
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="1 1 22 22"
+                      fill="currentColor"
+                      style={{ color: '#25D366', display: 'block' }}
+                      aria-label="WhatsApp icon"
+                    >
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.976.58 1.961.928 3.149.929 3.182 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.06-2.112-.527-1.424-.591-2.339-2.029-2.41-2.123-.07-.095-.578-.769-.578-1.467 0-.698.366-1.042.497-1.185.132-.144.288-.18.384-.18.096 0 .192.001.276.006.09.005.21-.034.329.252.126.301.431 1.05.468 1.127.037.077.062.167.012.268-.05.1-.075.163-.15.251-.075.088-.158.196-.226.264-.075.075-.153.157-.066.307.087.15.387.638.831 1.033.571.509 1.053.667 1.203.742.15.075.237.063.325-.038.087-.101.374-.436.474-.586.1-.15.199-.126.335-.075.136.05 8.64.407.994.472.13.065.217.1.25.152.033.052.033.303-.111.708z"/>
+                      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5.01L2 22l5.18-1.31C8.61 21.53 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm.03 16.94c-1.19 0-2.31-.34-3.28-.94l-.23-.14-2.43.64.65-2.37-.15-.24C6.01 14.93 5.5 13.5 5.5 11.94c0-3.6 2.93-6.53 6.53-6.53 3.6 0 6.53 2.93 6.53 6.53 0 3.6-2.93 6.53-6.53 6.53z"/>
+                    </svg>
+                  </span>
+                  <span style={{ lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>8074407095</span>
                 </a>
               </div>
 
               <div>
-                <span style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#8c7e70', fontWeight: 700, marginBottom: '0.35rem' }}>
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: '0.75rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: '#8c7e70',
+                    fontWeight: 700,
+                    marginBottom: '0.45rem',
+                    lineHeight: 1.2,
+                  }}
+                >
                   Email
                 </span>
                 <a
@@ -332,18 +372,41 @@ export default function Footer() {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.55rem',
+                    gap: '0.65rem',
                     fontSize: '0.925rem',
                     fontWeight: 600,
                     color: '#2b2520',
                     wordBreak: 'break-all',
+                    lineHeight: 1,
                   }}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--primary, #eb7821)', flexShrink: 0 }}>
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                  <span>provenancetech@gmail.com</span>
+                  <span
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ color: 'var(--primary, #eb7821)', display: 'block' }}
+                      aria-label="Email icon"
+                    >
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </span>
+                  <span style={{ lineHeight: 1 }}>provenancetech@gmail.com</span>
                 </a>
               </div>
             </div>

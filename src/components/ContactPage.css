@@ -1,0 +1,826 @@
+/* ==========================================================================
+   ProvenanceTech - Contact Page Dedicated Stylesheet
+   Faithfully recreates the modern contact page reference mockup.
+   Warm cream/ivory palette, brand orange accents, editorial split layout,
+   refined inquiry form, 3D isometric illustration, 3-step collaboration process.
+   ========================================================================== */
+
+/* Main Wrapper Scoped to Contact Page */
+.cp-page-wrapper {
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  color: var(--text-primary, #141518);
+  padding-bottom: 2rem;
+  background: transparent;
+}
+
+.cp-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Common Section Badge */
+.cp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 1.05rem;
+  background: #ffffff;
+  border: 1px solid rgba(220, 195, 170, 0.65);
+  border-radius: 9999px;
+  color: var(--primary, #eb7821);
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
+  box-shadow: 0 2px 8px rgba(235, 120, 33, 0.05);
+}
+
+.cp-badge-icon {
+  color: var(--primary, #eb7821);
+  display: inline-flex;
+}
+
+/* ==========================================================================
+   SECTION 1: EDITORIAL SPLIT LAYOUT (HERO & INTAKE)
+   ========================================================================== */
+.cp-split-section {
+  padding: 3.5rem 0 4.5rem;
+  position: relative;
+}
+
+.cp-split-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* --- Left Column: Introduction, Contact Info, & 3D Illustration --- */
+.cp-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-hero-title {
+  font-size: clamp(2.4rem, 4.3vw, 3.65rem);
+  font-weight: 850;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: #141518;
+  margin-bottom: 1.25rem;
+}
+
+.cp-hero-title-accent {
+  color: var(--primary, #eb7821);
+  display: inline;
+}
+
+.cp-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: #554e46;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
+}
+
+/* Contact Info Hubs */
+.cp-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  margin-bottom: 2rem;
+}
+
+.cp-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cp-info-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #fbf5ef;
+  border: 1px solid rgba(235, 120, 33, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #eb7821);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(235, 120, 33, 0.06);
+}
+
+.cp-info-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #141518;
+  margin-bottom: 0.2rem;
+}
+
+.cp-info-sub {
+  font-size: 0.86rem;
+  color: #635a50;
+  line-height: 1.5;
+}
+
+.cp-info-link {
+  color: var(--primary, #eb7821);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-info-link:hover {
+  color: #d66816;
+  text-decoration: underline;
+}
+
+/* Trust Badge */
+.cp-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: #257a53;
+  padding: 0.6rem 1rem;
+  background: #eaf5f0;
+  border-radius: 10px;
+  margin-bottom: 2.5rem;
+  align-self: flex-start;
+  border: 1px solid rgba(37, 122, 83, 0.2);
+}
+
+/* Custom 3D Software Engineering Illustration */
+.cp-illustration-stage {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 240px;
+  margin-top: 1rem;
+  perspective: 900px;
+}
+
+/* Isometric Card: Code Editor Window */
+.cp-iso-code-window {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+  width: 200px;
+  height: 140px;
+  background: #17181c;
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transform: rotateY(20deg) rotateX(15deg) rotateZ(-4deg);
+  z-index: 2;
+}
+
+.cp-code-dots {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.65rem;
+}
+
+.cp-code-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.cp-code-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cp-code-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: #374151;
+}
+
+.cp-code-bar.orange {
+  background: #ea580c;
+}
+
+/* Isometric Card: Center Card "Building Better Products" */
+.cp-iso-center-card {
+  position: absolute;
+  left: 140px;
+  top: 45px;
+  width: 190px;
+  background: #ffffff;
+  border: 1px solid #ebd9c8;
+  border-radius: 16px;
+  padding: 1.15rem 1.1rem;
+  box-shadow: 0 24px 50px rgba(45, 35, 27, 0.12);
+  transform: rotateY(-18deg) rotateX(12deg) rotateZ(3deg);
+  z-index: 3;
+}
+
+.cp-center-card-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #141518;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.cp-center-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cp-skeleton-bar {
+  height: 5px;
+  background: #ebd9c8;
+  border-radius: 3px;
+}
+
+/* Floating 3D Badges */
+.cp-float-code-badge {
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(220, 195, 170, 0.6);
+  box-shadow: 0 10px 24px rgba(45, 35, 27, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #eb7821);
+  z-index: 4;
+}
+
+.cp-float-cloud-badge {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(220, 195, 170, 0.6);
+  box-shadow: 0 12px 28px rgba(45, 35, 27, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #eb7821);
+  z-index: 4;
+}
+
+/* Isometric Cubes */
+.cp-iso-cube-1 {
+  position: absolute;
+  left: 2px;
+  bottom: 30px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #fbe8d5 0%, #f7d6b8 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(235, 120, 33, 0.3);
+  transform: rotate(45deg);
+  box-shadow: 0 8px 16px rgba(235, 120, 33, 0.15);
+}
+
+.cp-iso-cube-2 {
+  position: absolute;
+  right: 90px;
+  bottom: 20px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #fcdcc0 0%, #f9be8f 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(235, 120, 33, 0.35);
+  transform: rotate(35deg);
+  box-shadow: 0 10px 20px rgba(235, 120, 33, 0.2);
+}
+
+/* --- Right Column: Refined Inquiry Form Panel --- */
+.cp-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cp-form-panel {
+  background: #ffffff;
+  border: 1px solid #ebd9c8;
+  border-top: 4px solid var(--primary, #eb7821);
+  border-radius: 24px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 18px 48px rgba(45, 35, 27, 0.06);
+  position: relative;
+}
+
+.cp-form-header {
+  margin-bottom: 2rem;
+}
+
+.cp-form-title {
+  font-size: 1.75rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  color: #141518;
+  margin-bottom: 0.5rem;
+}
+
+.cp-form-sub {
+  font-size: 0.95rem;
+  color: #554e46;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Form Status Message */
+.cp-status-alert {
+  padding: 0.95rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.75rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.cp-status-success {
+  background: #eaf5f0;
+  border: 1px solid rgba(37, 122, 83, 0.3);
+  color: #257a53;
+}
+
+.cp-status-error {
+  background: #fde8e8;
+  border: 1px solid rgba(217, 67, 67, 0.3);
+  color: #d94343;
+}
+
+/* Form Row and Inputs */
+.cp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.cp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.cp-form-label {
+  font-size: 0.85rem;
+  font-weight: 750;
+  color: #141518;
+}
+
+.cp-form-input,
+.cp-form-select,
+.cp-form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  border-radius: 12px;
+  background: #faf8f5;
+  border: 1px solid #ebd9c8;
+  color: #141518;
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: all 0.22s ease;
+  outline: none;
+}
+
+.cp-form-input:focus,
+.cp-form-select:focus,
+.cp-form-textarea:focus {
+  background: #ffffff;
+  border-color: var(--primary, #eb7821);
+  box-shadow: 0 0 0 3px rgba(235, 120, 33, 0.15);
+}
+
+.cp-form-input::placeholder,
+.cp-form-textarea::placeholder {
+  color: #9c9489;
+  font-size: 0.9rem;
+}
+
+.cp-form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a7065' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.cp-form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Submit Button */
+.cp-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--primary, #eb7821);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.95rem 1.75rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(235, 120, 33, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 0.5rem;
+}
+
+.cp-submit-btn:hover:not(:disabled) {
+  background: #d66816;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(235, 120, 33, 0.4);
+}
+
+.cp-submit-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.cp-submit-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #786e63;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+}
+
+/* Direct Discussion Panel (Beneath Form) */
+.cp-direct-panel {
+  background: #ffffff;
+  border: 1px solid #ebd9c8;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 4px 18px rgba(45, 35, 27, 0.04);
+}
+
+.cp-direct-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fbf5ef;
+  border: 1px solid rgba(235, 120, 33, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #eb7821);
+  flex-shrink: 0;
+}
+
+.cp-direct-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #141518;
+  margin-bottom: 0.25rem;
+}
+
+.cp-direct-text {
+  font-size: 0.88rem;
+  color: #554e46;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 2: THREE-STEP COLLABORATION PROCESS
+   ========================================================================== */
+.cp-collab-section {
+  padding: 4.5rem 0 5rem;
+}
+
+.cp-section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem;
+}
+
+.cp-section-title {
+  font-size: clamp(2.1rem, 3.8vw, 2.9rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  color: #141518;
+  line-height: 1.2;
+  margin-bottom: 0.95rem;
+}
+
+.cp-section-subtitle {
+  font-size: 1.02rem;
+  color: #554e46;
+  line-height: 1.68;
+  margin: 0 auto;
+}
+
+.cp-collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.cp-collab-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.cp-collab-connector {
+  position: absolute;
+  top: 24px;
+  right: -25px;
+  width: 50px;
+  height: 2px;
+  border-top: 2px dashed #d5c8bb;
+  z-index: 0;
+}
+
+.cp-collab-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #ebd9c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #eb7821);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(45, 35, 27, 0.05);
+}
+
+.cp-collab-num {
+  font-size: 1rem;
+  font-weight: 850;
+  color: var(--primary, #eb7821);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+
+.cp-collab-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #141518;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.cp-collab-desc {
+  font-size: 0.88rem;
+  color: #554e46;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 3: FINAL CALL TO ACTION (BEFORE FOOTER)
+   ========================================================================== */
+.cp-final-cta-section {
+  padding: 2.5rem 0 4rem;
+}
+
+.cp-final-cta-card {
+  background: linear-gradient(135deg, #fff7ee 0%, #fef1e3 50%, #fde6d0 100%);
+  border: 1px solid #ebd9c8;
+  border-radius: 28px;
+  padding: 3.5rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  box-shadow: 0 16px 42px rgba(45, 35, 27, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Rings Decoration */
+.cp-cta-rings {
+  position: absolute;
+  left: -40px;
+  top: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 24px solid rgba(235, 120, 33, 0.08);
+  pointer-events: none;
+}
+
+.cp-cta-rings-inner {
+  position: absolute;
+  left: -20px;
+  bottom: -40px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 20px solid rgba(235, 120, 33, 0.06);
+  pointer-events: none;
+}
+
+.cp-cta-content {
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+}
+
+.cp-cta-title {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 850;
+  color: #141518;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 0.65rem;
+}
+
+.cp-cta-desc {
+  font-size: 0.98rem;
+  color: #554e46;
+  line-height: 1.62;
+  margin: 0;
+}
+
+.cp-cta-btn-wrap {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.cp-cta-large-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--primary, #eb7821);
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 1rem 2.25rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(235, 120, 33, 0.32);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+
+.cp-cta-large-btn:hover {
+  background: #d66816;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(235, 120, 33, 0.42);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .cp-split-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .cp-illustration-stage {
+    margin: 2rem auto;
+  }
+
+  .cp-collab-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cp-collab-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .cp-final-cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem 2rem;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cp-form-panel {
+    padding: 2rem 1.5rem;
+  }
+
+  .cp-form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .cp-illustration-stage {
+    display: none;
+  }
+
+  .cp-direct-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cp-container {
+    padding: 0 1rem;
+  }
+
+  .cp-hero-title {
+    font-size: clamp(1.85rem, 7vw, 2.4rem);
+  }
+
+  .cp-form-panel {
+    padding: 1.75rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .cp-form-title {
+    font-size: 1.4rem;
+  }
+
+  .cp-final-cta-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .cp-cta-btn-wrap {
+    width: 100%;
+  }
+
+  .cp-cta-large-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+
+  .cp-cta-title {
+    font-size: clamp(1.75rem, 6vw, 2.1rem);
+  }
+
+  .cp-trust-badge {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .cp-submit-btn {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .cp-container {
+    padding: 0 0.85rem;
+  }
+
+  .cp-form-panel {
+    padding: 1.5rem 1rem;
+  }
+
+  .cp-final-cta-card {
+    padding: 1.75rem 1rem;
+  }
+
+  .cp-info-item {
+    gap: 0.75rem;
+  }
+
+  .cp-info-icon-box {
+    width: 38px;
+    height: 38px;
+  }
+}

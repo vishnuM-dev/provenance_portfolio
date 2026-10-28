@@ -85,7 +85,7 @@ export default async function AssetDetailPage({ params }) {
 
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
         gap: '3rem',
         alignItems: 'start',
       }}>

@@ -121,13 +121,12 @@ export default async function HomePage() {
         position: 'relative',
         padding: '3.75rem 0 3.75rem',
         overflow: 'visible',
-        borderBottom: '1px solid var(--border-subtle)',
       }}>
         <div className="hero-ambient-mesh" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
             gap: '3.5rem',
             alignItems: 'center',
           }}>
@@ -148,7 +147,7 @@ export default async function HomePage() {
 
               {/* Bold Headline with High Contrast */}
               <h1 className="hero-title-enter" style={{
-                fontSize: 'clamp(2.5rem, 4.4vw, 3.8rem)',
+                fontSize: 'clamp(1.95rem, 4.4vw, 3.8rem)',
                 fontWeight: 800,
                 lineHeight: 1.15,
                 letterSpacing: '-0.03em',
@@ -415,7 +414,7 @@ export default async function HomePage() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
             gap: '1.75rem',
             alignItems: 'stretch',
           }}>
@@ -510,7 +509,7 @@ export default async function HomePage() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
           gap: '1.25rem',
           alignItems: 'stretch',
         }}>

@@ -32,7 +32,7 @@ export default function TechnologiesPage() {
 
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
+              fontSize: 'clamp(1.95rem, 5vw, 3.6rem)',
               fontWeight: 800,
               letterSpacing: '-0.03em',
               color: '#1a130e',

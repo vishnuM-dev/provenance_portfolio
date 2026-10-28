@@ -114,7 +114,7 @@ export default function CatalogPage() {
       }}>
         {/* Search Input */}
         <form onSubmit={handleSearchSubmit} style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ flex: '1 1 300px', position: 'relative' }}>
+          <div style={{ flex: '1 1 260px', minWidth: 0, width: '100%', position: 'relative' }}>
             <label htmlFor="catalog-search" className="sr-only">
               Search projects by title, client, or tech stack
             </label>
@@ -126,10 +126,10 @@ export default function CatalogPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="form-input"
-              style={{ paddingLeft: '2.8rem', height: '48px' }}
+              style={{ paddingLeft: '2.8rem', height: '48px', width: '100%' }}
             />
           </div>
-          <button type="submit" className="btn btn-primary" style={{ padding: '0 1.6rem', height: '48px' }}>
+          <button type="submit" className="btn btn-primary" style={{ padding: '0 1.6rem', height: '48px', minWidth: '140px' }}>
             Search Projects
           </button>
         </form>
@@ -161,7 +161,7 @@ export default function CatalogPage() {
             ))}
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>Status:</span>
             {STATUSES.map((st) => (
               <button
