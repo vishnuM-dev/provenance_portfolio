@@ -179,7 +179,7 @@ export default function Footer() {
               >
                 <Image
                   src="/icon.png"
-                  alt="ProvenanceTech Monogram Logo"
+                  alt="Provenance Tech Monogram Logo"
                   width={40}
                   height={40}
                   style={{
@@ -201,7 +201,7 @@ export default function Footer() {
                     lineHeight: 1,
                   }}
                 >
-                  PROVENANCE<span style={{ color: 'var(--primary, #eb7821)' }}>TECH</span>
+                  Provenance&nbsp;<span style={{ color: 'var(--primary, #eb7821)' }}>Tech</span>
                 </span>
                 <span
                   style={{

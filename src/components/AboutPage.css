@@ -8,8 +8,8 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  background-color: var(--bg-base, #f6f1ea);
-  background: radial-gradient(ellipse at 50% 0%, #fdfbf8 0%, #f8f3eb 55%, #f4ede2 100%);
+  background: transparent;
+
   color: var(--text-primary, #141518);
   padding-bottom: 3rem;
 }

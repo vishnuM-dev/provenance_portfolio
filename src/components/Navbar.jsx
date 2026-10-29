@@ -85,12 +85,12 @@ export default function Navbar() {
         <Link
           href="/"
           className="brand-logo-link"
-          aria-label="ProvenanceTech - Home"
+          aria-label="Provenance Tech - Home"
         >
           <div className="brand-logo-icon">
             <Image
               src="/icon.png"
-              alt="ProvenanceTech Monogram Logo"
+              alt="Provenance Tech Monogram Logo"
               width={34}
               height={34}
               priority
@@ -104,7 +104,7 @@ export default function Navbar() {
             />
           </div>
           <span className="brand-title">
-            PROVENANCE<span className="brand-title-accent">TECH</span>
+            Provenance&nbsp;<span className="brand-title-accent">Tech</span>
           </span>
         </Link>
 
@@ -124,7 +124,7 @@ export default function Navbar() {
                     className={`floating-nav-link ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                   >
-                    <span>{item.label}</span>{active && <span className="nav-active-dot" aria-hidden="true" />}
+                    <span>{item.label}</span>
                   </Link>
                 </li>
               );
@@ -163,7 +163,7 @@ export default function Navbar() {
                     className={`mobile-floating-link ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                   >
-                    <span>{item.label}</span>{active && <span className="nav-active-dot" aria-hidden="true" />}
+                    <span>{item.label}</span>
                     {active && <span className="mobile-active-badge">Active</span>}
                   </Link>
                 </li>
