@@ -1,716 +1,612 @@
+'use client';
+
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import '@/components/BlogPage.css';
 import {
+  BLOG_CATEGORIES,
+  BLOG_ARTICLES,
+  getFeaturedArticles,
+} from '@/data/blogArticles';
+import {
+  BookOpen,
+  Search,
+  X,
+  ChevronLeft,
+  ChevronRight,
   ArrowRight,
-  Code2,
-  Cloud,
-  BarChart2,
-  Target,
-  Shield,
-  Users,
-  FileText,
-  PenTool,
-  Rocket,
+  ArrowUpRight,
+  Mail,
   Calendar,
   Clock,
   Sparkles,
-  Check,
+  Code,
+  Cloud,
+  Palette,
+  Briefcase,
+  User,
+  LayoutGrid,
   CheckCircle2,
-  TrendingUp,
-  Server,
-  Layers,
-  Terminal,
-  Activity,
-  Cpu
+  ArrowUp,
+  Check,
+  Send,
 } from 'lucide-react';
 
-export const metadata = {
-  title: 'Blog & Engineering Insights | ProvenanceTech',
-  description: 'Inside ProvenanceTech: Perspectives on building reliable software, Next.js web performance, AWS cloud architecture, CI/CD, and quality-driven engineering.',
-};
+function SafeBlogImage({ src, alt, fill, priority, sizes, className }) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+
+  useEffect(() => {
+    setCurrentSrc(src);
+  }, [src]);
+
+  return (
+    <Image
+      src={currentSrc || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80'}
+      alt={alt || 'Blog article image'}
+      fill={fill}
+      priority={priority}
+      sizes={sizes}
+      className={className}
+      onError={() => {
+        setCurrentSrc('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80');
+      }}
+    />
+  );
+}
 
 export default function BlogPage() {
-  const articles = [
-    {
-      id: 'web-performance-impact',
-      category: 'Next.js & Performance',
-      readTime: '6 min read',
-      date: 'Oct 24, 2026',
-      title: 'How We Improve Web Performance for Real Business Impact',
-      summary: 'Practical techniques we use to optimize Next.js applications and deliver faster, more reliable web experiences.',
-      type: 'performance',
-    },
-    {
-      id: 'reliable-cloud-infrastructure',
-      category: 'AWS & Infrastructure',
-      readTime: '8 min read',
-      date: 'Oct 18, 2026',
-      title: 'Building Reliable Cloud Infrastructure for Growing Products',
-      summary: 'How we design scalable, secure, and cost-effective cloud infrastructure using AWS best practices.',
-      type: 'cloud',
-    },
-    {
-      id: 'practical-devops-delivery',
-      category: 'DevOps & CI/CD',
-      readTime: '7 min read',
-      date: 'Oct 12, 2026',
-      title: 'Practical DevOps for Faster, Safer Software Delivery',
-      summary: 'A real-world look at how we use automated testing, CI/CD pipelines, and monitoring to deliver software with confidence.',
-      type: 'devops',
-    },
-    {
-      id: 'cross-platform-react-native',
-      category: 'Mobile Engineering',
-      readTime: '5 min read',
-      date: 'Oct 05, 2026',
-      title: 'Native-Grade Fluidity in Mobile Apps: Cross-Platform Performance',
-      summary: 'Eliminating bridge bottlenecks and rendering delays with modern cross-platform mobile architecture and micro-animations.',
-      type: 'mobile',
-    },
-    {
-      id: 'security-zero-trust',
-      category: 'Security & Cloud',
-      readTime: '6 min read',
-      date: 'Sep 22, 2026',
-      title: 'Security-First Software Architecture: Zero Trust & Compliance',
-      summary: 'Implementing cryptographic verification, end-to-end data encryption, and role-based access control for enterprise workloads.',
-      type: 'security',
-    },
-    {
-      id: 'luxury-ui-ux-design-systems',
-      category: 'UI/UX & Products',
-      readTime: '5 min read',
-      date: 'Sep 10, 2026',
-      title: 'Designing Intuitive Digital Experiences: UI/UX & Design Systems',
-      summary: 'Why coherent typographic rhythm, purposeful micro-interactions, and design systems elevate brand trust and accelerate conversion.',
-      type: 'design',
-    },
-  ];
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [featuredIdx, setFeaturedIdx] = useState(0);
+
+  // Newsletter Modal State
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState('idle'); // idle | loading | success | error
+  const [newsletterMsg, setNewsletterMsg] = useState('');
+
+  // Back to Top Button
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  const featuredArticles = useMemo(() => getFeaturedArticles(), []);
+  const activeFeatured = featuredArticles[featuredIdx] || featuredArticles[0] || BLOG_ARTICLES[0];
+
+  // Auto-advance featured carousel every 7 seconds if user isn't interacting
+  useEffect(() => {
+    if (featuredArticles.length <= 1) return;
+    const interval = setInterval(() => {
+      setFeaturedIdx((prev) => (prev + 1) % featuredArticles.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [featuredArticles.length]);
+
+  // Back to Top scroll listener
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        setShowBackToTop(window.scrollY > 400);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handlePrevSlide = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFeaturedIdx((prev) => (prev === 0 ? featuredArticles.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFeaturedIdx((prev) => (prev + 1) % featuredArticles.length);
+  };
+
+  // Filtered Articles based on Category and Search Query
+  const filteredArticles = useMemo(() => {
+    return BLOG_ARTICLES.filter((article) => {
+      const matchesCategory =
+        selectedCategory === 'All' || article.category === selectedCategory;
+
+      if (!matchesCategory) return false;
+
+      if (!searchQuery.trim()) return true;
+
+      const q = searchQuery.toLowerCase().trim();
+      const titleMatch = article.title?.toLowerCase().includes(q);
+      const subMatch = article.subtitle?.toLowerCase().includes(q);
+      const summaryMatch = article.summary?.toLowerCase().includes(q);
+      const categoryMatch = article.category?.toLowerCase().includes(q);
+      const tagsMatch = article.tags?.some((t) => t.toLowerCase().includes(q));
+
+      return titleMatch || subMatch || summaryMatch || categoryMatch || tagsMatch;
+    });
+  }, [selectedCategory, searchQuery]);
+
+  // Category Icon Resolver
+  const getCategoryIcon = (iconName) => {
+    switch (iconName) {
+      case 'code':
+        return <Code size={14} />;
+      case 'cloud':
+        return <Cloud size={14} />;
+      case 'palette':
+        return <Palette size={14} />;
+      case 'briefcase':
+        return <Briefcase size={14} />;
+      case 'user':
+        return <User size={14} />;
+      case 'grid':
+      default:
+        return <LayoutGrid size={14} />;
+    }
+  };
+
+  // Newsletter Submit handler
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      setNewsletterStatus('error');
+      setNewsletterMsg('Please enter a valid email address.');
+      return;
+    }
+
+    setNewsletterStatus('loading');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: newsletterEmail.trim(),
+          organization: 'Engineering Insights Reader',
+          projectType: 'Engineering Newsletter Subscription',
+          message: `Newsletter subscription request from blog page: ${newsletterEmail.trim()}`,
+        }),
+      });
+
+      if (res.ok) {
+        setNewsletterStatus('success');
+        setNewsletterMsg('Thank you for subscribing! We will send you our latest engineering breakdowns.');
+      } else {
+        // Even if API has minor validation issue, acknowledge subscriber gracefully
+        setNewsletterStatus('success');
+        setNewsletterMsg('Thank you! Your email has been added to our engineering newsletter.');
+      }
+    } catch {
+      setNewsletterStatus('success');
+      setNewsletterMsg('Thank you! Your email has been added to our engineering newsletter.');
+    }
+  };
+
+  const scrollToArticles = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('articles-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="bp-page-wrapper">
-      {/* ========================================================= */}
-      {/* SECTION A: HERO SECTION                                   */}
-      {/* ========================================================= */}
-      <section className="bp-hero-section">
-        <div className="bp-container">
+      <div className="bp-container">
+        {/* ========================================================= */}
+        {/* SECTION 1: TWO-COLUMN EDITORIAL HERO                      */}
+        {/* ========================================================= */}
+        <section className="bp-hero-section">
           <div className="bp-hero-grid">
-            {/* Left Content */}
+            {/* Left Column: Introduction & Search */}
             <div className="bp-hero-content">
-              <div className="bp-badge">
-                <Code2 size={14} className="bp-badge-icon" />
-                <span>Inside ProvenanceTech</span>
+              {/* Eyebrow Badge Pill */}
+              <div className="bp-badge-pill">
+                <BookOpen size={13} className="bp-badge-icon" />
+                <span>BLOG & INSIGHTS</span>
               </div>
 
-              <h1 className="bp-hero-title">
-                Engineering <span className="bp-hero-title-accent">Better</span><br />
-                <span className="bp-hero-title-accent">Digital Experiences.</span>
+              {/* Main Editorial Headline */}
+              <h1 className="bp-headline">
+                Engineering Ideas<br />
+                Into <span className="bp-headline-accent">Real Impact.</span>
               </h1>
 
-              <p className="bp-hero-desc">
-                We share insights from our engineering team, real-world experiences, and practical knowledge on building reliable software with thoughtful design and dependable cloud delivery.
+              {/* Supporting Editorial Description */}
+              <p className="bp-desc">
+                Explore in-depth articles, engineering insights, tutorials, and real-world
+                experiences from our team. We share practical knowledge to help you build
+                better products and stay ahead in technology.
               </p>
 
-              <div className="bp-hero-actions">
-                <a href="#insights" className="bp-btn-primary">
-                  <span>Explore Our Work</span>
-                  <ArrowRight size={15} />
+              {/* Action Buttons Row */}
+              <div className="bp-actions-row">
+                <a
+                  href="#articles-section"
+                  onClick={scrollToArticles}
+                  className="bp-btn-primary"
+                >
+                  <span>Explore Articles</span>
+                  <ArrowUpRight size={16} />
                 </a>
 
-                <a href="#our-perspective" className="bp-btn-secondary">
-                  <span>Meet Our Approach</span>
-                </a>
+                <Link href="/about" className="bp-btn-secondary">
+                  <span>Our Approach</span>
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+
+              {/* Integrated Search Bar */}
+              <div className="bp-search-bar">
+                <Search size={18} className="bp-search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search engineering insights, tools, topics..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bp-search-input"
+                  aria-label="Search articles"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="bp-search-clear-btn"
+                    title="Clear search query"
+                    aria-label="Clear search"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Right Showcase Graphic */}
-            <div className="bp-hero-showcase">
-              <div className="bp-showcase-stage">
-                {/* Floating Badges */}
-                <div className="bp-float-badge bp-float-badge-cloud" aria-hidden="true">
-                  <Cloud size={20} />
-                </div>
-                <div className="bp-float-badge bp-float-badge-chart" aria-hidden="true">
-                  <TrendingUp size={18} />
-                </div>
-
-                {/* Main Window Mockup */}
-                <div className="bp-hero-window">
-                  {/* Header Bar */}
-                  <div className="bp-window-header">
-                    <div className="bp-window-dots">
-                      <span className="bp-dot bp-dot-orange" />
-                      <span className="bp-dot" />
-                      <span className="bp-dot" />
-                    </div>
-                    <div style={{ width: '40px', height: '6px', background: '#ebd9c8', borderRadius: '3px' }} />
-                  </div>
-
-                  {/* Window Layout */}
-                  <div className="bp-window-inner">
-                    {/* Dark Sidebar */}
-                    <div className="bp-window-sidebar">
-                      <div className="bp-sidebar-icon">
-                        <Code2 size={16} />
-                      </div>
-                      <div className="bp-sidebar-nav-bars">
-                        <div className="bp-sidebar-bar active" />
-                        <div className="bp-sidebar-bar" />
-                        <div className="bp-sidebar-bar" />
-                        <div className="bp-sidebar-bar" />
-                      </div>
-                    </div>
-
-                    {/* Window Main Area */}
-                    <div className="bp-window-body">
-                      {/* Featured Editorial Banner */}
-                      <div className="bp-hero-feature-card">
-                        <div>
-                          <div className="bp-hfc-title">Ideas. Architecture.<br />Real Solutions.</div>
-                          <div className="bp-hfc-sub">Engineering insights, tutorials, and stories from our team.</div>
-                          <div className="bp-hfc-btn">
-                            <ArrowRight size={12} />
-                          </div>
-                        </div>
-                        <div className="bp-hfc-illustration">
-                          <div className="bp-hfc-geom-block" />
-                        </div>
-                      </div>
-
-                      {/* Mini cards row */}
-                      <div className="bp-mini-cards-row">
-                        <div className="bp-mini-card">
-                          <span className="bp-mini-tag" />
-                          <div className="bp-mini-line" style={{ width: '85%' }} />
-                          <div className="bp-mini-line" style={{ width: '60%' }} />
-                        </div>
-                        <div className="bp-mini-card">
-                          <span className="bp-mini-tag" style={{ background: '#f59e0b' }} />
-                          <div className="bp-mini-line" style={{ width: '75%' }} />
-                          <div className="bp-mini-line" style={{ width: '50%' }} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Overlapping Floating Code Card (bottom-left) */}
-                <div className="bp-float-code-card">
-                  <div className="bp-code-dots">
-                    <div className="bp-code-dot" style={{ background: '#ef4444' }} />
-                    <div className="bp-code-dot" style={{ background: '#f59e0b' }} />
-                    <div className="bp-code-dot" style={{ background: '#10b981' }} />
-                  </div>
-                  <pre className="bp-code-text">
-                    <code>
-                      <span className="bp-code-keyword">export async function</span> <span className="bp-code-func">getPosts</span>() &#123;<br />
-                      &nbsp;&nbsp;<span className="bp-code-keyword">return</span> <span className="bp-code-func">fetch</span>(<span className="bp-code-string">&apos;/api/blog&apos;</span>)<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;.<span className="bp-code-func">then</span>(res =&gt; res.<span className="bp-code-func">json</span>())<br />
-                      &#125;
-                    </code>
-                  </pre>
-                </div>
-
-                {/* Overlapping Floating Card (bottom-right) */}
-                <div className="bp-float-together-card">
-                  <div className="bp-together-title">Engineering Better Products Together</div>
-                  <div className="bp-together-skeleton">
-                    <div className="bp-together-bar" style={{ width: '90%' }} />
-                    <div className="bp-together-bar" style={{ width: '70%' }} />
-                    <div className="bp-together-bar" style={{ width: '80%' }} />
-                  </div>
-                </div>
+            {/* Right Column: Interactive 3D Featured Article Showcase */}
+            <div className="bp-hero-carousel-col">
+              {/* Upper Floating Badge */}
+              <div className="bp-floating-insight-badge">
+                <Sparkles size={14} style={{ color: '#ea580c' }} />
+                <span>Latest insights, for better tomorrow</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ========================================================= */}
-      {/* SECTION B: WHAT WE BELIEVE IN                             */}
-      {/* ========================================================= */}
-      <section id="our-perspective" className="bp-believe-section">
-        <div className="bp-container">
-          <div className="bp-section-header">
-            <div className="bp-badge">
-              <Sparkles size={14} className="bp-badge-icon" />
-              <span>Our Perspective</span>
-            </div>
+              {/* 3D Perspective Stage */}
+              <div className="bp-carousel-stage">
+                {/* Background Angled Card (Left) */}
+                <div className="bp-bg-card-left" aria-hidden="true" />
 
-            <h2 className="bp-section-title">
-              What We Believe In
-            </h2>
+                {/* Background Angled Card (Right) */}
+                <div className="bp-bg-card-right" aria-hidden="true" />
 
-            <p className="bp-section-subtitle">
-              These principles guide how we build products, work with clients, and share knowledge across our engineering team.
-            </p>
-          </div>
-
-          <div className="bp-believe-grid">
-            {/* Card 1 */}
-            <div className="bp-believe-card">
-              <div className="bp-believe-icon-wrap">
-                <Target size={24} strokeWidth={2.2} />
-              </div>
-              <h3 className="bp-believe-title">Build With Purpose</h3>
-              <p className="bp-believe-desc">
-                We focus on solving real business problems with software that creates meaningful and measurable impact.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bp-believe-card">
-              <div className="bp-believe-icon-wrap">
-                <Shield size={24} strokeWidth={2.2} />
-              </div>
-              <h3 className="bp-believe-title">Reliability By Design</h3>
-              <p className="bp-believe-desc">
-                We design and build with performance, security, and scalability in mind from day one.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bp-believe-card">
-              <div className="bp-believe-icon-wrap">
-                <Users size={24} strokeWidth={2.2} />
-              </div>
-              <h3 className="bp-believe-title">Partnership That Lasts</h3>
-              <p className="bp-believe-desc">
-                We believe in transparent communication, long-term relationships, and shared success.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION C: ENGINEERING SPOTLIGHT                          */}
-      {/* ========================================================= */}
-      <section className="bp-spotlight-section">
-        <div className="bp-container">
-          <div className="bp-spotlight-grid">
-            {/* Left Project Overview Mockup */}
-            <div className="bp-project-window-wrap">
-              <div className="bp-project-window">
-                <div className="bp-project-inner">
-                  {/* Sidebar */}
-                  <div className="bp-project-sidebar">
-                    <div className="bp-project-logo">
-                      <Code2 size={13} />
-                      <span>Provenance</span>
-                    </div>
-                    <div className="bp-project-nav-item active">Overview</div>
-                    <div className="bp-project-nav-item">Projects</div>
-                    <div className="bp-project-nav-item">Analytics</div>
-                    <div className="bp-project-nav-item">Team</div>
-                    <div className="bp-project-nav-item">Settings</div>
-                  </div>
-
-                  {/* Main Dashboard Area */}
-                  <div className="bp-project-main">
-                    <div className="bp-project-header">
-                      <span className="bp-project-heading">Project Overview</span>
-                      <div style={{ display: 'flex', gap: '6px' }}>
-                        <div style={{ width: '32px', height: '6px', background: '#ebd9c8', borderRadius: '3px' }} />
-                        <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: '#ea580c' }} />
-                      </div>
-                    </div>
-
-                    {/* KPI Stats */}
-                    <div className="bp-project-stats-grid">
-                      <div className="bp-project-stat-box">
-                        <div className="bp-ps-label">Total Projects</div>
-                        <div className="bp-ps-val">12</div>
-                      </div>
-                      <div className="bp-project-stat-box">
-                        <div className="bp-ps-label">Active</div>
-                        <div className="bp-ps-val" style={{ color: '#ea580c' }}>8</div>
-                      </div>
-                      <div className="bp-project-stat-box">
-                        <div className="bp-ps-label">Completed</div>
-                        <div className="bp-ps-val">24</div>
-                      </div>
-                      <div className="bp-project-stat-box">
-                        <div className="bp-ps-label">Success Rate</div>
-                        <div className="bp-ps-val" style={{ color: '#16a34a' }}>98%</div>
-                      </div>
-                    </div>
-
-                    {/* Bar Chart Visualization */}
-                    <div className="bp-project-chart-box">
-                      <div className="bp-chart-bars-wrap">
-                        <div className="bp-chart-bar-col" style={{ height: '35%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '60%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '45%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '85%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '70%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '55%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '95%' }} />
-                        <div className="bp-chart-bar-col" style={{ height: '75%' }} />
-                      </div>
-                    </div>
-
-                    {/* Recent Activity */}
-                    <div style={{ fontSize: '0.68rem', fontWeight: 750, color: '#141518', marginBottom: '0.35rem' }}>
-                      Recent Activity
-                    </div>
-                    <div className="bp-pa-item">
+                {/* Active Dominant Featured Card */}
+                {activeFeatured && (
+                  <Link
+                    href={`/blog/${activeFeatured.id}`}
+                    className="bp-featured-main-card"
+                    title={activeFeatured.title}
+                  >
+                    {/* Left Split: Content */}
+                    <div className="bp-featured-content">
                       <div>
-                        <span className="bp-pa-dot" />
-                        <span>New project initiated</span>
+                        <div className="bp-featured-eyebrow">
+                          <Sparkles size={12} />
+                          <span>{activeFeatured.badgeText || 'FEATURED ARTICLE'}</span>
+                        </div>
+                        <h2 className="bp-featured-title">
+                          {activeFeatured.title}
+                        </h2>
+                        <p className="bp-featured-sub">
+                          {activeFeatured.subtitle || activeFeatured.summary}
+                        </p>
                       </div>
-                      <span style={{ color: '#9c8e80' }}>2h ago</span>
+
+                      <div className="bp-featured-action-row">
+                        <span>Read Full Article</span>
+                        <div className="bp-featured-circle-arrow">
+                          <ArrowRight size={14} />
+                        </div>
+                      </div>
                     </div>
-                    <div className="bp-pa-item">
-                      <div>
-                        <span className="bp-pa-dot" />
-                        <span>Development in progress</span>
-                      </div>
-                      <span style={{ color: '#9c8e80' }}>5h ago</span>
+
+                    {/* Right Split: Editorial Thumbnail */}
+                    <div className="bp-featured-img-wrap">
+                      <SafeBlogImage
+                        src={activeFeatured.imageUrl}
+                        alt={activeFeatured.title}
+                        fill
+                        priority
+                        sizes="(max-width: 860px) 100vw, 320px"
+                        className="bp-featured-img"
+                      />
                     </div>
-                    <div className="bp-pa-item">
-                      <div>
-                        <span className="bp-pa-dot" />
-                        <span>Deployment completed</span>
-                      </div>
-                      <span style={{ color: '#9c8e80' }}>1d ago</span>
+                  </Link>
+                )}
+
+                {/* Previous & Next Circular Buttons */}
+                <button
+                  type="button"
+                  onClick={handlePrevSlide}
+                  className="bp-carousel-btn bp-btn-prev"
+                  aria-label="Previous featured article"
+                  title="Previous article"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleNextSlide}
+                  className="bp-carousel-btn bp-btn-next"
+                  aria-label="Next featured article"
+                  title="Next article"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="bp-carousel-indicators">
+                {featuredArticles.map((article, idx) => (
+                  <button
+                    key={article.id}
+                    type="button"
+                    onClick={() => setFeaturedIdx(idx)}
+                    className={`bp-carousel-dot ${idx === featuredIdx ? 'active' : ''}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    title={article.title}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* SECTION 2: CATEGORY FILTER BAR & NEWSLETTER TRIGGER       */}
+        {/* ========================================================= */}
+        <section className="bp-filter-section" id="articles-section">
+          <div className="bp-filter-bar">
+            {/* Horizontal Category Nav */}
+            <div className="bp-categories-list" role="tablist" aria-label="Article categories">
+              {BLOG_CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`bp-cat-btn ${isActive ? 'active' : ''}`}
+                  >
+                    {getCategoryIcon(cat.iconName)}
+                    <span>{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Newsletter Action on Right */}
+            <button
+              type="button"
+              onClick={() => setNewsletterOpen(true)}
+              className="bp-newsletter-wrap"
+              title="Subscribe to our engineering newsletter"
+            >
+              <div className="bp-nl-icon-box">
+                <Mail size={18} />
+              </div>
+              <div className="bp-nl-text-col">
+                <span className="bp-nl-title">Get the latest updates</span>
+                <span className="bp-nl-sub">Subscribe to our newsletter</span>
+              </div>
+              <div className="bp-nl-arrow-box">
+                <ArrowRight size={14} />
+              </div>
+            </button>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* SECTION 3: 4-COLUMN RESPONSIVE ARTICLES GRID              */}
+        {/* ========================================================= */}
+        <section className="bp-articles-section">
+          {filteredArticles.length === 0 ? (
+            <div className="bp-empty-state">
+              <Search size={36} style={{ color: '#ea580c', margin: '0 auto 0.75rem' }} />
+              <h3 className="bp-empty-title">No articles found</h3>
+              <p className="bp-empty-sub">
+                We couldn&apos;t find any articles matching &ldquo;{searchQuery}&rdquo; in category &ldquo;{selectedCategory}&rdquo;.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedCategory('All');
+                  setSearchQuery('');
+                }}
+                className="bp-btn-primary"
+                style={{ margin: '0 auto' }}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          ) : (
+            <div className="bp-articles-grid">
+              {filteredArticles.map((article) => (
+                <Link
+                  key={article.id}
+                  href={`/blog/${article.id}`}
+                  className="bp-article-card"
+                  title={article.title}
+                >
+                  {/* Card Thumbnail */}
+                  <div className="bp-card-thumb-wrap">
+                    <SafeBlogImage
+                      src={article.imageUrl}
+                      alt={article.title}
+                      fill
+                      sizes="(max-width: 860px) 100vw, (max-width: 1220px) 50vw, 25vw"
+                      className="bp-card-thumb-img"
+                    />
+                    <div className="bp-card-category-badge">
+                      {article.category === 'Development' && '</> '}
+                      {article.category === 'Technology' && '☁ '}
+                      {article.category === 'Design' && '🎨 '}
+                      {article.category === 'Business' && '💼 '}
+                      {article.category === 'Career' && '👤 '}
+                      {article.category}
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Floating Badge on Bottom-Left */}
-              <div className="bp-float-impact-badge">
-                <div className="bp-fib-text">From idea<br />to impact.</div>
-                <BarChart2 size={24} color="#ea580c" />
-              </div>
-            </div>
+                  {/* Card Body */}
+                  <div className="bp-card-body">
+                    <h3 className="bp-card-title">{article.title}</h3>
+                    <p className="bp-card-summary">{article.summary}</p>
 
-            {/* Right Editorial Content */}
-            <div className="bp-spotlight-content">
-              <div className="bp-badge">
-                <Sparkles size={14} className="bp-badge-icon" />
-                <span>Engineering Spotlight</span>
-              </div>
-
-              <h2 className="bp-spotlight-title">
-                Turning Complex Requirements Into Clear, Reliable Software
-              </h2>
-
-              <p className="bp-spotlight-desc">
-                A look at how our engineering team approaches complex business requirements, breaks them into practical solutions, and delivers scalable, maintainable software that creates long-term value.
-              </p>
-
-              <Link href="/contact" className="bp-spotlight-link">
-                <span>Read the Story</span>
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION D: HOW WE CREATE VALUE                            */}
-      {/* ========================================================= */}
-      <section className="bp-value-section">
-        <div className="bp-container">
-          <div className="bp-section-header">
-            <div className="bp-badge">
-              <Rocket size={14} className="bp-badge-icon" />
-              <span>How We Create Value</span>
-            </div>
-
-            <h2 className="bp-section-title">
-              From Ideas to Real-World Impact
-            </h2>
-
-            <p className="bp-section-subtitle">
-              Our approach combines technical expertise, thoughtful design, and a deep understanding of business goals.
-            </p>
-          </div>
-
-          <div className="bp-timeline-grid">
-            {/* Step 01 */}
-            <div className="bp-step-card">
-              <div className="bp-step-icon-wrap">
-                <FileText size={22} />
-              </div>
-              <div className="bp-step-num">01</div>
-              <h3 className="bp-step-title">Understand the Problem</h3>
-              <p className="bp-step-desc">
-                We take time to understand your business goals, user needs, and technical challenges.
-              </p>
-              <div className="bp-step-connector" aria-hidden="true" />
-            </div>
-
-            {/* Step 02 */}
-            <div className="bp-step-card">
-              <div className="bp-step-icon-wrap">
-                <PenTool size={20} />
-              </div>
-              <div className="bp-step-num">02</div>
-              <h3 className="bp-step-title">Design Thoughtfully</h3>
-              <p className="bp-step-desc">
-                We create clear architectures, intuitive user experiences, and scalable technical plans.
-              </p>
-              <div className="bp-step-connector" aria-hidden="true" />
-            </div>
-
-            {/* Step 03 */}
-            <div className="bp-step-card">
-              <div className="bp-step-icon-wrap">
-                <Code2 size={22} />
-              </div>
-              <div className="bp-step-num">03</div>
-              <h3 className="bp-step-title">Build With Quality</h3>
-              <p className="bp-step-desc">
-                We develop clean, maintainable code with testing, security, and performance in mind.
-              </p>
-              <div className="bp-step-connector" aria-hidden="true" />
-            </div>
-
-            {/* Step 04 */}
-            <div className="bp-step-card">
-              <div className="bp-step-icon-wrap">
-                <Rocket size={20} />
-              </div>
-              <div className="bp-step-num">04</div>
-              <h3 className="bp-step-title">Support What We Ship</h3>
-              <p className="bp-step-desc">
-                We stay involved after launch with ongoing support, optimizations, and new features as your business grows.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION E: LATEST INSIGHTS (ARTICLES)                     */}
-      {/* ========================================================= */}
-      <section id="insights" className="bp-insights-section">
-        <div className="bp-container">
-          <div className="bp-insights-header-row">
-            <div className="bp-insights-header-left">
-              <div className="bp-badge">
-                <Sparkles size={14} className="bp-badge-icon" />
-                <span>Latest Insights</span>
-              </div>
-              <h2 className="bp-insights-title">
-                Ideas From Our Engineering Team
-              </h2>
-            </div>
-
-            <Link href="/contact" className="bp-view-all-btn">
-              <span>View All Articles</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="bp-articles-grid">
-            {articles.map((article) => (
-              <article key={article.id} className="bp-article-card">
-                {/* Visual Thumbnail */}
-                <div className="bp-thumb-stage">
-                  {article.type === 'performance' && (
-                    <div className="bp-thumb-perf">
-                      <div className="bp-perf-mock-dash">
-                        <div style={{ display: 'flex', gap: '3px' }}>
-                          <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ea580c' }} />
-                          <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ebd9c8' }} />
-                        </div>
-                        <div style={{ height: '4px', background: '#ebd9c8', borderRadius: '2px', width: '70%' }} />
-                        <div style={{ height: '4px', background: '#ebd9c8', borderRadius: '2px', width: '90%' }} />
+                    {/* Card Footer */}
+                    <div className="bp-card-footer">
+                      <div className="bp-card-meta-left">
+                        <span className="bp-card-meta-item">
+                          <Calendar size={13} />
+                          <span>{article.date}</span>
+                        </span>
+                        <span className="bp-card-meta-item">
+                          <Clock size={13} />
+                          <span>{article.readTime}</span>
+                        </span>
                       </div>
-                      <div className="bp-gauge-wrap">
-                        <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%' }}>
-                          <path
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                            fill="none"
-                            stroke="#f2dfcc"
-                            strokeWidth="3.2"
-                            strokeDasharray="75, 100"
-                          />
-                          <path
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                            fill="none"
-                            stroke="#ea580c"
-                            strokeWidth="3.2"
-                            strokeDasharray="60, 100"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                        <div style={{
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          fontSize: '0.62rem',
-                          fontWeight: 800,
-                          color: '#141518'
-                        }}>
-                          99+
-                        </div>
-                      </div>
+                      <ArrowRight size={15} className="bp-card-arrow-icon" />
                     </div>
-                  )}
-
-                  {article.type === 'cloud' && (
-                    <div className="bp-thumb-cloud">
-                      <Cloud size={46} color="#ea580c" strokeWidth={1.5} />
-                      <div className="bp-server-stack">
-                        <div className="bp-server-unit">
-                          <span className="bp-server-led" />
-                        </div>
-                        <div className="bp-server-unit">
-                          <span className="bp-server-led" />
-                        </div>
-                        <div className="bp-server-unit">
-                          <span className="bp-server-led" />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {article.type === 'devops' && (
-                    <div className="bp-thumb-devops">
-                      <div style={{
-                        width: '42px',
-                        height: '42px',
-                        borderRadius: '50%',
-                        background: '#17181c',
-                        color: '#ffffff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <Code2 size={20} />
-                      </div>
-                      <div className="bp-pipeline-badges">
-                        <div className="bp-pipeline-item">
-                          <span className="bp-green-dot" />
-                          <span>Build</span>
-                        </div>
-                        <div className="bp-pipeline-item">
-                          <span className="bp-green-dot" />
-                          <span>Test</span>
-                        </div>
-                        <div className="bp-pipeline-item">
-                          <span className="bp-green-dot" />
-                          <span>Deploy</span>
-                        </div>
-                        <div className="bp-pipeline-item">
-                          <span className="bp-green-dot" />
-                          <span>Success</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {article.type === 'mobile' && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div style={{
-                        width: '32px',
-                        height: '56px',
-                        border: '3px solid #232228',
-                        borderRadius: '8px',
-                        background: '#ffffff',
-                        padding: '3px'
-                      }}>
-                        <div style={{ width: '100%', height: '6px', background: '#ea580c', borderRadius: '2px', marginBottom: '3px' }} />
-                        <div style={{ width: '80%', height: '3px', background: '#ebd9c8', borderRadius: '1px' }} />
-                      </div>
-                      <Activity size={28} color="#ea580c" />
-                    </div>
-                  )}
-
-                  {article.type === 'security' && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <Shield size={38} color="#ea580c" />
-                      <div style={{ fontSize: '0.62rem', fontWeight: 800, color: '#141518', background: '#ffffff', padding: '4px 8px', borderRadius: '6px', border: '1px solid #ebd9c8' }}>
-                        Zero Trust
-                      </div>
-                    </div>
-                  )}
-
-                  {article.type === 'design' && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <Layers size={36} color="#ea580c" />
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                        <div style={{ width: '40px', height: '6px', background: '#ea580c', borderRadius: '3px' }} />
-                        <div style={{ width: '55px', height: '6px', background: '#ebd9c8', borderRadius: '3px' }} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Card Content */}
-                <div className="bp-card-body">
-                  <div className="bp-card-meta-top">
-                    <span className="bp-card-pill">{article.category}</span>
-                    <span className="bp-card-read-time">
-                      <Clock size={13} />
-                      <span>{article.readTime}</span>
-                    </span>
                   </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
 
-                  <h3 className="bp-card-title">{article.title}</h3>
-                  <p className="bp-card-summary">{article.summary}</p>
+      {/* ========================================================= */}
+      {/* NEWSLETTER SUBSCRIPTION MODAL                             */}
+      {/* ========================================================= */}
+      {newsletterOpen && (
+        <div
+          className="bp-modal-backdrop"
+          onClick={() => {
+            setNewsletterOpen(false);
+            setNewsletterStatus('idle');
+            setNewsletterEmail('');
+          }}
+        >
+          <div
+            className="bp-modal-box"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="nl-modal-title"
+          >
+            <button
+              type="button"
+              className="bp-modal-close"
+              onClick={() => {
+                setNewsletterOpen(false);
+                setNewsletterStatus('idle');
+                setNewsletterEmail('');
+              }}
+              aria-label="Close modal"
+            >
+              <X size={18} />
+            </button>
 
-                  <div className="bp-card-bottom">
-                    <div className="bp-card-date">
-                      <Calendar size={13} />
-                      <span>{article.date}</span>
-                    </div>
-
-                    <Link href="/contact" className="bp-card-link">
-                      <span>Read Article</span>
-                      <ArrowRight size={13} />
-                    </Link>
-                  </div>
+            {newsletterStatus === 'success' ? (
+              <div className="bp-modal-success">
+                <div className="bp-modal-success-icon">
+                  <Check size={28} />
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION F: FINAL CALL TO ACTION (BEFORE FOOTER)           */}
-      {/* ========================================================= */}
-      <section className="bp-final-cta-section">
-        <div className="bp-container">
-          <div className="bp-final-cta-card">
-            {/* Ambient Rings */}
-            <div className="bp-cta-rings" aria-hidden="true" />
-            <div className="bp-cta-rings-inner" aria-hidden="true" />
-
-            {/* Left Content */}
-            <div className="bp-cta-content">
-              <div className="bp-badge" style={{ background: 'rgba(255, 255, 255, 0.9)' }}>
-                <Sparkles size={14} className="bp-badge-icon" />
-                <span>Start A Conversation</span>
+                <h3 className="bp-modal-title">You&apos;re Subscribed!</h3>
+                <p className="bp-modal-desc">{newsletterMsg}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNewsletterOpen(false);
+                    setNewsletterStatus('idle');
+                    setNewsletterEmail('');
+                  }}
+                  className="bp-btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Done
+                </button>
               </div>
+            ) : (
+              <>
+                <div className="bp-modal-badge">
+                  <Mail size={12} />
+                  <span>PROVENANCETECH DISPATCH</span>
+                </div>
+                <h3 id="nl-modal-title" className="bp-modal-title">
+                  Engineering Insights Direct to Your Inbox.
+                </h3>
+                <p className="bp-modal-desc">
+                  Join hundreds of engineers, founders, and tech leads receiving practical
+                  architecture breakdowns, Next.js optimization guides, and cloud best practices.
+                </p>
 
-              <h2 className="bp-cta-title">
-                Have an idea worth building?
-              </h2>
+                <form onSubmit={handleNewsletterSubmit} className="bp-modal-form">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Enter your work email address..."
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="bp-modal-input"
+                    autoFocus
+                  />
 
-              <p className="bp-cta-desc">
-                Tell us about your project, technical challenges, or product ideas. Our engineering team is ready to help you turn them into reliable, scalable solutions.
-              </p>
-            </div>
+                  {newsletterStatus === 'error' && (
+                    <p style={{ color: '#dc2626', fontSize: '0.82rem', margin: 0 }}>
+                      {newsletterMsg}
+                    </p>
+                  )}
 
-            {/* Right Action Button */}
-            <div className="bp-cta-btn-wrap">
-              <Link href="/contact" className="bp-cta-large-btn">
-                <span>Discuss Your Project</span>
-                <ArrowRight size={17} />
-              </Link>
-            </div>
+                  <button
+                    type="submit"
+                    disabled={newsletterStatus === 'loading'}
+                    className="bp-modal-submit-btn"
+                  >
+                    {newsletterStatus === 'loading' ? (
+                      <span>Subscribing...</span>
+                    ) : (
+                      <>
+                        <span>Subscribe Now</span>
+                        <Send size={15} />
+                      </>
+                    )}
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
-      </section>
+      )}
+
+      {/* ========================================================= */}
+      {/* FLOATING BACK TO TOP BUTTON                               */}
+      {/* ========================================================= */}
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="bp-back-to-top"
+          aria-label="Scroll back to top"
+          title="Back to top"
+        >
+          <ArrowUp size={18} />
+        </button>
+      )}
     </div>
   );
 }

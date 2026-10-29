@@ -105,7 +105,7 @@ function filterAssetList(items, { search, category, status }) {
   let filtered = [...items];
 
   if (category && category !== 'All') {
-    filtered = filtered.filter(item => item.category?.toLowerCase() === category.toLowerCase());
+    filtered = filtered.filter(item => { const ic = (item.category || '').toLowerCase(); const fc = category.toLowerCase(); return ic === fc || (fc.includes('web') && ic.includes('web')) || (fc.includes('mobile') && ic.includes('mobile')) || (fc.includes('business') && ic.includes('business')); });
   }
 
   if (status && status !== 'All') {

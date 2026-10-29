@@ -27,11 +27,10 @@ import {
   Server
 } from 'lucide-react';
 import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
+import PortfolioHero from '@/components/PortfolioHero';
 
 export default function PortfolioPage() {
-  // Category Filter for Section 02
-  const [activeCategory, setActiveCategory] = useState('All');
-
   // FAQ Accordion State for Section 07 (first item open by default)
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -45,60 +44,6 @@ export default function PortfolioPage() {
   });
   const [formErrors, setFormErrors] = useState({});
   const [formStatus, setFormStatus] = useState({ loading: false, success: false, msg: '', inquiryId: '' });
-
-  // 4 Featured Demonstration Projects (transparently marked as demonstration / concept work)
-  const projects = [
-    {
-      id: 'PRV-2026-APP01',
-      title: 'ApexPay Global',
-      subtitle: 'Cross-Border Payments & Digital Wallet',
-      category: 'Mobile Applications',
-      shortDesc: 'Biometric-authenticated cross-border payments app with multi-currency digital wallet and automated ledger settlements.',
-      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-      tech: ['React Native', 'Node.js', 'Amazon DynamoDB', 'REST APIs'],
-      typeLabel: 'Demonstration Project',
-      caseStudyUrl: '/catalog/PRV-2026-APP01',
-    },
-    {
-      id: 'PRV-2026-APP02',
-      title: 'PulseHealth Suite',
-      subtitle: 'Telemedicine & Clinical Provider Portal',
-      category: 'Web Applications',
-      shortDesc: 'Responsive clinical consultation portal featuring secure WebRTC video rooms, patient vitals monitoring, and diagnostic record uploads.',
-      imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
-      tech: ['Next.js', 'React', 'WebRTC', 'Amazon DynamoDB', 'Cloudinary'],
-      typeLabel: 'Demonstration Project',
-      caseStudyUrl: '/catalog/PRV-2026-APP02',
-    },
-    {
-      id: 'PRV-2026-APP03',
-      title: 'OmniLogistics Engine',
-      subtitle: 'Fleet Telemetry & Dispatch Console',
-      category: 'Business Software',
-      shortDesc: 'Real-time fleet telemetry dispatch console and driver application providing live asset positioning and route coordination.',
-      imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-      tech: ['Node.js', 'Flutter', 'Amazon DynamoDB', 'WebSockets'],
-      typeLabel: 'Demonstration Project',
-      caseStudyUrl: '/catalog/PRV-2026-APP03',
-    },
-    {
-      id: 'PRV-2026-APP04',
-      title: 'Zenith Commerce',
-      subtitle: 'Headless B2B & Retail Storefront',
-      category: 'E-Commerce',
-      shortDesc: 'Modular, headless e-commerce application designed for rapid catalog navigation, instantaneous cart workflows, and secure checkout.',
-      imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-      tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Stripe API'],
-      typeLabel: 'Demonstration Project',
-      caseStudyUrl: '/catalog/PRV-2026-APP04',
-    },
-  ];
-
-  const categories = ['All', 'Web Applications', 'Mobile Applications', 'Business Software', 'E-Commerce'];
-
-  const filteredProjects = activeCategory === 'All'
-    ? projects
-    : projects.filter((p) => p.category === activeCategory);
 
   // 4 Services Overview for Section 03
   const services = [
@@ -276,525 +221,30 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div style={{ paddingBottom: '5rem' }}>
+    <div style={{ paddingBottom: '1.5rem' }}>
       {/* ========================================================= */}
-      {/* SECTION 01: PORTFOLIO HERO                                */}
+      {/* SECTION 01: PORTFOLIO HERO (REDESIGNED EDITORIAL SPEC)    */}
       {/* ========================================================= */}
-      <section
-        style={{
-          padding: '4.5rem 0 4rem',
-          background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%)',
-        }}
-      >
-        <div className="container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-              gap: '3.5rem',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left Column: Heading, Description & Actions */}
-            <div>
-              <div
-                className="section-badge"
-                style={{
-                  background: '#ffffff',
-                  border: '1px solid #dfd5c8',
-                  color: 'var(--primary, #df7a38)',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  marginBottom: '1.25rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.35rem 0.95rem',
-                  borderRadius: '9999px',
-                }}
-              >
-                <Sparkles size={14} color="var(--primary, #df7a38)" />
-                OUR PORTFOLIO
-              </div>
-
-              <h1
-                style={{
-                  fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
-                  fontWeight: 800,
-                  letterSpacing: '-0.03em',
-                  color: '#1a130e',
-                  lineHeight: 1.15,
-                  marginBottom: '1.35rem',
-                }}
-              >
-                Digital Experiences. Thoughtfully Engineered.
-              </h1>
-
-              <p
-                style={{
-                  fontSize: '1.12rem',
-                  color: '#4a3d31',
-                  lineHeight: 1.7,
-                  marginBottom: '2.25rem',
-                  maxWidth: '560px',
-                  fontWeight: 450,
-                }}
-              >
-                Explore how we approach software development, combining modern technologies, thoughtful design, and reliable engineering to create digital experiences for businesses.
-              </p>
-
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                <a
-                  href="#featured-projects"
-                  className="btn btn-primary"
-                  style={{
-                    padding: '0.8rem 1.8rem',
-                    borderRadius: '9999px',
-                    fontWeight: 600,
-                    fontSize: '0.95rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    boxShadow: '0 4px 16px rgba(223, 122, 56, 0.28)',
-                  }}
-                >
-                  Explore Our Work
-                  <ArrowRight size={16} />
-                </a>
-
-                <a
-                  href="#contact"
-                  className="btn btn-secondary"
-                  style={{
-                    padding: '0.8rem 1.75rem',
-                    borderRadius: '9999px',
-                    fontWeight: 600,
-                    fontSize: '0.95rem',
-                    background: '#ffffff',
-                    border: '1px solid #dfd5c8',
-                    color: '#2d231b',
-                  }}
-                >
-                  Discuss Your Project
-                </a>
-              </div>
-
-              {/* Quick Pillars */}
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '1.5rem',
-                  flexWrap: 'wrap',
-                  marginTop: '2.5rem',
-                  paddingTop: '2rem',
-                  borderTop: '1px solid #e8ded4',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.85rem', color: '#6e6054', fontWeight: 600 }}>
-                  <Check size={16} color="var(--primary)" /> Clean Code Architecture
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.85rem', color: '#6e6054', fontWeight: 600 }}>
-                  <Check size={16} color="var(--primary)" /> Modern Web & Mobile
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.85rem', color: '#6e6054', fontWeight: 600 }}>
-                  <Check size={16} color="var(--primary)" /> Tailored Solutions
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Refined Abstract Software Interface Visual */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div
-                style={{
-                  width: '100%',
-                  maxWidth: '520px',
-                  background: '#ffffff',
-                  borderRadius: '24px',
-                  border: '1px solid #dfd5c8',
-                  boxShadow: '0 16px 40px rgba(45, 35, 27, 0.08)',
-                  overflow: 'hidden',
-                }}
-              >
-                {/* Interface Window Header */}
-                <div
-                  style={{
-                    padding: '0.9rem 1.25rem',
-                    background: '#fcf8f3',
-                    borderBottom: '1px solid #dfd5c8',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#e07a5f' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#e9c46a' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#2a9d8f' }} />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#7a6b5e', marginLeft: '0.5rem' }}>
-                      provenance-app-system
-                    </span>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      background: 'rgba(223, 122, 56, 0.12)',
-                      color: 'var(--primary)',
-                      padding: '0.2rem 0.55rem',
-                      borderRadius: '9999px',
-                    }}
-                  >
-                    ENGINEERED STACK
-                  </span>
-                </div>
-
-                {/* Interface Canvas */}
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {/* Top Status Banner */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      background: '#fffbf7',
-                      border: '1px solid #f0e4d7',
-                      borderRadius: '14px',
-                      padding: '0.85rem 1rem',
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#9e8f82', fontWeight: 700 }}>
-                        System Status
-                      </div>
-                      <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1a130e' }}>
-                        Active Production Releases
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#2e7d5a', fontSize: '0.8rem', fontWeight: 700 }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2e7d5a' }} />
-                      Verified
-                    </div>
-                  </div>
-
-                  {/* Architecture Grid Preview */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                    <div style={{ background: '#faf6f0', padding: '1rem', borderRadius: '14px', border: '1px solid #dfd5c8' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.4rem', color: 'var(--primary)' }}>
-                        <Globe size={18} />
-                        <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1a130e' }}>Web Apps</span>
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#6e6054' }}>Next.js • React • TypeScript</div>
-                    </div>
-
-                    <div style={{ background: '#faf6f0', padding: '1rem', borderRadius: '14px', border: '1px solid #dfd5c8' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.4rem', color: 'var(--primary)' }}>
-                        <Smartphone size={18} />
-                        <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1a130e' }}>Mobile Apps</span>
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#6e6054' }}>React Native • Flutter</div>
-                    </div>
-
-                    <div style={{ background: '#faf6f0', padding: '1rem', borderRadius: '14px', border: '1px solid #dfd5c8' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.4rem', color: 'var(--primary)' }}>
-                        <Cpu size={18} />
-                        <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1a130e' }}>APIs & Services</span>
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#6e6054' }}>Node.js • Route Handlers</div>
-                    </div>
-
-                    <div style={{ background: '#faf6f0', padding: '1rem', borderRadius: '14px', border: '1px solid #dfd5c8' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.4rem', color: 'var(--primary)' }}>
-                        <Layers size={18} />
-                        <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1a130e' }}>Cloud Datastores</span>
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#6e6054' }}>DynamoDB • MySQL • AWS</div>
-                    </div>
-                  </div>
-
-                  {/* Code Architecture Snippet */}
-                  <div
-                    style={{
-                      background: '#231b14',
-                      color: '#faf6f0',
-                      borderRadius: '12px',
-                      padding: '0.85rem 1rem',
-                      fontFamily: 'monospace',
-                      fontSize: '0.74rem',
-                      lineHeight: 1.5,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.2rem',
-                    }}
-                  >
-                    <div style={{ color: 'var(--primary, #eb7821)', fontWeight: 700 }}>{`// ProvenanceTech Service Contract`}</div>
-                    <div>const solution = await buildSolution(requirements);</div>
-                    <div style={{ color: '#2a9d8f' }}>return solution.deploy({'{ mode: "scalable", audit: "clean" }'});</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PortfolioHero />
 
       {/* ========================================================= */}
       {/* SECTION 02: FEATURED PROJECTS                             */}
       {/* ========================================================= */}
-      <section id="featured-projects" style={{ padding: '5rem 0', scrollMarginTop: '80px' }}>
-        <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 2.5rem', textAlign: 'center' }}>
-            <div
-              className="section-badge"
-              style={{
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: 'var(--primary, #df7a38)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '0.75rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-              }}
-            >
-              <Sparkles size={14} color="var(--primary)" />
-              SELECTED WORK
-            </div>
-
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.8vw, 2.9rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.025em',
-                color: '#1a130e',
-                lineHeight: 1.2,
-                marginBottom: '0.85rem',
-              }}
-            >
-              Projects Built to Solve Real Problems
-            </h2>
-
-            <p style={{ fontSize: '1.05rem', color: '#5a4c3e', lineHeight: 1.65 }}>
-              Discover digital solutions designed around business needs, user experiences, and practical engineering requirements.
-            </p>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              gap: '0.5rem',
-              marginBottom: '3rem',
-            }}
-          >
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: '0.5rem 1.25rem',
-                  borderRadius: '9999px',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  border: activeCategory === cat ? '1px solid var(--primary)' : '1px solid #dfd5c8',
-                  background: activeCategory === cat ? 'var(--primary)' : '#ffffff',
-                  color: activeCategory === cat ? '#ffffff' : '#4a3d31',
-                  boxShadow: activeCategory === cat ? '0 4px 12px rgba(223, 122, 56, 0.25)' : 'none',
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Projects Grid */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {filteredProjects.map((p) => (
-              <article
-                key={p.id}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '24px',
-                  border: '1px solid #dfd5c8',
-                  boxShadow: '0 8px 24px rgba(45, 35, 27, 0.05)',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease',
-                }}
-                className="portfolio-project-card"
-              >
-                {/* Project Image & Demo Badge */}
-                <div style={{ position: 'relative', height: '210px', width: '100%', background: '#ede3d8', overflow: 'hidden' }}>
-                  <Image
-                    src={p.imageUrl}
-                    alt={`${p.title} screenshot`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      left: '1rem',
-                      background: 'rgba(26, 19, 14, 0.85)',
-                      backdropFilter: 'blur(8px)',
-                      color: '#ffffff',
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      padding: '0.3rem 0.7rem',
-                      borderRadius: '9999px',
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {p.typeLabel}
-                  </div>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '1rem',
-                      right: '1rem',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      backdropFilter: 'blur(8px)',
-                      color: 'var(--primary)',
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      padding: '0.25rem 0.65rem',
-                      borderRadius: '8px',
-                      border: '1px solid #dfd5c8',
-                    }}
-                  >
-                    {p.category}
-                  </div>
-                </div>
-
-                {/* Card Body */}
-                <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <h3
-                    style={{
-                      fontSize: '1.3rem',
-                      fontWeight: 800,
-                      color: '#1a130e',
-                      letterSpacing: '-0.015em',
-                      marginBottom: '0.25rem',
-                    }}
-                  >
-                    {p.title}
-                  </h3>
-
-                  <div style={{ fontSize: '0.82rem', color: 'var(--primary)', fontWeight: 600, marginBottom: '0.85rem' }}>
-                    {p.subtitle}
-                  </div>
-
-                  <p
-                    style={{
-                      fontSize: '0.9rem',
-                      color: '#5a4c3e',
-                      lineHeight: 1.6,
-                      marginBottom: '1.25rem',
-                    }}
-                  >
-                    {p.shortDesc}
-                  </p>
-
-                  {/* Technologies Badges */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem', marginTop: 'auto' }}>
-                    {p.tech.map((t) => (
-                      <span
-                        key={t}
-                        style={{
-                          fontSize: '0.72rem',
-                          fontWeight: 600,
-                          background: '#fbf7f2',
-                          color: '#4a3d31',
-                          border: '1px solid #dfd5c8',
-                          padding: '0.25rem 0.55rem',
-                          borderRadius: '6px',
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Link */}
-                  <Link
-                    href={p.caseStudyUrl}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.45rem',
-                      background: '#faf6f0',
-                      border: '1px solid #dfd5c8',
-                      color: '#1a130e',
-                      padding: '0.65rem 1.25rem',
-                      borderRadius: '12px',
-                      fontSize: '0.88rem',
-                      fontWeight: 700,
-                      textDecoration: 'none',
-                      transition: 'all 0.2s ease',
-                    }}
-                    className="portfolio-btn-outline"
-                  >
-                    View Case Study
-                    <ArrowRight size={15} color="var(--primary)" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Catalog Reference Note */}
-          <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-            <Link
-              href="/catalog"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '0.9rem',
-                fontWeight: 700,
-                color: 'var(--primary)',
-                textDecoration: 'none',
-              }}
-            >
-              Browse complete projects catalog & case studies directory
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <div id="featured-projects" style={{ scrollMarginTop: '80px' }}>
+        <CaseStudiesSection showViewAllBtn={false} />
+      </div>
 
       {/* ========================================================= */}
       {/* SECTION 03: SERVICES OVERVIEW                             */}
       {/* ========================================================= */}
       <section
         style={{
-          padding: '5rem 0',
-          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(247, 238, 228, 0.4) 100%)',
+          padding: '2.25rem 0',
+          background: 'transparent',
         }}
       >
         <div className="container">
-          <div style={{ maxWidth: '750px', margin: '0 auto 3rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '750px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
               className="section-badge"
               style={{
@@ -921,9 +371,9 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 04: TECHNOLOGIES WE USE                           */}
       {/* ========================================================= */}
-      <section style={{ padding: '5rem 0' }}>
+      <section style={{ padding: '2.25rem 0' }}>
         <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 3rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
               className="section-badge"
               style={{
@@ -1061,12 +511,12 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '5rem 0',
-          background: 'linear-gradient(180deg, rgba(247, 238, 228, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%)',
+          padding: '2.25rem 0',
+          background: 'transparent',
         }}
       >
         <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
               className="section-badge"
               style={{
@@ -1195,9 +645,9 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 06: WHY PROVENANCETECH?                           */}
       {/* ========================================================= */}
-      <section style={{ padding: '5rem 0' }}>
+      <section style={{ padding: '2.25rem 0' }}>
         <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+          <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
               className="section-badge"
               style={{
@@ -1302,12 +752,12 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '5rem 0',
-          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(247, 238, 228, 0.5) 100%)',
+          padding: '2.25rem 0',
+          background: 'transparent',
         }}
       >
         <div className="container" style={{ maxWidth: '820px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
             <div
               className="section-badge"
               style={{
@@ -1413,7 +863,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 08: CONTACT & PROJECT INQUIRY                     */}
       {/* ========================================================= */}
-      <section id="contact" style={{ padding: '5.5rem 0 3rem', scrollMarginTop: '80px' }}>
+      <section id="contact" style={{ padding: '2.5rem 0 1.5rem', scrollMarginTop: '80px' }}>
         <div className="container" style={{ maxWidth: '860px', margin: '0 auto' }}>
           <div
             style={{
@@ -1421,11 +871,11 @@ export default function PortfolioPage() {
               borderRadius: '28px',
               border: '1px solid #dfd5c8',
               boxShadow: '0 16px 48px rgba(45, 35, 27, 0.08)',
-              padding: 'clamp(2rem, 5vw, 3.5rem)',
+              padding: 'clamp(1.75rem, 4vw, 3rem)',
             }}
           >
             {/* Header */}
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
               <div
                 className="section-badge"
                 style={{

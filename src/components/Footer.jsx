@@ -8,8 +8,8 @@ export default function Footer() {
         position: 'relative',
         overflow: 'hidden',
         background: 'radial-gradient(ellipse at 75% 20%, #fcf9f4 0%, #f6f0e6 48%, #ede4d4 100%)',
-        padding: '5rem 0 2.5rem',
-        marginTop: '5rem',
+        padding: '3.25rem 0 2rem',
+        marginTop: '2.5rem',
       }}
     >
       {/* 1. Subtle Silk Waves Vector Background */}

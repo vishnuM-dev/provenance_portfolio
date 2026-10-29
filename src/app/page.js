@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getAllAssets } from '@/lib/dynamodb';
 import { SEED_SERVICES } from '@/lib/seed-data';
 import AssetCard from '@/components/AssetCard';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
 import TechnologiesSection from '@/components/TechnologiesSection';
 import HeroDevicesAnimation from '@/components/HeroDevicesAnimation';
 import '@/components/ServicesCards.css';
@@ -100,7 +101,6 @@ const SERVICE_THEMES = {
 
 export default async function HomePage() {
   const allProjects = await getAllAssets();
-  const featuredProjects = allProjects.slice(0, 3);
 
   // Service icon resolver
   const getServiceIcon = (iconName) => {
@@ -170,7 +170,7 @@ export default async function HomePage() {
               {/* CTA Action Buttons */}
               <div className="hero-cta-buttons-row">
                 <Link
-                  href="/catalog"
+                  href="/portfolio"
                   className="hero-btn-explore"
                 >
                   <span>Explore Our Work</span>
@@ -351,52 +351,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Featured Projects & Case Studies (Matching "Top List – Our mainstay menu") */}
-      <section className="container reveal-on-scroll">
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          marginBottom: '2rem',
-          flexWrap: 'wrap',
-          gap: '1rem',
-        }}>
-          <div>
-            <div style={{
-              fontSize: '0.8rem',
-              color: 'var(--primary)',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              marginBottom: '0.35rem',
-            }}>
-              Proven Software Products
-            </div>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              color: 'var(--text-primary)',
-            }}>
-              Featured Projects & Case Studies
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.25rem' }}>
-              Selected web applications, mobile platforms, and enterprise software built for scale.
-            </p>
-          </div>
-
-          <Link href="/catalog" className="btn btn-secondary btn-sm" style={{ fontWeight: 600 }}>
-            View All {allProjects.length} Projects
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-
-        <div className="grid-catalog">
-          {featuredProjects.map((project) => (
-            <AssetCard key={project.id} asset={project} />
-          ))}
-        </div>
-      </section>
+      {/* 3. Featured Projects & Case Studies (Image 1 Normal & Image 2 Hover Spec) */}
+      <CaseStudiesSection showViewAllBtn={true} />
 
       {/* 4. Why Choose Us (Practical Business Benefits) */}
       <section className="container reveal-on-scroll">
@@ -600,7 +556,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-
       {/* 8. Final Call to Action - Featuring Brand Monogram Emblem */}
       <section className="container reveal-on-scroll">
         <div className="glass-panel cta-banner-glow" style={{
@@ -664,7 +619,7 @@ export default async function HomePage() {
             </Link>
 
             <Link
-              href="/catalog"
+              href="/portfolio"
               className="btn btn-secondary"
               style={{
                 padding: '0.9rem 2.5rem',

@@ -4,10 +4,10 @@ import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
 
 export default function TechnologiesSection({ id = 'technologies' }) {
   return (
-    <section id={id} style={{ scrollMarginTop: '90px', padding: '3.75rem 0 1.25rem', width: '100%' }}>
+    <section id={id} style={{ scrollMarginTop: '90px', padding: '2.25rem 0 1rem', width: '100%' }}>
       <div className="container" style={{ maxWidth: '1120px', margin: '0 auto', padding: '0 1.5rem', width: '100%' }}>
         {/* Section Header */}
-        <div className="section-header" style={{ maxWidth: '820px', margin: '0 auto 3.25rem' }}>
+        <div className="section-header" style={{ maxWidth: '820px', margin: '0 auto 1.75rem' }}>
           <div
             className="section-badge"
             style={{

@@ -1,0 +1,583 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap');
+
+/* =========================================================
+   PORTFOLIO HERO REDESIGN - Image Mockup Specification
+   Matches media_1793266177414_7725c44c.jpg
+   With Interactive Side-Scroll & Swipe
+   ========================================================= */
+
+.pfh-hero-section {
+  padding: 1rem 0 2rem;
+  position: relative;
+  overflow: visible;
+  background: transparent;
+}
+
+.pfh-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* -------------------------------------------------------------
+   1. Minimal Breadcrumb
+   ------------------------------------------------------------- */
+.pfh-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: #6e6054;
+  margin-bottom: 1.25rem;
+}
+
+.pfh-bc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #6e6054;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.pfh-bc-link:hover {
+  color: var(--primary, #ea580c);
+}
+
+.pfh-bc-home-icon {
+  color: #8d7d6f;
+}
+
+.pfh-bc-sep {
+  color: #b5a79a;
+}
+
+.pfh-bc-current {
+  color: #1a130e;
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------
+   2. Two-Column Hero Split
+   ------------------------------------------------------------- */
+.pfh-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* Left Column */
+.pfh-content-col {
+  max-width: 580px;
+}
+
+.pfh-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 1rem;
+  background: #fff4ec;
+  border: 1px solid #fcd9c0;
+  border-radius: 9999px;
+  color: var(--primary, #ea580c);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+}
+
+.pfh-badge-grid-icon {
+  display: flex;
+  align-items: center;
+  color: var(--primary, #ea580c);
+}
+
+.pfh-headline {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #1a130e;
+  margin: 0 0 1.25rem 0;
+}
+
+.pfh-headline-accent {
+  color: var(--primary, #ea580c);
+}
+
+.pfh-paragraph {
+  font-size: 1.05rem;
+  color: #5c4f42;
+  line-height: 1.68;
+  margin: 0 0 2.25rem 0;
+  max-width: 530px;
+  font-weight: 450;
+}
+
+.pfh-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pfh-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.95rem;
+  background: var(--primary, #ea580c);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.28);
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.pfh-btn-primary:hover {
+  background: #c2410c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.38);
+}
+
+.pfh-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.85rem;
+  background: #ffffff;
+  border: 1px solid #dfd5c8;
+  color: #1a130e;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(45, 35, 27, 0.04);
+  transition: all 0.25s ease;
+}
+
+.pfh-btn-secondary:hover {
+  border-color: var(--primary, #ea580c);
+  color: var(--primary, #ea580c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.12);
+}
+
+/* -------------------------------------------------------------
+   3. Right Column: Side-Scrollable 3D Angled Perspective Cards
+   ------------------------------------------------------------- */
+.pfh-visual-col {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  touch-action: pan-y pinch-zoom;
+}
+
+.pfh-bg-arc-svg {
+  position: absolute;
+  top: 15px;
+  right: -20px;
+  width: 520px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.pfh-ambient-dot {
+  position: absolute;
+  right: 6%;
+  top: 36%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary, #ea580c);
+  box-shadow: 0 0 16px rgba(234, 88, 12, 0.6);
+  z-index: 1;
+}
+
+/* Side-Scroll Arrow Buttons */
+.pfh-side-scroll-btn {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #dfd5c8;
+  color: #1a130e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(45, 35, 27, 0.12);
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.25s ease;
+}
+
+.pfh-side-scroll-btn:hover {
+  background: var(--primary, #ea580c);
+  border-color: var(--primary, #ea580c);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35);
+}
+
+.pfh-scroll-prev {
+  left: -22px;
+}
+
+.pfh-scroll-next {
+  right: -22px;
+}
+
+/* 3D Cards Composition Stage */
+.pfh-cards-composition {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 440px;
+  z-index: 3;
+}
+
+/* Base Card Style */
+.pfh-card {
+  position: absolute;
+  overflow: visible;
+  transition: all 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.pfh-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ede4dc;
+}
+
+.pfh-card-img {
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pfh-card:hover .pfh-card-img {
+  transform: scale(1.04);
+}
+
+/* Card 1: Left / Background (MR Cargo Logistics) */
+.pfh-card-left {
+  left: 10px;
+  top: 75px;
+  width: 235px;
+  height: 315px;
+  z-index: 2;
+  transform: perspective(1000px) rotateY(18deg) rotateZ(-3.5deg);
+  opacity: 0.92;
+}
+
+.pfh-card-left .pfh-card-img-wrap {
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 36px rgba(45, 35, 27, 0.12);
+}
+
+.pfh-card-left:hover {
+  transform: perspective(1000px) rotateY(14deg) rotateZ(-2deg) translateY(-6px);
+  opacity: 1;
+}
+
+/* Card 2: Center / Foreground Dominant (MK Delivery Courier) */
+.pfh-card-center {
+  left: 140px;
+  top: 10px;
+  width: 295px;
+  height: 415px;
+  z-index: 5;
+  transform: perspective(1000px) rotateY(-12deg) rotateZ(1.5deg);
+  opacity: 1;
+}
+
+.pfh-card-center .pfh-card-img-wrap {
+  border-radius: 26px;
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 24px 55px rgba(45, 35, 27, 0.18);
+}
+
+.pfh-card-center:hover {
+  transform: perspective(1000px) rotateY(-8deg) rotateZ(0.5deg) translateY(-8px);
+  box-shadow: 0 30px 65px rgba(45, 35, 27, 0.22);
+}
+
+/* Card 3: Right / Background (SiteBox Interior Living Room) */
+.pfh-card-right {
+  right: 5px;
+  top: 85px;
+  width: 225px;
+  height: 295px;
+  z-index: 2;
+  transform: perspective(1000px) rotateY(-18deg) rotateZ(4deg);
+  opacity: 0.92;
+}
+
+.pfh-card-right .pfh-card-img-wrap {
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 36px rgba(45, 35, 27, 0.12);
+}
+
+.pfh-card-right:hover {
+  transform: perspective(1000px) rotateY(-14deg) rotateZ(2.5deg) translateY(-6px);
+  opacity: 1;
+}
+
+/* Floating White Badges Overlapping Cards (2 Lines Matching Spec) */
+.pfh-floating-pill {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #e8ded4;
+  border-radius: 16px;
+  padding: 0.55rem 0.95rem;
+  box-shadow: 0 10px 28px rgba(45, 35, 27, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  z-index: 10;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.pfh-pill-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #fff4ec;
+  color: var(--primary, #ea580c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pfh-pill-text-col {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.pfh-pill-line {
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: #1a130e;
+  white-space: nowrap;
+}
+
+/* Specific Positions for Floating Badges */
+.pfh-pill-left {
+  bottom: 25px;
+  left: -28px;
+}
+
+.pfh-pill-center {
+  top: 25px;
+  left: -45px;
+}
+
+.pfh-pill-right {
+  bottom: 30px;
+  right: -24px;
+}
+
+/* Side-Scroll Slide Indicators */
+.pfh-scroll-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.35rem;
+  z-index: 10;
+  position: relative;
+}
+
+.pfh-scroll-dot {
+  width: 24px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #e8ded4;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.28s ease;
+}
+
+.pfh-scroll-dot:hover {
+  background: #d4c4b5;
+}
+
+.pfh-scroll-dot.active {
+  width: 44px;
+  background: var(--primary, #ea580c);
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35);
+}
+
+/* -------------------------------------------------------------
+   4. Statistics and Supporting Details Row
+   ------------------------------------------------------------- */
+.pfh-stats-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8ded4;
+}
+
+.pfh-stats-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pfh-stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.pfh-stat-value {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 3.4vw, 2.8rem);
+  font-weight: 800;
+  color: #1a130e;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.pfh-stat-infinity {
+  font-size: clamp(2.4rem, 3.6vw, 3rem);
+  line-height: 0.95;
+}
+
+.pfh-stat-label {
+  font-size: 0.9rem;
+  color: #6e6054;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.pfh-stat-divider {
+  width: 1px;
+  height: 52px;
+  background: #e8ded4;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   5. Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .pfh-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .pfh-content-col {
+    max-width: 100%;
+  }
+
+  .pfh-visual-col {
+    min-height: 420px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .pfh-hero-section {
+    padding: 1rem 0 2.5rem;
+  }
+
+  .pfh-visual-col {
+    min-height: 400px;
+  }
+
+  .pfh-side-scroll-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .pfh-scroll-prev {
+    left: -10px;
+  }
+
+  .pfh-scroll-next {
+    right: -10px;
+  }
+
+  .pfh-cards-composition {
+    max-width: 360px;
+    height: 380px;
+    margin: 0 auto;
+  }
+
+  .pfh-card-left {
+    width: 160px;
+    height: 220px;
+    left: 0;
+    top: 60px;
+  }
+
+  .pfh-card-center {
+    width: 220px;
+    height: 310px;
+    left: 80px;
+    top: 15px;
+  }
+
+  .pfh-card-right {
+    width: 150px;
+    height: 210px;
+    right: 0;
+    top: 70px;
+  }
+
+  .pfh-pill-center {
+    left: -15px;
+    top: 15px;
+  }
+
+  .pfh-pill-left {
+    left: -10px;
+    bottom: 15px;
+  }
+
+  .pfh-pill-right {
+    right: -10px;
+    bottom: 20px;
+  }
+
+  .pfh-pill-line {
+    font-size: 0.7rem;
+  }
+
+  .pfh-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1rem;
+  }
+
+  .pfh-stat-divider {
+    display: none;
+  }
+}
