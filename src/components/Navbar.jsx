@@ -21,53 +21,24 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [visible, setVisible] = useState(true);
   const pathname = usePathname();
 
+  // React 19 recommended pattern: reset mobile menu when route changes without useEffect setState
+  const [prevPath, setPrevPath] = useState(pathname);
+  if (prevPath !== pathname) {
+    setPrevPath(pathname);
+    setMobileMenuOpen(false);
+  }
+
   useEffect(() => {
-    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
-    let ticking = false;
-
-    const updateScrollState = () => {
-      const currentScrollY = window.scrollY;
-
-      // Check if page scrolled past initial top margin
-      setScrolled(currentScrollY > 15);
-
-      if (currentScrollY <= 40) {
-        // At or near the top: always visible
-        setVisible(true);
-      } else if (currentScrollY < lastScrollY - 4) {
-        // Scrolling UP: reveal the floating menu immediately
-        setVisible(true);
-      } else if (currentScrollY > lastScrollY + 6 && currentScrollY > 120) {
-        // Scrolling DOWN: hide menu unless mobile menu is open
-        if (!mobileMenuOpen) {
-          setVisible(false);
-        }
-      }
-
-      lastScrollY = Math.max(0, currentScrollY);
-      ticking = false;
-    };
-
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollState);
-        ticking = true;
-      }
+      setScrolled(window.scrollY > 15);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    updateScrollState();
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen]);
-
-  // Reset visibility and close menu on route change
-  useEffect(() => {
-    setVisible(true);
-    setMobileMenuOpen(false);
-  }, [pathname]);
+  }, []);
 
   // Helper to check active route
   const isItemActive = (href) => {
@@ -79,7 +50,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`floating-header-wrapper ${scrolled ? 'header-scrolled' : ''} ${visible ? 'header-visible' : 'header-hidden'}`}>
+    <header className={`floating-header-wrapper ${scrolled ? 'header-scrolled' : ''} header-visible`}>
       <div className="floating-navbar-container">
         {/* Brand Logo & Brand Name - Horizontally Aligned & Vertically Centered */}
         <Link

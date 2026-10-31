@@ -49,7 +49,7 @@ const PROJECTS_DATA = [
 
 const CATEGORIES = ['All Projects', 'Web Applications', 'Business Software'];
 
-export default function CaseStudiesSection({ showViewAllBtn = true }) {
+export default function CaseStudiesSection({ showViewAllBtn = false }) {
   const [activeCategory, setActiveCategory] = useState('All Projects');
   const [hoveredId, setHoveredId] = useState(null);
 

@@ -1,0 +1,845 @@
+/* ==========================================================================
+   PROVENANCETECH - PREMIUM PROJECT CTA REDESIGN
+   Exact Visual Reference Implementation (media_1793456095094_f40cb5fa)
+   ========================================================================== */
+
+/* Outer CTA Section */
+.cta-project-section {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0 2rem;
+  background: transparent;
+  color: #1a130e;
+  overflow: hidden;
+  scroll-margin-top: 100px;
+}
+
+.cta-project-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  width: 100%;
+}
+
+/* ==========================================================================
+   1. FLOATING SERVICE CAPABILITY BAR
+   ========================================================================== */
+.cta-capability-bar {
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 9999px;
+  padding: 0.95rem 2rem;
+  box-shadow: 0 6px 22px rgba(45, 35, 27, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0 auto 2.25rem;
+  width: 100%;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cta-capability-bar:hover {
+  border-color: #dfc8b4;
+  box-shadow: 0 8px 26px rgba(45, 35, 27, 0.06);
+}
+
+.cta-cap-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex: 1 1 0;
+  min-width: 0;
+  transition: transform 0.25s ease;
+}
+
+.cta-cap-item:hover {
+  transform: translateY(-2px);
+}
+
+.cta-cap-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(234, 88, 12, 0.08);
+  border: 1px solid rgba(234, 88, 12, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cta-cap-item:hover .cta-cap-icon-box {
+  background: rgba(234, 88, 12, 0.14);
+  transform: scale(1.05);
+}
+
+.cta-cap-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.cta-cap-title {
+  font-size: 0.86rem;
+  font-weight: 750;
+  color: #1a130e;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.cta-cap-sub {
+  font-size: 0.74rem;
+  color: #7a6c60;
+  margin-top: 1px;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cta-cap-divider {
+  width: 1px;
+  height: 28px;
+  background: #ebd8c8;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   2. MAIN EDITORIAL CTA PANEL
+   ========================================================================== */
+.cta-main-panel {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf6 55%, #fff7f0 100%);
+  border: 1px solid #ebd8c8;
+  border-radius: 32px;
+  padding: 3.5rem 3.5rem 3.25rem;
+  box-shadow: 0 16px 48px rgba(45, 35, 27, 0.05);
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3rem;
+  align-items: center;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-main-panel:hover {
+  border-color: #dfc8b4;
+  box-shadow: 0 20px 54px rgba(45, 35, 27, 0.08);
+}
+
+/* Ambient Warm Lighting Aura */
+.cta-panel-ambient-aura {
+  position: absolute;
+  top: -10%;
+  right: 5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.08) 0%, rgba(254, 215, 170, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: HEADLINE, COPY & ACTIONS
+   ========================================================================== */
+.cta-content-col {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ea580c;
+  margin-bottom: 1.15rem;
+}
+
+.cta-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #ea580c;
+  box-shadow: 0 0 8px rgba(234, 88, 12, 0.7);
+}
+
+.cta-headline {
+  font-size: clamp(2.2rem, 3.4vw, 2.95rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  color: #1a130e;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+
+.cta-headline-line {
+  display: block;
+}
+
+.cta-highlight-orange {
+  color: #ea580c;
+  position: relative;
+  display: inline-block;
+}
+
+.cta-subtext {
+  font-size: 1.05rem;
+  color: #55483d;
+  line-height: 1.65;
+  margin: 0 0 2rem;
+  max-width: 480px;
+  font-weight: 450;
+}
+
+.cta-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.cta-btn-primary {
+  background: #ea580c;
+  color: #ffffff;
+  padding: 0.88rem 1.85rem;
+  border-radius: 9999px;
+  font-weight: 750;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.32);
+  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+  border: none;
+}
+
+.cta-btn-primary:hover {
+  background: #dc4b00;
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px rgba(234, 88, 12, 0.42);
+  color: #ffffff;
+}
+
+.cta-btn-primary svg {
+  transition: transform 0.2s ease;
+}
+
+.cta-btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.cta-btn-secondary {
+  background: #ffffff;
+  color: #1a130e;
+  border: 1px solid #dfd3c6;
+  padding: 0.88rem 1.85rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cta-btn-secondary:hover {
+  background: #faf6f0;
+  border-color: #d0c0b0;
+  transform: translateY(-2px);
+  color: #1a130e;
+}
+
+/* Trust Badges (Tailored Solutions, Transparent Communication, Long-term Partnership) */
+.cta-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.25rem;
+}
+
+.cta-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #5c4e42;
+  white-space: nowrap;
+}
+
+.cta-trust-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  background: rgba(234, 88, 12, 0.08);
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: INTERACTIVE VISUAL COMPOSITION
+   ========================================================================== */
+.cta-visual-col {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.cta-visual-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 490px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Decorative Dotted Connector Paths in Background */
+.cta-connector-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Central Floating Browser Dashboard Window */
+.cta-mock-browser {
+  position: relative;
+  width: 310px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(234, 88, 12, 0.15);
+  box-shadow: 0 18px 40px rgba(45, 35, 27, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  z-index: 3;
+  transform: perspective(900px) rotateY(-4deg) rotateX(2deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cta-main-panel:hover .cta-mock-browser {
+  transform: perspective(900px) rotateY(-1deg) rotateX(1deg) translateY(-3px);
+  box-shadow: 0 22px 48px rgba(45, 35, 27, 0.12);
+}
+
+.cta-browser-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f2eae2;
+  background: #faf7f4;
+}
+
+.cta-browser-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.cta-browser-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.cta-browser-dot.red { background: #ff5f56; }
+.cta-browser-dot.yellow { background: #ffbd2e; }
+.cta-browser-dot.green { background: #27c93f; }
+
+.cta-browser-brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #1a130e;
+}
+
+.cta-browser-brand-logo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.cta-browser-brand span {
+  color: #ea580c;
+}
+
+.cta-browser-body {
+  display: flex;
+  height: 185px;
+}
+
+/* Sidebar Inside Browser */
+.cta-browser-sidebar {
+  width: 68px;
+  background: #faf6f2;
+  border-right: 1px solid #f2eae2;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cta-sidebar-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #706254;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cta-sidebar-pill.active {
+  background: #ea580c;
+  color: #ffffff;
+}
+
+.cta-sidebar-pill.muted {
+  color: #9c8e82;
+}
+
+/* Main Dashboard Canvas Inside Browser */
+.cta-browser-main {
+  flex: 1;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cta-dashboard-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.cta-dashboard-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #1a130e;
+}
+
+.cta-dashboard-badge {
+  font-size: 0.58rem;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 1px 5px;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+/* Orange Spline Chart Inside Dashboard */
+.cta-dashboard-chart-box {
+  width: 100%;
+  height: 52px;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.cta-chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 3 Mini Stats Inside Dashboard */
+.cta-dashboard-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.cta-mini-stat-card {
+  background: #faf8f5;
+  border: 1px solid #f0e6dc;
+  border-radius: 6px;
+  padding: 4px 5px;
+  text-align: left;
+}
+
+.cta-stat-label {
+  font-size: 0.55rem;
+  color: #7d6f62;
+  font-weight: 600;
+  display: block;
+}
+
+.cta-stat-value {
+  font-size: 0.72rem;
+  font-weight: 850;
+  color: #1a130e;
+  line-height: 1.1;
+  margin-top: 1px;
+}
+
+.cta-stat-arrow {
+  color: #10b981;
+  font-size: 0.65rem;
+}
+
+/* ==========================================================================
+   FLOATING SATELLITE CARDS
+   ========================================================================== */
+
+/* 1. Top Right: Cloud Deploy Card */
+.cta-satellite-cloud {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 8px 20px rgba(234, 88, 12, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 4;
+  animation: ctaFloat 3.8s ease-in-out infinite;
+}
+
+.cta-cloud-icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.cta-cloud-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #1a130e;
+  line-height: 1.2;
+}
+
+.cta-cloud-arrow {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ea580c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+}
+
+/* 2. Right: Angled Smartphone Mockup */
+.cta-satellite-phone {
+  position: absolute;
+  right: 4px;
+  bottom: 30px;
+  width: 82px;
+  height: 145px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 2.5px solid #231f20;
+  box-shadow: 0 14px 28px rgba(45, 35, 27, 0.12);
+  padding: 6px 4px;
+  z-index: 4;
+  transform: rotate(7deg);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-main-panel:hover .cta-satellite-phone {
+  transform: rotate(4deg) translateY(-3px);
+}
+
+.cta-phone-notch {
+  width: 24px;
+  height: 3px;
+  background: #231f20;
+  border-radius: 2px;
+  margin: 0 auto 5px;
+}
+
+.cta-phone-title {
+  font-size: 6.5px;
+  font-weight: 850;
+  color: #1a130e;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.cta-phone-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.cta-phone-icon-pill {
+  height: 14px;
+  border-radius: 4px;
+  background: #fdf2e9;
+  border: 1px solid #fed7aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+}
+
+.cta-phone-chart-box {
+  flex: 1;
+  background: #faf6f2;
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cta-phone-chart-svg {
+  width: 100%;
+  height: 24px;
+}
+
+/* 3. Bottom Right: Launch Status Pill */
+.cta-satellite-launch {
+  position: absolute;
+  right: 32px;
+  bottom: 12px;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 9999px;
+  padding: 5px 12px;
+  box-shadow: 0 8px 22px rgba(45, 35, 27, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+  animation: ctaFloat 4.2s ease-in-out infinite 0.6s;
+}
+
+.cta-launch-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cta-launch-text {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #1a130e;
+}
+
+.cta-launch-bar {
+  width: 32px;
+  height: 4px;
+  background: #ea580c;
+  border-radius: 2px;
+}
+
+/* 4. Bottom Left: Floating Code Panel */
+.cta-satellite-code {
+  position: absolute;
+  left: 12px;
+  bottom: 24px;
+  width: 115px;
+  background: #1f2937;
+  border-radius: 10px;
+  padding: 7px 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  z-index: 4;
+  transform: perspective(600px) rotateY(6deg) rotateX(-4deg);
+  animation: ctaFloat 3.5s ease-in-out infinite 1s;
+}
+
+.cta-code-dots {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 5px;
+}
+
+.cta-code-line {
+  height: 3px;
+  border-radius: 1.5px;
+  margin-bottom: 3px;
+}
+.cta-code-line.orange { background: #ea580c; width: 65%; }
+.cta-code-line.cyan { background: #38bdf8; width: 85%; }
+.cta-code-line.green { background: #4ade80; width: 45%; }
+
+.cta-code-badge {
+  position: absolute;
+  left: -8px;
+  bottom: -8px;
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 850;
+  color: #ea580c;
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2);
+}
+
+/* 5. Floating Paper Plane Badge */
+.cta-satellite-plane {
+  position: absolute;
+  right: 0px;
+  bottom: 95px;
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #ebd8c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  box-shadow: 0 6px 14px rgba(234, 88, 12, 0.15);
+  z-index: 5;
+  animation: ctaFloat 4s ease-in-out infinite 1.4s;
+}
+
+/* Gentle Floating Keyframe */
+@keyframes ctaFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 980px) {
+  .cta-project-section {
+    padding: 1.25rem 0 1.5rem;
+  }
+
+  .cta-capability-bar {
+    border-radius: 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.15rem 1.4rem;
+  }
+
+  .cta-cap-item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .cta-cap-divider {
+    display: none;
+  }
+
+  .cta-main-panel {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2.75rem 2rem 2.25rem;
+  }
+
+  .cta-subtext {
+    max-width: 100%;
+  }
+
+  .cta-visual-col {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-project-section {
+    padding: 1rem 0 1.25rem;
+  }
+
+  .cta-headline-line {
+    display: inline;
+  }
+
+  .cta-capability-bar {
+    border-radius: 16px;
+    padding: 1rem 1rem;
+  }
+
+  .cta-cap-item {
+    flex: 1 1 100%;
+  }
+
+  .cta-main-panel {
+    border-radius: 24px;
+    padding: 2.25rem 1.35rem 1.85rem;
+  }
+
+  .cta-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .cta-btn-primary,
+  .cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+  }
+
+  .cta-trust-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .cta-visual-wrapper {
+    transform: scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-satellite-cloud,
+  .cta-satellite-launch,
+  .cta-satellite-code,
+  .cta-satellite-plane,
+  .cta-mock-browser,
+  .cta-satellite-phone {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

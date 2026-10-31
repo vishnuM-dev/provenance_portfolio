@@ -173,8 +173,8 @@
   flex-direction: column;
   border-radius: 26px;
   perspective: 1000px;
-  transition: flex 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: flex 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: flex;
 }
 
@@ -218,9 +218,9 @@
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(0.98);
   backface-visibility: hidden;
   will-change: transform, opacity;
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
   pointer-events: none;
 }
@@ -230,9 +230,9 @@
   opacity: 1;
   transform: perspective(1000px) rotateX(5.5deg) rotateY(3.5deg) rotate(2.4deg) translate(4px, -3px) scale(1.025);
   box-shadow: 0 28px 56px -8px rgba(234, 88, 12, 0.44);
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 2. Floating Circular Icon Badge on Upper-Left (Hover - Image 2) */
@@ -253,16 +253,16 @@
   opacity: 0;
   transform: scale(0.3) translateX(20px);
   pointer-events: none;
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-card-wrapper:hover .cs-floating-icon-badge,
 .cs-card-wrapper.is-hovered .cs-floating-icon-badge {
   opacity: 1;
   transform: scale(1) translateX(0);
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 3. Main White Card Container */
@@ -281,9 +281,9 @@
   backface-visibility: hidden;
   will-change: transform;
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-card-wrapper:hover .cs-card-main,
@@ -291,9 +291,9 @@
   border-color: transparent;
   transform: perspective(1000px) rotateX(5.5deg) rotateY(3.5deg);
   box-shadow: 0 24px 50px rgba(45, 35, 27, 0.12);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Thumbnail Section */
@@ -313,13 +313,13 @@
   transform-origin: center center;
   will-change: transform;
   transform: scale(1);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-card-wrapper:hover .cs-thumbnail-img,
 .cs-card-wrapper.is-hovered .cs-thumbnail-img {
   transform: scale(1.03);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Overlay Number 01 — Top Left */
@@ -385,16 +385,16 @@
   z-index: 3;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-card-wrapper:hover .cs-card-wave-wrap,
 .cs-card-wrapper.is-hovered .cs-card-wave-wrap {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-card-wave-svg {
@@ -470,10 +470,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
@@ -486,10 +486,10 @@
     0 0 0 8px rgba(234, 88, 12, 0.22),
     0 0 0 16px rgba(234, 88, 12, 0.12),
     0 0 0 25px rgba(234, 88, 12, 0.04);
-  transition: background-color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              color 850ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Responsive */

@@ -1,0 +1,1718 @@
+/* ==========================================================================
+   PROVENANCETECH - TECHNOLOGY SHOWCASE STACK
+   Exact Visual Reference Implementation (media_1793454885996_e48275a1)
+   ========================================================================== */
+
+/* Main Section Wrapper */
+.tech-showcase-section {
+  position: relative;
+  width: 100%;
+  padding: 2.5rem 0 3.5rem;
+  background: transparent;
+  color: #1a130e;
+  overflow: hidden;
+}
+
+.tech-showcase-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+/* ==========================================================================
+   SECTION HEADER & HIGHLIGHT PILLARS
+   ========================================================================== */
+.tech-showcase-header {
+  text-align: center;
+  max-width: 1040px;
+  margin: 0 auto 2.25rem;
+}
+
+.tech-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #dfd5c8;
+  border-radius: 9999px;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ea580c;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+  margin-bottom: 0.85rem;
+}
+
+.tech-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #ea580c;
+  box-shadow: 0 0 6px rgba(234, 88, 12, 0.6);
+}
+
+.tech-showcase-title {
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: #1a130e;
+  line-height: 1.18;
+  max-width: 780px;
+  margin: 0 auto 0.85rem;
+}
+
+.tech-showcase-title .tech-highlight {
+  color: #ea580c;
+  position: relative;
+  display: inline-block;
+}
+
+.tech-showcase-desc {
+  font-size: 1.04rem;
+  color: #55483d;
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto 1.85rem;
+  font-weight: 450;
+}
+
+/* 3 Quick Highlight Cards - Side by Side */
+.tech-pillars-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0.75rem auto 0;
+  width: 100%;
+}
+
+.tech-pillar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 16px;
+  padding: 0.65rem 1.05rem;
+  box-shadow: 0 4px 14px rgba(45, 35, 27, 0.03);
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.tech-pillar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.08);
+}
+
+.tech-pillar-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(234, 88, 12, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  flex-shrink: 0;
+}
+
+.tech-pillar-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.tech-pillar-title {
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: #1a130e;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.tech-pillar-sub {
+  font-size: 0.74rem;
+  color: #7a6c60;
+  margin-top: 2px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+@media (max-width: 960px) {
+  .tech-pillars-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .tech-pillar-item {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 250px;
+  }
+  .tech-pillar-sub {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .tech-pillar-item {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   2-COLUMN x 3-ROW SHOWCASE GRID
+   ========================================================================== */
+.tech-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .tech-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   CATEGORY CARDS - DISTINCT PASTEL THEMES
+   ========================================================================== */
+.tech-card {
+  position: relative;
+  border-radius: 26px;
+  padding: 1.85rem 1.85rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(223, 213, 200, 0.85);
+  box-shadow: 0 10px 30px rgba(45, 35, 27, 0.04);
+  transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.35s ease;
+  overflow: hidden;
+  min-height: 330px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tech-card:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 4px;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(45, 35, 27, 0.08);
+}
+
+/* 01 Frontend - Soft Peach */
+.tech-card--peach {
+  background: linear-gradient(135deg, #fff9f5 0%, #fff2e9 100%);
+  border-color: #f7ded0;
+}
+.tech-card--peach:hover {
+  border-color: #f0cbb5;
+  box-shadow: 0 18px 42px rgba(234, 88, 12, 0.09);
+}
+
+/* 02 Backend - Soft Blue */
+.tech-card--blue {
+  background: linear-gradient(135deg, #f5faff 0%, #edf5fd 100%);
+  border-color: #dceaf8;
+}
+.tech-card--blue:hover {
+  border-color: #c7def2;
+  box-shadow: 0 18px 42px rgba(49, 120, 198, 0.1);
+}
+
+/* 03 Mobile - Soft Lavender */
+.tech-card--lavender {
+  background: linear-gradient(135deg, #fbf8ff 0%, #f4f0fd 100%);
+  border-color: #e8dff7;
+}
+.tech-card--lavender:hover {
+  border-color: #d8c9f0;
+  box-shadow: 0 18px 42px rgba(127, 82, 255, 0.09);
+}
+
+/* 04 Database - Soft Mint Green */
+.tech-card--mint {
+  background: linear-gradient(135deg, #f6fcf8 0%, #edf8f3 100%);
+  border-color: #d8eee3;
+}
+.tech-card--mint:hover {
+  border-color: #bde4ce;
+  box-shadow: 0 18px 42px rgba(19, 170, 82, 0.09);
+}
+
+/* 05 Cloud & DevOps - Soft Golden Yellow */
+.tech-card--amber {
+  background: linear-gradient(135deg, #fffdf6 0%, #fef8e8 100%);
+  border-color: #faebd0;
+}
+.tech-card--amber:hover {
+  border-color: #f5dcaf;
+  box-shadow: 0 18px 42px rgba(217, 119, 6, 0.09);
+}
+
+/* 06 Media & Integrations - Light Cyan */
+.tech-card--cyan {
+  background: linear-gradient(135deg, #f5fdfe 0%, #eaf8fb 100%);
+  border-color: #d4f0f6;
+}
+.tech-card--cyan:hover {
+  border-color: #bce5ee;
+  box-shadow: 0 18px 42px rgba(6, 182, 212, 0.09);
+}
+
+/* Card Header (Number Badge + Tool Count) */
+.tech-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-number-badge {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.65rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.tech-card--peach .tech-number-badge {
+  color: #ea580c;
+  background: #fff0e6;
+  border-color: #ffd9c2;
+}
+.tech-card--blue .tech-number-badge {
+  color: #2563eb;
+  background: #eaf3ff;
+  border-color: #cde2fe;
+}
+.tech-card--lavender .tech-number-badge {
+  color: #7c3aed;
+  background: #f3ecfe;
+  border-color: #e1d2fc;
+}
+.tech-card--mint .tech-number-badge {
+  color: #059669;
+  background: #e8f7ee;
+  border-color: #c9edd6;
+}
+.tech-card--amber .tech-number-badge {
+  color: #d97706;
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+.tech-card--cyan .tech-number-badge {
+  color: #0891b2;
+  background: #e0f7fa;
+  border-color: #b2ebf2;
+}
+
+.tech-tool-count-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #55483d;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+/* Card Body: Left Text + Right 3D Visual */
+.tech-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.35rem;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.tech-card-content {
+  flex: 1;
+  max-width: 54%;
+}
+
+@media (max-width: 580px) {
+  .tech-card-body {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .tech-card-content {
+    max-width: 100%;
+  }
+}
+
+.tech-card-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: #1a130e;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.45rem;
+}
+
+.tech-card-desc {
+  font-size: 0.86rem;
+  color: #5c4e42;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 450;
+}
+
+/* ==========================================================================
+   CARD VISUAL CONTAINER & 3D ARTWORKS
+   ========================================================================== */
+.tech-visual-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 140px;
+  max-width: 200px;
+  pointer-events: none;
+}
+
+/* Artwork 1: Frontend Browser & Floating Cube */
+.tech-visual--browser {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-browser-mockup {
+  width: 150px;
+  height: 105px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(234, 88, 12, 0.15);
+  box-shadow: 0 12px 24px rgba(234, 88, 12, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  transform: perspective(600px) rotateY(-8deg) rotateX(4deg);
+  transition: transform 0.4s ease;
+}
+
+.tech-card:hover .tech-browser-mockup {
+  transform: perspective(600px) rotateY(-2deg) rotateX(1deg) scale(1.03);
+}
+
+.tech-browser-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 7px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f2eae2;
+}
+
+.tech-browser-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.tech-browser-dot.red { background: #ff5f56; }
+.tech-browser-dot.yellow { background: #ffbd2e; }
+.tech-browser-dot.green { background: #27c93f; }
+
+.tech-browser-layout {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+}
+
+.tech-browser-sidebar {
+  width: 24px;
+  background: #faf6f2;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+}
+
+.tech-sidebar-stripe {
+  height: 4px;
+  background: #eedfd2;
+  border-radius: 2px;
+}
+.tech-sidebar-stripe.active {
+  background: #ea580c;
+  opacity: 0.7;
+}
+
+.tech-browser-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tech-browser-hero-box {
+  flex: 1;
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 100%);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-browser-hero-box::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  width: 30px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.tech-browser-line {
+  height: 4px;
+  background: #f0e6dc;
+  border-radius: 2px;
+  width: 80%;
+}
+
+/* Floating 3D Orange Code Cube */
+.tech-floating-cube {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.82rem;
+  box-shadow: 0 8px 18px rgba(234, 88, 12, 0.35);
+  transform: perspective(400px) rotateY(15deg) rotateX(-10deg);
+  animation: techFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes techFloat {
+  0%, 100% { transform: perspective(400px) rotateY(15deg) rotateX(-10deg) translateY(0); }
+  50% { transform: perspective(400px) rotateY(18deg) rotateX(-5deg) translateY(-6px); }
+}
+
+/* Artwork 2: Backend Architecture Slabs */
+.tech-visual--backend {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.tech-backend-slab {
+  width: 105px;
+  height: 27px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #d4e4f7;
+  box-shadow: 0 4px 12px rgba(49, 120, 198, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: #1e3a8a;
+  letter-spacing: 0.04em;
+  transform: perspective(500px) rotateX(16deg);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.tech-card:hover .tech-backend-slab {
+  transform: perspective(500px) rotateX(8deg);
+}
+
+.tech-slab-pipe {
+  position: absolute;
+  right: -12px;
+  top: 14px;
+  width: 16px;
+  height: 20px;
+  border-right: 2px solid #60a5fa;
+  border-bottom: 2px solid #60a5fa;
+  border-radius: 0 0 6px 0;
+}
+
+.tech-floating-gear {
+  position: absolute;
+  left: 2px;
+  bottom: 18px;
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #d4e4f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.18);
+  animation: techFloat 4s ease-in-out infinite 0.5s;
+}
+
+.tech-floating-backend-cube {
+  position: absolute;
+  right: 6px;
+  top: 8px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 6px 14px rgba(29, 78, 216, 0.25);
+  animation: techFloat 3.8s ease-in-out infinite 1s;
+}
+
+/* Artwork 3: Mobile Dual Devices */
+.tech-visual--mobile {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-phone-mockup {
+  border-radius: 14px;
+  border: 2px solid #231f20;
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgba(127, 82, 255, 0.12);
+  position: absolute;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+}
+
+.tech-phone-mockup.phone-left {
+  width: 68px;
+  height: 114px;
+  left: 36px;
+  z-index: 2;
+  transform: rotate(-6deg);
+  background: #faf8ff;
+  padding: 6px 4px;
+}
+
+.tech-card:hover .tech-phone-mockup.phone-left {
+  transform: rotate(-3deg) translateY(-2px);
+}
+
+.tech-phone-mockup.phone-right {
+  width: 64px;
+  height: 106px;
+  right: 32px;
+  z-index: 1;
+  transform: rotate(8deg);
+  background: #f0ebfc;
+  padding: 5px 3px;
+}
+
+.tech-card:hover .tech-phone-mockup.phone-right {
+  transform: rotate(5deg) translateY(-2px);
+}
+
+.tech-phone-notch {
+  width: 22px;
+  height: 3px;
+  background: #231f20;
+  border-radius: 2px;
+  margin: 0 auto 5px;
+}
+
+.tech-phone-greeting {
+  font-size: 6px;
+  font-weight: 800;
+  color: #1a130e;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.tech-phone-card-mini {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 4px;
+  border: 1px solid #ebdffc;
+  margin-bottom: 4px;
+}
+
+.tech-phone-bar {
+  height: 3px;
+  background: #c4b5fd;
+  border-radius: 1.5px;
+  width: 70%;
+  margin-bottom: 2px;
+}
+.tech-phone-bar.short { width: 45%; background: #e9d5ff; }
+
+/* Apple & Android floating badges */
+.tech-floating-apple {
+  position: absolute;
+  left: 10px;
+  top: 18px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(126, 34, 206, 0.25);
+  animation: techFloat 3.2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.tech-floating-android {
+  position: absolute;
+  right: 12px;
+  bottom: 20px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(22, 163, 74, 0.25);
+  animation: techFloat 4s ease-in-out infinite 0.8s;
+  z-index: 3;
+}
+
+/* Artwork 4: Database Cylinders & Flow */
+.tech-visual--database {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-db-cylinder-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-db-disk {
+  width: 70px;
+  height: 24px;
+  background: linear-gradient(180deg, #6ee7b7 0%, #10b981 100%);
+  border-radius: 35px / 12px;
+  border: 1px solid #059669;
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+  position: relative;
+}
+
+.tech-db-disk::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  right: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+}
+
+.tech-db-node-leaf {
+  position: absolute;
+  left: 8px;
+  top: 14px;
+  width: 26px;
+  height: 26px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15);
+  animation: techFloat 3.6s ease-in-out infinite;
+}
+
+.tech-db-node-sql {
+  position: absolute;
+  right: 12px;
+  bottom: 20px;
+  width: 26px;
+  height: 26px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.15);
+  animation: techFloat 3.8s ease-in-out infinite 0.6s;
+}
+
+/* Artwork 5: Cloud & DevOps */
+.tech-visual--cloud {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-cloud-shape {
+  width: 105px;
+  height: 65px;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+  border-radius: 40px;
+  border: 1.5px solid #fed7aa;
+  box-shadow: 0 8px 20px rgba(217, 119, 6, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-cloud-shape::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 20px;
+  width: 42px;
+  height: 42px;
+  background: inherit;
+  border-radius: 50%;
+  border-top: 1.5px solid #fed7aa;
+  border-left: 1.5px solid #fed7aa;
+}
+
+.tech-cloud-shape::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: inherit;
+  border-radius: 50%;
+  border-top: 1.5px solid #fed7aa;
+  border-right: 1.5px solid #fed7aa;
+}
+
+.tech-cloud-logo {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 850;
+  color: #232f3e;
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.04em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech-cloud-logo::after {
+  content: '';
+  width: 22px;
+  height: 3px;
+  background: #ff9900;
+  border-radius: 2px;
+  margin-top: -1px;
+}
+
+.tech-cloud-cube-docker {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
+  animation: techFloat 3.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+.tech-cloud-cube-k8s {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+  animation: techFloat 4.2s ease-in-out infinite 0.7s;
+  z-index: 2;
+}
+
+/* Artwork 6: Media & Integrations Central API Node */
+.tech-visual--integrations {
+  width: 100%;
+  height: 135px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-api-cube {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1.5px solid #cffafe;
+  box-shadow: 0 8px 18px rgba(6, 182, 212, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 850;
+  color: #0891b2;
+  position: relative;
+  z-index: 2;
+  transform: perspective(400px) rotateY(-8deg) rotateX(8deg);
+  transition: transform 0.35s ease;
+}
+
+.tech-card:hover .tech-api-cube {
+  transform: perspective(400px) rotateY(0deg) rotateX(0deg) scale(1.05);
+}
+
+.tech-integ-node {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.tech-integ-node.node-cloudinary {
+  top: 10px;
+  left: 18px;
+  background: #3448c5;
+  animation: techFloat 3.4s ease-in-out infinite;
+}
+
+.tech-integ-node.node-stripe {
+  top: 12px;
+  right: 18px;
+  background: #635bff;
+  animation: techFloat 4s ease-in-out infinite 0.5s;
+}
+
+.tech-integ-node.node-sockets {
+  bottom: 12px;
+  left: 14px;
+  background: #059669;
+  animation: techFloat 3.8s ease-in-out infinite 0.9s;
+}
+
+.tech-integ-node.node-api {
+  bottom: 14px;
+  right: 14px;
+  background: #ea580c;
+  animation: techFloat 3.6s ease-in-out infinite 1.3s;
+}
+
+/* Curved connector lines for integrations */
+.tech-integ-connector-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   CARD FOOTER (TECH BADGES + ORANGE ARROW BUTTON)
+   ========================================================================== */
+.tech-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.tech-pill-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tech-mini-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 9999px;
+  padding: 0.28rem 0.65rem;
+  box-shadow: 0 2px 6px rgba(45, 35, 27, 0.03);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #1a130e;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-mini-pill:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.tech-mini-pill-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tech-mini-pill-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.tech-overflow-badge,
+.tech-overflow-btn {
+  font-size: 0.75rem;
+  font-weight: 750;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.08);
+  padding: 0.28rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(234, 88, 12, 0.24);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: inherit;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.tech-overflow-badge:hover,
+.tech-overflow-btn:hover {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.32);
+}
+
+.tech-overflow-btn:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+}
+
+/* Orange Circular Arrow Button */
+.tech-card-action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ea580c;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tech-card-action-btn:hover {
+  transform: scale(1.1);
+  background: #dc4b00;
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45);
+}
+
+.tech-card-action-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.tech-card-action-btn:hover svg {
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   BOTTOM CTA BANNER
+   ========================================================================== */
+.tech-cta-banner {
+  margin-top: 1.75rem;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 24px;
+  padding: 1.65rem 2.25rem;
+  box-shadow: 0 8px 24px rgba(45, 35, 27, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-cta-banner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #ea580c 0%, #f97316 100%);
+  border-radius: 24px 0 0 24px;
+}
+
+.tech-cta-banner-left {
+  flex: 1;
+}
+
+.tech-cta-label {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ea580c;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.tech-cta-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1a130e;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0 0 0.35rem;
+}
+
+.tech-cta-desc {
+  font-size: 0.88rem;
+  color: #635447;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 450;
+}
+
+.tech-cta-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tech-cta-btn {
+  background: #ea580c;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.65rem;
+  font-size: 0.92rem;
+  font-weight: 750;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.tech-cta-btn:hover {
+  background: #dc4b00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(234, 88, 12, 0.4);
+  color: #ffffff;
+}
+
+.tech-cta-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.tech-cta-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.tech-cta-blocks-visual {
+  width: 58px;
+  height: 48px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-cta-cube {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+  border-radius: 8px;
+  border: 1px solid #fdba74;
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  transform: perspective(300px) rotateY(-10deg) rotateX(12deg);
+}
+
+@media (max-width: 820px) {
+  .tech-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1.5rem;
+  }
+  .tech-cta-banner-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   POPUP MODAL FOR TECHNOLOGY CARD DETAILS & REMAINING TECHNOLOGIES
+   ========================================================================== */
+.tech-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 19, 14, 0.48);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: techModalOverlayFade 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tech-modal-overlay.is-closing {
+  animation: techModalOverlayFadeOut 0.2s ease-in forwards;
+}
+
+@keyframes techModalOverlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes techModalOverlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.tech-modal-dialog {
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 28px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(45, 35, 27, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  animation: techModalSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tech-modal-dialog.is-closing {
+  animation: techModalSlideDown 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes techModalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes techModalSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+.tech-modal-header {
+  padding: 1.6rem 2rem 1.2rem;
+  border-bottom: 1px solid #f0e6dc;
+  background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tech-modal-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tech-modal-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tech-modal-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #dfd5c8;
+  background: #ffffff;
+  color: #55483d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tech-modal-close-btn:hover {
+  background: #f7ede2;
+  color: #ea580c;
+  border-color: #ea580c;
+  transform: rotate(90deg);
+}
+
+.tech-modal-title {
+  font-size: 1.4rem;
+  font-weight: 850;
+  color: #1a130e;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 0.35rem;
+}
+
+.tech-modal-desc {
+  font-size: 0.86rem;
+  color: #5c4e42;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tech-modal-badges-group .tech-tool-count-highlight {
+  background: #fff0e6;
+  color: #ea580c;
+  border-color: #ffd9c2;
+}
+
+/* Modal Body */
+.tech-modal-body {
+  padding: 1.35rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  max-height: calc(88vh - 190px);
+  scrollbar-width: thin;
+  scrollbar-color: #e4d3c3 #faf7f4;
+}
+
+.tech-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tech-modal-body::-webkit-scrollbar-track {
+  background: #faf7f4;
+}
+
+.tech-modal-body::-webkit-scrollbar-thumb {
+  background: #e4d3c3;
+  border-radius: 9999px;
+}
+
+.tech-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #d4bfad;
+}
+
+/* Context Strip: Initially visible 3 core technologies */
+.tech-modal-visible-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  background: #fffaf5;
+  border: 1px solid #f2e4d8;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.tech-modal-visible-label {
+  font-size: 0.73rem;
+  font-weight: 750;
+  color: #8c7e70;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tech-modal-visible-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.tech-modal-visible-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 9999px;
+  padding: 0.22rem 0.6rem;
+  font-size: 0.74rem;
+  font-weight: 650;
+  color: #3b2f26;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.tech-modal-visible-pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-modal-visible-pill-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.tech-modal-body-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tech-modal-body-meta .tech-modal-section-label {
+  margin-bottom: 0;
+}
+
+.tech-modal-complete-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tech-modal-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: techPulse 2s infinite ease-in-out;
+}
+
+@keyframes techPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
+}
+
+.tech-modal-section-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8c7e70;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Remaining Technologies Grid Layout */
+.tech-modal-remaining-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.tech-modal-grid-card {
+  background: #faf6f0;
+  border: 1px solid #ecdcd0;
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.22s ease;
+}
+
+.tech-modal-grid-card:hover {
+  transform: translateY(-2px);
+  border-color: #ea580c;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.1);
+}
+
+.tech-modal-grid-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.tech-modal-grid-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.tech-modal-grid-icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+.tech-modal-grid-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.tech-modal-grid-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tech-modal-grid-tech-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a130e;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.tech-modal-grid-tech-role {
+  font-size: 0.77rem;
+  color: #635447;
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tech-modal-tool-tag {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #5c4e42;
+  background: #f0e6dc;
+  border: 1px solid #e2d5c8;
+  border-radius: 6px;
+  padding: 0.1rem 0.42rem;
+  letter-spacing: 0.02em;
+}
+
+.tech-modal-tool-status {
+  font-size: 0.64rem;
+  font-weight: 650;
+  color: #065f46;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  border-radius: 6px;
+  padding: 0.1rem 0.42rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.tech-modal-status-dot {
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: #059669;
+}
+
+.tech-modal-footer {
+  padding: 1.15rem 2rem;
+  border-top: 1px solid #f0e6dc;
+  background: #faf7f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.tech-modal-footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tech-modal-footer-heading {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1a130e;
+}
+
+.tech-modal-footer-hint {
+  font-size: 0.8rem;
+  color: #7a6c60;
+  font-weight: 500;
+}
+
+.tech-modal-cta-btn {
+  background: #ea580c;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.88rem;
+  font-weight: 750;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+  transition: all 0.2s ease;
+}
+
+.tech-modal-cta-btn:hover {
+  background: #dc4b00;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.4);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .tech-modal-header {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+  .tech-modal-body {
+    padding: 1.15rem 1.15rem;
+  }
+  .tech-modal-remaining-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .tech-modal-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tech-modal-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-modal-overlay,
+  .tech-modal-dialog,
+  .tech-modal-overlay.is-closing,
+  .tech-modal-dialog.is-closing {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

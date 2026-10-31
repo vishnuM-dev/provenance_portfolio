@@ -5,7 +5,10 @@ import { SEED_SERVICES } from '@/lib/seed-data';
 import AssetCard from '@/components/AssetCard';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import TechnologiesSection from '@/components/TechnologiesSection';
+import ProjectCtaSection from '@/components/ProjectCtaSection';
 import HeroDevicesAnimation from '@/components/HeroDevicesAnimation';
+import HeroInteractiveTitle from '@/components/HeroInteractiveTitle';
+import WhatWeBuildSection from '@/components/WhatWeBuildSection';
 import '@/components/ServicesCards.css';
 import {
   Code2,
@@ -118,7 +121,7 @@ export default async function HomePage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem', paddingBottom: '4rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem' }}>
       {/* 1. Hero Section - Premium Asymmetric Two-Column Landing Architecture */}
       <section className="hero-section-new" aria-label="Provenance Technologies Studio Introduction">
         <div className="hero-ambient-mesh-new" aria-hidden="true" />
@@ -133,34 +136,10 @@ export default async function HomePage() {
               </div>
 
               {/* Bold Headline with Hand-Drawn Brush Underline Accent */}
-              <h1 className="hero-title-main">
-                We Build Digital Experiences That{' '}
-                <span className="hero-title-highlight-box">
-                  Grow Your Business.
-                  <svg
-                    className="hero-title-underline-svg"
-                    viewBox="0 0 280 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M4 14C55 5 125 15 185 8C225 3 260 12 276 9"
-                      stroke="#ea580c"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M18 17C65 10 135 18 195 12C230 8 262 14 274 13"
-                      stroke="#f97316"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeOpacity="0.6"
-                    />
-                  </svg>
-                </span>
-              </h1>
+              <HeroInteractiveTitle
+                prefix="We Build Digital Experiences That"
+                highlight="Grow Your Business."
+              />
 
               {/* Supporting Lead Description */}
               <p className="hero-paragraph-lead">
@@ -232,137 +211,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. Core Services Overview - Modern Coordinated Pastel Cards Redesign */}
-      <section className="services-section-wrapper reveal-on-scroll" id="services">
-        {/* Soft abstract ambient background decorative shapes */}
-        <div className="services-ambient-glow-1" aria-hidden="true" />
-        <div className="services-ambient-glow-2" aria-hidden="true" />
-        <div className="services-ambient-glow-3" aria-hidden="true" />
-
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          {/* Section Header */}
-          <div className="services-header-box">
-            <div className="section-badge-pill">
-              <Sparkles size={14} className="badge-sparkle-icon" />
-              <span>What We Build</span>
-            </div>
-            <h2 className="services-section-title">
-              Services Built for High-Impact Software
-            </h2>
-            <p className="services-section-subtitle">
-              From high-conversion web applications to responsive iOS and Android apps, our cross-functional team delivers production-ready code tailored to your exact business needs.
-            </p>
-          </div>
-
-          {/* 3-Column Modern Service Cards Grid - 6 Core Services */}
-          <div className="services-modern-grid">
-            {SEED_SERVICES.slice(0, 6).map((srv, index) => {
-              const theme = SERVICE_THEMES[srv.id] || {
-                themeClass: 'service-theme-orange',
-                accentColor: '#ea580c',
-                cardBg: '#fff4ec',
-                borderColor: '#fcd9c0',
-                iconBg: '#ffe2cc',
-                ctaBg: '#ffffff',
-                ctaText: '#c2410c',
-                popular: index === 0,
-              };
-              const isPopular = srv.id === 'srv-web' || theme.popular;
-              const displayTitle = srv.title === 'UI/UX Design & Design Systems' 
-                ? 'UI/UX Design & Development' 
-                : srv.title;
-
-              return (
-                <article
-                  key={srv.id}
-                  className={`modern-service-card ${theme.themeClass}`}
-                  style={{
-                    backgroundColor: theme.cardBg,
-                    borderColor: theme.borderColor,
-                  }}
-                >
-                  {/* Card Header: Rounded-Square Icon Box & Optional Popular Pill */}
-                  <div className="service-card-top">
-                    <div
-                      className="service-icon-box"
-                      style={{
-                        backgroundColor: theme.iconBg,
-                        borderColor: theme.borderColor,
-                        color: theme.accentColor,
-                      }}
-                    >
-                      {getServiceIcon(srv.icon)}
-                    </div>
-
-                    {isPopular && (
-                      <span className="service-popular-pill">
-                        <Star size={12} className="popular-star-icon" fill="currentColor" />
-                        Popular
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Card Body: Title, Accent Subtitle, Description */}
-                  <div className="service-card-content">
-                    <h3 className="service-card-title">
-                      {displayTitle}
-                    </h3>
-
-                    <div
-                      className="service-card-tagline"
-                      style={{ color: theme.accentColor }}
-                    >
-                      {srv.tagline}
-                    </div>
-
-                    <p className="service-card-description">
-                      {srv.description}
-                    </p>
-                  </div>
-
-                  {/* Card Footer: Pill-shaped "Learn Capabilities" CTA with Circular Arrow */}
-                  <div className="service-card-footer">
-                    <Link
-                      href="/services"
-                      className="service-cta-pill"
-                      aria-label={`Learn Capabilities of ${displayTitle}`}
-                      style={{
-                        backgroundColor: theme.ctaBg,
-                        borderColor: theme.borderColor,
-                        color: theme.ctaText,
-                      }}
-                    >
-                      <span className="cta-label">Learn Capabilities</span>
-                      <span
-                        className="cta-arrow-circle"
-                        style={{
-                          backgroundColor: theme.accentColor,
-                          color: '#ffffff',
-                        }}
-                      >
-                        <ArrowRight size={15} />
-                      </span>
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* 2. Core Services Overview - Visual Feature Grid (Design 02) */}
+      <WhatWeBuildSection />
 
       {/* 3. Featured Projects & Case Studies (Image 1 Normal & Image 2 Hover Spec) */}
-      <CaseStudiesSection showViewAllBtn={true} />
+      <CaseStudiesSection showViewAllBtn={false} />
 
       {/* 4. Why Choose Us (Practical Business Benefits) */}
       <section className="container reveal-on-scroll">
-        <div className="glass-panel" style={{
-          padding: '3.5rem 2.5rem',
-          background: '#ffffff',
-          borderRadius: '32px',
-          border: '1px solid rgba(220, 195, 170, 0.45)',
-          boxShadow: '0 14px 34px -8px rgba(160, 115, 75, 0.08)',
-        }}>
+        <div style={{ padding: '1.25rem 0' }}>
           <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3rem' }}>
             <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
               Engineering Edge
@@ -520,119 +377,8 @@ export default async function HomePage() {
       {/* 6. Technologies We Use (Categorized) */}
       <TechnologiesSection id="technologies" />
 
-      {/* 7. Horizontal Feature Ribbon (Clean Spacing) */}
-      <section className="container reveal-on-scroll" style={{ marginTop: '-2.5rem', marginBottom: '-1.75rem' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '1.25rem',
-          padding: '1.25rem 2rem',
-          background: 'rgba(255, 255, 255, 0.92)',
-          borderRadius: 'var(--radius-full)',
-          border: '1px solid rgba(220, 195, 170, 0.55)',
-          boxShadow: '0 8px 24px rgba(180, 130, 90, 0.05)',
-        }}>
-          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
-            <Laptop size={18} color="var(--primary)" />
-            <span>Online consultation</span>
-          </div>
-
-          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
-            <Code2 size={18} color="var(--primary)" />
-            <span>Full-cycle development</span>
-          </div>
-
-          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
-            <ShieldCheck size={18} color="var(--primary)" />
-            <span>SLA & maintenance</span>
-          </div>
-
-          <div className="feature-ribbon-item" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
-            <Smartphone size={18} color="var(--primary)" />
-            <span>App Store & Cloud release</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Final Call to Action - Featuring Brand Monogram Emblem */}
-      <section className="container reveal-on-scroll">
-        <div className="glass-panel cta-banner-glow" style={{
-          padding: '3.5rem 2.25rem',
-          textAlign: 'center',
-          borderRadius: '32px',
-          background: 'radial-gradient(circle at 50% 50%, #fcf7f0 0%, #f6f1ea 100%)',
-          border: '1px solid var(--border-warm)',
-          boxShadow: 'var(--shadow-elevated)',
-        }}>
-          <div style={{
-            width: '64px',
-            height: '64px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 1.5rem',
-            filter: 'drop-shadow(0 6px 16px rgba(197, 155, 79, 0.28))',
-          }}>
-            <Image
-              src="/icon.png"
-              alt="ProvenanceTech Monogram Logo"
-              width={64}
-              height={64}
-              style={{ objectFit: 'contain' }}
-            />
-          </div>
-
-          <h2 style={{
-            fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
-            fontWeight: 800,
-            letterSpacing: '-0.025em',
-            color: 'var(--text-primary)',
-            marginBottom: '1rem',
-          }}>
-            Have an Idea for Your Next Digital Product?
-          </h2>
-
-          <p style={{
-            color: 'var(--text-secondary)',
-            maxWidth: '620px',
-            margin: '0 auto 2.25rem',
-            lineHeight: 1.75,
-            fontSize: '1.1rem',
-          }}>
-            Let&apos;s turn your business requirements into a practical, scalable software solution.
-          </p>
-
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link
-              href="/contact"
-              className="btn btn-primary"
-              style={{
-                padding: '0.9rem 2.5rem',
-                fontSize: '1.05rem',
-                fontWeight: 600,
-              }}
-            >
-              Start Your Project
-              <ArrowRight size={16} />
-            </Link>
-
-            <Link
-              href="/portfolio"
-              className="btn btn-secondary"
-              style={{
-                padding: '0.9rem 2.5rem',
-                fontSize: '1.05rem',
-                fontWeight: 600,
-                background: '#ffffff',
-              }}
-            >
-              Explore Projects
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* 7. Final Call to Action & Service Capability Section */}
+      <ProjectCtaSection />
     </div>
   );
 }

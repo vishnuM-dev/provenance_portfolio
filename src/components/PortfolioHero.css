@@ -440,7 +440,7 @@
 .pfh-stats-section {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e8ded4;
+  border-top: none;
 }
 
 .pfh-stats-grid {
