@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Zap, Layers, ShieldCheck, X } from 'lucide-react';
+import { ArrowRight, Zap, Layers, ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
 import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
 import './TechnologiesSection.css';
 
@@ -210,45 +210,133 @@ function CardIllustration({ categoryId }) {
   }
 }
 
-export default function TechnologiesSection({ id = 'technologies' }) {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isClosing, setIsClosing] = useState(false);
+function TechnologyCard({ category, isExpanded, onToggle }) {
+  const cardRef = useRef(null);
+  const visibleTechs = category.technologies.slice(0, 3);
+  const remainingTechs = category.technologies.slice(3);
+  const overflowCount = remainingTechs.length;
 
-  const closeModal = useCallback(() => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setSelectedCategory(null);
-      setIsClosing(false);
-    }, 220);
-  }, []);
-
-  const openModal = useCallback((category) => {
-    setIsClosing(false);
-    setSelectedCategory(category);
-  }, []);
-
+  // Close expanded card when pressing Escape
   useEffect(() => {
-    if (selectedCategory) {
-      const handleKeyDown = (e) => {
-        if (e.key === 'Escape') {
-          closeModal();
-        }
-      };
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-        document.body.style.overflow = '';
-        window.removeEventListener('keydown', handleKeyDown);
-      };
-    }
-  }, [selectedCategory, closeModal]);
+    if (!isExpanded) return;
 
-  const visibleTechsInModal = selectedCategory
-    ? selectedCategory.technologies.slice(0, 3)
-    : [];
-  const remainingTechsInModal = selectedCategory
-    ? selectedCategory.technologies.slice(3)
-    : [];
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        onToggle();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isExpanded, onToggle]);
+
+  return (
+    <article
+      ref={cardRef}
+      className={`tech-card tech-card--${category.colorTheme || 'peach'} ${isExpanded ? 'is-card-expanded' : ''}`}
+    >
+      {/* Top Row: Number Badge + Tool Count */}
+      <div className="tech-card-header">
+        <span className="tech-number-badge">
+          {category.number || '01'}
+        </span>
+        <span className="tech-tool-count-badge">
+          {category.technologies.length} Tools
+        </span>
+      </div>
+
+      {/* Middle Row: Content Left + 3D Visual Right */}
+      <div className="tech-card-body">
+        <div className="tech-card-content">
+          <h3 className="tech-card-title">{category.title}</h3>
+          <p className="tech-card-desc">{category.description}</p>
+        </div>
+
+        <CardIllustration categoryId={category.id} />
+      </div>
+
+      {/* Bottom Row: Tech Badges with In-Card Smooth Expandable Tray */}
+      <div className="tech-card-footer">
+        <div className="tech-pill-list">
+          {visibleTechs.map((tech) => (
+            <div key={tech.name} className="tech-mini-pill" title={tech.role}>
+              <span className="tech-mini-pill-icon">{tech.icon}</span>
+              <span>{tech.name}</span>
+            </div>
+          ))}
+
+          {overflowCount > 0 && (
+            <button
+              type="button"
+              className={`tech-overflow-btn ${isExpanded ? 'is-expanded' : ''}`}
+              onClick={onToggle}
+              aria-expanded={isExpanded}
+              aria-controls={`tech-expand-panel-${category.id}`}
+              aria-label={
+                isExpanded
+                  ? `Show less technologies in ${category.title}`
+                  : `View ${overflowCount} more technologies in ${category.title}`
+              }
+              title={isExpanded ? 'Click to show less' : `Click to view all ${overflowCount} additional technologies`}
+            >
+              <span>{isExpanded ? 'Show Less' : `+${overflowCount} more`}</span>
+              <ChevronDown
+                size={13}
+                strokeWidth={2.6}
+                className={`tech-overflow-arrow ${isExpanded ? 'is-rotated' : ''}`}
+                aria-hidden="true"
+              />
+            </button>
+          )}
+        </div>
+
+        {/* In-Card Expandable Tray for Remaining Technologies */}
+        {overflowCount > 0 && (
+          <div
+            id={`tech-expand-panel-${category.id}`}
+            className={`tech-card-drawer ${isExpanded ? 'is-open' : ''}`}
+            aria-hidden={!isExpanded}
+          >
+            <div className="tech-card-drawer-inner">
+              <div className="tech-drawer-surface">
+                <div className="tech-drawer-surface-header">
+                  <div className="tech-drawer-title-group">
+                    <span className="tech-drawer-dot" aria-hidden="true"></span>
+                    <span className="tech-drawer-label">More {category.title} Tools</span>
+                  </div>
+                  <span className="tech-drawer-count-badge">
+                    +{overflowCount} Tools
+                  </span>
+                </div>
+                <div className="tech-drawer-pills">
+                  {remainingTechs.map((tech, idx) => (
+                    <div
+                      key={tech.name}
+                      className="tech-mini-pill tech-drawer-pill"
+                      style={{ '--pill-idx': idx }}
+                      title={tech.role}
+                    >
+                      <span className="tech-mini-pill-icon">{tech.icon}</span>
+                      <span className="tech-mini-pill-name">{tech.name}</span>
+                      {tech.tag && (
+                        <span className="tech-mini-pill-tag">{tech.tag}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
+
+export default function TechnologiesSection({ id = 'technologies' }) {
+  const [expandedCategoryId, setExpandedCategoryId] = useState(null);
 
   return (
     <section id={id} className="tech-showcase-section" style={{ scrollMarginTop: '90px' }}>
@@ -275,7 +363,7 @@ export default function TechnologiesSection({ id = 'technologies' }) {
                 <Zap size={18} />
               </div>
               <div className="tech-pillar-text">
-                <div className="tech-pillar-title">Modern & Updated</div>
+                <div className="tech-pillar-title">Modern &amp; Updated</div>
                 <div className="tech-pillar-sub">Using the latest stable technologies</div>
               </div>
             </div>
@@ -295,7 +383,7 @@ export default function TechnologiesSection({ id = 'technologies' }) {
                 <ShieldCheck size={18} />
               </div>
               <div className="tech-pillar-text">
-                <div className="tech-pillar-title">Secure & Reliable</div>
+                <div className="tech-pillar-title">Secure &amp; Reliable</div>
                 <div className="tech-pillar-sub">Best practices in development</div>
               </div>
             </div>
@@ -304,75 +392,18 @@ export default function TechnologiesSection({ id = 'technologies' }) {
 
         {/* 2-Column x 3-Row Grid */}
         <div className="tech-showcase-grid">
-          {TECHNOLOGY_CATEGORIES.map((category) => {
-            const visibleTechs = category.technologies.slice(0, 3);
-            const overflowCount = category.technologies.length - visibleTechs.length;
-
-            return (
-              <article
-                key={category.id}
-                className={`tech-card tech-card--${category.colorTheme || 'peach'}`}
-                onClick={() => openModal(category)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openModal(category);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
-                aria-haspopup="dialog"
-                aria-label={`View remaining technologies for ${category.title}`}
-              >
-                {/* Top Row: Number Badge + Tool Count */}
-                <div className="tech-card-header">
-                  <span className="tech-number-badge">
-                    {category.number || '01'}
-                  </span>
-                  <span className="tech-tool-count-badge">
-                    {category.technologies.length} Tools
-                  </span>
-                </div>
-
-                {/* Middle Row: Content Left + 3D Visual Right */}
-                <div className="tech-card-body">
-                  <div className="tech-card-content">
-                    <h3 className="tech-card-title">{category.title}</h3>
-                    <p className="tech-card-desc">{category.description}</p>
-                  </div>
-
-                  <CardIllustration categoryId={category.id} />
-                </div>
-
-                {/* Bottom Row: Tech Badges (Clicking +More opens modal) */}
-                <div className="tech-card-footer">
-                  <div className="tech-pill-list">
-                    {visibleTechs.map((tech) => (
-                      <div key={tech.name} className="tech-mini-pill" title={tech.role}>
-                        <span className="tech-mini-pill-icon">{tech.icon}</span>
-                        <span>{tech.name}</span>
-                      </div>
-                    ))}
-
-                    {overflowCount > 0 && (
-                      <button
-                        type="button"
-                        className="tech-overflow-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openModal(category);
-                        }}
-                        aria-label={`View ${overflowCount} more technologies in ${category.title}`}
-                        title={`Click to view all ${overflowCount} additional technologies`}
-                      >
-                        +{overflowCount} more
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {TECHNOLOGY_CATEGORIES.map((category) => (
+            <TechnologyCard
+              key={category.id}
+              category={category}
+              isExpanded={expandedCategoryId === category.id}
+              onToggle={() =>
+                setExpandedCategoryId(
+                  expandedCategoryId === category.id ? null : category.id
+                )
+              }
+            />
+          ))}
         </div>
 
         {/* Bottom CTA Banner */}
@@ -383,7 +414,7 @@ export default function TechnologiesSection({ id = 'technologies' }) {
               Looking for a custom software or mobile architecture?
             </h3>
             <p className="tech-cta-desc">
-              We tailor our technology selection to your system performance & scaling needs.
+              We tailor our technology selection to your system performance &amp; scaling needs.
             </p>
           </div>
 
@@ -401,138 +432,6 @@ export default function TechnologiesSection({ id = 'technologies' }) {
           </div>
         </div>
       </div>
-
-      {/* ==================================================================
-          POPUP MODAL: DETAILED STACK BREAKDOWN ON "MORE" CLICK
-          ================================================================== */}
-      {selectedCategory && (
-        <div
-          className={`tech-modal-overlay ${isClosing ? 'is-closing' : ''}`}
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              closeModal();
-            }
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="tech-modal-title"
-        >
-          <div className={`tech-modal-dialog ${isClosing ? 'is-closing' : ''}`}>
-            {/* Modal Header */}
-            <div className="tech-modal-header">
-              <div className="tech-modal-top-meta">
-                <div className="tech-modal-badges-group">
-                  <span className="tech-number-badge">
-                    {selectedCategory.number || '01'}
-                  </span>
-                  <span className="tech-tool-count-badge">
-                    {selectedCategory.badge || 'Engineering'}
-                  </span>
-                  <span className="tech-tool-count-badge tech-tool-count-highlight">
-                    +{remainingTechsInModal.length} Additional Technologies
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className="tech-modal-close-btn"
-                  onClick={closeModal}
-                  aria-label="Close modal"
-                  title="Close (Esc)"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              <h3 id="tech-modal-title" className="tech-modal-title">
-                {selectedCategory.title}
-              </h3>
-              <p className="tech-modal-desc">
-                {selectedCategory.description}
-              </p>
-            </div>
-
-            {/* Modal Body: Remaining technologies in a clean grid */}
-            <div className="tech-modal-body">
-              {/* Context strip showing initially visible technologies */}
-              {visibleTechsInModal.length > 0 && (
-                <div className="tech-modal-visible-strip">
-                  <span className="tech-modal-visible-label">Initially visible:</span>
-                  <div className="tech-modal-visible-pills">
-                    {visibleTechsInModal.map((tech) => (
-                      <span key={tech.name} className="tech-modal-visible-pill" title={tech.role}>
-                        <span className="tech-modal-visible-pill-icon" aria-hidden="true">
-                          {tech.icon}
-                        </span>
-                        <span>{tech.name}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Section Header */}
-              <div className="tech-modal-body-meta">
-                <span className="tech-modal-section-label">
-                  Remaining Technologies ({remainingTechsInModal.length})
-                </span>
-                <span className="tech-modal-complete-badge">
-                  <span className="tech-modal-pulse-dot" />
-                  Production Verified
-                </span>
-              </div>
-
-              {/* Grid of Remaining Technologies */}
-              <div className="tech-modal-remaining-grid">
-                {remainingTechsInModal.map((tech) => (
-                  <div key={tech.name} className="tech-modal-grid-card">
-                    <div className="tech-modal-grid-card-top">
-                      <div className="tech-modal-grid-icon-box" aria-hidden="true">
-                        {tech.icon}
-                      </div>
-                      <div className="tech-modal-grid-badges">
-                        {tech.tag && (
-                          <span className="tech-modal-tool-tag">{tech.tag}</span>
-                        )}
-                        {tech.status && (
-                          <span className="tech-modal-tool-status">
-                            <span className="tech-modal-status-dot" />
-                            {tech.status}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="tech-modal-grid-card-main">
-                      <h4 className="tech-modal-grid-tech-name">{tech.name}</h4>
-                      <p className="tech-modal-grid-tech-role">{tech.role}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="tech-modal-footer">
-              <div className="tech-modal-footer-info">
-                <span className="tech-modal-footer-heading">Need a custom stack?</span>
-                <span className="tech-modal-footer-hint">
-                  We adapt our architectures to your enterprise requirements and scale.
-                </span>
-              </div>
-
-              <Link
-                href="/contact"
-                className="tech-modal-cta-btn"
-                onClick={closeModal}
-              >
-                Discuss This Stack
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

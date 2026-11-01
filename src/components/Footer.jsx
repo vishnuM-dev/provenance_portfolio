@@ -412,9 +412,9 @@ export default function Footer() {
 
                   {/* Option 3: Email */}
                   <a
-                    href="mailto:provenancetech@gmail.com"
+                    href="mailto:provenancetech1@gmail.com"
                     className="footer-contact-card"
-                    aria-label="Email ProvenanceTech at provenancetech@gmail.com"
+                    aria-label="Email ProvenanceTech at provenancetech1@gmail.com"
                   >
                     <span className="footer-contact-icon-box email" aria-hidden="true">
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -424,7 +424,7 @@ export default function Footer() {
                     </span>
                     <span className="footer-contact-info">
                       <span className="footer-contact-label">Email</span>
-                      <span className="footer-contact-value" style={{ fontSize: '0.86rem' }}>provenancetech@gmail.com</span>
+                      <span className="footer-contact-value" style={{ fontSize: '0.86rem' }}>provenancetech1@gmail.com</span>
                     </span>
                   </a>
                 </div>

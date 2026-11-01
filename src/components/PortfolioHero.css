@@ -256,9 +256,10 @@
 .pfh-card {
   position: absolute;
   overflow: visible;
-  transition: all 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.35, 1);
   cursor: pointer;
   user-select: none;
+  will-change: transform, opacity, left, width, height;
 }
 
 .pfh-card-img-wrap {
@@ -267,12 +268,13 @@
   height: 100%;
   overflow: hidden;
   background: #ede4dc;
+  transition: border-radius 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
 }
 
 .pfh-card-img {
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 .pfh-card:hover .pfh-card-img {
@@ -282,12 +284,13 @@
 /* Card 1: Left / Background (MR Cargo Logistics) */
 .pfh-card-left {
   left: 10px;
+  right: auto;
   top: 75px;
   width: 235px;
   height: 315px;
   z-index: 2;
-  transform: perspective(1000px) rotateY(18deg) rotateZ(-3.5deg);
-  opacity: 0.92;
+  transform: perspective(1000px) rotateY(18deg) rotateZ(-3.5deg) scale(0.94);
+  opacity: 0.9;
 }
 
 .pfh-card-left .pfh-card-img-wrap {
@@ -297,18 +300,19 @@
 }
 
 .pfh-card-left:hover {
-  transform: perspective(1000px) rotateY(14deg) rotateZ(-2deg) translateY(-6px);
+  transform: perspective(1000px) rotateY(14deg) rotateZ(-2deg) translateY(-6px) scale(0.96);
   opacity: 1;
 }
 
 /* Card 2: Center / Foreground Dominant (MK Delivery Courier) */
 .pfh-card-center {
   left: 140px;
+  right: auto;
   top: 10px;
   width: 295px;
   height: 415px;
-  z-index: 5;
-  transform: perspective(1000px) rotateY(-12deg) rotateZ(1.5deg);
+  z-index: 6;
+  transform: perspective(1000px) rotateY(-12deg) rotateZ(1.5deg) scale(1);
   opacity: 1;
 }
 
@@ -319,19 +323,20 @@
 }
 
 .pfh-card-center:hover {
-  transform: perspective(1000px) rotateY(-8deg) rotateZ(0.5deg) translateY(-8px);
+  transform: perspective(1000px) rotateY(-8deg) rotateZ(0.5deg) translateY(-8px) scale(1.02);
   box-shadow: 0 30px 65px rgba(45, 35, 27, 0.22);
 }
 
 /* Card 3: Right / Background (SiteBox Interior Living Room) */
 .pfh-card-right {
-  right: 5px;
+  left: calc(100% - 235px);
+  right: auto;
   top: 85px;
   width: 225px;
   height: 295px;
   z-index: 2;
-  transform: perspective(1000px) rotateY(-18deg) rotateZ(4deg);
-  opacity: 0.92;
+  transform: perspective(1000px) rotateY(-18deg) rotateZ(4deg) scale(0.92);
+  opacity: 0.9;
 }
 
 .pfh-card-right .pfh-card-img-wrap {
@@ -341,7 +346,7 @@
 }
 
 .pfh-card-right:hover {
-  transform: perspective(1000px) rotateY(-14deg) rotateZ(2.5deg) translateY(-6px);
+  transform: perspective(1000px) rotateY(-14deg) rotateZ(2.5deg) translateY(-6px) scale(0.94);
   opacity: 1;
 }
 
@@ -358,7 +363,7 @@
   gap: 0.65rem;
   z-index: 10;
   pointer-events: none;
-  transition: all 0.4s ease;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 .pfh-pill-icon-box {
@@ -535,21 +540,27 @@
     width: 160px;
     height: 220px;
     left: 0;
+    right: auto;
     top: 60px;
+    z-index: 2;
   }
 
   .pfh-card-center {
     width: 220px;
     height: 310px;
-    left: 80px;
+    left: 70px;
+    right: auto;
     top: 15px;
+    z-index: 6;
   }
 
   .pfh-card-right {
     width: 150px;
     height: 210px;
-    right: 0;
+    left: calc(100% - 150px);
+    right: auto;
     top: 70px;
+    z-index: 2;
   }
 
   .pfh-pill-center {
@@ -579,5 +590,68 @@
 
   .pfh-stat-divider {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .pfh-visual-col {
+    min-height: 360px;
+  }
+
+  .pfh-cards-composition {
+    max-width: 320px;
+    height: 340px;
+  }
+
+  .pfh-card-center {
+    width: 205px;
+    height: 290px;
+    left: 55px;
+    right: auto;
+    top: 15px;
+    z-index: 6;
+  }
+
+  .pfh-card-left {
+    width: 125px;
+    height: 180px;
+    left: -15px;
+    right: auto;
+    top: 65px;
+    opacity: 0.6;
+    z-index: 2;
+  }
+
+  .pfh-card-right {
+    width: 120px;
+    height: 175px;
+    left: calc(100% - 110px);
+    right: auto;
+    top: 70px;
+    opacity: 0.6;
+    z-index: 2;
+  }
+
+  .pfh-side-scroll-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .pfh-scroll-prev {
+    left: -4px;
+  }
+
+  .pfh-scroll-next {
+    right: -4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pfh-card,
+  .pfh-floating-pill,
+  .pfh-card-img,
+  .pfh-card-img-wrap,
+  .pfh-scroll-dot {
+    transition: none !important;
   }
 }

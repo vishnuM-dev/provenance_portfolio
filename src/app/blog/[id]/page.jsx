@@ -63,7 +63,7 @@ export default function ArticleDetailPage({ params }) {
   };
 
   return (
-    <div className="bp-page-wrapper" style={{ padding: '4.5rem 0 2rem' }}>
+    <div className="bp-page-wrapper" style={{ padding: '1.25rem 0 2rem' }}>
       <div className="bp-container" style={{ maxWidth: '980px' }}>
         {/* Minimal Breadcrumbs */}
         <nav aria-label="Breadcrumb" className="bp-detail-breadcrumbs">

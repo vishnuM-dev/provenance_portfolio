@@ -503,3 +503,24 @@
 .brand-subtitle {
   display: none !important;
 }
+
+/* ==========================================================================
+   Engineering Edge Benefit Cards (Why Choose Us Section)
+   ========================================================================== */
+.edge-benefit-card {
+  background: #fffbf7;
+  padding: 1.75rem;
+  border-radius: 22px;
+  border: 1px solid rgba(220, 195, 170, 0.35);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.edge-benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(44, 24, 16, 0.08);
+  border-color: rgba(235, 120, 33, 0.4);
+}
+

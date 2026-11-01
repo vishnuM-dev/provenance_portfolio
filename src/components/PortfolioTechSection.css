@@ -1,0 +1,529 @@
+/* ==========================================================================
+   PORTFOLIO TECHNOLOGY EXPERTISE SECTION
+   Matches reference: 4 Cards (Row 1), 2 Wide Cards (Row 2),
+   3D floating tilted icons, corner crests, bottom waves, and glowing hover.
+   ========================================================================== */
+.portfolio-tech-section {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0 2.25rem;
+  overflow: visible;
+  background: transparent;
+}
+
+/* Section Header */
+.portfolio-tech-header {
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio-tech-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.35rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid rgba(234, 88, 12, 0.35);
+  border-radius: 9999px;
+  color: #ea580c;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.08);
+  transition: all 0.25s ease;
+}
+
+.portfolio-tech-pill-badge:hover {
+  border-color: rgba(234, 88, 12, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.14);
+}
+
+.portfolio-tech-badge-icon {
+  color: #ea580c;
+}
+
+.portfolio-tech-title {
+  font-size: clamp(2.3rem, 4.2vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  color: #141518;
+  line-height: 1.18;
+  margin: 0.2rem 0 1.15rem;
+  position: relative;
+  display: inline-block;
+}
+
+.portfolio-tech-title-highlight {
+  position: relative;
+  display: inline-block;
+  color: #ea580c;
+}
+
+.portfolio-tech-swoosh {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* 3 radiating whisker sparks at top-right of heading */
+.portfolio-tech-whiskers {
+  position: absolute;
+  top: -8px;
+  right: -28px;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+
+.portfolio-tech-whisker {
+  position: absolute;
+  background: #ea580c;
+  border-radius: 2px;
+  transform-origin: bottom center;
+}
+
+.ptw-1 {
+  width: 2.2px;
+  height: 8px;
+  top: 4px;
+  left: 6px;
+  transform: rotate(-30deg);
+}
+
+.ptw-2 {
+  width: 2.2px;
+  height: 11px;
+  top: 0;
+  left: 12px;
+  transform: rotate(0deg);
+}
+
+.ptw-3 {
+  width: 2.2px;
+  height: 8px;
+  top: 4px;
+  left: 18px;
+  transform: rotate(30deg);
+}
+
+.portfolio-tech-desc {
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  color: #554e46;
+  line-height: 1.65;
+  margin: 0 auto;
+  max-width: 720px;
+  font-weight: 450;
+}
+
+.portfolio-tech-note {
+  font-size: 0.9rem;
+  color: #8d7d6f;
+  margin-top: 0.6rem;
+  font-style: italic;
+  font-weight: 450;
+}
+
+/* ==========================================================================
+   GRID LAYOUTS
+   ========================================================================== */
+/* Row 1: Four Equal-Width Cards */
+.portfolio-tech-row-1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Row 2: Two Wide Horizontal Cards */
+.portfolio-tech-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   CARD ANATOMY
+   ========================================================================== */
+.portfolio-tech-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fffbf8 50%, #fef7f0 100%);
+  border: 1.5px solid rgba(234, 88, 12, 0.22);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(45, 30, 20, 0.04), 0 2px 6px rgba(234, 88, 12, 0.04);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+  padding: 1.85rem 1.65rem 2.2rem;
+}
+
+.portfolio-tech-card:hover {
+  transform: translateY(-7px);
+  border-color: #ea580c;
+  box-shadow: 0 24px 54px -6px rgba(234, 88, 12, 0.35),
+              0 0 0 1.5px rgba(234, 88, 12, 0.3),
+              0 6px 18px rgba(234, 88, 12, 0.12);
+}
+
+/* Card 01 Special Prominence */
+.portfolio-tech-card-primary {
+  border: 2px solid #ea580c;
+  box-shadow: 0 16px 42px -6px rgba(234, 88, 12, 0.26),
+              0 0 0 1.2px rgba(234, 88, 12, 0.18),
+              0 4px 16px rgba(234, 88, 12, 0.08);
+}
+
+.portfolio-tech-card-primary:hover {
+  border-color: #ea580c;
+  box-shadow: 0 28px 58px -6px rgba(234, 88, 12, 0.42),
+              0 0 0 2px rgba(234, 88, 12, 0.32);
+}
+
+/* Top-Right Number Crest (01–06) */
+.portfolio-tech-crest {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 850;
+  padding: 0.38rem 1.05rem 0.48rem 1.15rem;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 26px;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+
+/* Card Header: 3D Floating Icon Tile + Title/Badge */
+.portfolio-tech-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 1.45rem;
+  padding-right: 2.2rem;
+}
+
+.portfolio-tech-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.portfolio-tech-card-title {
+  font-size: 1.15rem;
+  font-weight: 850;
+  color: #141518;
+  letter-spacing: -0.02em;
+  line-height: 1.24;
+  margin: 0 0 0.35rem;
+}
+
+.portfolio-tech-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.7rem;
+  background: rgba(255, 245, 235, 0.95);
+  border: 1.2px solid rgba(234, 88, 12, 0.4);
+  border-radius: 9999px;
+  color: #ea580c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.06);
+}
+
+.portfolio-tech-card-wide .portfolio-tech-card-info {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-tech-card-wide .portfolio-tech-card-title {
+  margin: 0;
+}
+
+/* 3D Floating Icon Stage */
+.portfolio-tech-icon-stage {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.portfolio-tech-icon-backplate {
+  position: absolute;
+  inset: 2px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(254, 215, 170, 0.75) 0%, rgba(255, 237, 213, 0.4) 100%);
+  transform: rotate(-8deg);
+  border: 1px solid rgba(234, 88, 12, 0.22);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-tech-icon-frontplate {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf8 50%, #fef3e8 100%);
+  border: 1.5px solid rgba(234, 88, 12, 0.35);
+  box-shadow: 0 8px 18px rgba(234, 88, 12, 0.14), inset 0 1px 1.5px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.portfolio-tech-card:hover .portfolio-tech-icon-stage {
+  transform: translateY(-2px);
+}
+
+.portfolio-tech-card:hover .portfolio-tech-icon-backplate {
+  transform: rotate(-13deg) scale(1.05);
+}
+
+.portfolio-tech-card:hover .portfolio-tech-icon-frontplate {
+  transform: rotate(4deg) scale(1.06);
+  border-color: rgba(234, 88, 12, 0.58);
+  box-shadow: 0 12px 24px rgba(234, 88, 12, 0.24), inset 0 1px 2px #ffffff;
+}
+
+/* Technology Badges Wrap */
+.portfolio-tech-badges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.75rem;
+}
+
+.portfolio-tech-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.8rem;
+  background: #ffffff;
+  border: 1.2px solid rgba(228, 215, 201, 0.9);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: #1f1813;
+  box-shadow: 0 2px 6px rgba(45, 30, 20, 0.03);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease,
+              background 0.25s ease;
+  cursor: default;
+}
+
+.portfolio-tech-badge-item:hover {
+  transform: translateY(-2.5px);
+  border-color: rgba(234, 88, 12, 0.5);
+  background: #fffaf5;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.14);
+}
+
+.portfolio-tech-badge-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.portfolio-tech-badge-item:hover .portfolio-tech-badge-icon {
+  transform: scale(1.12);
+}
+
+.portfolio-tech-badge-name {
+  white-space: nowrap;
+}
+
+/* Decorative Bottom Wave */
+.portfolio-tech-bottom-wave {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 75px;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.38s ease, opacity 0.38s ease;
+}
+
+.portfolio-tech-card-wide .portfolio-tech-bottom-wave {
+  width: 220px;
+  height: 85px;
+}
+
+.portfolio-tech-card:hover .portfolio-tech-bottom-wave {
+  transform: scale(1.06) translateY(2px);
+  opacity: 0.95;
+}
+
+/* Circular Arrow Button */
+.portfolio-tech-arrow-circle {
+  position: absolute;
+  bottom: 1.15rem;
+  right: 1.15rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid rgba(234, 88, 12, 0.38);
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.12);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+  text-decoration: none;
+}
+
+.portfolio-tech-arrow-primary {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.32);
+}
+
+.portfolio-tech-card:hover .portfolio-tech-arrow-circle {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  border-color: transparent;
+  color: #ffffff;
+  transform: translateX(3px) scale(1.1);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
+}
+
+/* Bottom CTA Button */
+.portfolio-tech-cta-wrap {
+  text-align: center;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-tech-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 2.25rem;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  font-size: 0.975rem;
+  font-weight: 750;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.38);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease;
+}
+
+.portfolio-tech-cta-btn:hover {
+  background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+  transform: translateY(-2.5px);
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.5);
+}
+
+.portfolio-tech-cta-arrow {
+  transition: transform 0.25s ease;
+}
+
+.portfolio-tech-cta-btn:hover .portfolio-tech-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .portfolio-tech-row-1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .portfolio-tech-section {
+    padding: 1.5rem 0 1.75rem;
+  }
+
+  .portfolio-tech-header {
+    margin: 0 auto 1.5rem;
+  }
+
+  .portfolio-tech-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-tech-row-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-tech-card {
+    padding: 1.65rem 1.35rem 2rem;
+  }
+
+  .portfolio-tech-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-tech-card,
+  .portfolio-tech-icon-stage,
+  .portfolio-tech-icon-backplate,
+  .portfolio-tech-icon-frontplate,
+  .portfolio-tech-badge-item,
+  .portfolio-tech-bottom-wave,
+  .portfolio-tech-arrow-circle,
+  .portfolio-tech-cta-btn,
+  .portfolio-tech-cta-arrow {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

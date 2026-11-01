@@ -11,39 +11,84 @@ import {
   Layers,
   ShieldCheck,
   Target,
-  Users,
   CheckCircle2,
   Compass,
   Layout,
   ChevronDown,
   ArrowRight,
-  Send,
-  Loader2,
   Sparkles,
-  ExternalLink,
   MessageSquare,
-  FileCode,
-  Check,
   Server
 } from 'lucide-react';
 import { TECHNOLOGY_CATEGORIES } from '@/data/technologies';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import PortfolioHero from '@/components/PortfolioHero';
+import '@/components/PortfolioTechSection.css';
+
+// 3D Tilted Floating Icons for Technology Expertise Showcase
+const TECH_CATEGORY_3D_ICONS = {
+  frontend: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  ),
+  backend: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="3" width="20" height="7" rx="2" />
+      <rect x="2" y="14" width="20" height="7" rx="2" />
+      <line x1="6" y1="6.5" x2="6.01" y2="6.5" strokeWidth="3" />
+      <line x1="10" y1="6.5" x2="14" y2="6.5" strokeWidth="2" />
+      <line x1="6" y1="17.5" x2="6.01" y2="17.5" strokeWidth="3" />
+      <line x1="10" y1="17.5" x2="14" y2="17.5" strokeWidth="2" />
+    </svg>
+  ),
+  mobile: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="5" y="2" width="14" height="20" rx="3" />
+      <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" />
+    </svg>
+  ),
+  database: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <ellipse cx="12" cy="5" rx="9" ry="3" />
+      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+    </svg>
+  ),
+  'cloud-devops': (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+      <polyline points="12 12 12 16" />
+      <polyline points="9 14 12 11 15 14" />
+    </svg>
+  ),
+  devops: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+      <polyline points="12 12 12 16" />
+      <polyline points="9 14 12 11 15 14" />
+    </svg>
+  ),
+  'media-integrations': (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 12 12 17 22 12" />
+      <polyline points="2 17 12 22 22 17" />
+    </svg>
+  ),
+  media: (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 12 12 17 22 12" />
+      <polyline points="2 17 12 22 22 17" />
+    </svg>
+  ),
+};
 
 export default function PortfolioPage() {
   // FAQ Accordion State for Section 07 (first item open by default)
   const [openFaq, setOpenFaq] = useState(0);
-
-  // Section 08: Contact Form State
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    projectType: 'Web Application Development',
-    message: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [formStatus, setFormStatus] = useState({ loading: false, success: false, msg: '', inquiryId: '' });
 
   // 4 Services Overview for Section 03
   const services = [
@@ -158,67 +203,6 @@ export default function PortfolioPage() {
       a: "Post-launch maintenance and support can be discussed and defined according to the project's needs and agreed service arrangements.",
     },
   ];
-
-  // Handle Form Submission for Section 08
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setFormErrors({});
-
-    // Client-side validations
-    const errors = {};
-    if (!form.name.trim()) errors.name = 'Full name is required';
-    if (!form.email.trim()) {
-      errors.email = 'Work email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      errors.email = 'Please provide a valid email address';
-    }
-    if (!form.message.trim()) errors.message = 'Please describe your project requirements';
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
-    setFormStatus({ loading: true, success: false, msg: '', inquiryId: '' });
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim().toLowerCase(),
-          organization: form.organization.trim(),
-          projectType: form.projectType,
-          message: form.message.trim(),
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to submit inquiry');
-
-      setFormStatus({
-        loading: false,
-        success: true,
-        msg: 'Thank you for reaching out! We have received your inquiry and our engineering team will get back to you shortly.',
-        inquiryId: data.inquiryId || '',
-      });
-      setForm({
-        name: '',
-        email: '',
-        organization: '',
-        projectType: 'Web Application Development',
-        message: '',
-      });
-    } catch (err) {
-      setFormStatus({
-        loading: false,
-        success: false,
-        msg: err.message || 'An error occurred while submitting. Please try again or email us directly.',
-        inquiryId: '',
-      });
-    }
-  };
 
   return (
     <div style={{ paddingBottom: '1.5rem' }}>
@@ -369,138 +353,166 @@ export default function PortfolioPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* SECTION 04: TECHNOLOGIES WE USE                           */}
+      {/* SECTION 04: TECHNOLOGIES WE USE (3D TECHNOLOGY SHOWCASE)   */}
       {/* ========================================================= */}
-      <section style={{ padding: '1.25rem 0' }}>
+      <section className="portfolio-tech-section" id="technologies">
+        {/* Global SVG defs for card bottom waves */}
+        <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }} aria-hidden="true">
+          <defs>
+            <linearGradient id="pt-card-wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fed7aa" stopOpacity="0.65" />
+              <stop offset="60%" stopColor="#fb923c" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#ea580c" stopOpacity="0.35" />
+            </linearGradient>
+          </defs>
+        </svg>
+
         <div className="container">
-          <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
-            <div
-              className="section-badge"
-              style={{
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-                color: 'var(--primary, #df7a38)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '0.75rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.35rem 0.95rem',
-                borderRadius: '9999px',
-              }}
-            >
-              <Sparkles size={14} color="var(--primary)" />
-              OUR TECHNOLOGY STACK
+          {/* Section Header */}
+          <div className="portfolio-tech-header">
+            <div className="portfolio-tech-pill-badge">
+              <Layers size={14} className="portfolio-tech-badge-icon" />
+              <span>OUR TECHNOLOGY EXPERTISE</span>
             </div>
 
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.8vw, 2.9rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.025em',
-                color: '#1a130e',
-                lineHeight: 1.2,
-                marginBottom: '0.85rem',
-              }}
-            >
-              The Right Technology for Every Solution
+            <h2 className="portfolio-tech-title">
+              The Right Technology For Every{' '}
+              <span className="portfolio-tech-title-highlight">
+                Solution
+                <svg className="portfolio-tech-swoosh" viewBox="0 0 180 18" fill="none" aria-hidden="true">
+                  <path d="M4 14C50 5 130 5 176 14" stroke="#ea580c" strokeWidth="3.6" strokeLinecap="round" />
+                </svg>
+              </span>
+              <span className="portfolio-tech-whiskers" aria-hidden="true">
+                <span className="portfolio-tech-whisker ptw-1" />
+                <span className="portfolio-tech-whisker ptw-2" />
+                <span className="portfolio-tech-whisker ptw-3" />
+              </span>
             </h2>
 
-            <p style={{ fontSize: '1.05rem', color: '#5a4c3e', lineHeight: 1.65 }}>
+            <p className="portfolio-tech-desc">
               We use modern frameworks, reliable databases, and practical engineering tools to build maintainable digital products.
             </p>
-            <p style={{ fontSize: '0.88rem', color: '#8d7d6f', marginTop: '0.5rem', fontStyle: 'italic' }}>
+            <p className="portfolio-tech-note">
               Technology choices depend on specific project requirements and scaling needs.
             </p>
           </div>
 
-          {/* 6 Concise Technology Categories */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-              gap: '1.5rem',
-            }}
-          >
-            {TECHNOLOGY_CATEGORIES.map((cat) => (
-              <div
-                key={cat.id}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '20px',
-                  border: '1px solid #dfd5c8',
-                  padding: '1.75rem 1.5rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  boxShadow: '0 4px 16px rgba(45, 35, 27, 0.03)',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1a130e' }}>{cat.title}</h3>
-                  <span
-                    style={{
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      background: 'rgba(223, 122, 56, 0.1)',
-                      color: 'var(--primary)',
-                      padding: '0.2rem 0.55rem',
-                      borderRadius: '9999px',
-                      textTransform: 'uppercase',
-                    }}
+          {/* Row 1: Four Equal-Width Cards */}
+          <div className="portfolio-tech-row-1">
+            {TECHNOLOGY_CATEGORIES.slice(0, 4).map((cat, idx) => {
+              const isFirstCard = idx === 0;
+              return (
+                <div
+                  key={cat.id}
+                  className={`portfolio-tech-card ${isFirstCard ? 'portfolio-tech-card-primary' : ''}`}
+                >
+                  {/* Top-Right Number Crest */}
+                  <div className="portfolio-tech-crest">{cat.number || `0${idx + 1}`}</div>
+
+                  {/* Card Header with 3D Floating Icon Tile */}
+                  <div className="portfolio-tech-card-header">
+                    <div className="portfolio-tech-icon-stage">
+                      <div className="portfolio-tech-icon-backplate" aria-hidden="true" />
+                      <div className="portfolio-tech-icon-frontplate">
+                        {TECH_CATEGORY_3D_ICONS[cat.id] || TECH_CATEGORY_3D_ICONS[cat.id.replace('-', '_')] || TECH_CATEGORY_3D_ICONS[cat.id.split('-')[0]]}
+                      </div>
+                    </div>
+                    <div className="portfolio-tech-card-info">
+                      <h3 className="portfolio-tech-card-title">{cat.title}</h3>
+                      <span className="portfolio-tech-card-badge">{cat.badge}</span>
+                    </div>
+                  </div>
+
+                  {/* Technology Badges Wrap */}
+                  <div className="portfolio-tech-badges-wrap">
+                    {cat.technologies.map((t) => (
+                      <div key={t.name} className="portfolio-tech-badge-item">
+                        <span className="portfolio-tech-badge-icon">{t.icon}</span>
+                        <span className="portfolio-tech-badge-name">{t.name}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Layered Orange Wave Decoration at Bottom */}
+                  <div className="portfolio-tech-bottom-wave" aria-hidden="true">
+                    <svg viewBox="0 0 170 75" preserveAspectRatio="none" fill="none">
+                      <path d="M0 75 C 35 55, 80 58, 170 14 L 170 75 Z" fill="url(#pt-card-wave-grad)" opacity="0.45" />
+                      <path d="M18 75 C 60 65, 105 50, 170 26 L 170 75 Z" fill="url(#pt-card-wave-grad)" opacity="0.65" />
+                      <path d="M0 75 C 45 56, 90 60, 170 14" stroke="rgba(234, 88, 12, 0.25)" strokeWidth="1.5" />
+                    </svg>
+                  </div>
+
+                  {/* Bottom-Right Circular Arrow Button */}
+                  <Link
+                    href="/technologies"
+                    className={`portfolio-tech-arrow-circle ${isFirstCard ? 'portfolio-tech-arrow-primary' : ''}`}
+                    aria-label={`Explore ${cat.title}`}
                   >
-                    {cat.badge}
-                  </span>
+                    <ArrowRight size={14} strokeWidth={2.4} />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Row 2: Two Wide Horizontal Cards */}
+          <div className="portfolio-tech-row-2">
+            {TECHNOLOGY_CATEGORIES.slice(4, 6).map((cat, idx) => (
+              <div key={cat.id} className="portfolio-tech-card portfolio-tech-card-wide">
+                {/* Top-Right Number Crest */}
+                <div className="portfolio-tech-crest">{cat.number || `0${idx + 5}`}</div>
+
+                {/* Card Header with 3D Floating Icon Tile */}
+                <div className="portfolio-tech-card-header">
+                  <div className="portfolio-tech-icon-stage">
+                    <div className="portfolio-tech-icon-backplate" aria-hidden="true" />
+                    <div className="portfolio-tech-icon-frontplate">
+                      {TECH_CATEGORY_3D_ICONS[cat.id] || TECH_CATEGORY_3D_ICONS[cat.id.replace('-', '_')] || TECH_CATEGORY_3D_ICONS[cat.id.split('-')[0]]}
+                    </div>
+                  </div>
+                  <div className="portfolio-tech-card-info">
+                    <h3 className="portfolio-tech-card-title">{cat.title}</h3>
+                    <span className="portfolio-tech-card-badge">{cat.badge}</span>
+                  </div>
                 </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 'auto' }}>
+                {/* Technology Badges Wrap */}
+                <div className="portfolio-tech-badges-wrap">
                   {cat.technologies.map((t) => (
-                    <div
-                      key={t.name}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.45rem',
-                        background: '#faf6f0',
-                        border: '1px solid #dfd5c8',
-                        padding: '0.4rem 0.75rem',
-                        borderRadius: '10px',
-                        fontSize: '0.82rem',
-                        fontWeight: 600,
-                        color: '#2d231b',
-                      }}
-                    >
-                      <span style={{ width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {t.icon}
-                      </span>
-                      <span>{t.name}</span>
+                    <div key={t.name} className="portfolio-tech-badge-item">
+                      <span className="portfolio-tech-badge-icon">{t.icon}</span>
+                      <span className="portfolio-tech-badge-name">{t.name}</span>
                     </div>
                   ))}
                 </div>
+
+                {/* Layered Orange Wave Decoration at Bottom */}
+                <div className="portfolio-tech-bottom-wave" aria-hidden="true">
+                  <svg viewBox="0 0 220 85" preserveAspectRatio="none" fill="none">
+                    <path d="M0 85 C 50 62, 110 66, 220 16 L 220 85 Z" fill="url(#pt-card-wave-grad)" opacity="0.45" />
+                    <path d="M25 85 C 80 72, 140 56, 220 30 L 220 85 Z" fill="url(#pt-card-wave-grad)" opacity="0.65" />
+                    <path d="M0 85 C 60 64, 120 68, 220 16" stroke="rgba(234, 88, 12, 0.25)" strokeWidth="1.5" />
+                  </svg>
+                </div>
+
+                {/* Bottom-Right Circular Arrow Button */}
+                <Link
+                  href="/technologies"
+                  className="portfolio-tech-arrow-circle"
+                  aria-label={`Explore ${cat.title}`}
+                >
+                  <ArrowRight size={14} strokeWidth={2.4} />
+                </Link>
               </div>
             ))}
           </div>
 
-          <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
-            <Link
-              href="/technologies"
-              className="btn btn-secondary btn-sm"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.6rem 1.4rem',
-                borderRadius: '9999px',
-                fontWeight: 700,
-                fontSize: '0.86rem',
-                background: '#ffffff',
-                border: '1px solid #dfd5c8',
-              }}
-            >
-              Explore Full Technology Capabilities
-              <ArrowRight size={14} color="var(--primary)" />
+          {/* Main CTA Button */}
+          <div className="portfolio-tech-cta-wrap">
+            <Link href="/technologies" className="portfolio-tech-cta-btn">
+              <span>Explore Full Technology Capabilities</span>
+              <ArrowRight size={17} strokeWidth={2.4} className="portfolio-tech-cta-arrow" />
             </Link>
           </div>
         </div>
@@ -752,7 +764,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '1.25rem 0',
+          padding: '1.75rem 0 2.5rem',
           background: 'transparent',
         }}
       >
@@ -856,314 +868,6 @@ export default function PortfolioPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION 08: CONTACT & PROJECT INQUIRY                     */}
-      {/* ========================================================= */}
-      <section id="contact" style={{ padding: '1.5rem 0 1.25rem', scrollMarginTop: '80px' }}>
-        <div className="container" style={{ maxWidth: '860px', margin: '0 auto' }}>
-          <div
-            style={{
-              background: '#ffffff',
-              borderRadius: '28px',
-              border: '1px solid #dfd5c8',
-              boxShadow: '0 16px 48px rgba(45, 35, 27, 0.08)',
-              padding: 'clamp(1.75rem, 4vw, 3rem)',
-            }}
-          >
-            {/* Header */}
-            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <div
-                className="section-badge"
-                style={{
-                  background: 'rgba(223, 122, 56, 0.1)',
-                  border: '1px solid #dfd5c8',
-                  color: 'var(--primary, #df7a38)',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  marginBottom: '0.75rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.35rem 0.95rem',
-                  borderRadius: '9999px',
-                }}
-              >
-                <Sparkles size={14} color="var(--primary)" />
-                HAVE A PROJECT IN MIND?
-              </div>
-
-              <h2
-                style={{
-                  fontSize: 'clamp(2rem, 4vw, 3rem)',
-                  fontWeight: 800,
-                  letterSpacing: '-0.025em',
-                  color: '#1a130e',
-                  lineHeight: 1.2,
-                  marginBottom: '0.85rem',
-                }}
-              >
-                Let&apos;s Build Something Meaningful.
-              </h2>
-
-              <p style={{ fontSize: '1.05rem', color: '#5a4c3e', lineHeight: 1.65, maxWidth: '620px', margin: '0 auto' }}>
-                Have an idea, a business challenge, or an application you want to develop? Tell us about your requirements, and let&apos;s explore the right solution together.
-              </p>
-            </div>
-
-            {/* Form Confirmation Feedback */}
-            {formStatus.success ? (
-              <div
-                style={{
-                  padding: '2rem',
-                  background: '#eaf5f0',
-                  borderRadius: '16px',
-                  border: '1px solid #2e7d5a',
-                  textAlign: 'center',
-                }}
-              >
-                <CheckCircle2 size={40} color="#2e7d5a" style={{ margin: '0 auto 0.75rem' }} />
-                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1a4835', marginBottom: '0.5rem' }}>
-                  Inquiry Transmitted Successfully
-                </h3>
-                <p style={{ fontSize: '0.95rem', color: '#2a5a44', lineHeight: 1.6, maxWidth: '540px', margin: '0 auto 1.25rem' }}>
-                  {formStatus.msg}
-                </p>
-                {formStatus.inquiryId && (
-                  <div style={{ fontSize: '0.8rem', color: '#527c67', fontWeight: 600 }}>
-                    Inquiry Reference: <code>{formStatus.inquiryId}</code>
-                  </div>
-                )}
-                <button
-                  onClick={() => setFormStatus({ loading: false, success: false, msg: '', inquiryId: '' })}
-                  className="btn btn-primary"
-                  style={{ marginTop: '1.5rem', borderRadius: '9999px', padding: '0.6rem 1.5rem', fontSize: '0.88rem' }}
-                >
-                  Send Another Inquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {formStatus.msg && !formStatus.success && (
-                  <div
-                    style={{
-                      padding: '0.85rem 1.25rem',
-                      background: '#fde8e8',
-                      border: '1px solid #d94343',
-                      borderRadius: '12px',
-                      color: '#9e2525',
-                      fontSize: '0.88rem',
-                      fontWeight: 600,
-                    }}
-                  >
-                    {formStatus.msg}
-                  </div>
-                )}
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.25rem' }}>
-                  {/* Full Name */}
-                  <div>
-                    <label htmlFor="portfolio-name" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
-                      Full Name <span style={{ color: 'var(--primary)' }}>*</span>
-                    </label>
-                    <input
-                      id="portfolio-name"
-                      type="text"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="e.g. Alex Morgan"
-                      style={{
-                        width: '100%',
-                        padding: '0.8rem 1rem',
-                        borderRadius: '12px',
-                        border: formErrors.name ? '1px solid #d94343' : '1px solid #dfd5c8',
-                        background: '#faf6f0',
-                        fontSize: '0.92rem',
-                        color: '#1a130e',
-                        outline: 'none',
-                      }}
-                    />
-                    {formErrors.name && (
-                      <span style={{ fontSize: '0.78rem', color: '#d94343', marginTop: '0.3rem', display: 'block' }}>
-                        {formErrors.name}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Work Email */}
-                  <div>
-                    <label htmlFor="portfolio-email" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
-                      Work Email <span style={{ color: 'var(--primary)' }}>*</span>
-                    </label>
-                    <input
-                      id="portfolio-email"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="alex@company.com"
-                      style={{
-                        width: '100%',
-                        padding: '0.8rem 1rem',
-                        borderRadius: '12px',
-                        border: formErrors.email ? '1px solid #d94343' : '1px solid #dfd5c8',
-                        background: '#faf6f0',
-                        fontSize: '0.92rem',
-                        color: '#1a130e',
-                        outline: 'none',
-                      }}
-                    />
-                    {formErrors.email && (
-                      <span style={{ fontSize: '0.78rem', color: '#d94343', marginTop: '0.3rem', display: 'block' }}>
-                        {formErrors.email}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1.25rem' }}>
-                  {/* Company Name */}
-                  <div>
-                    <label htmlFor="portfolio-org" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
-                      Company Name <span style={{ color: '#8d7d6f', fontWeight: 400 }}>(Optional)</span>
-                    </label>
-                    <input
-                      id="portfolio-org"
-                      type="text"
-                      value={form.organization}
-                      onChange={(e) => setForm({ ...form, organization: e.target.value })}
-                      placeholder="e.g. Acme Corp"
-                      style={{
-                        width: '100%',
-                        padding: '0.8rem 1rem',
-                        borderRadius: '12px',
-                        border: '1px solid #dfd5c8',
-                        background: '#faf6f0',
-                        fontSize: '0.92rem',
-                        color: '#1a130e',
-                        outline: 'none',
-                      }}
-                    />
-                  </div>
-
-                  {/* Project Type */}
-                  <div>
-                    <label htmlFor="portfolio-type" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
-                      Project Type
-                    </label>
-                    <select
-                      id="portfolio-type"
-                      value={form.projectType}
-                      onChange={(e) => setForm({ ...form, projectType: e.target.value })}
-                      style={{
-                        width: '100%',
-                        padding: '0.8rem 1rem',
-                        borderRadius: '12px',
-                        border: '1px solid #dfd5c8',
-                        background: '#faf6f0',
-                        fontSize: '0.92rem',
-                        color: '#1a130e',
-                        outline: 'none',
-                      }}
-                    >
-                      <option value="Web Application Development">Web Application Development</option>
-                      <option value="Mobile Application Development">Mobile Application Development</option>
-                      <option value="Custom Software Development">Custom Software Development</option>
-                      <option value="Backend & API Development">Backend & API Development</option>
-                      <option value="Other / Full Consultation">Other / Full Consultation</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Project Requirements */}
-                <div>
-                  <label htmlFor="portfolio-message" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#1a130e', marginBottom: '0.4rem' }}>
-                    Project Requirements <span style={{ color: 'var(--primary)' }}>*</span>
-                  </label>
-                  <textarea
-                    id="portfolio-message"
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="Tell us about the business problem, expected timeline, or key technical specifications..."
-                    style={{
-                      width: '100%',
-                      padding: '0.8rem 1rem',
-                      borderRadius: '12px',
-                      border: formErrors.message ? '1px solid #d94343' : '1px solid #dfd5c8',
-                      background: '#faf6f0',
-                      fontSize: '0.92rem',
-                      color: '#1a130e',
-                      outline: 'none',
-                      resize: 'vertical',
-                    }}
-                  />
-                  {formErrors.message && (
-                    <span style={{ fontSize: '0.78rem', color: '#d94343', marginTop: '0.3rem', display: 'block' }}>
-                      {formErrors.message}
-                    </span>
-                  )}
-                </div>
-
-                {/* Action Buttons */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    gap: '1rem',
-                    marginTop: '0.75rem',
-                  }}
-                >
-                  <button
-                    type="submit"
-                    disabled={formStatus.loading}
-                    className="btn btn-primary"
-                    style={{
-                      padding: '0.85rem 2rem',
-                      borderRadius: '9999px',
-                      fontWeight: 700,
-                      fontSize: '0.95rem',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.55rem',
-                      boxShadow: '0 4px 16px rgba(223, 122, 56, 0.28)',
-                      cursor: formStatus.loading ? 'not-allowed' : 'pointer',
-                      opacity: formStatus.loading ? 0.75 : 1,
-                    }}
-                  >
-                    {formStatus.loading ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" />
-                        Submitting Inquiry...
-                      </>
-                    ) : (
-                      <>
-                        Discuss Your Project
-                        <ArrowRight size={16} />
-                      </>
-                    )}
-                  </button>
-
-                  <Link
-                    href="/contact"
-                    style={{
-                      fontSize: '0.9rem',
-                      fontWeight: 700,
-                      color: '#6e6054',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Contact Our Team Directly &rarr;
-                  </Link>
-                </div>
-              </form>
-            )}
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import '@/components/AboutPage.css';
+import AboutHeroSection from '@/components/AboutHeroSection';
 import {
   Code2,
   Globe,
@@ -21,7 +22,8 @@ import {
   Server,
   Layers,
   Settings,
-  Workflow
+  Workflow,
+  Play
 } from 'lucide-react';
 
 export const metadata = {
@@ -32,24 +34,66 @@ export const metadata = {
 export default function AboutPage() {
   const whatWeDo = [
     {
+      number: '01',
       title: 'Web Application Development',
       desc: 'We develop modern, responsive, and high-performance web applications that deliver seamless experiences across devices.',
-      icon: <Globe size={24} strokeWidth={2.2} />,
+      href: '/services',
+      highlighted: true,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="6" width="26" height="20" rx="4" stroke="#ea580c" strokeWidth="2.2" />
+          <line x1="3" y1="12" x2="29" y2="12" stroke="#ea580c" strokeWidth="1.8" />
+          <circle cx="7" cy="9" r="1.2" fill="#ea580c" />
+          <circle cx="11" cy="9" r="1.2" fill="#ea580c" />
+          <circle cx="15" cy="9" r="1.2" fill="#ea580c" />
+          <path d="M12.5 16L9.5 19L12.5 22" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M19.5 16L22.5 19L19.5 22" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="17" y1="15" x2="15" y2="23" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      ),
     },
     {
+      number: '02',
       title: 'Mobile Application Development',
       desc: 'We build intuitive mobile applications for Android and iOS using modern cross-platform technologies.',
-      icon: <Smartphone size={24} strokeWidth={2.2} />,
+      href: '/services',
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="3" width="18" height="26" rx="4" stroke="#ea580c" strokeWidth="2.2" />
+          <line x1="13" y1="6.5" x2="19" y2="6.5" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="16" cy="24" r="1.5" fill="#ea580c" />
+        </svg>
+      ),
     },
     {
+      number: '03',
       title: 'Custom Software Development',
       desc: 'We transform business requirements into tailored software solutions designed to improve workflows, productivity, and operational efficiency.',
-      icon: <Settings size={24} strokeWidth={2.2} />,
+      href: '/services',
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4L4 10L16 16L28 10L16 4Z" stroke="#ea580c" strokeWidth="2.2" strokeLinejoin="round" />
+          <path d="M4 16L16 22L28 16" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 22L16 28L28 22" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
     {
+      number: '04',
       title: 'Backend & API Development',
       desc: 'We develop reliable backend systems, secure APIs, and database-driven applications that help digital products communicate and scale effectively.',
-      icon: <Layers size={24} strokeWidth={2.2} />,
+      href: '/services',
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 19C6.2 19 4 16.8 4 14C4 11.5 5.8 9.4 8.2 9.1C9 5.5 12.2 3 16 3C20.4 3 24 6.6 24 11C26.2 11.2 28 13 28 15.3C28 17.8 26 19.8 23.5 19.9" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" />
+          <text x="6" y="15.5" fill="#ea580c" fontSize="6.5" fontWeight="900" fontFamily="system-ui, sans-serif">API</text>
+          <circle cx="23" cy="22" r="3.2" stroke="#ea580c" strokeWidth="2" />
+          <path d="M23 16.8V18.8M23 25.2V27.2M17.8 22H19.8M26.2 22H28.2" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      ),
     },
   ];
 
@@ -206,47 +250,147 @@ export default function AboutPage() {
 
   const valuesBehindName = [
     {
+      number: '01',
       title: 'Trust Through Transparency',
       desc: 'We believe successful projects are built on honest communication, clear expectations, and collaborative decision-making.',
-      icon: <ShieldCheck size={24} strokeWidth={2.2} />,
+      highlighted: true,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3L5 7V15C5 21.8 9.7 28.1 16 29.5C22.3 28.1 27 21.8 27 15V7L16 3Z" stroke="#ea580c" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M11 15.5L14.5 19L21.5 12" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      watermark: (
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 26L8 20L18 10L24 16L30 10L40 20L34 26" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M18 22L24 28L30 22" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 28L18 34L24 28M36 28L30 34L24 28" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M21 37L24 40L27 37" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
     {
+      number: '02',
       title: 'Quality Through Engineering',
       desc: 'We prioritize clean code, thoughtful architecture, testing, and maintainability to create software that businesses can depend on.',
-      icon: <Code2 size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 10L5 16L11 22" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M21 10L27 16L21 22" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="18.5" y1="8" x2="13.5" y2="24" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" />
+        </svg>
+      ),
+      watermark: (
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6L6 15L24 24L42 15L24 6Z" stroke="#ea580c" strokeWidth="2.4" strokeLinejoin="round" />
+          <path d="M6 24L24 33L42 24" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M6 33L24 42L42 33" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
     {
+      number: '03',
       title: 'Innovation With Purpose',
       desc: 'We choose technologies and approaches based on the problems they solve, not simply because they are new.',
-      icon: <Zap size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 3L6 17H16L15 29L26 15H16L17 3Z" stroke="#ea580c" fill="#ea580c" fillOpacity="0.15" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      watermark: (
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 36H30M20 42H28" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M24 6C16.8 6 11 11.8 11 19C11 23.5 13.5 27.5 17 30V33H31V30C34.5 27.5 37 23.5 37 19C37 11.8 31.2 6 24 6Z" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M24 14V20M20 17H28" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" opacity="0.6" />
+        </svg>
+      ),
     },
     {
+      number: '04',
       title: 'Growth Through Collaboration',
       desc: 'We work closely with our clients to understand their goals, adapt to their needs, and build solutions that support their growth.',
-      icon: <Users size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="11" r="4.5" stroke="#ea580c" strokeWidth="2.2" />
+          <path d="M8 26C8 21.6 11.6 18 16 18C20.4 18 24 21.6 24 26" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" />
+          <circle cx="7" cy="12" r="3" stroke="#ea580c" strokeWidth="1.8" />
+          <path d="M2 24C2 21 4.5 18.5 7.5 18.5" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="25" cy="12" r="3" stroke="#ea580c" strokeWidth="1.8" />
+          <path d="M30 24C30 21 27.5 18.5 24.5 18.5" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      ),
+      watermark: (
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="6" y1="42" x2="42" y2="42" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" />
+          <rect x="10" y="28" width="6" height="14" rx="2" stroke="#ea580c" strokeWidth="2" />
+          <rect x="21" y="20" width="6" height="22" rx="2" stroke="#ea580c" strokeWidth="2" />
+          <rect x="32" y="12" width="6" height="30" rx="2" stroke="#ea580c" strokeWidth="2" />
+          <path d="M12 22L23 13L32 17L40 7" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M34 7H40V13" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
   ];
 
   const whyChooseUs = [
     {
+      number: '01',
       title: 'Business-Focused Solutions',
       desc: 'We begin by understanding your business challenges and develop solutions aligned with your objectives.',
-      icon: <Target size={24} strokeWidth={2.2} />,
+      highlighted: true,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="#ea580c" strokeWidth="2.2" />
+          <circle cx="16" cy="16" r="7.5" stroke="#ea580c" strokeWidth="2" />
+          <circle cx="16" cy="16" r="3" fill="#ea580c" />
+          <path d="M23 9L27 5" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      ),
     },
     {
+      number: '02',
       title: 'Modern Engineering',
       desc: 'We use contemporary frameworks and proven development practices to create dependable digital products.',
-      icon: <Cpu size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="7" width="18" height="18" rx="4" stroke="#ea580c" strokeWidth="2.2" />
+          <rect x="12" y="12" width="8" height="8" rx="2" fill="#ea580c" fillOpacity="0.2" stroke="#ea580c" strokeWidth="1.8" />
+          <path d="M12 2V6M20 2V6M12 26V30M20 26V30M2 12H6M2 20H6M26 12H30M26 20H30" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      ),
     },
     {
+      number: '03',
       title: 'Built for the Future',
       desc: 'We design applications with maintainability, flexibility, and future enhancements in mind.',
-      icon: <TrendingUp size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="19" width="4.5" height="9" rx="1.5" stroke="#ea580c" strokeWidth="2" />
+          <rect x="13.5" y="13" width="4.5" height="15" rx="1.5" stroke="#ea580c" strokeWidth="2" />
+          <rect x="22" y="7" width="4.5" height="21" rx="1.5" stroke="#ea580c" strokeWidth="2" />
+          <path d="M7 13L15 6L25 9L29 4" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M24 4H29V9" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
     {
+      number: '04',
       title: 'Transparent Collaboration',
       desc: 'We value open communication, clear project expectations, and meaningful client involvement throughout development.',
-      icon: <HeartHandshake size={24} strokeWidth={2.2} />,
+      highlighted: false,
+      icon: (
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17L5 13L12 6L16 10L20 6L27 13L23 17" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 14L16 18L20 14" stroke="#ea580c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8 18L12 22L16 18M24 18L20 22L16 18" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M14 24L16 26L18 24" stroke="#ea580c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
     },
   ];
 
@@ -258,214 +402,222 @@ export default function AboutPage() {
 
       <div className="about-container">
         {/* ==================================================================
-            1. HERO SECTION
+            1. HERO SECTION (MATCHING REFERENCE DESIGN WITH STATS & FEATURES)
             ================================================================== */}
-        <section className="about-hero-section">
-          <div className="about-hero-grid">
-            {/* Left Column: Heading, Subtitle & Narrative */}
-            <div>
-              <div className="about-badge">
-                <Sparkles size={14} className="about-badge-spark" />
-                ProvenanceTech Software Engineering
+        <AboutHeroSection />
+
+        {/* ==================================================================
+            2. OUR STORY & MISSION SECTION (SCROLL TARGET)
+            ================================================================== */}
+        <section id="our-story" className="about-story-section" style={{ scrollMarginTop: '100px' }}>
+          <div className="about-story-banner">
+            <div className="about-story-banner-inner">
+              <div className="about-story-pill">
+                <span className="about-story-dot" aria-hidden="true" />
+                OUR ENGINEERING PHILOSOPHY
               </div>
-
-              <h1 className="about-hero-title">
-                About<br />ProvenanceTech
-              </h1>
-
-              <div className="about-hero-subtitle">
-                Technology Built on Trust. Innovation Built for Growth.
-              </div>
-
-              <div className="about-hero-text-block">
-                <p className="about-hero-p">
-                  At <strong>ProvenanceTech</strong>, we believe great software starts with understanding people, businesses, and the problems that matter most.
-                </p>
-
-                <p className="about-hero-p">
+              <h2 className="about-story-title">
+                Building Software that Balances Purpose, Quality &amp; Scale
+              </h2>
+              <div className="about-story-paragraphs">
+                <p>
                   We are a software engineering company focused on building modern web applications, mobile experiences, and scalable digital solutions that help businesses turn ideas into reality.
                 </p>
-
-                <p className="about-hero-p">
+                <p>
                   Our name reflects the values we believe in: transparency, reliability, and purposeful technology. From the first conversation to the final deployment, we focus on creating software that is practical, maintainable, and built with the future in mind.
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Right Column: 3D Laptop Showcase & Floating Feature Cards */}
-            <div className="about-hero-scene">
-              <div className="about-hero-scene-stage">
-                <div className="about-table-surface">
-                  {/* Decorative Desk Plant Top Right */}
-                  <svg className="about-desk-plant-top" viewBox="0 0 50 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <ellipse cx="25" cy="52" rx="14" ry="5" fill="rgba(0,0,0,0.12)" />
-                    <path d="M14 42L16 54C16 56 19 57 25 57C31 57 34 56 34 54L36 42H14Z" fill="#eeddcc" stroke="#cfbaaa" strokeWidth="1" />
-                    <path d="M25 42C23 32 16 28 14 20C12 12 18 8 22 14C24 17 25 24 25 42Z" fill="#4d7c0f" />
-                    <path d="M25 42C27 32 34 28 36 20C38 12 32 8 28 14C26 17 25 24 25 42Z" fill="#65a30d" />
-                    <path d="M25 42C23 30 22 22 25 6C28 22 27 30 25 42Z" fill="#84cc16" />
-                  </svg>
-
-                  {/* Laptop Mockup */}
-                  <div className="about-laptop-wrap">
-                    <div className="about-laptop-screen">
-                      <div className="about-laptop-camera" />
-                      <div className="about-laptop-display">
-                        <div className="about-laptop-display-glow" />
-                        <div className="about-display-text-1">ideas</div>
-                        <div className="about-display-text-2">products</div>
-                        <div className="about-display-text-3">Growth</div>
-                      </div>
-                    </div>
-                    <div className="about-laptop-base">
-                      <div className="about-laptop-notch" />
-                    </div>
-                  </div>
-
-                  {/* Decorative Desk Plant Bottom Left */}
-                  <svg className="about-desk-plant" viewBox="0 0 60 76" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <ellipse cx="30" cy="68" rx="18" ry="6" fill="rgba(0,0,0,0.15)" />
-                    <path d="M18 52L20 68C20 71 24 73 30 73C36 73 40 71 40 68L42 52H18Z" fill="#e2d2c1" stroke="#cbb9a5" strokeWidth="1.2" />
-                    <path d="M30 52C27 38 18 34 14 24C11 15 19 10 24 17C27 21 29 30 30 52Z" fill="#365314" />
-                    <path d="M30 52C33 38 42 34 46 24C49 15 41 10 36 17C33 21 31 30 30 52Z" fill="#4d7c0f" />
-                    <path d="M30 52C28 36 27 26 30 8C33 26 32 36 30 52Z" fill="#65a30d" />
-                    <path d="M30 52C22 46 12 40 8 32C5 25 11 20 16 26C19 30 24 38 30 52Z" fill="#4d7c0f" />
-                    <path d="M30 52C38 46 48 40 52 32C55 25 49 20 44 26C41 30 36 38 30 52Z" fill="#3f6212" />
-                  </svg>
+          <div className="about-mission-vision-grid">
+            {/* Mission Card */}
+            <div className="about-mv-card about-mv-card--mission">
+              <div className="about-mv-content">
+                <div className="about-mv-badge">
+                  <Compass size={14} color="#ea580c" strokeWidth={2.4} />
+                  <span>Purpose &amp; Commitment</span>
                 </div>
+                <h2 className="about-mv-title">Our Mission</h2>
+                <p className="about-mv-desc">
+                  To empower businesses with reliable, innovative, and scalable software solutions that simplify complex challenges, improve digital experiences, and create lasting value.
+                </p>
+              </div>
 
-                {/* 3 Floating Badges to Right of Laptop */}
-                <div className="about-floating-cards-group">
-                  <div className="about-floating-card">
-                    <div className="about-card-icon-box">
-                      <Users size={16} strokeWidth={2.3} />
-                    </div>
-                    <span className="about-floating-card-label">People First</span>
-                  </div>
+              {/* Target & Bullseye Illustration */}
+              <div className="about-mv-art about-mv-art--mission" aria-hidden="true">
+                <svg viewBox="0 0 140 140" width="130" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle className="about-target-ring-1" cx="70" cy="70" r="62" fill="#fff4ec" stroke="#fcd9c0" strokeWidth="2" />
+                  <circle className="about-target-ring-2" cx="70" cy="70" r="46" fill="#ffe2cc" stroke="#f8b688" strokeWidth="2" />
+                  <circle className="about-target-ring-3" cx="70" cy="70" r="30" fill="#ffcaa3" stroke="#f4974f" strokeWidth="2" />
+                  <circle className="about-target-center" cx="70" cy="70" r="15" fill="#ea580c" />
+                  <circle className="about-target-dot" cx="70" cy="70" r="6" fill="#ffffff" />
+                  {/* 3D Arrow Striking the Bullseye */}
+                  <g className="about-target-arrow">
+                    <path d="M125 15L72 68" stroke="#c2410c" strokeWidth="3.5" strokeLinecap="round" />
+                    <path d="M125 15L110 21M125 15L119 30" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" />
+                    <polygon points="70,70 78,61 61,78" fill="#ea580c" />
+                  </g>
+                </svg>
+              </div>
+            </div>
 
-                  <div className="about-floating-card">
-                    <div className="about-card-icon-box">
-                      <ShieldCheck size={16} strokeWidth={2.3} />
-                    </div>
-                    <span className="about-floating-card-label">Reliable Engineering</span>
-                  </div>
-
-                  <div className="about-floating-card">
-                    <div className="about-card-icon-box">
-                      <TrendingUp size={16} strokeWidth={2.3} />
-                    </div>
-                    <span className="about-floating-card-label">Long-term Growth</span>
-                  </div>
+            {/* Vision Card */}
+            <div className="about-mv-card about-mv-card--vision">
+              <div className="about-mv-content">
+                <div className="about-mv-badge">
+                  <Sparkles size={14} color="#ea580c" strokeWidth={2.4} />
+                  <span>Future Direction</span>
                 </div>
+                <h2 className="about-mv-title">Our Vision</h2>
+                <p className="about-mv-desc">
+                  To build a future where technology is more accessible, businesses can innovate with confidence, and every digital product is created with purpose, quality, and trust.
+                </p>
+              </div>
 
-                {/* Handwritten Script Accent with Curved Arrow */}
-                <div className="about-script-accent">
-                  <span className="about-script-text">Building Digital Possibilities</span>
-                  <svg width="42" height="32" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 32C16 36 34 30 44 14" stroke="#c25916" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="3 3" />
-                    <path d="M34 12L46 12L44 24" stroke="#c25916" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
+              {/* Rising 3D Bar Chart & Trend Arrow */}
+              <div className="about-mv-art about-mv-art--vision" aria-hidden="true">
+                <svg viewBox="0 0 140 140" width="130" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Stepped 3D Bars */}
+                  <rect className="about-chart-bar about-chart-bar-1" x="24" y="86" width="22" height="36" rx="4" fill="url(#barGradient1)" />
+                  <rect className="about-chart-bar about-chart-bar-2" x="54" y="62" width="22" height="60" rx="4" fill="url(#barGradient2)" />
+                  <rect className="about-chart-bar about-chart-bar-3" x="84" y="34" width="22" height="88" rx="4" fill="url(#barGradient3)" />
+                  <line x1="16" y1="122" x2="118" y2="122" stroke="#ebd9c8" strokeWidth="2.5" strokeLinecap="round" />
+                  {/* Diagonal Upward Arrow */}
+                  <g className="about-chart-trend-group">
+                    <path className="about-chart-trend-line" d="M22 92Q60 70 106 24" stroke="#c2410c" strokeWidth="3.5" strokeLinecap="round" strokeDasharray="5 5" />
+                    <path className="about-chart-trend-head" d="M88 22H112V46" stroke="#ea580c" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </g>
+                  <defs>
+                    <linearGradient id="barGradient1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#ffb076" />
+                      <stop offset="100%" stopColor="#f4974f" />
+                    </linearGradient>
+                    <linearGradient id="barGradient2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#f4974f" />
+                      <stop offset="100%" stopColor="#ea580c" />
+                    </linearGradient>
+                    <linearGradient id="barGradient3" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#ea580c" />
+                      <stop offset="100%" stopColor="#c2410c" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
             </div>
           </div>
         </section>
 
         {/* ==================================================================
-            2. MISSION & VISION SECTION (2 CARDS)
-            ================================================================== */}
-        <section className="about-mission-vision-grid">
-          {/* Mission Card */}
-          <div className="about-mv-card">
-            <div className="about-mv-content">
-              <div className="about-mv-badge">
-                <Compass size={14} color="#ea580c" strokeWidth={2.4} />
-                Purpose &amp; Commitment
-              </div>
-              <h2 className="about-mv-title">Our Mission</h2>
-              <p className="about-mv-desc">
-                To empower businesses with reliable, innovative, and scalable software solutions that simplify complex challenges, improve digital experiences, and create lasting value.
-              </p>
-            </div>
-
-            {/* Target & Bullseye Illustration */}
-            <div className="about-mv-art" aria-hidden="true">
-              <svg viewBox="0 0 140 140" width="130" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="70" cy="70" r="62" fill="#fff4ec" stroke="#fcd9c0" strokeWidth="2" />
-                <circle cx="70" cy="70" r="46" fill="#ffe2cc" stroke="#f8b688" strokeWidth="2" />
-                <circle cx="70" cy="70" r="30" fill="#ffcaa3" stroke="#f4974f" strokeWidth="2" />
-                <circle cx="70" cy="70" r="15" fill="#ea580c" />
-                <circle cx="70" cy="70" r="6" fill="#ffffff" />
-                {/* 3D Arrow Striking the Bullseye */}
-                <path d="M125 15L72 68" stroke="#c2410c" strokeWidth="3.5" strokeLinecap="round" />
-                <path d="M125 15L110 21M125 15L119 30" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" />
-                <polygon points="70,70 78,61 61,78" fill="#ea580c" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Vision Card */}
-          <div className="about-mv-card">
-            <div className="about-mv-content">
-              <div className="about-mv-badge">
-                <Sparkles size={14} color="#ea580c" strokeWidth={2.4} />
-                Future Direction
-              </div>
-              <h2 className="about-mv-title">Our Vision</h2>
-              <p className="about-mv-desc">
-                To build a future where technology is more accessible, businesses can innovate with confidence, and every digital product is created with purpose, quality, and trust.
-              </p>
-            </div>
-
-            {/* Rising 3D Bar Chart & Trend Arrow */}
-            <div className="about-mv-art" aria-hidden="true">
-              <svg viewBox="0 0 140 140" width="130" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Stepped 3D Bars */}
-                <rect x="24" y="86" width="22" height="36" rx="4" fill="url(#barGradient1)" />
-                <rect x="54" y="62" width="22" height="60" rx="4" fill="url(#barGradient2)" />
-                <rect x="84" y="34" width="22" height="88" rx="4" fill="url(#barGradient3)" />
-                <line x1="16" y1="122" x2="118" y2="122" stroke="#ebd9c8" strokeWidth="2.5" strokeLinecap="round" />
-                {/* Diagonal Upward Arrow */}
-                <path d="M22 92Q60 70 106 24" stroke="#c2410c" strokeWidth="3.5" strokeLinecap="round" strokeDasharray="3 3" />
-                <path d="M88 22H112V46" stroke="#ea580c" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-                <defs>
-                  <linearGradient id="barGradient1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffb076" />
-                    <stop offset="100%" stopColor="#f4974f" />
-                  </linearGradient>
-                  <linearGradient id="barGradient2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#f4974f" />
-                    <stop offset="100%" stopColor="#ea580c" />
-                  </linearGradient>
-                  <linearGradient id="barGradient3" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ea580c" />
-                    <stop offset="100%" stopColor="#c2410c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================================
-            3. WHAT WE DO (CORE CAPABILITIES)
+            3. WHAT WE DO (CORE CAPABILITIES) - MATCHING REFERENCE DESIGN
             ================================================================== */}
         <section className="about-capabilities-section">
+          {/* Subtle Ambient Silk Flow Waves in Background */}
+          <div className="about-capabilities-silk-bg" aria-hidden="true">
+            <svg className="about-cap-silk-left" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M-60 220 C80 140, 200 200, 260 90 C300 30, 320 -10, 360 -40" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M-90 280 C50 190, 180 250, 280 130 C340 60, 380 20, 420 -10" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+            <svg className="about-cap-silk-right" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M560 160 C420 90, 300 150, 240 50 C200 -10, 180 -50, 140 -80" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M590 220 C450 150, 320 210, 220 90 C160 20, 120 -20, 80 -50" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+          </div>
+
           <div className="about-section-header">
-            <div className="about-badge">Core Capabilities</div>
-            <h2 className="about-section-title">What We Do</h2>
+            {/* Pill badge: CORE CAPABILITIES */}
+            <div className="about-capabilities-badge">
+              <span>CORE CAPABILITIES</span>
+            </div>
+
+            {/* Title: What in black, We Do in orange with curved underline & spark whiskers */}
+            <h2 className="about-capabilities-title">
+              <span className="about-cap-what">What</span>{' '}
+              <span className="about-cap-wedo-wrap">
+                <span className="about-cap-wedo">We Do</span>
+                {/* 3 radiating whisker sparks at top-right of "Do" */}
+                <svg className="about-cap-whiskers" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M8 26L2 30" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M18 16L18 8" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M26 22L34 16" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                </svg>
+                {/* Curved orange underline swoosh */}
+                <svg className="about-cap-swoosh" viewBox="0 0 160 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2 6C45 16 115 16 158 6" stroke="#ea580c" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h2>
+
             <p className="about-section-desc">
               We combine modern engineering practices with thoughtful design to create digital solutions tailored to your business needs.
             </p>
           </div>
 
-          <div className="about-cards-grid-4">
+          {/* 4 Premium 3D Service Cards */}
+          <div className="about-what-grid">
             {whatWeDo.map((item, idx) => (
-              <div key={idx} className="about-feature-card">
-                <div className="about-feature-icon">
-                  {item.icon}
+              <div
+                key={idx}
+                className={`about-what-card ${item.highlighted ? 'about-what-card--highlighted' : ''}`}
+                style={{ animationDelay: `${0.1 * (idx + 1)}s` }}
+              >
+                {/* Top Row: Floating 3D Icon Tile & Numbered Badge */}
+                <div className="about-what-card-top">
+                  <div className="about-what-icon-stage">
+                    {/* Layered Orange Backdrop Plate */}
+                    <div className="about-what-icon-backdrop" aria-hidden="true" />
+                    {/* Elevated White Icon Tile */}
+                    <div className="about-what-icon-front">
+                      {item.icon}
+                    </div>
+                  </div>
+
+                  {/* Numbered Badge (01 - 04) */}
+                  <div className="about-what-num-badge">
+                    {item.number}
+                  </div>
                 </div>
-                <h3 className="about-feature-title">{item.title}</h3>
-                <p className="about-feature-desc">{item.desc}</p>
+
+                {/* Card Body */}
+                <h3 className="about-what-card-title">{item.title}</h3>
+                <p className="about-what-card-desc">{item.desc}</p>
+
+                {/* Bottom Row: Explore More Button */}
+                <div className="about-what-card-bottom">
+                  <Link
+                    href={item.href}
+                    className={`about-what-btn ${item.highlighted ? 'about-what-btn--primary' : 'about-what-btn--outline'}`}
+                  >
+                    <span>Explore More</span>
+                    <span className="about-what-btn-arrow-wrap">
+                      <ArrowRight size={15} strokeWidth={2.6} className="about-what-btn-arrow" />
+                    </span>
+                  </Link>
+                </div>
+
+                {/* Flowing Bottom-Right Orange Wave Accents */}
+                <div className="about-what-card-wave" aria-hidden="true">
+                  <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M0 120 C40 80, 90 90, 160 40 L160 120 Z"
+                      fill="url(#cardWaveGrad1)"
+                    />
+                    <path
+                      d="M30 120 C70 95, 110 105, 160 65 L160 120 Z"
+                      fill="url(#cardWaveGrad2)"
+                    />
+                    <defs>
+                      <linearGradient id="cardWaveGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#f4974f" stopOpacity="0.25" />
+                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.45" />
+                      </linearGradient>
+                      <linearGradient id="cardWaveGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.35" />
+                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.55" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
               </div>
             ))}
           </div>
@@ -507,50 +659,241 @@ export default function AboutPage() {
         </section>
 
         {/* ==================================================================
-            5. THE VALUES BEHIND OUR NAME
+            5. THE VALUES BEHIND OUR NAME (BRAND PRINCIPLES) - MATCHING REFERENCE
             ================================================================== */}
-        <section className="about-values-section">
+        <section className="about-values-section" id="values">
+          {/* Subtle Ambient Silk Flow Waves in Background */}
+          <div className="about-values-silk-bg" aria-hidden="true">
+            <svg className="about-val-silk-left" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M-60 220 C80 140, 200 200, 260 90 C300 30, 320 -10, 360 -40" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M-90 280 C50 190, 180 250, 280 130 C340 60, 380 20, 420 -10" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+            <svg className="about-val-silk-right" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M560 160 C420 90, 300 150, 240 50 C200 -10, 180 -50, 140 -80" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M590 220 C450 150, 320 210, 220 90 C160 20, 120 -20, 80 -50" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+          </div>
+
           <div className="about-section-header">
-            <div className="about-badge">Brand Principles</div>
-            <h2 className="about-section-title">The Values Behind Our Name</h2>
+            {/* Pill badge: BRAND PRINCIPLES */}
+            <div className="about-values-badge">
+              <span>BRAND PRINCIPLES</span>
+            </div>
+
+            {/* Title: The Values Behind in black, Our Name in orange with curved underline & spark whiskers */}
+            <h2 className="about-values-title">
+              <span className="about-val-title-black">The Values Behind</span>{' '}
+              <span className="about-val-title-orange-wrap">
+                <span className="about-val-title-orange">Our Name</span>
+                {/* 3 radiating whisker sparks at top-right of "Name" */}
+                <svg className="about-val-whiskers" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M8 26L2 30" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M18 16L18 8" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M26 22L34 16" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                </svg>
+                {/* Curved orange underline swoosh */}
+                <svg className="about-val-swoosh" viewBox="0 0 180 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2 6C50 17 130 17 178 6" stroke="#ea580c" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h2>
+
             <p className="about-section-desc">
               At ProvenanceTech, our name represents more than technology. It reflects the principles that guide how we work and the relationships we build.
             </p>
           </div>
 
-          <div className="about-cards-grid-4">
+          {/* 4 Redesigned Value Cards Matching Reference Image */}
+          <div className="about-values-grid">
             {valuesBehindName.map((val, idx) => (
-              <div key={idx} className="about-feature-card">
-                <div className="about-feature-icon">
-                  {val.icon}
+              <div
+                key={idx}
+                className={`about-val-card-item ${val.highlighted ? 'about-val-card-item--highlighted' : ''}`}
+                style={{ animationDelay: `${0.1 * (idx + 1)}s` }}
+              >
+                {/* Overlapping Floating 3D Icon Tile at Top-Left */}
+                <div className="about-val-icon-cluster">
+                  <div className="about-val-icon-backplate" aria-hidden="true" />
+                  <div className="about-val-icon-frontplate">
+                    {val.icon}
+                  </div>
                 </div>
-                <h3 className="about-feature-title">{val.title}</h3>
-                <p className="about-feature-desc">{val.desc}</p>
+
+                {/* Card Main Body */}
+                <div className="about-val-card-inner">
+                  {/* Top-Right Curved Orange Corner with Card Number */}
+                  <div className="about-val-corner-cap" aria-hidden="true">
+                    <svg viewBox="0 0 100 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0 C30 0, 55 12, 100 48 L100 0 Z" fill="#ea580c" />
+                    </svg>
+                    <span className="about-val-corner-num">{val.number}</span>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="about-val-content">
+                    <h3 className="about-val-heading">{val.title}</h3>
+                    <p className="about-val-description">{val.desc}</p>
+                  </div>
+
+                  {/* Card Footer: Subtle Watermark (Left), Decorative Wave, & Circular Arrow Button (Right) */}
+                  <div className="about-val-footer">
+                    <div className="about-val-watermark" aria-hidden="true">
+                      {val.watermark}
+                    </div>
+
+                    <div
+                      className={`about-val-arrow-btn ${val.highlighted ? 'about-val-arrow-btn--primary' : 'about-val-arrow-btn--outline'}`}
+                      role="img"
+                      aria-label={`${val.title} principle`}
+                    >
+                      <ArrowRight size={17} strokeWidth={2.8} className="about-val-arrow-svg" />
+                    </div>
+                  </div>
+
+                  {/* Flowing Bottom-Right Orange Wave Accent */}
+                  <div className="about-val-bottom-wave" aria-hidden="true">
+                    <svg viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M0 110 C45 75, 95 85, 160 35 L160 110 Z"
+                        fill="url(#valWaveGrad1)"
+                      />
+                      <path
+                        d="M35 110 C75 88, 115 96, 160 60 L160 110 Z"
+                        fill="url(#valWaveGrad2)"
+                      />
+                      <defs>
+                        <linearGradient id="valWaveGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f4974f" stopOpacity="0.25" />
+                          <stop offset="100%" stopColor="#ea580c" stopOpacity="0.45" />
+                        </linearGradient>
+                        <linearGradient id="valWaveGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f97316" stopOpacity="0.35" />
+                          <stop offset="100%" stopColor="#ea580c" stopOpacity="0.55" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
         {/* ==================================================================
-            6. WHY CHOOSE PROVENANCETECH?
+            6. WHY CHOOSE PROVENANCETECH? (CLIENT PARTNERSHIP) - MATCHING REFERENCE
             ================================================================== */}
-        <section className="about-why-section">
+        <section className="about-why-section" id="why-choose-us">
+          {/* Subtle Ambient Silk Flow Waves in Background */}
+          <div className="about-why-silk-bg" aria-hidden="true">
+            <svg className="about-why-silk-left" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M-60 220 C80 140, 200 200, 260 90 C300 30, 320 -10, 360 -40" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M-90 280 C50 190, 180 250, 280 130 C340 60, 380 20, 420 -10" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+            <svg className="about-why-silk-right" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M560 160 C420 90, 300 150, 240 50 C200 -10, 180 -50, 140 -80" stroke="rgba(234, 88, 12, 0.16)" strokeWidth="2" fill="none" />
+              <path d="M590 220 C450 150, 320 210, 220 90 C160 20, 120 -20, 80 -50" stroke="rgba(244, 151, 79, 0.12)" strokeWidth="1.5" fill="none" />
+            </svg>
+          </div>
+
           <div className="about-section-header">
-            <div className="about-badge">Client Partnership</div>
-            <h2 className="about-section-title">Why Choose ProvenanceTech?</h2>
+            {/* Pill badge: CLIENT PARTNERSHIP with Handshake */}
+            <div className="about-why-badge">
+              <HeartHandshake size={15} strokeWidth={2.4} className="about-why-badge-icon" aria-hidden="true" />
+              <span>CLIENT PARTNERSHIP</span>
+            </div>
+
+            {/* Title: Why Choose in black, ProvenanceTech? in orange with curved underline & spark whiskers */}
+            <h2 className="about-why-title">
+              <span className="about-why-title-black">Why Choose</span>{' '}
+              <span className="about-why-title-orange-wrap">
+                <span className="about-why-title-orange">ProvenanceTech?</span>
+                {/* 3 radiating whisker sparks at top-right of "?" */}
+                <svg className="about-why-whiskers" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M8 26L2 30" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M18 16L18 8" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M26 22L34 16" stroke="#ea580c" strokeWidth="2.8" strokeLinecap="round" />
+                </svg>
+                {/* Curved orange underline swoosh */}
+                <svg className="about-why-swoosh" viewBox="0 0 210 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2 6C55 17 150 17 208 6" stroke="#ea580c" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h2>
+
             <p className="about-section-desc">
               Reliable engineering, business alignment, and client-first collaboration throughout the software lifecycle.
             </p>
           </div>
 
-          <div className="about-cards-grid-4">
+          {/* 4 Redesigned Why Choose Cards Matching Reference Image */}
+          <div className="about-why-grid">
             {whyChooseUs.map((reason, idx) => (
-              <div key={idx} className="about-feature-card">
-                <div className="about-feature-icon">
-                  {reason.icon}
+              <div
+                key={idx}
+                className={`about-why-card-item ${reason.highlighted ? 'about-why-card-item--highlighted' : ''}`}
+                style={{ animationDelay: `${0.1 * (idx + 1)}s` }}
+              >
+                {/* Overlapping Floating 3D Icon Tile at Top-Left */}
+                <div className="about-why-icon-cluster">
+                  <div className="about-why-icon-backplate" aria-hidden="true" />
+                  <div className="about-why-icon-frontplate">
+                    {reason.icon}
+                  </div>
                 </div>
-                <h3 className="about-feature-title">{reason.title}</h3>
-                <p className="about-feature-desc">{reason.desc}</p>
+
+                {/* Card Main Body */}
+                <div className="about-why-card-inner">
+                  {/* Top-Right Curved Orange Corner with Card Number */}
+                  <div className="about-why-corner-cap" aria-hidden="true">
+                    <svg viewBox="0 0 100 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0 C30 0, 55 12, 100 48 L100 0 Z" fill="#ea580c" />
+                    </svg>
+                    <span className="about-why-corner-num">{reason.number}</span>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="about-why-content">
+                    <h3 className="about-why-card-title">{reason.title}</h3>
+                    {/* Short Orange Underline */}
+                    <div className="about-why-title-line" aria-hidden="true" />
+                    <p className="about-why-card-desc">{reason.desc}</p>
+                  </div>
+
+                  {/* Card Footer: Circular Arrow Element */}
+                  <div className="about-why-footer">
+                    <div
+                      className={`about-why-arrow-btn ${reason.highlighted ? 'about-why-arrow-btn--primary' : 'about-why-arrow-btn--outline'}`}
+                      role="img"
+                      aria-label={`${reason.title} feature`}
+                    >
+                      <ArrowRight size={17} strokeWidth={2.8} className="about-why-arrow-svg" />
+                    </div>
+                  </div>
+
+                  {/* Flowing Bottom-Right Orange Wave Accent */}
+                  <div className="about-why-bottom-wave" aria-hidden="true">
+                    <svg viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M0 110 C45 75, 95 85, 160 35 L160 110 Z"
+                        fill="url(#whyWaveGrad1)"
+                      />
+                      <path
+                        d="M35 110 C75 88, 115 96, 160 60 L160 110 Z"
+                        fill="url(#whyWaveGrad2)"
+                      />
+                      <defs>
+                        <linearGradient id="whyWaveGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f4974f" stopOpacity="0.25" />
+                          <stop offset="100%" stopColor="#ea580c" stopOpacity="0.45" />
+                        </linearGradient>
+                        <linearGradient id="whyWaveGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f97316" stopOpacity="0.35" />
+                          <stop offset="100%" stopColor="#ea580c" stopOpacity="0.55" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -559,57 +902,129 @@ export default function AboutPage() {
         {/* ==================================================================
             7. CALL TO ACTION BANNER (LET'S BUILD SOMETHING MEANINGFUL)
             ================================================================== */}
-        <section className="about-cta-card">
-          <div className="about-cta-grid">
-            {/* Left Content */}
-            <div>
-              <div className="about-cta-dash" />
-              <h2 className="about-cta-title">Let&apos;s Build Something Meaningful</h2>
-              <div className="about-cta-subtitle">
-                Every great digital product begins with an idea and the right team to bring it to life.
-              </div>
-              <p className="about-cta-desc">
-                Whether you&apos;re launching a startup, modernizing an existing application, or exploring a new digital opportunity, ProvenanceTech is ready to help you take the next step.
-              </p>
-              <Link href="/contact" className="about-cta-button">
-                Discuss Your Project
-                <ArrowRight size={17} strokeWidth={2.4} />
-              </Link>
+        <section className="about-cta-section" id="contact-cta">
+          {/* Outer Ambient Flow Waves for seamless background blending */}
+          <div className="about-cta-outer-silk" aria-hidden="true">
+            <svg className="about-cta-outer-wave-left" viewBox="0 0 420 320" fill="none">
+              <path
+                d="M-80 260 C 60 210, 150 140, 220 50 C 260 -2, 330 -10, 420 40"
+                stroke="url(#cta-outer-stroke-left)"
+                strokeWidth="2.5"
+                opacity="0.8"
+              />
+              <path
+                d="M-100 290 C 40 250, 130 180, 200 100 C 250 40, 310 30, 400 80"
+                fill="url(#cta-outer-fill-left)"
+                opacity="0.45"
+              />
+              <defs>
+                <linearGradient id="cta-outer-stroke-left" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#f97316" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="#ea580c" stopOpacity="0.1" />
+                </linearGradient>
+                <linearGradient id="cta-outer-fill-left" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#fed7aa" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#ffedd5" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <svg className="about-cta-outer-wave-right" viewBox="0 0 420 320" fill="none">
+              <path
+                d="M500 50 C 380 120, 290 190, 200 270 C 150 310, 80 320, -10 290"
+                stroke="url(#cta-outer-stroke-right)"
+                strokeWidth="2.5"
+                opacity="0.8"
+              />
+              <path
+                d="M520 20 C 400 90, 310 160, 220 240 C 170 280, 100 290, 10 260"
+                fill="url(#cta-outer-fill-right)"
+                opacity="0.45"
+              />
+              <defs>
+                <linearGradient id="cta-outer-stroke-right" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="#ea580c" stopOpacity="0.1" />
+                </linearGradient>
+                <linearGradient id="cta-outer-fill-right" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#fed7aa" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#ffedd5" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div className="about-cta-card">
+            {/* Background Corner Wave Accents */}
+            <div className="about-cta-card-bg-waves" aria-hidden="true">
+              <svg className="about-cta-bg-wave-tl" viewBox="0 0 280 180" fill="none">
+                <path d="M-20 60 C 60 40, 140 10, 220 -20" stroke="rgba(234, 88, 12, 0.18)" strokeWidth="2" />
+                <path d="M-20 90 C 70 70, 160 30, 250 -10" stroke="rgba(234, 88, 12, 0.12)" strokeWidth="1.5" />
+              </svg>
+              <svg className="about-cta-bg-wave-br" viewBox="0 0 360 220" fill="none">
+                <path d="M40 240 C 120 180, 220 160, 380 120" stroke="rgba(234, 88, 12, 0.22)" strokeWidth="2" />
+                <path d="M80 250 C 160 200, 260 180, 400 150" stroke="rgba(234, 88, 12, 0.14)" strokeWidth="1.5" />
+              </svg>
             </div>
 
-            {/* Right Desk Scene with Floating Idea Card */}
-            <div className="about-cta-scene">
-              <div className="about-cta-desk-visual">
-                {/* Floating "Have an Idea?" Note Card */}
-                <div className="about-idea-badge">
-                  <div className="about-idea-badge-text">
-                    <span className="about-idea-badge-small">Have an Idea?</span>
-                    <span className="about-idea-badge-bold">Let&apos;s turn it</span>
-                    <span className="about-idea-badge-bold">into reality.</span>
-                  </div>
-                  <Link href="/contact" className="about-idea-badge-btn" aria-label="Let's turn your idea into reality">
-                    <ArrowRight size={16} strokeWidth={2.5} />
-                  </Link>
+            <div className="about-cta-grid">
+              {/* Left Column: Typography and Content */}
+              <div className="about-cta-content-col">
+                <div className="about-cta-dash" />
+                
+                <h2 className="about-cta-title">
+                  Let&apos;s Build Something<br />
+                  <span className="about-cta-title-meaningful">
+                    Meaningful
+                    <svg className="about-cta-swoosh" viewBox="0 0 190 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M4 14C55 5 135 5 186 14" stroke="#ea580c" strokeWidth="3.6" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </h2>
+
+                <div className="about-cta-subtitle">
+                  Every great digital product begins with an idea and the right team to bring it to life.
                 </div>
 
-                {/* Desk Workstation Graphic */}
-                <svg viewBox="0 0 320 180" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  {/* Warm Table Surface */}
-                  <ellipse cx="160" cy="150" rx="140" ry="24" fill="rgba(235, 120, 33, 0.08)" />
-                  <rect x="40" y="142" width="240" height="12" rx="6" fill="#edd9c7" stroke="#dcbeaa" strokeWidth="1" />
-                  {/* Laptop Base & Screen */}
-                  <rect x="110" y="90" width="100" height="52" rx="4" fill="#1e2229" stroke="#333842" strokeWidth="1.5" />
-                  <rect x="115" y="95" width="90" height="42" rx="2" fill="#121418" />
-                  <ellipse cx="160" cy="116" rx="25" ry="12" fill="rgba(235, 120, 33, 0.25)" />
-                  <rect x="95" y="140" width="130" height="4" rx="2" fill="#cbd5e1" />
-                  {/* Mini Desk Plants */}
-                  <ellipse cx="80" cy="144" rx="12" ry="4" fill="rgba(0,0,0,0.08)" />
-                  <path d="M74 134L76 144C76 146 78 147 80 147C82 147 84 146 84 144L86 134H74Z" fill="#e2d2c1" />
-                  <circle cx="80" cy="130" r="7" fill="#65a30d" />
-                  <ellipse cx="245" cy="144" rx="12" ry="4" fill="rgba(0,0,0,0.08)" />
-                  <path d="M239 134L241 144C241 146 243 147 245 147C247 147 249 146 249 144L251 134H239Z" fill="#e2d2c1" />
-                  <circle cx="245" cy="130" r="7" fill="#4d7c0f" />
-                </svg>
+                <p className="about-cta-desc">
+                  Whether you&apos;re launching a startup, modernizing an existing application, or exploring a new digital opportunity, ProvenanceTech is ready to help you take the next step.
+                </p>
+
+                <div className="about-cta-buttons-row">
+                  <Link href="/contact" className="about-cta-btn-primary">
+                    <span>Discuss Your Project</span>
+                    <ArrowRight size={17} strokeWidth={2.4} className="about-cta-btn-arrow" />
+                  </Link>
+                  <Link href="/services" className="about-cta-btn-secondary">
+                    <span className="about-cta-btn-play-icon">
+                      <Play size={12} fill="#ea580c" stroke="#ea580c" />
+                    </span>
+                    <span>See How We Work</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Visual Column: 3D Workstation & Technology Stage */}
+              <div className="about-cta-visual-col">
+                <div className="about-cta-visual-stage">
+                  {/* Glowing platform underglow */}
+                  <div className="about-cta-platform-glow" aria-hidden="true" />
+
+                  {/* 3D Illustration matching reference design */}
+                  <img
+                    src="/images/about-cta-3d-raw.png"
+                    alt="Let's Build Something Meaningful - 3D Technology Showcase"
+                    className="about-cta-3d-illustration"
+                  />
+
+                  {/* Interactive Hotspot for the Floating 'Have an Idea?' Callout */}
+                  <Link
+                    href="/contact"
+                    className="about-cta-callout-hotspot"
+                    aria-label="Have an Idea? Let's turn it into reality"
+                    title="Have an Idea? Let's turn it into reality"
+                  />
+                </div>
               </div>
             </div>
           </div>

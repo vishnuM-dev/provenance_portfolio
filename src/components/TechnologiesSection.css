@@ -176,6 +176,7 @@
   max-width: 1180px;
   margin: 0 auto;
   width: 100%;
+  align-items: start;
 }
 
 @media (max-width: 960px) {
@@ -200,7 +201,7 @@
   transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.35s ease;
   overflow: hidden;
   min-height: 330px;
-  cursor: pointer;
+  cursor: default;
   user-select: none;
 }
 
@@ -992,14 +993,14 @@
    ========================================================================== */
 .tech-card-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
   padding-top: 1.15rem;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   z-index: 2;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .tech-pill-list {
@@ -1007,6 +1008,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.45rem;
+  width: 100%;
 }
 
 .tech-mini-pill {
@@ -1016,17 +1018,21 @@
   background: #ffffff;
   border: 1px solid #ebd8c8;
   border-radius: 9999px;
-  padding: 0.28rem 0.65rem;
+  padding: 0.28rem 0.68rem;
   box-shadow: 0 2px 6px rgba(45, 35, 27, 0.03);
   font-size: 0.76rem;
   font-weight: 700;
   color: #1a130e;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
 }
 
 .tech-mini-pill:hover {
-  transform: translateY(-1.5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  border-color: rgba(234, 88, 12, 0.4);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.12);
 }
 
 .tech-mini-pill-icon {
@@ -1036,6 +1042,11 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tech-mini-pill:hover .tech-mini-pill-icon {
+  transform: scale(1.18);
 }
 
 .tech-mini-pill-icon svg {
@@ -1049,7 +1060,7 @@
   font-weight: 750;
   color: #ea580c;
   background: rgba(234, 88, 12, 0.08);
-  padding: 0.28rem 0.65rem;
+  padding: 0.28rem 0.68rem;
   border-radius: 9999px;
   border: 1px solid rgba(234, 88, 12, 0.24);
   cursor: pointer;
@@ -1057,7 +1068,7 @@
   align-items: center;
   gap: 0.35rem;
   font-family: inherit;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
 
@@ -1066,13 +1077,214 @@
   background: #ea580c;
   color: #ffffff;
   border-color: #ea580c;
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.32);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+}
+
+.tech-overflow-btn.is-expanded {
+  background: rgba(234, 88, 12, 0.12);
+  color: #c2410c;
+  border-color: rgba(234, 88, 12, 0.4);
+}
+
+.tech-overflow-btn.is-expanded:hover {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
 }
 
 .tech-overflow-btn:focus-visible {
   outline: 2px solid #ea580c;
   outline-offset: 2px;
+}
+
+.tech-overflow-arrow {
+  display: inline-block;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+  flex-shrink: 0;
+}
+
+.tech-overflow-arrow.is-rotated {
+  transform: rotate(180deg);
+}
+
+.tech-card.is-card-expanded {
+  border-color: rgba(234, 88, 12, 0.42);
+  box-shadow: 0 16px 36px rgba(45, 35, 27, 0.08), 0 2px 10px rgba(234, 88, 12, 0.06);
+}
+
+.tech-card.is-card-expanded:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(45, 35, 27, 0.1), 0 4px 14px rgba(234, 88, 12, 0.08);
+}
+
+/* ==========================================================================
+   IN-CARD SMOOTH EXPANDABLE TRAY (Pure CSS Grid height animation)
+   ========================================================================== */
+.tech-card-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.28s ease,
+              visibility 0.38s;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+}
+
+.tech-card-drawer.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.tech-card-drawer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.tech-drawer-surface {
+  margin-top: 0.85rem;
+  padding: 0.85rem 0.95rem;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(234, 88, 12, 0.18);
+  border-radius: 18px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(45, 35, 27, 0.03);
+  transition: border-color 0.25s ease;
+}
+
+.tech-drawer-surface-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(223, 213, 200, 0.85);
+}
+
+.tech-drawer-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tech-drawer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ea580c;
+  box-shadow: 0 0 6px rgba(234, 88, 12, 0.5);
+  flex-shrink: 0;
+}
+
+.tech-drawer-label {
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #635345;
+}
+
+.tech-drawer-count-badge {
+  font-size: 0.68rem;
+  font-weight: 750;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.09);
+  padding: 0.12rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.tech-drawer-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  width: 100%;
+}
+
+.tech-drawer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  border: 1px solid #ebd8c8;
+  border-radius: 9999px;
+  padding: 0.3rem 0.68rem;
+  box-shadow: 0 2px 6px rgba(45, 35, 27, 0.03);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #1a130e;
+  cursor: default;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease;
+  will-change: transform, box-shadow;
+}
+
+.tech-drawer-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(234, 88, 12, 0.45);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.16);
+  background: #ffffff;
+}
+
+.tech-drawer-pill:hover .tech-mini-pill-icon {
+  transform: scale(1.18);
+}
+
+/* Staggered entrance animation for badges */
+.tech-card-drawer.is-open .tech-drawer-pill {
+  animation: techBadgeEntrance 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--pill-idx, 0) * 0.045s + 0.06s);
+}
+
+@keyframes techBadgeEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tech-mini-pill-tag {
+  font-size: 0.62rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.09);
+  padding: 0.12rem 0.38rem;
+  border-radius: 6px;
+  margin-left: 0.18rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .tech-drawer-surface {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .tech-drawer-pills {
+    gap: 0.38rem;
+  }
+
+  .tech-drawer-pill {
+    font-size: 0.72rem;
+    padding: 0.26rem 0.55rem;
+  }
+
+  .tech-drawer-label {
+    font-size: 0.68rem;
+  }
 }
 
 /* Orange Circular Arrow Button */

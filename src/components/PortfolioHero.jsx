@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -11,6 +11,73 @@ import {
   Layers,
 } from 'lucide-react';
 import './PortfolioHero.css';
+
+/**
+ * Animated number counter component that rapidly counts up when scrolled into view
+ */
+function CountUpStat({ isVisible, target, suffix = '', duration = 1000 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) {
+      setCount(0);
+      return;
+    }
+
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(target);
+      return;
+    }
+
+    let startTime = null;
+    let frameId = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Fast rapid start with smooth decelerating landing (ease-out cubic)
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(step);
+      } else {
+        setCount(target);
+      }
+    }
+
+    frameId = requestAnimationFrame(step);
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [isVisible, target, duration]);
+
+  return (
+    <span>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+/**
+ * Animated infinity symbol that pops and scales smoothly into view
+ */
+function InfinityStat({ isVisible }) {
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        transition: 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease',
+        transform: isVisible ? 'scale(1) rotate(0deg)' : 'scale(0.25) rotate(-20deg)',
+        opacity: isVisible ? 1 : 0.2,
+      }}
+    >
+      &infin;
+    </span>
+  );
+}
 
 const HERO_PROJECTS = [
   {
@@ -76,38 +143,144 @@ const HERO_PROJECTS = [
 
 export default function PortfolioHero() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const statsRef = useRef(null);
+  const autoPlayTimerRef = useRef(null);
 
   const total = HERO_PROJECTS.length;
 
+  // Listen for reduced motion preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Intersection observer for stats
+  useEffect(() => {
+    const node = statsRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsVisible(true);
+        } else {
+          setStatsVisible(false);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Slide navigation callbacks
+  const nextSlide = useCallback(() => {
+    setActiveIdx((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const prevSlide = useCallback(() => {
+    setActiveIdx((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  const goToSlide = useCallback((index) => {
+    setActiveIdx(index % total);
+  }, [total]);
+
+  // Start or restart the 5-second sliding timer
+  const restartTimer = useCallback(() => {
+    if (autoPlayTimerRef.current) {
+      clearInterval(autoPlayTimerRef.current);
+      autoPlayTimerRef.current = null;
+    }
+
+    if (!isHovered && !prefersReducedMotion) {
+      autoPlayTimerRef.current = setInterval(() => {
+        nextSlide();
+      }, 5000);
+    }
+  }, [isHovered, prefersReducedMotion, nextSlide]);
+
+  // Main automatic 5-second sliding lifecycle
+  useEffect(() => {
+    restartTimer();
+
+    return () => {
+      if (autoPlayTimerRef.current) {
+        clearInterval(autoPlayTimerRef.current);
+        autoPlayTimerRef.current = null;
+      }
+    };
+  }, [restartTimer]);
+
   const handlePrev = (e) => {
     e?.stopPropagation();
-    setActiveIdx((prev) => (prev - 1 + total) % total);
+    prevSlide();
+    restartTimer();
   };
 
   const handleNext = (e) => {
     e?.stopPropagation();
-    setActiveIdx((prev) => (prev + 1) % total);
+    nextSlide();
+    restartTimer();
+  };
+
+  const handleDotClick = (idx) => {
+    goToSlide(idx);
+    restartTimer();
+  };
+
+  const handleCardClick = (idx) => {
+    goToSlide(idx);
+    restartTimer();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      handlePrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      handleNext();
+    }
   };
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
   };
 
   const handleTouchEnd = (e) => {
     if (!touchStartX) return;
     const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-    if (diff > 40) {
-      handleNext();
-    } else if (diff < -40) {
-      handlePrev();
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+
+    // Trigger horizontal swipe only when horizontal gesture is dominant
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
     }
     setTouchStartX(0);
+    setTouchStartY(0);
   };
 
   const handleWheel = (e) => {
-    if (Math.abs(e.deltaX) > 30) {
+    if (Math.abs(e.deltaX) > 35) {
       if (e.deltaX > 0) {
         handleNext();
       } else {
@@ -188,10 +361,18 @@ export default function PortfolioHero() {
           {/* Right Column: Side-Scrollable 3D Angled Perspective Composition */}
           <div
             className="pfh-visual-col"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onFocus={() => setIsHovered(true)}
+            onBlur={() => setIsHovered(false)}
+            onKeyDown={handleKeyDown}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onWheel={handleWheel}
-            aria-label="Interactive project images preview"
+            tabIndex={0}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="ProvenanceTech featured services and project carousel"
           >
             {/* Ambient Background Decorative Arc */}
             <svg
@@ -221,7 +402,7 @@ export default function PortfolioHero() {
               type="button"
               onClick={handlePrev}
               className="pfh-side-scroll-btn pfh-scroll-prev"
-              aria-label="Scroll to previous image"
+              aria-label="Previous service card"
             >
               <ChevronLeft size={20} />
             </button>
@@ -231,7 +412,7 @@ export default function PortfolioHero() {
               type="button"
               onClick={handleNext}
               className="pfh-side-scroll-btn pfh-scroll-next"
-              aria-label="Scroll to next image"
+              aria-label="Next service card"
             >
               <ChevronRight size={20} />
             </button>
@@ -247,9 +428,15 @@ export default function PortfolioHero() {
                   <div
                     key={proj.id}
                     className={`pfh-card ${posClass}`}
-                    onClick={() => setActiveIdx(idx)}
+                    onClick={() => handleCardClick(idx)}
                     role="button"
                     tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleCardClick(idx);
+                      }
+                    }}
                     aria-label={`View ${proj.title} preview`}
                     aria-current={isCenter ? 'true' : 'false'}
                   >
@@ -280,14 +467,14 @@ export default function PortfolioHero() {
             </div>
 
             {/* Side-Scroll Horizontal Slide Indicators */}
-            <div className="pfh-scroll-indicators" role="tablist" aria-label="Image slide selector">
+            <div className="pfh-scroll-indicators" role="tablist" aria-label="Carousel slide indicator pagination">
               {HERO_PROJECTS.map((proj, idx) => (
                 <button
                   key={proj.id}
                   type="button"
-                  onClick={() => setActiveIdx(idx)}
+                  onClick={() => handleDotClick(idx)}
                   className={`pfh-scroll-dot ${activeIdx === idx ? 'active' : ''}`}
-                  aria-label={`Scroll to ${proj.title}`}
+                  aria-label={`Slide to ${proj.title}`}
                   aria-selected={activeIdx === idx}
                 />
               ))}
@@ -296,11 +483,13 @@ export default function PortfolioHero() {
         </div>
 
         {/* Statistics & Supporting Details Row */}
-        <div className="pfh-stats-section">
+        <div className="pfh-stats-section" ref={statsRef}>
           <div className="pfh-stats-grid">
             {/* Stat 1 */}
             <div className="pfh-stat-item">
-              <div className="pfh-stat-value">3+</div>
+              <div className="pfh-stat-value">
+                <CountUpStat isVisible={statsVisible} target={3} suffix="+" duration={850} />
+              </div>
               <div className="pfh-stat-label">Products Delivered</div>
             </div>
 
@@ -308,7 +497,9 @@ export default function PortfolioHero() {
 
             {/* Stat 2 */}
             <div className="pfh-stat-item">
-              <div className="pfh-stat-value">5+</div>
+              <div className="pfh-stat-value">
+                <CountUpStat isVisible={statsVisible} target={5} suffix="+" duration={950} />
+              </div>
               <div className="pfh-stat-label">Industries Served</div>
             </div>
 
@@ -316,7 +507,9 @@ export default function PortfolioHero() {
 
             {/* Stat 3 */}
             <div className="pfh-stat-item">
-              <div className="pfh-stat-value">100%</div>
+              <div className="pfh-stat-value">
+                <CountUpStat isVisible={statsVisible} target={100} suffix="%" duration={1200} />
+              </div>
               <div className="pfh-stat-label">Client Focused</div>
             </div>
 
@@ -324,7 +517,9 @@ export default function PortfolioHero() {
 
             {/* Stat 4 */}
             <div className="pfh-stat-item">
-              <div className="pfh-stat-value pfh-stat-infinity">&infin;</div>
+              <div className="pfh-stat-value pfh-stat-infinity">
+                <InfinityStat isVisible={statsVisible} />
+              </div>
               <div className="pfh-stat-label">Long-Term Partnerships</div>
             </div>
           </div>

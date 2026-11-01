@@ -13,8 +13,8 @@
   overflow-x: hidden;
   background: transparent;
   color: #1a130e;
-  /* Top padding ensures the floating fixed header never obscures the headline */
-  padding: 4.5rem 0 1.5rem;
+  /* Consistent spacing below sticky header */
+  padding: 1.25rem 0 1.5rem;
 }
 
 .bp-container {
@@ -1105,7 +1105,7 @@
 
 @media (max-width: 860px) {
   .bp-page-wrapper {
-    padding: 4.25rem 0 1.5rem;
+    padding: 1rem 0 1.25rem;
   }
 
   .bp-filter-bar {

@@ -13,8 +13,8 @@
   overflow-x: hidden;
   background: transparent;
   color: #1a130e;
-  /* Top padding ensures the floating fixed header never obscures the headline */
-  padding: 4.5rem 0 2rem;
+  /* Consistent spacing below sticky header */
+  padding: 1.25rem 0 1.5rem;
 }
 
 .cp-container {
@@ -476,7 +476,7 @@
   margin-bottom: 1.35rem;
 }
 
-/* Option Card Button */
+/* Option Card Button / Interactive Link */
 .cp-option-card {
   background: #ffffff;
   border: 1.5px solid #ede4dc;
@@ -488,20 +488,32 @@
   text-align: left;
   cursor: pointer;
   position: relative;
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 8px rgba(45, 35, 27, 0.03);
   text-decoration: none;
   color: inherit;
   width: 100%;
 }
 
-.cp-option-card:hover,
-.cp-option-card:focus-visible,
-.cp-option-card.highlighted {
+.cp-option-card:hover {
   border-color: var(--primary, #ea580c);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(234, 88, 12, 0.12);
-  outline: none;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.14);
+}
+
+.cp-option-card:focus-visible {
+  outline: 2px solid var(--primary, #ea580c);
+  outline-offset: 3px;
+  border-color: var(--primary, #ea580c);
+  box-shadow: 0 8px 22px rgba(234, 88, 12, 0.12);
+}
+
+.cp-option-card.highlighted {
+  border-color: #f7bfa0;
+  background: #fffdfb;
 }
 
 .cp-option-top-row {
@@ -522,13 +534,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: all 0.28s ease;
 }
 
 .cp-option-card:hover .cp-option-icon-box {
   background: var(--primary, #ea580c);
   color: #ffffff;
   border-color: var(--primary, #ea580c);
+  transform: scale(1.05);
 }
 
 .cp-option-arrow-box {
@@ -540,14 +553,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.28s ease,
+              border-color 0.28s ease,
+              color 0.28s ease;
 }
 
 .cp-option-card:hover .cp-option-arrow-box {
   border-color: var(--primary, #ea580c);
   color: #ffffff;
   background: var(--primary, #ea580c);
-  transform: translateX(2px);
+  transform: translateX(4px);
 }
 
 .cp-option-title {
@@ -960,7 +976,7 @@
 
 @media (max-width: 860px) {
   .cp-page-wrapper {
-    padding: 5.5rem 0 3.5rem;
+    padding: 1rem 0 1.5rem;
   }
 
   .cp-main-grid {
@@ -1007,4 +1023,70 @@
   .cp-time-slots-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .cp-inquiry-card {
+    padding: 2rem 1.25rem;
+    border-radius: 20px;
+  }
+}
+
+/* ==========================================================================
+   ON-PAGE PROJECT INQUIRY & CONSULTATION SECTION
+   ========================================================================== */
+.cp-inquiry-section {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  scroll-margin-top: 5rem;
+  width: 100%;
+}
+
+.cp-inquiry-card {
+  background: #ffffff;
+  border: 1px solid #e8ded4;
+  border-radius: 28px;
+  padding: 3.25rem 3rem;
+  box-shadow: 0 18px 50px rgba(45, 35, 27, 0.06);
+  max-width: 920px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cp-inquiry-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ea580c 0%, #f97316 50%, #fdba74 100%);
+}
+
+.cp-inquiry-header {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cp-inquiry-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1a130e;
+  line-height: 1.25;
+  margin: 0.65rem 0 0.55rem;
+}
+
+.cp-inquiry-sub {
+  font-size: 0.96rem;
+  color: #6e6054;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cp-inquiry-form-element {
+  width: 100%;
 }

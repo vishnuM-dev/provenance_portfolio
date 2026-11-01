@@ -9,6 +9,8 @@ import ProjectCtaSection from '@/components/ProjectCtaSection';
 import HeroDevicesAnimation from '@/components/HeroDevicesAnimation';
 import HeroInteractiveTitle from '@/components/HeroInteractiveTitle';
 import WhatWeBuildSection from '@/components/WhatWeBuildSection';
+import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import AgileLifecycleRoadmap from '@/components/AgileLifecycleRoadmap';
 import '@/components/ServicesCards.css';
 import {
   Code2,
@@ -121,7 +123,7 @@ export default async function HomePage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2.25rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {/* 1. Hero Section - Premium Asymmetric Two-Column Landing Architecture */}
       <section className="hero-section-new" aria-label="Provenance Technologies Studio Introduction">
         <div className="hero-ambient-mesh-new" aria-hidden="true" />
@@ -217,162 +219,11 @@ export default async function HomePage() {
       {/* 3. Featured Projects & Case Studies (Image 1 Normal & Image 2 Hover Spec) */}
       <CaseStudiesSection showViewAllBtn={false} />
 
-      {/* 4. Why Choose Us (Practical Business Benefits) */}
-      <section className="container reveal-on-scroll">
-        <div style={{ padding: '0.25rem 0' }}>
-          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 1.5rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
-              Engineering Edge
-            </div>
-            <h2 style={{ fontSize: '2.4rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-              Why Choose ProvenanceTech?
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
-              We combine enterprise architectural rigor with agile delivery speed so your digital products launch faster and stay reliable.
-            </p>
-          </div>
+      {/* 4. Why Choose Us (Asymmetric Bento Grid) */}
+      <WhyChooseUsSection />
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-            gap: '1.75rem',
-            alignItems: 'stretch',
-          }}>
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <CheckCircle2 size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Tailored to Business Requirements
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Zero generic cookie-cutter templates. Every database schema, user workflow, and API endpoint is built around your specific business model.
-              </p>
-            </div>
-
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <Zap size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Modern & Maintainable Stack
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Built on Next.js 16 App Router, React 19, React Native, and Amazon DynamoDB for sub-10ms queries, high developer velocity, and clean code.
-              </p>
-            </div>
-
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <Smartphone size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Responsive & User-Friendly
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Engineered with touch-first accessibility, pixel-perfect fluid layouts, and seamless operation across iPhones, Androids, iPads, and desktops.
-              </p>
-            </div>
-
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <ShieldCheck size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Secure Database & Cloud Integration
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Encrypted session tokens, least-privilege IAM roles, automated backups, and Cloudinary media pipelines safeguarding client and user data.
-              </p>
-            </div>
-
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <Clock size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Transparent Agile Process
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Bi-weekly sprint demos, shared staging environments, and direct Slack/Discord channels with senior engineers—no gatekeeping.
-              </p>
-            </div>
-
-            <div style={{ background: '#fffbf7', padding: '1.75rem', borderRadius: '22px', border: '1px solid rgba(220, 195, 170, 0.35)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>
-                <LifeBuoy size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.45rem', color: 'var(--text-primary)', minHeight: '44px', lineHeight: 1.3 }}>
-                Reliable Post-Launch Support
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                Continuous SLA monitoring, zero-downtime security patch deployments, performance tracking, and roadmap feature upgrades.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Five-Step Development Process */}
-      <section className="container reveal-on-scroll">
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
-          <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
-            Agile Lifecycle
-          </div>
-          <h2 style={{ fontSize: '2.4rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-            Our 5-Step Development Process
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
-            A disciplined, transparent engineering methodology taking your product from initial requirements to production launch.
-          </p>
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
-          gap: '1.25rem',
-          alignItems: 'stretch',
-        }}>
-          {[
-            { step: '01', title: 'Discovery & Requirements', desc: 'In-depth stakeholder interviews, technical feasibility analysis, and user journey roadmapping.' },
-            { step: '02', title: 'Planning & UI/UX Design', desc: 'Wireframing, clickable high-fidelity Figma prototypes, and complete design system token setup.' },
-            { step: '03', title: 'Development & API Integration', desc: 'Agile sprints building Next.js web apps, mobile clients, Route Handlers, and DynamoDB data models.' },
-            { step: '04', title: 'Testing & Quality Assurance', desc: 'Automated test execution, cross-device mobile verification, security audits, and load testing.' },
-            { step: '05', title: 'Deployment & Ongoing Support', desc: 'Docker containerization, automated CI/CD release, App Store publishing, and 24/7 SLA maintenance.' }
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="glass-panel"
-              style={{
-                padding: '2rem 1.5rem',
-                background: '#ffffff',
-                borderRadius: '24px',
-                border: '1px solid rgba(220, 195, 170, 0.45)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                height: '100%',
-              }}
-            >
-              <div style={{
-                fontSize: '1.8rem',
-                fontWeight: 900,
-                color: 'var(--primary)',
-                marginBottom: '0.75rem',
-                lineHeight: 1,
-              }}>
-                {item.step}
-              </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem', lineHeight: 1.3, minHeight: '44px' }}>
-                {item.title}
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, marginTop: 'auto' }}>
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 5. Five-Step Development Process (Agile Lifecycle Roadmap) */}
+      <AgileLifecycleRoadmap />
 
       {/* 6. Technologies We Use (Categorized) */}
       <TechnologiesSection id="technologies" />

@@ -115,6 +115,23 @@ export default function ContactPage() {
     }
   };
 
+  // Smooth scroll to on-page inquiry form with optional preselected service focus
+  const scrollToInquiryForm = (preselectedType) => {
+    if (preselectedType) {
+      setProjectForm((prev) => ({ ...prev, projectType: preselectedType }));
+    }
+    const target = document.getElementById('inquiry-form');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const nameInput = document.getElementById('p-name');
+      if (nameInput) {
+        setTimeout(() => {
+          nameInput.focus({ preventScroll: true });
+        }, 400);
+      }
+    }
+  };
+
   // Submit Project Inquiry
   const handleProjectSubmit = async (e) => {
     e.preventDefault();
@@ -289,11 +306,11 @@ export default function ContactPage() {
                     </span>
                   </div>
                   <a
-                    href="mailto:engineering@provenancetech.com"
+                    href="mailto:provenancetech1@gmail.com"
                     className="cp-direct-link"
-                    title="engineering@provenancetech.com"
+                    title="provenancetech1@gmail.com"
                   >
-                    engineering@provenancetech.com
+                    provenancetech1@gmail.com
                   </a>
                 </div>
 
@@ -350,23 +367,25 @@ export default function ContactPage() {
               </svg>
 
               {/* Floating Circular Buttons along the Curve */}
-              <button
-                type="button"
-                onClick={() => setActiveModal('phone')}
+              <a
+                href="tel:+918074407095"
                 className="cp-curve-btn cp-curve-btn-phone"
-                aria-label="Direct Phone Consultation"
+                aria-label="Direct Phone Consultation at +91 80744 07095"
               >
                 <Phone size={18} />
-              </button>
+              </a>
 
-              <button
-                type="button"
-                onClick={() => setActiveModal('project')}
+              <a
+                href="#inquiry-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToInquiryForm('Web Application Development');
+                }}
                 className="cp-curve-btn cp-curve-btn-send"
                 aria-label="Send Project Inquiry"
               >
                 <Send size={17} />
-              </button>
+              </a>
 
               {/* Floating Speech Bubble - Safely placed inside the arch boundaries */}
               <div className="cp-floating-speech">
@@ -432,9 +451,12 @@ export default function ContactPage() {
               {/* 2x2 Grid of 4 Interactive Contact Choices */}
               <div className="cp-options-grid">
                 {/* Option 1: Discuss a Project */}
-                <button
-                  type="button"
-                  onClick={() => setActiveModal('project')}
+                <a
+                  href="#inquiry-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToInquiryForm('Web Application Development');
+                  }}
                   className="cp-option-card highlighted"
                   aria-label="Discuss a project with our engineering team"
                 >
@@ -448,14 +470,13 @@ export default function ContactPage() {
                   </div>
                   <div className="cp-option-title">Discuss a Project</div>
                   <p className="cp-option-desc">Talk to our team about your requirements.</p>
-                </button>
+                </a>
 
                 {/* Option 2: Talk on Phone */}
-                <button
-                  type="button"
-                  onClick={() => setActiveModal('phone')}
+                <a
+                  href="tel:+918074407095"
                   className="cp-option-card"
-                  aria-label="Talk on phone with our team"
+                  aria-label="Call ProvenanceTech at +91 80744 07095"
                 >
                   <div className="cp-option-top-row">
                     <div className="cp-option-icon-box">
@@ -467,14 +488,13 @@ export default function ContactPage() {
                   </div>
                   <div className="cp-option-title">Talk on Phone</div>
                   <p className="cp-option-desc">Speak directly with our team.</p>
-                </button>
+                </a>
 
                 {/* Option 3: Send an Email */}
-                <button
-                  type="button"
-                  onClick={() => setActiveModal('email')}
+                <a
+                  href="mailto:provenancetech1@gmail.com?subject=Project%20Inquiry%20-%20ProvenanceTech"
                   className="cp-option-card"
-                  aria-label="Send an email to our engineering team"
+                  aria-label="Send an email to provenancetech1@gmail.com"
                 >
                   <div className="cp-option-top-row">
                     <div className="cp-option-icon-box">
@@ -486,14 +506,17 @@ export default function ContactPage() {
                   </div>
                   <div className="cp-option-title">Send an Email</div>
                   <p className="cp-option-desc">Share your details and we&apos;ll respond.</p>
-                </button>
+                </a>
 
                 {/* Option 4: Schedule a Meeting */}
-                <button
-                  type="button"
-                  onClick={() => setActiveModal('meeting')}
+                <a
+                  href="#inquiry-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToInquiryForm('Schedule a Meeting');
+                  }}
                   className="cp-option-card"
-                  aria-label="Schedule a 30-minute consultation meeting"
+                  aria-label="Schedule a consultation meeting with our engineering team"
                 >
                   <div className="cp-option-top-row">
                     <div className="cp-option-icon-box">
@@ -505,12 +528,12 @@ export default function ContactPage() {
                   </div>
                   <div className="cp-option-title">Schedule a Meeting</div>
                   <p className="cp-option-desc">Pick a time that works for you.</p>
-                </button>
+                </a>
               </div>
 
               {/* Dedicated WhatsApp Contact Panel (Horizontal) */}
               <a
-                href="https://wa.me/918074407095?text=Hello%20ProvenanceTech%2C%20I%20would%20like%20to%20discuss%20a%20software%20project."
+                href="https://wa.me/918074407095?text=Hello%20ProvenanceTech%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20your%20team."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cp-whatsapp-panel"
@@ -533,6 +556,181 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* ========================================================= */}
+        {/* SECTION: PROJECT INQUIRY & CONSULTATION ON-PAGE FORM      */}
+        {/* ========================================================= */}
+        <section id="inquiry-form" className="cp-inquiry-section" aria-label="Project Inquiry and Consultation Form">
+          <div className="cp-inquiry-card">
+            <div className="cp-inquiry-header">
+              <div className="cp-badge-pill">
+                <Sparkles size={12} className="cp-badge-icon" />
+                <span>PROJECT INQUIRY &amp; CONSULTATION</span>
+              </div>
+              <h2 className="cp-inquiry-title">
+                Tell Us What You&apos;re Building
+              </h2>
+              <p className="cp-inquiry-sub">
+                Share your requirements, business goals, or schedule a meeting. Our engineering architects review every submission and respond within 24 hours.
+              </p>
+            </div>
+
+            {projectStatus.msg && (
+              <div className={`cp-alert ${projectStatus.success ? 'cp-alert-success' : 'cp-alert-error'}`}>
+                {projectStatus.success ? <CheckCheck size={18} /> : <AlertCircle size={18} />}
+                <span>{projectStatus.msg}</span>
+              </div>
+            )}
+
+            {!projectStatus.success && (
+              <form onSubmit={handleProjectSubmit} className="cp-inquiry-form-element">
+                {/* Row 1: Name & Email */}
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label htmlFor="p-name" className="cp-form-label">Full Name *</label>
+                    <input
+                      id="p-name"
+                      type="text"
+                      required
+                      placeholder="e.g. Alex Mitchell"
+                      value={projectForm.name}
+                      onChange={(e) => setProjectForm({ ...projectForm, name: e.target.value })}
+                      className="cp-form-input"
+                    />
+                  </div>
+
+                  <div className="cp-form-group">
+                    <label htmlFor="p-email" className="cp-form-label">Work Email *</label>
+                    <input
+                      id="p-email"
+                      type="email"
+                      required
+                      placeholder="e.g. alex@company.com"
+                      value={projectForm.email}
+                      onChange={(e) => setProjectForm({ ...projectForm, email: e.target.value })}
+                      className="cp-form-input"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2: Organization & Service Focus */}
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label htmlFor="p-org" className="cp-form-label">Company / Organization</label>
+                    <input
+                      id="p-org"
+                      type="text"
+                      placeholder="e.g. Horizon Labs Inc."
+                      value={projectForm.organization}
+                      onChange={(e) => setProjectForm({ ...projectForm, organization: e.target.value })}
+                      className="cp-form-input"
+                    />
+                  </div>
+
+                  <div className="cp-form-group">
+                    <label htmlFor="p-service" className="cp-form-label">Service Focus / Purpose</label>
+                    <select
+                      id="p-service"
+                      value={projectForm.projectType}
+                      onChange={(e) => setProjectForm({ ...projectForm, projectType: e.target.value })}
+                      className="cp-form-select"
+                    >
+                      <option value="Web Application Development">Web Application Development</option>
+                      <option value="Schedule a Meeting">Schedule a Meeting</option>
+                      <option value="Mobile App (iOS & Android)">Mobile App (iOS & Android)</option>
+                      <option value="Custom Enterprise Software">Custom Enterprise Software</option>
+                      <option value="Full-Stack Engineering">Full-Stack Engineering</option>
+                      <option value="UI/UX & Design Systems">UI/UX & Design Systems</option>
+                      <option value="Cloud & DynamoDB Architecture">Cloud & DynamoDB Architecture</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Row 3: Budget & Timeline */}
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label htmlFor="p-budget" className="cp-form-label">Estimated Budget</label>
+                    <select
+                      id="p-budget"
+                      value={projectForm.budget}
+                      onChange={(e) => setProjectForm({ ...projectForm, budget: e.target.value })}
+                      className="cp-form-select"
+                    >
+                      <option value="Under ₹2,50,000">&lt; ₹2,50,000</option>
+                      <option value="₹2,50,000 - ₹5,00,000">₹2,50,000 - ₹5,00,000</option>
+                      <option value="₹5,00,000 - ₹10,00,000">₹5,00,000 - ₹10,00,000</option>
+                      <option value="₹10,00,000+">₹10,00,000+</option>
+                      <option value="Flexible / Discussion">Flexible / Consultation</option>
+                    </select>
+                  </div>
+
+                  <div className="cp-form-group">
+                    <label htmlFor="p-timeline" className="cp-form-label">Target Timeline</label>
+                    <select
+                      id="p-timeline"
+                      value={projectForm.timeline}
+                      onChange={(e) => setProjectForm({ ...projectForm, timeline: e.target.value })}
+                      className="cp-form-select"
+                    >
+                      <option value="1 - 3 Months">1 - 3 Months</option>
+                      <option value="3 - 6 Months">3 - 6 Months</option>
+                      <option value="6 - 12 Months">6 - 12 Months</option>
+                      <option value="Immediate Consultation">Immediate Consultation</option>
+                      <option value="Ongoing Retainer">Ongoing Retainer</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Row 4: Message */}
+                <div className="cp-form-group" style={{ marginBottom: '1.5rem' }}>
+                  <label htmlFor="p-msg" className="cp-form-label">Project Requirements &amp; Goals *</label>
+                  <textarea
+                    id="p-msg"
+                    required
+                    rows={4}
+                    placeholder="Describe what your product needs to do, key challenges, or preferred meeting schedule..."
+                    value={projectForm.message}
+                    onChange={(e) => setProjectForm({ ...projectForm, message: e.target.value })}
+                    className="cp-form-textarea"
+                  />
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={projectStatus.loading}
+                  className="cp-submit-btn"
+                >
+                  {projectStatus.loading ? (
+                    <>
+                      <Loader2 className="animate-spin" size={18} />
+                      <span>Transmitting Inquiry...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      <span>Submit Project Inquiry</span>
+                      <ArrowRight size={15} />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+
+            {projectStatus.success && (
+              <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+                <button
+                  type="button"
+                  onClick={() => setProjectStatus({ loading: false, msg: '', success: false })}
+                  className="cp-submit-btn"
+                  style={{ width: 'auto', margin: '0 auto', padding: '0.75rem 2rem' }}
+                >
+                  Submit Another Inquiry
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
 
       {/* ========================================================= */}
@@ -881,7 +1079,7 @@ export default function ContactPage() {
               <div className="cp-quick-dialog-info">
                 <span className="cp-quick-dialog-label">Technical Dispatch</span>
                 <span className="cp-quick-dialog-val" style={{ fontSize: '1rem' }}>
-                  engineering@provenancetech.com
+                  provenancetech1@gmail.com
                 </span>
                 <span style={{ fontSize: '0.75rem', color: '#6e6054', marginTop: '2px' }}>
                   Architecture &amp; Development Queue
@@ -889,7 +1087,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="button"
-                onClick={() => handleCopy('engineering@provenancetech.com', 'Email address')}
+                onClick={() => handleCopy('provenancetech1@gmail.com', 'Email address')}
                 className="cp-copy-btn"
                 aria-label="Copy engineering email"
               >
@@ -903,7 +1101,7 @@ export default function ContactPage() {
               <div className="cp-quick-dialog-info">
                 <span className="cp-quick-dialog-label">General Communications</span>
                 <span className="cp-quick-dialog-val" style={{ fontSize: '1rem' }}>
-                  provenancetech@gmail.com
+                  provenancetech1@gmail.com
                 </span>
                 <span style={{ fontSize: '0.75rem', color: '#6e6054', marginTop: '2px' }}>
                   General Inquiries &amp; Partnerships
@@ -911,7 +1109,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="button"
-                onClick={() => handleCopy('provenancetech@gmail.com', 'Email address')}
+                onClick={() => handleCopy('provenancetech1@gmail.com', 'Email address')}
                 className="cp-copy-btn"
                 aria-label="Copy general email"
               >
@@ -922,7 +1120,7 @@ export default function ContactPage() {
 
             <div style={{ display: 'flex', gap: '0.85rem', marginTop: '1.5rem' }}>
               <a
-                href="mailto:engineering@provenancetech.com?subject=Project%20Inquiry%20%E2%80%94%20ProvenanceTech"
+                href="mailto:provenancetech1@gmail.com?subject=Project%20Inquiry%20-%20ProvenanceTech"
                 className="cp-submit-btn"
                 style={{ textDecoration: 'none', textAlign: 'center' }}
               >
