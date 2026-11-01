@@ -7,7 +7,7 @@
 .wwb-journey-container {
   position: relative;
   width: 100%;
-  padding: 3.5rem 0 2rem;
+  padding: 1rem 0 1rem;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -253,34 +253,6 @@
   text-transform: capitalize;
 }
 
-/* Quick Jump Stepper Dots */
-.wwb-stepper-dots-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0;
-}
-
-.wwb-stepper-dot {
-  width: 24px;
-  height: 6px;
-  border-radius: 9999px;
-  background: #EEEAE5;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s ease;
-}
-
-.wwb-stepper-dot:hover {
-  background: #d8d0c6;
-}
-
-.wwb-stepper-dot.is-active {
-  width: 48px;
-  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
-  box-shadow: 0 0 12px rgba(234, 88, 12, 0.6), 0 2px 6px rgba(234, 88, 12, 0.35);
-}
 
 /* ==========================================================================
    RIGHT COLUMN: Connected 6-Stage Service Journey
@@ -1278,7 +1250,7 @@
 /* Mobile Screens (< 768px) */
 @media (max-width: 767px) {
   .wwb-journey-container {
-    padding: 2rem 0 1rem;
+    padding: 1rem 0 0.75rem;
   }
 
   .wwb-editorial-grid {
@@ -1330,10 +1302,6 @@
 
   .wwb-stat-item {
     width: 100%;
-  }
-
-  .wwb-stepper-dots-row {
-    display: none;
   }
 }
 

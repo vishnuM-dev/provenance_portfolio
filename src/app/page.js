@@ -121,7 +121,7 @@ export default async function HomePage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2.25rem' }}>
       {/* 1. Hero Section - Premium Asymmetric Two-Column Landing Architecture */}
       <section className="hero-section-new" aria-label="Provenance Technologies Studio Introduction">
         <div className="hero-ambient-mesh-new" aria-hidden="true" />
@@ -219,8 +219,8 @@ export default async function HomePage() {
 
       {/* 4. Why Choose Us (Practical Business Benefits) */}
       <section className="container reveal-on-scroll">
-        <div style={{ padding: '1.25rem 0' }}>
-          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3rem' }}>
+        <div style={{ padding: '0.25rem 0' }}>
+          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 1.5rem' }}>
             <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
               Engineering Edge
             </div>
@@ -315,7 +315,7 @@ export default async function HomePage() {
 
       {/* 5. Five-Step Development Process */}
       <section className="container reveal-on-scroll">
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
           <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.35rem' }}>
             Agile Lifecycle
           </div>

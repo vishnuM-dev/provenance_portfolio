@@ -683,7 +683,7 @@ export default function WhatWeBuildSection() {
   const progressPercent = Math.min(100, Math.max(0, (activeStage / (STAGES_DATA.length - 1)) * 100));
 
   return (
-    <section ref={sectionRef} className="container" id="services" style={{ padding: '0.75rem 0 3rem' }}>
+    <section ref={sectionRef} className="container" id="services" style={{ padding: '0.5rem 0 1rem' }}>
       <div className="wwb-journey-container">
         {/* Soft background ambient lighting meshes (Warm ivory / amber only) */}
         <div className="wwb-ambient-mesh-warm" aria-hidden="true" />
@@ -762,24 +762,6 @@ export default function WhatWeBuildSection() {
                     <div className="wwb-stat-label">Client Satisfaction</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Quick Jump Stage Stepper Dots */}
-              <div className="wwb-stepper-dots-row" aria-label="Step Journey Navigation">
-                {STAGES_DATA.map((s, idx) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => {
-                      const el = document.getElementById(s.id);
-                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      setActiveStage(idx);
-                    }}
-                    className={`wwb-stepper-dot ${activeStage === idx ? 'is-active' : ''}`}
-                    title={`Go to Stage ${s.num}: ${s.title}`}
-                    aria-label={`Go to Stage ${s.num}: ${s.title}`}
-                  />
-                ))}
               </div>
             </div>
           </aside>

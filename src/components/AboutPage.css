@@ -11,7 +11,7 @@
   background: transparent;
 
   color: var(--text-primary, #141518);
-  padding-bottom: 3rem;
+  padding-bottom: 1.5rem;
 }
 
 /* Background Ambient Lighting Effects */
@@ -379,7 +379,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
-  margin-bottom: 5.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .about-mv-card {
@@ -446,7 +446,7 @@
    Section 3: What We Do (4-Card Grid)
    -------------------------------------------------------------------------- */
 .about-capabilities-section {
-  margin-bottom: 5.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .about-cards-grid-4 {
@@ -512,7 +512,7 @@
   border: none;
   box-shadow: none;
   padding: 1.5rem 0;
-  margin-bottom: 5.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .about-tech-groups-grid {
@@ -593,7 +593,7 @@
    -------------------------------------------------------------------------- */
 .about-values-section,
 .about-why-section {
-  margin-bottom: 5.5rem;
+  margin-bottom: 2.5rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -604,10 +604,10 @@
   border-radius: 30px;
   border: 1px solid #ebd9c8;
   box-shadow: 0 16px 42px rgba(45, 35, 27, 0.05);
-  padding: 3.5rem 3.5rem 3rem;
+  padding: 2.25rem 2.5rem 2rem;
   position: relative;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .about-cta-grid {

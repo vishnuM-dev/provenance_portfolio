@@ -239,7 +239,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '2.25rem 0',
+          padding: '1.25rem 0',
           background: 'transparent',
         }}
       >
@@ -371,7 +371,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 04: TECHNOLOGIES WE USE                           */}
       {/* ========================================================= */}
-      <section style={{ padding: '2.25rem 0' }}>
+      <section style={{ padding: '1.25rem 0' }}>
         <div className="container">
           <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
@@ -511,7 +511,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '2.25rem 0',
+          padding: '1.25rem 0',
           background: 'transparent',
         }}
       >
@@ -645,7 +645,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 06: WHY PROVENANCETECH?                           */}
       {/* ========================================================= */}
-      <section style={{ padding: '2.25rem 0' }}>
+      <section style={{ padding: '1.25rem 0' }}>
         <div className="container">
           <div style={{ maxWidth: '780px', margin: '0 auto 1.5rem', textAlign: 'center' }}>
             <div
@@ -752,7 +752,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       <section
         style={{
-          padding: '2.25rem 0',
+          padding: '1.25rem 0',
           background: 'transparent',
         }}
       >
@@ -863,7 +863,7 @@ export default function PortfolioPage() {
       {/* ========================================================= */}
       {/* SECTION 08: CONTACT & PROJECT INQUIRY                     */}
       {/* ========================================================= */}
-      <section id="contact" style={{ padding: '2.5rem 0 1.5rem', scrollMarginTop: '80px' }}>
+      <section id="contact" style={{ padding: '1.5rem 0 1.25rem', scrollMarginTop: '80px' }}>
         <div className="container" style={{ maxWidth: '860px', margin: '0 auto' }}>
           <div
             style={{

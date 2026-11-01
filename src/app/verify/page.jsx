@@ -82,7 +82,7 @@ function VerifyContent() {
   };
 
   return (
-    <div className="container-narrow" style={{ padding: '3.5rem 1.5rem 5rem' }}>
+    <div className="container-narrow" style={{ padding: '2rem 1.5rem 2.25rem' }}>
       {/* Header */}
       <div className="section-header">
         <div style={{

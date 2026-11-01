@@ -4,7 +4,7 @@
    ========================================================= */
 
 .csd-page {
-  padding: 1.5rem 0 5rem;
+  padding: 1.25rem 0 2.25rem;
   color: #1a130e;
   background: transparent;
 }
@@ -679,7 +679,7 @@
    5. 06. Project Timeline
    ------------------------------------------------------------- */
 .csd-section-timeline {
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .csd-section-header {
@@ -788,7 +788,7 @@
    6. 07. Screenshots & Product Gallery
    ------------------------------------------------------------- */
 .csd-section-gallery {
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .csd-gallery-header-row {
@@ -930,7 +930,7 @@
    7. 08. Client Testimonial
    ------------------------------------------------------------- */
 .csd-section-testimonial {
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .csd-testimonial-card {
@@ -1000,7 +1000,7 @@
    8. Related Projects Section
    ------------------------------------------------------------- */
 .csd-section-related {
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .csd-related-grid {

@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function TechnologiesPage() {
   return (
-    <div style={{ paddingTop: '2.5rem', paddingBottom: '5rem' }}>
+    <div style={{ paddingTop: '1.5rem', paddingBottom: '2.25rem' }}>
       {/* Page Hero Header */}
-      <section style={{ padding: '2.5rem 0 1rem' }}>
+      <section style={{ padding: '1.25rem 0 0.5rem' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '840px', margin: '0 auto' }}>
           <div
             className="section-badge"
@@ -49,7 +49,7 @@ export default function TechnologiesPage() {
               color: '#382e25',
               lineHeight: 1.7,
               maxWidth: '720px',
-              margin: '0 auto 2rem',
+              margin: '0 auto 1.25rem',
               fontWeight: 450,
             }}
           >
@@ -63,7 +63,7 @@ export default function TechnologiesPage() {
               justifyContent: 'center',
               flexWrap: 'wrap',
               gap: '1rem',
-              marginTop: '1.5rem',
+              marginTop: '1rem',
             }}
           >
             <div
