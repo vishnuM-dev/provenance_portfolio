@@ -661,12 +661,49 @@ a {
   gap: 0.75rem;
 }
 
-@media (min-width: 1024px) {
+/* Show horizontal navigation on Tablet (768px+) and Desktop */
+@media (min-width: 768px) {
   .desktop-floating-nav {
     display: flex !important;
   }
   .mobile-toggle-btn {
     display: none !important;
+  }
+}
+
+/* Tablet-specific horizontal nav refinements (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .floating-header-wrapper {
+    padding: 0.45rem 1rem 0.2rem;
+  }
+  .floating-navbar-container {
+    height: 54px;
+    padding: 0.25rem 0.95rem;
+    max-width: 100%;
+  }
+  .brand-logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-title {
+    font-size: 1.12rem;
+  }
+  .desktop-floating-nav {
+    gap: 0.25rem;
+  }
+  .nav-items-list {
+    gap: 0.25rem;
+  }
+  .floating-nav-link {
+    font-size: 0.825rem;
+    padding: 0.4rem 0.72rem;
+    font-weight: 550;
+  }
+  .floating-nav-link.active {
+    background: #faede2 !important;
+    color: #ea580c !important;
+    font-weight: 700;
+    box-shadow: none !important;
   }
 }
 
@@ -704,8 +741,8 @@ a {
 .floating-nav-link.active {
   color: var(--primary, #eb7821);
   font-weight: 700;
-  background: rgba(235, 120, 33, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(235, 120, 33, 0.28);
+  background: #faede2;
+  box-shadow: inset 0 0 0 1px rgba(235, 120, 33, 0.22);
 }
 
 .nav-active-dot {
@@ -1523,104 +1560,447 @@ input::-ms-clear {
   }
 }
 
-/* Responsive Breakpoints for Hero */
-@media (max-width: 1024px) {
-  .hero-split-grid {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-    text-align: center;
+/* ========================================================
+   BASE RULES FOR RESPONSIVE HERO COMPONENTS
+======================================================== */
+.desktop-only-benefits {
+  display: flex;
+}
+
+.hero-responsive-bottom-group {
+  display: none;
+  width: 100%;
+}
+
+.hero-tablet-feature-strip {
+  display: none;
+}
+
+.hero-carousel-dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.hero-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #dfd5c8;
+  transition: all 0.3s ease;
+}
+
+.hero-dot--active {
+  width: 20px;
+  border-radius: 9999px;
+  background: #ea580c;
+}
+
+.hero-mobile-feature-grid {
+  display: none;
+}
+
+/* Staged Entry Animations */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
-  .hero-section-new + .services-section-wrapper {
-    margin-top: -2.5rem;
-  }
-  .hero-content-col {
-    align-items: center;
-    text-align: center;
-  }
-  .hero-paragraph-lead {
-    margin-inline: auto;
-  }
-  .hero-cta-buttons-row {
-    justify-content: center;
-  }
-  .hero-benefits-strip {
-    justify-content: center;
-    margin-inline: auto;
-  }
-  .hero-animation-stage {
-    min-height: auto;
-    max-width: 600px;
-  }
-  .hero-handwritten-badge {
-    right: 8%;
-  }
-  .hero-growth-pill {
-    left: 4%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 640px) {
+@keyframes heroScaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hero-badge-pill {
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+}
+
+.hero-title-main {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+.hero-paragraph-lead {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
+}
+
+.hero-cta-buttons-row {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+.hero-visual-col {
+  animation: heroScaleFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+.hero-responsive-bottom-group {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s backwards;
+}
+
+/* ========================================================
+   TABLET DESIGN (768px – 1023px)
+   Matches LEFT side of Reference Design:
+   Two-column composition, horizontal CTAs, bottom feature strip & dots
+======================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
   .hero-section-new {
-    padding: 2.25rem 0 0.5rem;
+    padding: 1.75rem 0 1.25rem;
   }
   .hero-section-new + .services-section-wrapper {
-    margin-top: -2rem;
+    margin-top: -1.5rem;
   }
-  .hero-benefit-divider {
-    display: none;
+  .desktop-only-benefits {
+    display: none !important;
   }
-  .hero-benefits-strip {
-    gap: 1.15rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    width: 100%;
-  }
-  .hero-benefit-item {
-    justify-content: center;
+  .hero-split-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr) !important;
+    gap: 2rem;
+    align-items: center;
     text-align: left;
   }
-  .hero-handwritten-badge {
-    display: none;
+  .hero-content-col {
+    align-items: flex-start;
+    text-align: left;
   }
-  .hero-plant-element {
-    width: 85px;
-    height: 110px;
-    left: 1%;
-    bottom: 14%;
+  .hero-badge-pill {
+    margin-bottom: 1rem;
   }
-  .hero-growth-pill {
-    bottom: 8%;
-    left: 0%;
-    transform: scale(0.9);
+  .hero-title-main {
+    font-size: clamp(2rem, 3.4vw, 2.85rem);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    margin-bottom: 1rem;
+    text-align: left;
   }
-  .hero-animation-stage {
-    min-height: auto;
+  .hero-paragraph-lead {
+    font-size: 0.95rem;
+    line-height: 1.62;
+    margin-bottom: 1.75rem;
+    max-width: 100%;
+    text-align: left;
   }
-}
-
-@media (max-width: 480px) {
   .hero-cta-buttons-row {
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    width: auto;
   }
   .hero-btn-explore,
   .hero-btn-talk {
-    width: 100%;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+    width: auto;
+    white-space: nowrap;
   }
-  .hero-title-highlight-box {
-    display: inline;
-  }
-  .hero-title-underline-svg {
+  .hero-visual-col {
     width: 100%;
-    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .hero-animation-stage {
-    min-height: auto;
+    max-width: 100%;
+    position: relative;
+  }
+  .hero-handwritten-badge {
+    display: flex !important;
+    position: absolute;
+    top: -3%;
+    right: 10%;
+    z-index: 14;
+    pointer-events: none;
+    animation: floatHandwritten 5s ease-in-out infinite alternate;
+  }
+  .hero-handwritten-text {
+    font-size: 0.88rem;
+    line-height: 1.25;
   }
   .hero-growth-pill {
-    display: none;
+    display: none !important;
+  }
+  .hero-responsive-bottom-group {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .hero-tablet-feature-strip {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(220, 195, 170, 0.55);
+    border-radius: 9999px;
+    padding: 0.85rem 1.85rem;
+    box-shadow: 0 10px 32px rgba(45, 35, 27, 0.05);
+    gap: 1.25rem;
+  }
+  .hero-tablet-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .hero-tablet-feature-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(235, 120, 33, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+  .hero-tablet-feature-item:hover .hero-tablet-feature-icon {
+    transform: scale(1.08);
+    background: rgba(235, 120, 33, 0.18);
+  }
+  .hero-tablet-feature-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .hero-tablet-feature-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1a130e;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .hero-tablet-feature-sub {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6e6054;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .hero-carousel-dots {
+    display: flex !important;
+    margin-top: 1.25rem;
+  }
+  .hero-mobile-feature-grid {
+    display: none !important;
+  }
+}
+
+/* ========================================================
+   MOBILE DESIGN (320px – 767px)
+   Matches RIGHT side of Reference Design:
+   Vertical single-column layout, stacked full-width CTAs,
+   centered illustration, carousel dots, and compact feature grid
+======================================================== */
+@media (max-width: 767px) {
+  .hero-section-new {
+    padding: 1rem 0 0.5rem;
+  }
+  .hero-section-new + .services-section-wrapper {
+    margin-top: -1.25rem;
+  }
+  .desktop-only-benefits {
+    display: none !important;
+  }
+  .hero-split-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .hero-content-col {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+  .hero-badge-pill {
+    margin-bottom: 0.85rem;
+    padding: 0.38rem 0.95rem;
+  }
+  .hero-badge-pill span {
+    font-size: 0.78rem;
+  }
+  .hero-title-main {
+    font-size: clamp(1.85rem, 6.8vw, 2.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.95rem;
+    text-align: left;
+  }
+  .hero-paragraph-lead {
+    font-size: 0.95rem;
+    line-height: 1.62;
+    margin-bottom: 1.4rem;
+    max-width: 100%;
+    text-align: left;
+    color: #4a3e35;
+  }
+  .hero-cta-buttons-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-btn-explore {
+    width: 100%;
+    justify-content: center;
+    padding: 0.88rem 1.5rem;
+    font-size: 0.96rem;
+    border-radius: 9999px;
+  }
+  .hero-btn-talk {
+    width: 100%;
+    justify-content: center;
+    padding: 0.88rem 1.5rem;
+    font-size: 0.96rem;
+    border-radius: 9999px;
+  }
+  .hero-tablet-feature-strip {
+    display: none !important;
+  }
+  .hero-visual-col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  .hero-animation-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+  }
+  .hero-handwritten-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
+    align-self: center;
+    animation: floatHandwritten 4s ease-in-out infinite alternate;
+  }
+  .hero-handwritten-text {
+    font-size: 0.85rem;
+    line-height: 1.22;
+    text-align: right;
+  }
+  .hero-handwritten-arrow {
+    width: 38px;
+    height: 32px;
+    transform: rotate(12deg);
+  }
+  .hero-growth-pill {
+    display: none !important;
   }
   .hero-plant-element {
-    display: none;
+    display: none !important;
+  }
+  .hero-responsive-bottom-group {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+  }
+  .hero-carousel-dots {
+    display: flex !important;
+    margin: 0.5rem auto 1.35rem;
+  }
+  .hero-mobile-feature-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .hero-mobile-feature-card {
+    background: #ffffff;
+    border: 1px solid rgba(220, 195, 170, 0.6);
+    border-radius: 16px;
+    padding: 0.85rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: 0 4px 14px rgba(45, 35, 27, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hero-mobile-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(45, 35, 27, 0.08);
+  }
+  .hero-mobile-feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(235, 120, 33, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+    flex-shrink: 0;
+  }
+  .hero-mobile-feature-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .hero-mobile-feature-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a130e;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-mobile-feature-sub {
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: #6e6054;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Compact Mobile (320px – 374px) */
+@media (max-width: 374px) {
+  .hero-title-main {
+    font-size: 1.68rem;
+  }
+  .hero-badge-pill span {
+    font-size: 0.72rem;
+  }
+  .hero-btn-explore,
+  .hero-btn-talk {
+    font-size: 0.88rem;
+    padding: 0.8rem 1.15rem;
+  }
+  .hero-mobile-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
   }
 }
 

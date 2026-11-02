@@ -511,6 +511,51 @@
   }
 }
 
+@media (max-width: 480px) {
+  .portfolio-tech-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+  }
+
+  .portfolio-tech-whiskers {
+    display: none;
+  }
+
+  .portfolio-tech-desc {
+    font-size: 0.95rem;
+  }
+
+  .portfolio-tech-card {
+    padding: 1.35rem 1rem 1.65rem;
+    border-radius: 20px;
+  }
+
+  .portfolio-tech-badge-item {
+    font-size: 0.76rem;
+    padding: 0.38rem 0.72rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .portfolio-tech-card {
+    padding: 1.15rem 0.85rem 1.5rem;
+  }
+
+  .portfolio-tech-badge-item {
+    padding: 0.32rem 0.62rem;
+    font-size: 0.72rem;
+  }
+
+  .portfolio-tech-icon-stage {
+    width: 48px;
+    height: 48px;
+  }
+
+  .portfolio-tech-icon-frontplate {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .portfolio-tech-card,

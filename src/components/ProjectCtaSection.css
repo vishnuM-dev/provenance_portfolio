@@ -746,100 +746,411 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (TABLET & MOBILE)
+   FLOW CONTROLLERS & DEDICATED MOBILE DESIGN (< 1024px)
+   Matches Uploaded Reference Image Spec
    ========================================================================== */
-@media (max-width: 980px) {
+.cta-desktop-flow {
+  display: block;
+}
+
+.cta-mobile-flow {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .cta-desktop-flow {
+    display: none !important;
+  }
+
+  .cta-mobile-flow {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
   .cta-project-section {
-    padding: 1.25rem 0 1.5rem;
+    padding: 1.25rem 0 2rem;
   }
 
-  .cta-capability-bar {
-    border-radius: 20px;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1.15rem 1.4rem;
-  }
-
-  .cta-cap-item {
-    flex: 1 1 calc(50% - 1rem);
-  }
-
-  .cta-cap-divider {
-    display: none;
-  }
-
-  .cta-main-panel {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 2.75rem 2rem 2.25rem;
-  }
-
-  .cta-subtext {
+  .cta-project-container {
+    padding: 0 1rem;
     max-width: 100%;
   }
 
-  .cta-visual-col {
-    min-height: 340px;
+  /* 1. Four Top Service Highlight Cards */
+  .cta-mobile-services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  .cta-mobile-service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.95rem 0.35rem 0.85rem;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 1.2px solid #ebd8c8;
+    box-shadow: 0 2px 8px rgba(45, 35, 27, 0.04);
+    cursor: pointer;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cta-mobile-service-card:focus-visible {
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.4);
+  }
+
+  .cta-mobile-service-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(234, 88, 12, 0.3);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.08);
+  }
+
+  .cta-mobile-service-card:active {
+    transform: scale(0.96);
+  }
+
+  /* Selected Card State (Matches "Online Consultation" in Reference) */
+  .cta-mobile-service-card.is-selected {
+    background: #fff3ea;
+    border-color: rgba(234, 88, 12, 0.38);
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.12);
+  }
+
+  .cta-mobile-service-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(234, 88, 12, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+    margin-bottom: 0.55rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .cta-mobile-service-card.is-selected .cta-mobile-service-icon-box {
+    background: rgba(234, 88, 12, 0.16);
+    transform: scale(1.04);
+  }
+
+  .cta-mobile-service-label {
+    font-size: 0.72rem;
+    font-weight: 750;
+    color: #1a130e;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  /* 2. Main Rounded CTA Container */
+  .cta-mobile-main-card {
+    position: relative;
+    background: linear-gradient(180deg, #fffbf7 0%, #ffffff 45%, #fffaf5 100%);
+    border: 1.2px solid rgba(234, 88, 12, 0.18);
+    border-radius: 28px;
+    padding: 1.85rem 1.25rem 1.5rem;
+    box-shadow: 0 12px 36px rgba(45, 35, 27, 0.05);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Eyebrow: [Dot] LET'S BUILD SOMETHING GREAT */
+  .cta-mobile-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #ea580c;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.65rem;
+  }
+
+  .cta-mobile-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ea580c;
+    box-shadow: 0 0 6px rgba(234, 88, 12, 0.6);
+  }
+
+  /* Heading: Have an Idea for Your Next Digital Product? */
+  .cta-mobile-heading {
+    font-size: clamp(1.75rem, 5.8vw, 2.3rem);
+    font-weight: 850;
+    color: #141518;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0 auto 0.65rem;
+    max-width: 440px;
+  }
+
+  .cta-mobile-heading-accent {
+    color: #ea580c;
+    position: relative;
+    display: inline-block;
+  }
+
+  .cta-mobile-heading-underline {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 13px;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .cta-mobile-desc {
+    font-size: 0.85rem;
+    color: #55483d;
+    line-height: 1.5;
+    margin: 0 auto 1.35rem;
+    max-width: 360px;
+  }
+
+  /* 3. Central 3D Illustration */
+  .cta-mobile-illus-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto 1.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-mobile-illus-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 270px;
+    height: 210px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(254, 215, 170, 0.05) 50%, transparent 70%);
+    filter: blur(22px);
+    pointer-events: none;
+  }
+
+  .cta-mobile-illus-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Micro Floating Animations */
+  .cta-anim-float-cube {
+    animation: csFloatCube 3.6s ease-in-out infinite alternate;
+  }
+
+  .cta-anim-float-cloud {
+    animation: csFloatCloud 3.2s ease-in-out infinite alternate;
+  }
+
+  .cta-anim-float-badge {
+    animation: csFloatBadge 4s ease-in-out infinite alternate;
+  }
+
+  /* 4. Dual CTA Action Buttons */
+  .cta-mobile-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.65rem;
+    width: 100%;
+  }
+
+  .cta-mobile-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    background: #ea580c;
+    color: #ffffff;
+    border-radius: 9999px;
+    padding: 0.8rem 1.35rem;
+    font-size: 0.86rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+    transition: all 0.22s ease;
+    white-space: nowrap;
+    flex: 1;
+    max-width: 200px;
+  }
+
+  .cta-mobile-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45);
+    background: #c2410c;
+  }
+
+  .cta-mobile-btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  .cta-mobile-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #141518;
+    border: 1.2px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 0.8rem 1.25rem;
+    font-size: 0.86rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.22s ease;
+    white-space: nowrap;
+    flex: 1;
+    max-width: 180px;
+  }
+
+  .cta-mobile-btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(234, 88, 12, 0.35);
+    color: #ea580c;
+  }
+
+  .cta-mobile-btn-secondary:active {
+    transform: scale(0.97);
+  }
+
+  /* 5. Bottom 3 Trust / Value Props */
+  .cta-mobile-trust-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    width: 100%;
+  }
+
+  .cta-mobile-trust-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.45rem;
+  }
+
+  .cta-mobile-trust-icon-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #ffedd5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+    box-shadow: 0 1px 3px rgba(234, 88, 12, 0.08);
+  }
+
+  .cta-mobile-trust-label {
+    font-size: 0.74rem;
+    font-weight: 750;
+    color: #141518;
+    line-height: 1.22;
+  }
+
+  .cta-mobile-trust-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
   }
 }
 
-@media (max-width: 640px) {
-  .cta-project-section {
-    padding: 1rem 0 1.25rem;
+/* ==========================================================================
+   NARROW MOBILE SCREENS (< 374px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .cta-mobile-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
-  .cta-headline-line {
-    display: inline;
-  }
-
-  .cta-capability-bar {
-    border-radius: 16px;
-    padding: 1rem 1rem;
-  }
-
-  .cta-cap-item {
-    flex: 1 1 100%;
-  }
-
-  .cta-main-panel {
-    border-radius: 24px;
-    padding: 2.25rem 1.35rem 1.85rem;
-  }
-
-  .cta-actions-row {
+  .cta-mobile-btn-group {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.75rem;
   }
 
-  .cta-btn-primary,
-  .cta-btn-secondary {
+  .cta-mobile-btn-primary,
+  .cta-mobile-btn-secondary {
+    max-width: 100%;
     width: 100%;
-    justify-content: center;
-    padding: 0.85rem 1.5rem;
   }
 
-  .cta-trust-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
-  }
-
-  .cta-visual-wrapper {
-    transform: scale(0.85);
+  .cta-mobile-trust-label {
+    font-size: 0.68rem;
   }
 }
 
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes csFloatCube {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes csFloatCloud {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes csFloatBadge {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION PREFERENCE
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .cta-satellite-cloud,
-  .cta-satellite-launch,
-  .cta-satellite-code,
-  .cta-satellite-plane,
-  .cta-mock-browser,
-  .cta-satellite-phone {
+  .cta-anim-float-cube,
+  .cta-anim-float-cloud,
+  .cta-anim-float-badge {
     animation: none !important;
-    transform: none !important;
+  }
+
+  .cta-mobile-service-card,
+  .cta-mobile-btn-primary,
+  .cta-mobile-btn-secondary {
     transition: none !important;
   }
 }
-

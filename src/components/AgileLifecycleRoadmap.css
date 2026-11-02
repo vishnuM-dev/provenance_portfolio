@@ -1,12 +1,72 @@
 /* ==========================================================================
    Agile Lifecycle Roadmap - Enterprise 5-Step Connected Timeline
    Matched to ProvenanceTech Design Language: Clean, Warm Cream, Trustworthy
+   Desktop: Alternating 5-Column Grid with Horizontal Timeline Track
+   Mobile & Tablet: Vertical Dashed Connected Timeline & Bottom Rocket CTA
    ========================================================================== */
 
 .agile-roadmap-section {
   position: relative;
   width: 100%;
-  padding: 1.25rem 0 1.5rem;
+  padding: 1.25rem 0 2rem;
+  overflow: hidden;
+}
+
+/* Atmospheric Background Soft Gradients */
+.agile-bg-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.agile-bg-radial-top {
+  position: absolute;
+  top: -80px;
+  right: -90px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(251, 146, 60, 0.05) 50%, transparent 72%);
+  filter: blur(25px);
+}
+
+.agile-bg-arc-ring {
+  position: absolute;
+  top: 15px;
+  right: -100px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(234, 88, 12, 0.12);
+  pointer-events: none;
+}
+
+.agile-bg-radial-bottom {
+  position: absolute;
+  bottom: -60px;
+  left: -90px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.08) 0%, rgba(251, 146, 60, 0.03) 50%, transparent 70%);
+  filter: blur(25px);
+}
+
+/* -------------------------------------------------------------
+   DESKTOP VIEW (>= 1024px)
+   ------------------------------------------------------------- */
+.agile-desktop-flow {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+  z-index: 1;
+}
+
+.agile-mobile-roadmap-wrap {
+  display: none !important;
 }
 
 /* 1. Header */
@@ -14,6 +74,8 @@
   text-align: center;
   max-width: 720px;
   margin: 0 auto 1.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .agile-roadmap-eyebrow {
@@ -60,13 +122,6 @@
   margin: 0 auto;
 }
 
-/* 2. Desktop Roadmap Master Flow */
-.agile-desktop-flow {
-  position: relative;
-  width: 100%;
-  margin-top: 1.5rem;
-}
-
 /* Row 1 & Row 3 5-Column Grids */
 .agile-grid-row {
   display: grid;
@@ -106,7 +161,6 @@
   padding: 0.5rem 0;
 }
 
-/* Base horizontal connecting line */
 .agile-timeline-line-base {
   position: absolute;
   top: 50%;
@@ -119,7 +173,6 @@
   border-radius: 2px;
 }
 
-/* Animated active orange fill line */
 .agile-timeline-line-progress {
   position: absolute;
   top: 50%;
@@ -139,7 +192,6 @@
   transform: translateY(-50%) scaleX(1);
 }
 
-/* Milestone Node Columns */
 .agile-node-col {
   display: flex;
   justify-content: center;
@@ -148,402 +200,537 @@
   z-index: 4;
 }
 
-/* Milestone Node Circle */
 .agile-milestone-node {
-  width: 58px;
-  height: 58px;
+  position: relative;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #ffffff;
-  border: 2px solid rgba(220, 195, 170, 0.55);
+  border: 2.5px solid var(--primary, #eb7821);
+  color: var(--primary, #eb7821);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 5;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(44, 24, 16, 0.06);
-  transform: scale(0.6);
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease,
-              background-color 0.35s ease,
-              opacity 0.45s ease;
+  box-shadow: 0 4px 14px rgba(235, 120, 33, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
-}
-
-.is-in-view .agile-milestone-node {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.is-in-view .milestone-delay-0 { transition-delay: 0.1s; }
-.is-in-view .milestone-delay-1 { transition-delay: 0.22s; }
-.is-in-view .milestone-delay-2 { transition-delay: 0.34s; }
-.is-in-view .milestone-delay-3 { transition-delay: 0.46s; }
-.is-in-view .milestone-delay-4 { transition-delay: 0.58s; }
-
-.agile-milestone-node:hover,
-.agile-milestone-node:focus-visible,
-.agile-milestone-node.is-active,
-.agile-col-slot.is-active ~ .agile-milestone-node {
-  transform: scale(1.12);
-  border-color: var(--primary, #eb7821);
-  box-shadow: 0 0 0 6px rgba(235, 120, 33, 0.18), 0 8px 20px rgba(235, 120, 33, 0.22);
 }
 
 .agile-milestone-number {
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--primary, #eb7821);
-  line-height: 1;
-  margin-bottom: 2px;
+  display: block;
 }
 
 .agile-milestone-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #8c786a;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.agile-milestone-node:hover .agile-milestone-icon,
-.agile-milestone-node.is-active .agile-milestone-icon,
-.agile-col-slot.is-active .agile-milestone-icon {
-  color: var(--primary, #eb7821);
-  transform: scale(1.1);
+  display: none;
 }
 
 .agile-milestone-pulse {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 1.5px solid var(--primary, #eb7821);
+  border: 2px solid var(--primary, #eb7821);
   opacity: 0;
+  transform: scale(0.8);
   pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: all 0.4s ease;
 }
 
-.agile-milestone-node.is-active .agile-milestone-pulse {
-  opacity: 0.6;
-  transform: scale(1.05);
-}
-
-/* Connecting Stems */
-.agile-stem {
-  width: 2px;
-  height: 24px;
-  background: rgba(220, 195, 170, 0.5);
-  margin: 0 auto;
-  transition: background-color 0.35s ease, box-shadow 0.35s ease;
-  z-index: 2;
-}
-
-.agile-col-slot.is-active .agile-stem {
+.agile-milestone-node:hover,
+.agile-milestone-node.is-active {
   background: var(--primary, #eb7821);
-  box-shadow: 0 0 8px rgba(235, 120, 33, 0.5);
+  color: #ffffff;
+  transform: scale(1.15);
+  box-shadow: 0 8px 24px rgba(235, 120, 33, 0.45);
 }
 
-/* Mini Phase Tag in Opposing Slot */
-.agile-phase-pill-slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 1.25rem 0;
+.agile-milestone-node:hover .agile-milestone-pulse,
+.agile-milestone-node.is-active .agile-milestone-pulse {
+  opacity: 0.4;
+  transform: scale(1.2);
 }
 
-.agile-phase-pill {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #928477;
-  background: rgba(235, 120, 33, 0.06);
-  border: 1px dashed rgba(220, 195, 170, 0.5);
-  padding: 0.4rem 0.85rem;
-  border-radius: 14px;
-  text-align: center;
-  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.agile-col-slot.is-active .agile-phase-pill {
-  color: var(--primary, #eb7821);
-  background: rgba(235, 120, 33, 0.12);
-  border-color: rgba(235, 120, 33, 0.35);
-}
-
-/* 4. Roadmap Feature Card */
+/* Card Styling for Desktop */
 .agile-card {
   position: relative;
   background: #ffffff;
   border: 1px solid rgba(220, 195, 170, 0.45);
   border-radius: 20px;
-  padding: 1.6rem 1.4rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(44, 24, 16, 0.035), 0 1px 3px rgba(44, 24, 16, 0.02);
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, box-shadow;
-  height: 100%;
+  padding: 1.4rem 1.25rem;
+  box-shadow: 0 6px 20px rgba(44, 24, 16, 0.035), 0 1px 3px rgba(44, 24, 16, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
 
-.is-in-view .agile-card {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.is-in-view .card-delay-0 { transition-delay: 0.12s; }
-.is-in-view .card-delay-1 { transition-delay: 0.24s; }
-.is-in-view .card-delay-2 { transition-delay: 0.36s; }
-.is-in-view .card-delay-3 { transition-delay: 0.48s; }
-.is-in-view .card-delay-4 { transition-delay: 0.6s; }
-
-/* Card Hover Elevation */
 .agile-card:hover,
-.agile-card:focus-visible,
-.agile-col-slot.is-active .agile-card,
-.agile-mobile-item.is-active .agile-card {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 38px rgba(44, 24, 16, 0.08), 0 4px 14px rgba(235, 120, 33, 0.08);
-  border-color: rgba(235, 120, 33, 0.45);
+.agile-col-slot.is-active .agile-card {
+  border-color: var(--primary, #eb7821);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(235, 120, 33, 0.14), 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-/* Card Header */
 .agile-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
 }
 
 .agile-step-badge {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: var(--primary, #eb7821);
   background: rgba(235, 120, 33, 0.1);
-  border: 1px solid rgba(235, 120, 33, 0.2);
-  padding: 0.25rem 0.65rem;
-  border-radius: 10px;
-  line-height: 1;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
 }
 
 .agile-card-icon-box {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: #fff8f2;
-  border: 1px solid rgba(235, 120, 33, 0.18);
+  background: rgba(235, 120, 33, 0.08);
+  color: var(--primary, #eb7821);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary, #eb7821);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.3s ease;
 }
 
-.agile-card:hover .agile-card-icon-box,
-.agile-col-slot.is-active .agile-card-icon-box,
-.agile-mobile-item.is-active .agile-card-icon-box {
-  transform: scale(1.1) rotate(5deg);
-  background: rgba(235, 120, 33, 0.18);
-}
-
-/* Card Title */
 .agile-card-title {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary, #18181b);
-  line-height: 1.32;
-  margin: 0 0 0.5rem;
-  min-height: 44px;
+  font-weight: 750;
+  color: #1a130e;
+  line-height: 1.28;
+  margin: 0 0 0.45rem 0;
 }
 
-/* Card Description */
 .agile-card-desc {
-  font-size: 0.84rem;
-  line-height: 1.62;
-  color: var(--text-secondary, #5f6368);
+  font-size: 0.85rem;
+  color: #5c4f42;
+  line-height: 1.55;
   margin: 0;
-  margin-top: auto;
 }
 
-/* Decorative subtle corner glow on card */
 .agile-card-glow {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(235, 120, 33, 0.1) 0%, transparent 70%);
-  pointer-events: none;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1.5px solid var(--primary, #eb7821);
   opacity: 0;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .agile-card:hover .agile-card-glow,
-.agile-col-slot.is-active .agile-card-glow,
-.agile-mobile-item.is-active .agile-card-glow {
+.agile-col-slot.is-active .agile-card-glow {
   opacity: 1;
-  transform: scale(1.2);
 }
 
-/* 5. Mobile Flow is Hidden on Desktop */
-.agile-mobile-flow {
-  display: none;
+/* Stems connecting cards to milestones */
+.agile-stem {
+  width: 2px;
+  background: rgba(220, 195, 170, 0.6);
+  margin: 0 auto;
+  transition: background-color 0.3s ease;
 }
 
-/* 6. Tablet Layout (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .agile-desktop-flow {
-    overflow-x: auto;
-    padding-bottom: 1.25rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .agile-grid-row,
-  .agile-timeline-track {
-    min-width: 820px;
-  }
-
-  .agile-card-title {
-    font-size: 0.98rem;
-    min-height: 42px;
-  }
-
-  .agile-card-desc {
-    font-size: 0.82rem;
-  }
+.stem-down {
+  height: 18px;
 }
 
-/* 7. Mobile Layout (< 768px) - Clean Vertical Timeline */
-@media (max-width: 767px) {
-  .agile-roadmap-section {
-    padding: 1.5rem 0 3rem;
-  }
+.stem-up {
+  height: 18px;
+}
 
-  .agile-roadmap-title-wrap {
-    gap: 0.75rem;
-  }
+.agile-col-slot:hover .agile-stem,
+.agile-col-slot.is-active .agile-stem {
+  background: var(--primary, #eb7821);
+}
 
-  .agile-dash-accent svg {
-    width: 28px;
-  }
+.agile-phase-pill-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 0;
+}
 
-  /* Hide desktop alternating flow on mobile */
-  .agile-desktop-flow {
+.agile-phase-pill {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8c7b6d;
+  background: #f7efe6;
+  border: 1px solid rgba(220, 195, 170, 0.5);
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE SYSTEM (< 1024px)
+   Matches Uploaded Reference Image Spec
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .agile-desktop-flow,
+  .agile-roadmap-header {
     display: none !important;
   }
 
-  /* Display mobile vertical timeline */
-  .agile-mobile-flow {
+  .agile-mobile-roadmap-wrap {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* 1. Mobile Pill Badge */
+  .agile-mobile-badge-wrap {
+    margin-bottom: 0.65rem;
+  }
+
+  .agile-mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.28);
+    border-radius: 9999px;
+    padding: 0.32rem 0.85rem;
+    color: var(--primary, #ea580c);
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+    animation: csBadgeFadeIn 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .agile-badge-icon {
+    display: inline-block;
+    color: var(--primary, #ea580c);
+  }
+
+  /* 2. Mobile Heading */
+  .agile-mobile-heading {
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #141518;
+    margin: 0 0 0.85rem 0;
+    animation: csHeadingReveal 500ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+  }
+
+  .agile-mobile-heading-accent {
+    color: var(--primary, #ea580c);
+    position: relative;
+    display: inline-block;
+  }
+
+  .agile-heading-accents {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* 3. Description */
+  .agile-mobile-desc {
+    font-size: 0.94rem;
+    color: #55493d;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    text-align: left;
+    animation: csDescFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+  }
+
+  /* 4. Vertical 5-Step Connected Timeline */
+  .agile-mobile-timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    position: relative;
-    padding-left: 1.75rem;
+    gap: 1.15rem;
+    width: 100%;
+    margin-bottom: 1.75rem;
   }
 
-  /* Vertical base line along left */
-  .agile-mobile-line-base {
+  /* Vertical dashed orange connecting line going through center of markers */
+  .agile-mobile-timeline-dashed-line {
     position: absolute;
-    top: 24px;
-    bottom: 24px;
-    left: 20px;
-    width: 3px;
-    background: rgba(220, 195, 170, 0.45);
-    border-radius: 2px;
+    top: 22px;
+    bottom: 26px;
+    left: 17px;
+    width: 0;
+    border-left: 2px dashed var(--primary, #ea580c);
     z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
   }
 
-  /* Vertical progress fill line */
-  .agile-mobile-line-progress {
-    position: absolute;
-    top: 24px;
-    bottom: 24px;
-    left: 20px;
-    width: 3px;
-    background: linear-gradient(180deg, #eb7821 0%, #f97316 70%, rgba(235, 120, 33, 0.5) 100%);
-    border-radius: 2px;
-    z-index: 2;
-    transform: scaleY(0);
-    transform-origin: top center;
-    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 0 8px rgba(235, 120, 33, 0.35);
-  }
-
-  .is-in-view .agile-mobile-line-progress {
-    transform: scaleY(1);
-  }
-
-  .agile-mobile-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+  .agile-mobile-timeline-item {
     position: relative;
-    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 2;
+    cursor: pointer;
+    animation: csCardEntrance 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--step-idx, 0) * 85ms);
   }
 
-  .agile-mobile-node-wrap {
+  /* Numbered Orange Marker: 01 - 05 */
+  .agile-mobile-marker {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary, #ea580c);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    margin-top: 1rem;
+    box-shadow: 0 3px 10px rgba(234, 88, 12, 0.35);
+    z-index: 3;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .agile-mobile-flow .agile-milestone-node {
+  .agile-mobile-timeline-item:hover .agile-mobile-marker,
+  .agile-mobile-timeline-item.is-active .agile-mobile-marker {
+    transform: scale(1.08);
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.5);
+  }
+
+  /* Step Card */
+  .agile-mobile-card {
+    flex: 1;
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid rgba(226, 215, 202, 0.75);
+    border-radius: 20px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 18px rgba(45, 30, 18, 0.05), 0 1px 3px rgba(45, 30, 18, 0.03);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .agile-mobile-timeline-item:hover .agile-mobile-card,
+  .agile-mobile-timeline-item.is-active .agile-mobile-card {
+    border-color: rgba(234, 88, 12, 0.35);
+    box-shadow: 0 8px 24px -2px rgba(60, 40, 20, 0.09);
+  }
+
+  .agile-mobile-card:active {
+    transform: scale(0.985);
+  }
+
+  /* Rounded Light-Orange Icon Container */
+  .agile-mobile-icon-box {
     width: 44px;
     height: 44px;
-    border-width: 2px;
+    border-radius: 14px;
+    background: #fff4ec;
+    color: var(--primary, #ea580c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
   }
 
-  .agile-mobile-flow .agile-milestone-number {
-    font-size: 0.78rem;
+  .agile-mobile-timeline-item:hover .agile-mobile-icon-box {
+    transform: scale(1.06);
   }
 
-  .agile-mobile-flow .agile-card {
+  .agile-mobile-card-content {
     flex: 1;
+    min-width: 0;
+  }
+
+  .agile-mobile-card-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #141518;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin: 0 0 3px 0;
+  }
+
+  .agile-mobile-card-desc {
+    font-size: 0.75rem;
+    font-weight: 450;
+    color: #55493d;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* 5. Bottom CTA Banner: Ready to Build Your Next Solution? */
+  .agile-cta-banner-wrap {
     width: 100%;
-    padding: 1.35rem 1.2rem;
-    border-radius: 18px;
-    transform: translateY(16px);
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
 
-  .is-in-view .agile-mobile-flow .agile-card {
-    transform: translateY(0);
+  .agile-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    max-width: 520px;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border-radius: 9999px;
+    padding: 8px 10px 8px 12px;
+    box-shadow: 0 10px 28px -4px rgba(234, 88, 12, 0.44), 0 2px 8px -2px rgba(234, 88, 12, 0.2);
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .agile-card-title {
-    min-height: auto;
-    font-size: 1.02rem;
+  .agile-cta-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px -4px rgba(234, 88, 12, 0.52);
   }
 
-  .agile-card-desc {
-    font-size: 0.84rem;
+  .agile-cta-banner:active {
+    transform: scale(0.985);
+  }
+
+  .agile-cta-rocket-box {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .agile-cta-rocket-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+  }
+
+  .agile-cta-divider {
+    width: 1.5px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .agile-cta-text-box {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4px;
+  }
+
+  .agile-cta-heading-line {
+    font-size: 0.94rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    display: block;
+  }
+
+  .agile-cta-arrow-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--primary, #ea580c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .agile-cta-banner:hover .agile-cta-arrow-circle {
+    transform: translateX(3px);
   }
 }
 
-/* 8. Accessibility: Reduced Motion */
+/* ==========================================================================
+   NARROW MOBILE SCREENS (320px–374px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .agile-mobile-timeline-dashed-line {
+    left: 15px;
+  }
+
+  .agile-mobile-marker {
+    width: 32px;
+    height: 32px;
+    font-size: 0.72rem;
+  }
+
+  .agile-mobile-card {
+    padding: 10px 10px;
+    gap: 9px;
+  }
+
+  .agile-mobile-icon-box {
+    width: 38px;
+    height: 38px;
+  }
+
+  .agile-mobile-card-title {
+    font-size: 0.9rem;
+  }
+
+  .agile-mobile-card-desc {
+    font-size: 0.72rem;
+  }
+
+  .agile-cta-heading-line {
+    font-size: 0.84rem;
+  }
+
+  .agile-cta-rocket-box {
+    width: 44px;
+    height: 44px;
+  }
+
+  .agile-cta-arrow-circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: REDUCED MOTION
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .agile-timeline-line-progress,
-  .agile-mobile-line-progress,
-  .agile-milestone-node,
-  .agile-card,
-  .agile-stem,
-  .agile-card-icon-box,
-  .agile-card-glow,
-  .agile-milestone-icon {
-    transition: none !important;
-    transform: none !important;
+  .agile-mobile-badge,
+  .agile-mobile-heading,
+  .agile-mobile-desc,
+  .agile-mobile-timeline-item,
+  .agile-cta-banner {
     animation: none !important;
+  }
+
+  .agile-mobile-card,
+  .agile-mobile-marker,
+  .agile-mobile-icon-box,
+  .agile-cta-banner,
+  .agile-cta-arrow-circle {
+    transition: none !important;
   }
 }

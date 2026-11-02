@@ -8,6 +8,11 @@ import {
   Truck,
   Building2,
   ShoppingCart,
+  Package,
+  Home,
+  LayoutGrid,
+  Monitor,
+  Layers,
 } from 'lucide-react';
 import './CaseStudiesSection.css';
 
@@ -22,6 +27,7 @@ const PROJECTS_DATA = [
     imageUrl: 'https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=1200&q=80',
     caseStudyUrl: '/catalog/PRV-2026-APP01',
     floatingIcon: <Truck size={24} strokeWidth={2.2} />,
+    mobileIcon: <Package size={28} strokeWidth={1.4} />,
   },
   {
     id: 'PRV-2026-APP02',
@@ -33,6 +39,7 @@ const PROJECTS_DATA = [
     imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
     caseStudyUrl: '/catalog/PRV-2026-APP02',
     floatingIcon: <Building2 size={24} strokeWidth={2.2} />,
+    mobileIcon: <Truck size={28} strokeWidth={1.4} />,
   },
   {
     id: 'PRV-2026-APP03',
@@ -44,10 +51,15 @@ const PROJECTS_DATA = [
     imageUrl: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
     caseStudyUrl: '/catalog/PRV-2026-APP03',
     floatingIcon: <ShoppingCart size={24} strokeWidth={2.2} />,
+    mobileIcon: <Home size={28} strokeWidth={1.4} />,
   },
 ];
 
-const CATEGORIES = ['All Projects', 'Web Applications', 'Business Software'];
+const CATEGORY_ITEMS = [
+  { id: 'All Projects', label: 'All Projects', icon: LayoutGrid },
+  { id: 'Web Applications', label: 'Web Applications', icon: Monitor },
+  { id: 'Business Software', label: 'Business Software', icon: Layers },
+];
 
 export default function CaseStudiesSection({ showViewAllBtn = false }) {
   const [activeCategory, setActiveCategory] = useState('All Projects');
@@ -63,19 +75,47 @@ export default function CaseStudiesSection({ showViewAllBtn = false }) {
 
   return (
     <section className="cs-section">
+      {/* Subtle warm orange decorative background shapes matching reference */}
+      <div className="cs-bg-decorations" aria-hidden="true">
+        <div className="cs-bg-radial-top" />
+        <div className="cs-bg-arc-ring" />
+        <div className="cs-bg-radial-bottom" />
+      </div>
+
       <div className="cs-container">
-        {/* Header Matching Image 1 Spec */}
+        {/* Header Matching Image 1 Spec & Mobile Reference */}
         <div className="cs-header">
           {/* Left Column */}
           <div className="cs-header-left">
             <div className="cs-badge">
-              <span>CASE STUDIES</span>
+              <span className="cs-badge-pill">
+                <span className="cs-badge-pip" aria-hidden="true" />
+                <Layers size={14} className="cs-badge-icon" aria-hidden="true" />
+                <span className="cs-badge-text">CASE STUDIES</span>
+              </span>
               <span className="cs-badge-line" aria-hidden="true" />
             </div>
 
             <h2 className="cs-heading">
               From Ideas to<br />
-              Real-World <span className="cs-heading-accent">Solutions</span>
+              Real-World{' '}
+              <span className="cs-heading-accent cs-heading-with-underline">
+                Solutions
+                <svg
+                  viewBox="0 0 170 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="cs-heading-underline-svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 13C45 19 125 18 167 6"
+                    stroke="var(--primary, #ea580c)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
             </h2>
           </div>
 
@@ -94,28 +134,35 @@ export default function CaseStudiesSection({ showViewAllBtn = false }) {
               Explore how we design and build custom web and software solutions that solve real business challenges and create measurable impact.
             </p>
 
-            {/* Filter Tabs Matching Image 1 */}
-            <div className="cs-filter-row">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`cs-filter-btn ${activeCategory === cat ? 'active' : ''}`}
-                  type="button"
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Filter Tabs Matching Image 1 & Mobile Reference Spec */}
+            <div className="cs-filter-row" role="tablist" aria-label="Filter case studies by category">
+              {CATEGORY_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeCategory === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveCategory(item.id)}
+                    className={`cs-filter-btn ${isActive ? 'active' : ''}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                  >
+                    <Icon size={15} strokeWidth={2.2} className="cs-filter-btn-icon" aria-hidden="true" />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Cards Grid Matching Image 1 (Normal) & Image 2 (Hover) */}
+        {/* Cards Grid: Desktop Expanding Layout (>=1024px) & Mobile Horizontal Compact Layout (<1024px) */}
         <div
           className={`cs-grid ${hoveredId !== null ? 'has-hovered' : ''}`}
           onMouseLeave={() => setHoveredId(null)}
         >
-          {filteredProjects.map((p) => {
+          {filteredProjects.map((p, index) => {
             const isHovered = hoveredId === p.id;
             const isRemaining = hoveredId !== null && !isHovered;
 
@@ -124,80 +171,154 @@ export default function CaseStudiesSection({ showViewAllBtn = false }) {
                 key={p.id}
                 href={p.caseStudyUrl}
                 className={`cs-card-wrapper ${isHovered ? 'is-hovered' : ''} ${isRemaining ? 'is-remaining-smaller' : ''}`}
+                style={{ '--card-index': index }}
                 onMouseEnter={() => setHoveredId(p.id)}
                 onFocus={() => setHoveredId(p.id)}
                 onBlur={() => setHoveredId(null)}
                 aria-label={`View case study for ${p.title}`}
               >
-              {/* Tilted Orange Card Backdrop Layer (Image 2) */}
-              <div className="cs-card-backdrop" aria-hidden="true" />
+                {/* ========================================================= */}
+                {/* 1. DESKTOP VIEW (>= 1024px): 3D Tilted Hover Spec         */}
+                {/* ========================================================= */}
+                <div className="cs-desktop-card-content">
+                  {/* Tilted Orange Card Backdrop Layer (Image 2) */}
+                  <div className="cs-card-backdrop" aria-hidden="true" />
 
-              {/* Floating Circular Icon Badge on Upper Left (Image 2) */}
-              <div className="cs-floating-icon-badge" aria-hidden="true">
-                {p.floatingIcon}
-              </div>
-
-              {/* Main Card Content */}
-              <div className="cs-card-main">
-                {/* Thumbnail Container */}
-                <div className="cs-thumbnail-container">
-                  <Image
-                    src={p.imageUrl}
-                    alt={`${p.title} preview`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="cs-thumbnail-img"
-                  />
-
-                  {/* Overlay Number: 01 — (Image 1) */}
-                  <div className="cs-overlay-num">
-                    <span>{p.num}</span>
-                    <span className="cs-overlay-num-line" aria-hidden="true" />
+                  {/* Floating Circular Icon Badge on Upper Left (Image 2) */}
+                  <div className="cs-floating-icon-badge" aria-hidden="true">
+                    {p.floatingIcon}
                   </div>
 
-                  {/* Overlay Pill Badge: Category • (Image 1) */}
-                  <div className="cs-overlay-pill">
-                    <span>{p.displayCategory}</span>
-                    <span className="cs-overlay-dot" aria-hidden="true" />
-                  </div>
-
-                  {/* Organic Wave Divider Cutout (Image 2 Hover Spec) */}
-                  <div className="cs-card-wave-wrap" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 500 40"
-                      preserveAspectRatio="none"
-                      className="cs-card-wave-svg"
-                    >
-                      <path
-                        d="M 0,40 L 0,14 C 65,0 130,4 190,22 C 255,42 320,40 390,20 C 435,7 475,10 500,16 L 500,40 Z"
-                        fill="#ffffff"
+                  {/* Main Card Content */}
+                  <div className="cs-card-main">
+                    {/* Thumbnail Container */}
+                    <div className="cs-thumbnail-container">
+                      <Image
+                        src={p.imageUrl}
+                        alt={`${p.title} preview`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="cs-thumbnail-img"
                       />
-                    </svg>
-                  </div>
-                </div>
 
-                {/* Card Body */}
-                <div className="cs-card-body">
-                  {/* Title & Subtitle */}
-                  <h3 className="cs-title">{p.title}</h3>
-                  <div className="cs-subtitle">{p.subtitle}</div>
+                      {/* Overlay Number: 01 — (Image 1) */}
+                      <div className="cs-overlay-num">
+                        <span>{p.num}</span>
+                        <span className="cs-overlay-num-line" aria-hidden="true" />
+                      </div>
 
-                  {/* Card Bottom Action Bar */}
-                  <div className="cs-action-row">
-                    <span className="cs-action-link">
-                      View Case Study
-                    </span>
+                      {/* Overlay Pill Badge: Category • (Image 1) */}
+                      <div className="cs-overlay-pill">
+                        <span>{p.displayCategory}</span>
+                        <span className="cs-overlay-dot" aria-hidden="true" />
+                      </div>
 
-                    {/* Concentric Ripple Circular Arrow Button (Image 2) */}
-                    <div className="cs-action-circle-btn" aria-hidden="true">
-                      <ArrowRight size={18} strokeWidth={2.4} />
+                      {/* Organic Wave Divider Cutout (Image 2 Hover Spec) */}
+                      <div className="cs-card-wave-wrap" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 500 40"
+                          preserveAspectRatio="none"
+                          className="cs-card-wave-svg"
+                        >
+                          <path
+                            d="M 0,40 L 0,14 C 65,0 130,4 190,22 C 255,42 320,40 390,20 C 435,7 475,10 500,16 L 500,40 Z"
+                            fill="#ffffff"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Card Body */}
+                    <div className="cs-card-body">
+                      {/* Title & Subtitle */}
+                      <h3 className="cs-title">{p.title}</h3>
+                      <div className="cs-subtitle">{p.subtitle}</div>
+
+                      {/* Card Bottom Action Bar */}
+                      <div className="cs-action-row">
+                        <span className="cs-action-link">
+                          View Case Study
+                        </span>
+
+                        {/* Concentric Ripple Circular Arrow Button (Image 2) */}
+                        <div className="cs-action-circle-btn" aria-hidden="true">
+                          <ArrowRight size={18} strokeWidth={2.4} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+
+                {/* ========================================================= */}
+                {/* 2. MOBILE & TABLET VIEW (< 1024px): Reference Image Spec   */}
+                {/* ========================================================= */}
+                <div className="cs-mobile-card-content">
+                  {/* Left: Thumbnail with rounded corners & bottom-right orange swoop */}
+                  <div className="cs-mobile-thumb-wrap">
+                    <div className="cs-mobile-thumb-box">
+                      <Image
+                        src={p.imageUrl}
+                        alt={`${p.title} preview`}
+                        fill
+                        sizes="(max-width: 600px) 45vw, (max-width: 1024px) 320px, 320px"
+                        className="cs-mobile-thumb-img"
+                      />
+                      {/* Number Pill: 01 */}
+                      <span className="cs-mobile-num-pill">{p.num}</span>
+                    </div>
+
+                    {/* Bottom-right orange swoop accent hugging corner curve */}
+                    <div className="cs-mobile-corner-swoop" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 36 36"
+                        className="cs-mobile-swoop-svg"
+                        fill="none"
+                      >
+                        <path
+                          d="M0 36 C 20 36 36 20 36 0 L 36 28 C 36 32.4 32.4 36 28 36 Z"
+                          fill="url(#cs-swoop-grad)"
+                        />
+                        <defs>
+                          <linearGradient id="cs-swoop-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#f97316" />
+                            <stop offset="100%" stopColor="#ea580c" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Right: Project Information */}
+                  <div className="cs-mobile-info-wrap">
+                    {/* Title & Decorative Outline Icon Row */}
+                    <div className="cs-mobile-title-row">
+                      <div className="cs-mobile-title-col">
+                        <h3 className="cs-mobile-title">{p.title}</h3>
+                        <p className="cs-mobile-subtitle">{p.subtitle}</p>
+                      </div>
+                      <div className="cs-mobile-outline-icon" aria-hidden="true">
+                        {p.mobileIcon}
+                      </div>
+                    </div>
+
+                    {/* Two-part Accent Divider: orange + cream */}
+                    <div className="cs-mobile-divider" aria-hidden="true">
+                      <span className="cs-divider-orange" />
+                      <span className="cs-divider-cream" />
+                    </div>
+
+                    {/* Bottom Action Row */}
+                    <div className="cs-mobile-action-row">
+                      <span className="cs-mobile-action-text">View Case Study</span>
+                      <div className="cs-mobile-arrow-btn" aria-hidden="true">
+                        <ArrowRight size={16} strokeWidth={2.4} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

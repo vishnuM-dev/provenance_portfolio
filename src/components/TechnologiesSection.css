@@ -1918,13 +1918,678 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tech-modal-overlay,
-  .tech-modal-dialog,
-  .tech-modal-overlay.is-closing,
-  .tech-modal-dialog.is-closing {
-    animation: none !important;
-    transition: none !important;
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE SYSTEM (< 1024px)
+   Matches Uploaded Reference Image Spec
+   ========================================================================== */
+.tech-bg-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.tech-bg-radial-top {
+  position: absolute;
+  top: -80px;
+  right: -90px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(251, 146, 60, 0.05) 50%, transparent 72%);
+  filter: blur(25px);
+}
+
+.tech-bg-arc-ring {
+  position: absolute;
+  top: 15px;
+  right: -100px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(234, 88, 12, 0.12);
+  pointer-events: none;
+}
+
+.tech-bg-radial-bottom {
+  position: absolute;
+  bottom: -60px;
+  left: -90px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.08) 0%, rgba(251, 146, 60, 0.03) 50%, transparent 70%);
+  filter: blur(25px);
+}
+
+.tech-desktop-flow {
+  display: block;
+}
+
+.tech-mobile-flow {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .tech-desktop-flow {
+    display: none !important;
+  }
+
+  .tech-mobile-flow {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* 1. Mobile Pill Badge */
+  .tech-mobile-badge-wrap {
+    margin-bottom: 0.65rem;
+    text-align: left;
+    padding: 0 2px;
+  }
+
+  .tech-mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.32);
+    border-radius: 9999px;
+    padding: 0.35rem 0.85rem;
+    color: var(--primary, #ea580c);
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+    animation: csBadgeFadeIn 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tech-badge-icon {
+    display: inline-block;
+    color: var(--primary, #ea580c);
+  }
+
+  /* 2. Hero Row: Heading & Description on Left + 3D Laptop on Right */
+  .tech-mobile-hero-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.65rem;
+    padding: 0 2px;
+  }
+
+  .tech-mobile-hero-text {
+    flex: 1 1 58%;
+    min-width: 0;
+  }
+
+  .tech-mobile-heading {
+    text-align: left;
+    font-size: clamp(1.65rem, 5.5vw, 2.35rem);
+    font-weight: 850;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #141518;
+    margin: 0 0 0.65rem 0;
+    animation: csHeadingReveal 500ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+  }
+
+  .tech-mobile-heading-accent {
+    color: var(--primary, #ea580c);
+    position: relative;
+    display: inline-block;
+  }
+
+  .tech-heading-accents {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+
+  .tech-heading-underline-svg {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 14px;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .tech-heading-underline-svg path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: csDrawUnderline 700ms cubic-bezier(0.16, 1, 0.3, 1) 250ms forwards;
+  }
+
+  .tech-mobile-desc {
+    text-align: left;
+    font-size: 0.84rem;
+    color: #55483d;
+    line-height: 1.5;
+    margin: 0;
+    animation: csDescFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+  }
+
+  .tech-mobile-hero-laptop-col {
+    flex: 0 0 38%;
+    max-width: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tech-hero-laptop-wrap {
+    width: 100%;
+    animation: csFloatLaptop 4s ease-in-out infinite alternate;
+  }
+
+  .tech-hero-laptop-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* 3. Six Category Cards Grid */
+  .tech-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* Card base */
+  .tech-grid-card {
+    position: relative;
+    border-radius: 20px;
+    padding: 1.15rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.28s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    border: 1.2px solid transparent;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    animation: csCardFadeUp 450ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--card-idx, 0) * 70ms) both;
+  }
+
+  .tech-grid-card:focus-visible {
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.45);
+  }
+
+  /* Pastel Theme Palettes */
+  .tech-grid-card--frontend {
+    background: #fff8f3;
+    border-color: rgba(234, 88, 12, 0.16);
+  }
+
+  .tech-grid-card--backend {
+    background: #f0f7ff;
+    border-color: rgba(59, 130, 246, 0.18);
+  }
+
+  .tech-grid-card--mobile {
+    background: #faf6ff;
+    border-color: rgba(168, 85, 247, 0.18);
+  }
+
+  .tech-grid-card--database {
+    background: #f0fdf4;
+    border-color: rgba(34, 197, 94, 0.18);
+  }
+
+  .tech-grid-card--cloud-devops {
+    background: #f0f9ff;
+    border-color: rgba(14, 165, 233, 0.18);
+  }
+
+  .tech-grid-card--media-integrations {
+    background: #fffdf5;
+    border-color: rgba(245, 158, 11, 0.18);
+  }
+
+  /* Illustration Box */
+  .tech-grid-art-box {
+    width: 100%;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.85rem;
+    transition: transform 0.25s ease;
+  }
+
+  .tech-grid-art-svg {
+    width: 54px;
+    height: 54px;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Title */
+  .tech-grid-card-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #141518;
+    line-height: 1.25;
+    margin: 0 0 0.45rem 0;
+    letter-spacing: -0.015em;
+  }
+
+  /* Description */
+  .tech-grid-card-desc {
+    font-size: 0.76rem;
+    color: #55483d;
+    line-height: 1.45;
+    margin: 0 0 0.95rem 0;
+    flex-grow: 1;
+  }
+
+  /* Bottom Action Row: Progress line + Circular arrow */
+  .tech-grid-action-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  .tech-grid-decor-line {
+    flex: 1;
+    height: 2.5px;
+    background: linear-gradient(90deg, #ea580c 0%, rgba(234, 88, 12, 0.15) 100%);
+    border-radius: 999px;
+    margin-right: 12px;
+  }
+
+  .tech-grid-arrow-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.35);
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.1);
+    transition: all 0.22s ease;
+    flex-shrink: 0;
+  }
+
+  /* Card Hover Interactions */
+  .tech-grid-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(234, 88, 12, 0.12);
+  }
+
+  .tech-grid-card:hover .tech-grid-art-box {
+    transform: scale(1.06);
+  }
+
+  .tech-grid-card:hover .tech-grid-arrow-btn {
+    background: #ea580c;
+    color: #ffffff;
+    transform: translateX(3px);
+    box-shadow: 0 3px 8px rgba(234, 88, 12, 0.28);
+  }
+
+  .tech-grid-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Expanded State */
+  .tech-grid-card.is-expanded {
+    grid-column: 1 / -1;
+    border-color: #ea580c;
+    box-shadow: 0 12px 32px rgba(234, 88, 12, 0.16);
+  }
+
+  .tech-grid-card.is-expanded .tech-grid-arrow-btn {
+    background: #ea580c;
+    color: #ffffff;
+    transform: rotate(90deg);
+  }
+
+  .tech-grid-expanded-tray {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.95rem;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1.2px solid rgba(234, 88, 12, 0.22);
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.06);
+    animation: csFadeDown 0.28s ease both;
+  }
+
+  .tech-grid-expanded-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed rgba(234, 88, 12, 0.22);
+  }
+
+  .tech-grid-expanded-title {
+    font-size: 0.78rem;
+    font-weight: 750;
+    color: #ea580c;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tech-grid-close-btn {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tech-grid-close-btn:hover {
+    background: #ea580c;
+    color: #ffffff;
+    border-color: #ea580c;
+  }
+
+  .tech-grid-expanded-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .tech-grid-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #fdfaf7;
+    border: 1px solid rgba(234, 88, 12, 0.2);
+    border-radius: 9999px;
+    padding: 0.38rem 0.8rem;
+    font-size: 0.76rem;
+    font-weight: 650;
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tech-grid-pill:hover {
+    transform: translateY(-2px);
+    border-color: #ea580c;
+  }
+
+  .tech-grid-pill-icon {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 4. Bottom Rocket CTA Banner */
+  .tech-mobile-bottom-banner {
+    margin-top: 1.75rem;
+    background: linear-gradient(135deg, #1b0d1e 0%, #3a1226 40%, #7c2217 75%, #dc5414 100%);
+    border-radius: 22px;
+    padding: 1.15rem 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: 0 10px 28px rgba(234, 88, 12, 0.22);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-banner-rocket-box {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech-cta-rocket-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+    animation: csFloatRocket 3s ease-in-out infinite alternate;
+  }
+
+  .tech-banner-text-box {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tech-banner-title {
+    font-size: clamp(1rem, 3.8vw, 1.25rem);
+    font-weight: 850;
+    color: #ffffff;
+    line-height: 1.22;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .tech-banner-btn-box {
+    flex-shrink: 0;
+  }
+
+  .tech-banner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #ffffff;
+    color: #ea580c;
+    border-radius: 9999px;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.84rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    transition: all 0.22s ease;
+  }
+
+  .tech-banner-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    background: #fff8f3;
   }
 }
 
+/* ==========================================================================
+   NARROW MOBILE SCREENS (320px–374px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .tech-mobile-hero-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .tech-mobile-hero-laptop-col {
+    max-width: 140px;
+    align-self: center;
+  }
+
+  .tech-grid-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tech-mobile-bottom-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1.15rem 1rem;
+  }
+
+  .tech-banner-btn-box {
+    width: 100%;
+  }
+
+  .tech-banner-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   TABLET RESPONSIVE SYSTEM (601px–1023px)
+   ========================================================================== */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .tech-grid-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  .tech-grid-card {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .tech-grid-art-box {
+    height: 72px;
+    margin-bottom: 1rem;
+  }
+
+  .tech-grid-art-svg {
+    width: 62px;
+    height: 62px;
+  }
+
+  .tech-grid-card-title {
+    font-size: 1.05rem;
+  }
+
+  .tech-grid-card-desc {
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes csBadgeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csHeadingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csDescFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csDrawUnderline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes csCardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csFloatLaptop {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes csFloatRocket {
+  0% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION PREFERENCE
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .tech-heading-underline-svg path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+  .tech-mobile-badge,
+  .tech-mobile-heading,
+  .tech-mobile-desc,
+  .tech-grid-card,
+  .tech-hero-laptop-wrap,
+  .tech-cta-rocket-svg {
+    animation: none !important;
+  }
+  .tech-grid-card,
+  .tech-banner-btn,
+  .tech-grid-arrow-btn,
+  .tech-grid-pill {
+    transition: none !important;
+  }
+}

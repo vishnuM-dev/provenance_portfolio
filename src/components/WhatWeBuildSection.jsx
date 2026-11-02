@@ -56,6 +56,7 @@ const STAGES_DATA = [
     id: 'stage-03',
     num: '03',
     title: 'Custom Software Development',
+    cardTitle: 'Custom Business Systems',
     category: 'Tailored Business & Operational Systems',
     description: 'Tailored software systems, internal business tools, and automated operational workflows engineered from the ground up to solve complex enterprise challenges.',
     capabilities: ['Custom Business Logic', 'Automated Workflows', 'Legacy Migration'],
@@ -492,8 +493,6 @@ function JourneyStageCard({
         <button
           type="button"
           onClick={() => {
-            const el = document.getElementById(stage.id);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
             onActivate(index);
           }}
           className={`wwb-stage-badge ${isActive ? 'is-active' : ''}`}
@@ -507,18 +506,32 @@ function JourneyStageCard({
       {/* Main Pure White Interactive Card Surface */}
       <article
         ref={cardRef}
-        className={`wwb-stage-card ${stage.accentClass} ${isActive ? 'is-highlighted' : ''}`}
+        className={`wwb-stage-card ${stage.accentClass} ${isActive ? 'is-highlighted is-card-active' : 'is-card-inactive'}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onClick={() => {
+          if (!isActive) {
+            onActivate(index);
+          }
+        }}
         style={{ transform: transformStyle }}
+        role={isActive ? 'region' : 'button'}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (!isActive && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            onActivate(index);
+          }
+        }}
+        aria-label={`${stage.title} - ${isActive ? 'Active' : 'Tap to expand'}`}
       >
         {/* Soft interactive cursor glow */}
         <div className="wwb-card-glow" style={glowStyle} aria-hidden="true" />
 
         {/* Card Content & Details (Left inside card) */}
         <div className="wwb-stage-card-body">
-          {/* Header row: category pill + icon */}
-          <div className="wwb-stage-meta-row">
+          {/* Header row on Desktop */}
+          <div className="wwb-stage-meta-row desktop-only-meta">
             <span className="wwb-stage-step-tag">STAGE {stage.num}</span>
             <div
               className="wwb-stage-icon-wrap"
@@ -529,35 +542,56 @@ function JourneyStageCard({
             <span className="wwb-stage-category-label">{stage.category}</span>
           </div>
 
-          <h3 className="wwb-stage-title">{stage.title}</h3>
-          <p className="wwb-stage-desc">{stage.description}</p>
-
-          {/* Capability checklist pills */}
-          <div className="wwb-stage-capabilities-row">
-            {stage.capabilities.map((cap, cIdx) => (
-              <span key={cIdx} className="wwb-capability-pill">
-                <span className="wwb-capability-check">✓</span>
-                <span>{cap}</span>
-              </span>
-            ))}
+          {/* Header row on Mobile (Matches mobile reference design: Title on Left, Icon on Right) */}
+          <div className="wwb-mobile-card-header">
+            <h3 className="wwb-stage-title">{stage.cardTitle || stage.title}</h3>
+            <div
+              className="wwb-stage-icon-wrap"
+              style={{ backgroundColor: '#fff4ed', color: '#ea580c' }}
+            >
+              <Icon size={18} strokeWidth={2.4} />
+            </div>
           </div>
 
-          {/* Action Link */}
-          <div className="wwb-stage-action-row">
-            <Link
-              href="/services"
-              className="wwb-stage-learn-btn"
-              aria-label={`Learn more about ${stage.title}`}
-            >
-              <span>Explore Capability</span>
-              <span className="wwb-stage-arrow-circle" aria-hidden="true">
-                <ArrowRight size={13} strokeWidth={2.5} />
-              </span>
-            </Link>
+          <h3 className="wwb-stage-title desktop-only-title">{stage.title}</h3>
+
+          {/* Expandable content container (Smooth single active card expansion on mobile) */}
+          <div
+            className={`wwb-card-expandable-content ${isActive ? 'is-expanded' : ''}`}
+            aria-hidden={!isActive}
+          >
+            <div className="wwb-card-expandable-inner">
+              <p className="wwb-stage-desc">{stage.description}</p>
+
+              {/* Capability checklist pills */}
+              <div className="wwb-stage-capabilities-row">
+                {stage.capabilities.map((cap, cIdx) => (
+                  <span key={cIdx} className="wwb-capability-pill">
+                    <span className="wwb-capability-check">✓</span>
+                    <span>{cap}</span>
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Link */}
+              <div className="wwb-stage-action-row">
+                <Link
+                  href="/services"
+                  className="wwb-stage-learn-btn"
+                  aria-label={`Learn more about ${stage.title}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <span>Explore Capability</span>
+                  <span className="wwb-stage-arrow-circle" aria-hidden="true">
+                    <ArrowRight size={13} strokeWidth={2.5} />
+                  </span>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 3D Visual Illustration Stage (Right inside card) */}
+        {/* 3D Visual Illustration Stage (Right inside card on desktop) */}
         <div className="wwb-stage-visual-container" aria-hidden="true">
           {renderStageVisual(index)}
         </div>
@@ -571,71 +605,179 @@ function JourneyStageCard({
  * Design 03: Premium Light Interactive Step Journey
  */
 export default function WhatWeBuildSection() {
-  const [activeStage, setActiveStage] = useState(0);
-  const activeStageRef = useRef(0);
+  // Mobile initial state: all cards compact (-1) until user scrolls into them.
+  // Desktop initial state: Stage 01 is active (0) to showcase 3D illustration.
+  const [activeStage, setActiveStage] = useState(-1);
+  const activeStageRef = useRef(-1);
   const sectionRef = useRef(null);
   const journeyRef = useRef(null);
+  const isManualSelectingRef = useRef(false);
+  const manualTimeoutRef = useRef(null);
+
+  // Initialize desktop to Stage 0 on mount if >= 1024px
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.innerWidth >= 1024 && activeStageRef.current === -1) {
+      setActiveStage(0);
+      activeStageRef.current = 0;
+    }
+  }, []);
 
   // Keep ref synchronized to prevent stale closures without forcing re-renders
   useEffect(() => {
     activeStageRef.current = activeStage;
   }, [activeStage]);
 
-  // Robust, responsive scroll-based stage synchronization (supports forward & backward scrolling)
+  const handleStageSelect = useCallback((index) => {
+    setActiveStage(index);
+    activeStageRef.current = index;
+    isManualSelectingRef.current = true;
+    if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
+    manualTimeoutRef.current = setTimeout(() => {
+      isManualSelectingRef.current = false;
+    }, 1200);
+  }, []);
+
+  // Robust, responsive scroll-based single-card activation (supports downward & upward scrolling)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     let ticking = false;
+    let lastScrollY = window.scrollY;
+    let lastSwitchTime = 0;
 
     const evaluateActiveStage = () => {
+      // 1. If user manually tapped a card, don't override for 1200ms
+      if (isManualSelectingRef.current) return;
+
       const section = sectionRef.current;
       if (!section) return;
 
       const stageItems = Array.from(section.querySelectorAll('.wwb-stage-item'));
       if (!stageItems.length) return;
 
-      const secRect = section.getBoundingClientRect();
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY >= lastScrollY;
+      lastScrollY = currentScrollY;
+
+      const now = Date.now();
+      const isMobile = window.innerWidth < 1024;
       const winHeight = window.innerHeight;
-      const focalLine = winHeight * 0.45;
-
-      // 1. Initial State / Top Boundary: If at or above the top of the section, Stage 01 is active
-      const firstRect = stageItems[0].getBoundingClientRect();
-      if (secRect.top >= winHeight * 0.6 || firstRect.top > focalLine) {
-        if (activeStageRef.current !== 0) {
-          activeStageRef.current = 0;
-          setActiveStage(0);
-        }
-        return;
-      }
-
-      // 2. Final State / Bottom Boundary: If at the bottom of the section or page, Stage 06 is active
+      const secRect = section.getBoundingClientRect();
+      const currentActive = activeStageRef.current;
       const lastIndex = stageItems.length - 1;
-      const lastRect = stageItems[lastIndex].getBoundingClientRect();
-      const isWindowAtBottom =
-        window.innerHeight + window.scrollY >= (document.documentElement.scrollHeight - 60);
-      const isSectionEnd = lastRect.top <= winHeight * 0.45 || secRect.bottom <= winHeight * 0.85;
 
-      if (isWindowAtBottom || isSectionEnd) {
-        if (activeStageRef.current !== lastIndex) {
-          activeStageRef.current = lastIndex;
-          setActiveStage(lastIndex);
+      if (isMobile) {
+        // Cooldown between automatic switches gives card expansion/collapse time to transition smoothly
+        if (now - lastSwitchTime < 280) return;
+
+        const firstRect = stageItems[0].getBoundingClientRect();
+        // Sticky mobile header is ~66px. Focal trigger line sits at 40% of screen height.
+        const focalLine = winHeight * 0.40;
+
+        // Above Section / Before Card 01: If first card has not entered activation zone, all cards compact (-1)
+        if (firstRect.top > winHeight * 0.45 || secRect.top > winHeight * 0.42) {
+          if (currentActive !== -1) {
+            activeStageRef.current = -1;
+            setActiveStage(-1);
+            lastSwitchTime = now;
+          }
+          return;
         }
-        return;
-      }
 
-      // 3. Sequential Stage Progression: Find the highest stage whose top has crossed the focal reading line
-      let currentActive = 0;
-      for (let i = 0; i < stageItems.length; i++) {
-        const itemRect = stageItems[i].getBoundingClientRect();
-        if (itemRect.top <= focalLine) {
-          currentActive = i;
+        // Section Bottom Boundary: If at bottom of section or page, ensure Stage 06 is active
+        const lastRect = stageItems[lastIndex].getBoundingClientRect();
+        const isWindowAtBottom =
+          window.innerHeight + window.scrollY >= (document.documentElement.scrollHeight - 60);
+        const isSectionEnd = lastRect.top <= winHeight * 0.65 || secRect.bottom <= winHeight * 0.85;
+
+        if (isWindowAtBottom || isSectionEnd) {
+          if (currentActive !== lastIndex) {
+            activeStageRef.current = lastIndex;
+            setActiveStage(lastIndex);
+            lastSwitchTime = now;
+          }
+          return;
         }
-      }
 
-      // Only call state setter if the active stage actually changed (prevents re-renders)
-      if (activeStageRef.current !== currentActive) {
-        activeStageRef.current = currentActive;
-        setActiveStage(currentActive);
+        // Downward Scrolling: Activate next card when its top reaches focal trigger zone
+        if (isScrollingDown) {
+          if (currentActive === -1) {
+            if (firstRect.top <= focalLine) {
+              activeStageRef.current = 0;
+              setActiveStage(0);
+              lastSwitchTime = now;
+              return;
+            }
+          } else if (currentActive < lastIndex) {
+            const nextItem = stageItems[currentActive + 1];
+            const nextRect = nextItem.getBoundingClientRect();
+            // Downward trigger threshold: 44% of viewport height
+            if (nextRect.top <= winHeight * 0.44) {
+              activeStageRef.current = currentActive + 1;
+              setActiveStage(currentActive + 1);
+              lastSwitchTime = now;
+              return;
+            }
+          }
+        } else {
+          // Upward Scrolling: Reactivate previous card when current active card moves down
+          if (currentActive === 0) {
+            // If Stage 01 moves down past 48% when scrolling up, collapse all cards (-1)
+            if (firstRect.top > winHeight * 0.48) {
+              activeStageRef.current = -1;
+              setActiveStage(-1);
+              lastSwitchTime = now;
+              return;
+            }
+          } else if (currentActive > 0) {
+            const currentItem = stageItems[currentActive];
+            const currentRect = currentItem.getBoundingClientRect();
+            // Upward trigger threshold: 54% of viewport height (hysteresis deadband prevents flickering)
+            if (currentRect.top > winHeight * 0.54) {
+              activeStageRef.current = currentActive - 1;
+              setActiveStage(currentActive - 1);
+              lastSwitchTime = now;
+              return;
+            }
+          }
+        }
+
+        // Fast Scroll / Swiping catch: If user flicked rapidly across multiple cards
+        let bestIndex = currentActive;
+        let minDistance = Infinity;
+
+        for (let i = 0; i < stageItems.length; i++) {
+          const itemRect = stageItems[i].getBoundingClientRect();
+          if (itemRect.bottom >= 80 && itemRect.top <= winHeight * 0.75) {
+            const dist = Math.abs(itemRect.top - focalLine);
+            if (dist < minDistance) {
+              minDistance = dist;
+              bestIndex = i;
+            }
+          }
+        }
+
+        if (bestIndex !== currentActive && Math.abs(bestIndex - currentActive) > 1) {
+          activeStageRef.current = bestIndex;
+          setActiveStage(bestIndex);
+          lastSwitchTime = now;
+        }
+      } else {
+        // Desktop Layout (>= 1024px): Standard focal line check with Stage 01 fallback
+        const focalLine = winHeight * 0.45;
+        let bestIndex = 0;
+        for (let i = 0; i < stageItems.length; i++) {
+          const itemRect = stageItems[i].getBoundingClientRect();
+          if (itemRect.top <= focalLine) {
+            bestIndex = i;
+          }
+        }
+
+        if (currentActive !== bestIndex) {
+          activeStageRef.current = bestIndex;
+          setActiveStage(bestIndex);
+        }
       }
     };
 
@@ -649,7 +791,7 @@ export default function WhatWeBuildSection() {
       }
     };
 
-    // IntersectionObserver multi-threshold triggers for instant responsive boundary recognition
+    // IntersectionObserver triggers for instant responsive boundary recognition
     const stageItems = sectionRef.current
       ? Array.from(sectionRef.current.querySelectorAll('.wwb-stage-item'))
       : [];
@@ -660,7 +802,7 @@ export default function WhatWeBuildSection() {
       },
       {
         root: null,
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 0.9, 1],
+        threshold: [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
       }
     );
 
@@ -679,8 +821,11 @@ export default function WhatWeBuildSection() {
     };
   }, []);
 
-  // Compute percentage for vertical journey fill
-  const progressPercent = Math.min(100, Math.max(0, (activeStage / (STAGES_DATA.length - 1)) * 100));
+  // Compute percentage for vertical journey fill (0% if all compact)
+  const progressPercent =
+    activeStage >= 0
+      ? Math.min(100, Math.max(0, (activeStage / (STAGES_DATA.length - 1)) * 100))
+      : 0;
 
   return (
     <section ref={sectionRef} className="container" id="services" style={{ padding: '0.5rem 0 1rem' }}>
@@ -688,6 +833,10 @@ export default function WhatWeBuildSection() {
         {/* Soft background ambient lighting meshes (Warm ivory / amber only) */}
         <div className="wwb-ambient-mesh-warm" aria-hidden="true" />
         <div className="wwb-ambient-mesh-subtle" aria-hidden="true" />
+
+        {/* Decorative Dotted Matrix & Organic Circles for Mobile Reference Match */}
+        <div className="wwb-mobile-decor-dots" aria-hidden="true" />
+        <div className="wwb-mobile-decor-circle" aria-hidden="true" />
 
         <div className="wwb-editorial-grid">
           {/* =================================================================
@@ -716,22 +865,28 @@ export default function WhatWeBuildSection() {
               <div className="wwb-active-tracker-card">
                 <div className="wwb-tracker-header">
                   <div className="wwb-tracker-pulse-dot" />
-                  <span className="wwb-tracker-label">ACTIVE STAGE</span>
+                  <span className="wwb-tracker-label">
+                    {activeStage >= 0 ? 'ACTIVE STAGE' : 'SERVICES TIMELINE'}
+                  </span>
                   <span className="wwb-tracker-count">
-                    0{activeStage + 1} / 0{STAGES_DATA.length}
+                    {activeStage >= 0 ? `0${activeStage + 1} / 0${STAGES_DATA.length}` : `00 / 0${STAGES_DATA.length}`}
                   </span>
                 </div>
-                <div className="wwb-tracker-title">{STAGES_DATA[activeStage].title}</div>
-                <p className="wwb-tracker-desc">{STAGES_DATA[activeStage].category}</p>
+                <div className="wwb-tracker-title">
+                  {activeStage >= 0 ? STAGES_DATA[activeStage].title : 'Explore Our Capabilities'}
+                </div>
+                <p className="wwb-tracker-desc">
+                  {activeStage >= 0 ? STAGES_DATA[activeStage].category : 'Scroll to explore each core engineering discipline'}
+                </p>
                 <div className="wwb-tracker-progress-track">
                   <div
                     className="wwb-tracker-progress-bar"
-                    style={{ width: `${((activeStage + 1) / STAGES_DATA.length) * 100}%` }}
+                    style={{ width: activeStage >= 0 ? `${((activeStage + 1) / STAGES_DATA.length) * 100}%` : '0%' }}
                   />
                 </div>
               </div>
 
-              {/* 3 Compact Verified Statistics / Highlights */}
+              {/* 3 Compact Verified Statistics / Highlights (Desktop Only) */}
               <div className="wwb-stats-stack">
                 <div className="wwb-stat-item">
                   <div className="wwb-stat-icon-wrap" style={{ background: '#FFF0E8', color: '#ea580c' }}>
@@ -786,7 +941,7 @@ export default function WhatWeBuildSection() {
                   stage={stage}
                   index={index}
                   isActive={activeStage === index}
-                  onActivate={setActiveStage}
+                  onActivate={handleStageSelect}
                 />
               ))}
             </div>

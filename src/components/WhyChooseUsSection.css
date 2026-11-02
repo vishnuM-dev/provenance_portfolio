@@ -1,13 +1,70 @@
 /* ==========================================================================
    Why Choose Provenance Tech? - Asymmetric Bento Grid Section
    Matched to Reference Design: Clean, Spacious, Trustworthy & Premium
-   Enhanced with GPU-Accelerated 3D Tilt, Floating Icons & Spotlight
+   Desktop: GPU-Accelerated 3D Tilt, Floating Icons & Spotlight
+   Mobile & Tablet: Horizontal 3D Cards, Laptop Illustration & CTA
    ========================================================================== */
 
 .why-choose-section {
   position: relative;
   width: 100%;
-  padding: 1.25rem 0 1.5rem;
+  padding: 1.25rem 0 2rem;
+  overflow: hidden;
+}
+
+/* Background Soft Orange Gradient & Atmospheric Glow */
+.why-choose-bg-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.why-choose-bg-radial-top {
+  position: absolute;
+  top: -80px;
+  right: -90px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(251, 146, 60, 0.05) 50%, transparent 72%);
+  filter: blur(25px);
+}
+
+.why-choose-bg-arc-ring {
+  position: absolute;
+  top: 15px;
+  right: -100px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(234, 88, 12, 0.12);
+  pointer-events: none;
+}
+
+.why-choose-bg-radial-bottom {
+  position: absolute;
+  bottom: -60px;
+  left: -90px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.08) 0%, rgba(251, 146, 60, 0.03) 50%, transparent 70%);
+  filter: blur(25px);
+}
+
+/* -------------------------------------------------------------
+   DESKTOP VIEW (>= 1024px)
+   ------------------------------------------------------------- */
+.why-choose-desktop-view {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.why-choose-mobile-view {
+  display: none !important;
 }
 
 /* 1. Header Styling */
@@ -123,300 +180,97 @@
               border-color 0.35s ease;
 }
 
-.bento-scroll-init:not(.is-in-view) .bento-card-1 {
-  transform: translateY(28px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-2 {
-  transform: translateY(22px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-3 {
-  transform: translateY(22px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-4 {
-  transform: translateX(-22px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-5 {
-  transform: translateX(22px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-6 {
-  transform: translateY(24px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-7 {
-  transform: translateY(24px);
-}
-.bento-scroll-init:not(.is-in-view) .bento-card-8 {
-  transform: translateY(24px);
-}
-
-/* When revealed into view */
 .bento-scroll-init.is-in-view .bento-card {
   opacity: 1;
-  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(0px);
 }
 
-.bento-scroll-init.is-in-view .bento-card-1 { transition-delay: 0.06s; }
-.bento-scroll-init.is-in-view .bento-card-2 { transition-delay: 0.16s; }
-.bento-scroll-init.is-in-view .bento-card-3 { transition-delay: 0.26s; }
-.bento-scroll-init.is-in-view .bento-card-4 { transition-delay: 0.36s; }
-.bento-scroll-init.is-in-view .bento-card-5 { transition-delay: 0.46s; }
-.bento-scroll-init.is-in-view .bento-card-6 { transition-delay: 0.56s; }
-.bento-scroll-init.is-in-view .bento-card-7 { transition-delay: 0.66s; }
-.bento-scroll-init.is-in-view .bento-card-8 { transition-delay: 0.76s; }
-
-/* Interactive Hover States & Smooth Lift */
-@media (hover: hover) and (pointer: fine) {
-  .bento-card.is-hovered,
-  .bento-card:hover {
-    transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-7px);
-    box-shadow: 0 20px 42px rgba(44, 24, 16, 0.08), 0 4px 14px rgba(235, 120, 33, 0.08);
-    border-color: rgba(235, 120, 33, 0.45);
-  }
-
-  .bento-card.is-hovered .bento-card-border-glow,
-  .bento-card:hover .bento-card-border-glow {
-    opacity: 1;
-  }
-
-  .bento-card.is-hovered .bento-card-spotlight,
-  .bento-card:hover .bento-card-spotlight {
-    opacity: 1;
-  }
-
-  /* 4. Interactive Floating Icons */
-  .bento-card.is-hovered .bento-icon-box,
-  .bento-card:hover .bento-icon-box {
-    transform: translateY(-4px) rotate(5deg) scale(1.05);
-    background: rgba(235, 120, 33, 0.16);
-    border-color: rgba(235, 120, 33, 0.35);
-  }
-
-  /* 5. Decorative Shape Animation */
-  .bento-card.is-hovered .target-illus,
-  .bento-card:hover .target-illus {
-    transform: scale(1.06) rotate(8deg);
-    opacity: 0.85;
-  }
-
-  .bento-card.is-hovered .devices-illus,
-  .bento-card:hover .devices-illus {
-    transform: translateY(-4px) scale(1.03);
-    opacity: 0.85;
-  }
-
-  .bento-card.is-hovered .cloud-illus,
-  .bento-card:hover .cloud-illus {
-    transform: translateY(-4px) scale(1.05);
-    opacity: 0.85;
-  }
-
-  .bento-card.is-hovered .chevrons-illus,
-  .bento-card:hover .chevrons-illus {
-    transform: translateX(4px) scale(1.06);
-    opacity: 0.85;
-  }
-
-  .bento-card.is-hovered .bento-corner-shape,
-  .bento-card:hover .bento-corner-shape {
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
-
-  .bento-card.is-hovered .corner-left.bento-corner-shape,
-  .bento-card:hover .corner-left.bento-corner-shape {
-    transform: scaleX(-1) scale(1.1);
-    opacity: 0.7;
-  }
-
-  /* 6. Interactive Content Transitions */
-  .bento-card.is-hovered .bento-card-title,
-  .bento-card:hover .bento-card-title {
-    transform: translateY(-2px);
-  }
-
-  .bento-card.is-hovered .bento-card-desc,
-  .bento-card:hover .bento-card-desc {
-    transform: translateY(-1.5px);
-    opacity: 0.98;
-  }
+/* Bento Card Geometry */
+.bento-card-1 {
+  grid-column: span 4;
+  grid-row: span 2;
+  background: linear-gradient(170deg, #ffffff 0%, #fffbf7 100%);
+  border-color: rgba(235, 120, 33, 0.22);
 }
 
-/* 4. Desktop Bento Spanning (1024px+) */
-@media (min-width: 1024px) {
-  .bento-card-1 {
-    grid-column: 1 / span 3;
-    grid-row: 1 / span 2;
-    padding: 2.1rem 1.85rem;
-    border-radius: 26px 48px 26px 26px;
-  }
-
-  .bento-card-2 {
-    grid-column: 4 / span 4;
-    grid-row: 1;
-  }
-
-  .bento-card-3 {
-    grid-column: 8 / span 5;
-    grid-row: 1;
-  }
-
-  .bento-card-4 {
-    grid-column: 4 / span 4;
-    grid-row: 2;
-  }
-
-  .bento-card-5 {
-    grid-column: 8 / span 5;
-    grid-row: 2;
-  }
-
-  .bento-card-6 {
-    grid-column: 1 / span 4;
-    grid-row: 3;
-  }
-
-  .bento-card-7 {
-    grid-column: 5 / span 4;
-    grid-row: 3;
-  }
-
-  .bento-card-8 {
-    grid-column: 9 / span 4;
-    grid-row: 3;
-  }
+.bento-card-2 {
+  grid-column: span 4;
 }
 
-/* 5. Icon Container Styling */
+.bento-card-3 {
+  grid-column: span 4;
+}
+
+.bento-card-4 {
+  grid-column: span 4;
+}
+
+.bento-card-5 {
+  grid-column: span 4;
+}
+
+.bento-card-6 {
+  grid-column: span 4;
+}
+
+.bento-card-7 {
+  grid-column: span 4;
+}
+
+.bento-card-8 {
+  grid-column: span 4;
+}
+
+/* Icon Box */
 .bento-icon-box {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(235, 120, 33, 0.1);
-  border: 1px solid rgba(235, 120, 33, 0.22);
+  color: var(--primary, #eb7821);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary, #eb7821);
-  flex-shrink: 0;
-  transform: translateY(0px) rotate(0deg) scale(1);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.35s ease,
-              border-color 0.35s ease;
-  position: relative;
-  z-index: 3;
-  will-change: transform;
+  margin-bottom: 1rem;
 }
 
-.bento-card-1 .bento-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  margin-bottom: 1.15rem;
-}
-
-/* 6. Typography Styling */
-.bento-card-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-primary, #18181b);
-  line-height: 1.3;
-  margin: 0;
-  transform: translateY(0);
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
-  position: relative;
-  z-index: 3;
-  will-change: transform;
-}
-
-.bento-card-1 .bento-card-title {
-  font-size: 1.45rem;
-  font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 0.85rem;
-  color: var(--text-primary, #18181b);
-}
-
-.bento-card-desc {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--text-secondary, #5f6368);
-  margin: 0;
-  transform: translateY(0);
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-  position: relative;
-  z-index: 3;
-  will-change: transform;
-}
-
-.bento-card-1 .bento-card-desc {
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
-/* Card Header Flex (Icon + Title alignment) */
 .bento-card-header {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
   margin-bottom: 0.65rem;
-  position: relative;
-  z-index: 3;
 }
 
-.bento-content-col {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  position: relative;
-  z-index: 3;
-}
-
-/* Card Body Flex with illustration */
-.bento-card-body {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  flex: 1;
-  position: relative;
-  z-index: 3;
-}
-
-/* 7. Technical Illustrations */
-.card-tech-illus {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+.bento-card-header .bento-icon-box {
+  margin-bottom: 0;
   flex-shrink: 0;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-  will-change: transform;
+}
+
+.bento-card-title {
+  font-size: 1.12rem;
+  font-weight: 750;
+  color: #1a130e;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.bento-card-desc {
+  font-size: 0.9rem;
+  color: #5c4f42;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.card-tech-illus {
+  position: absolute;
+  pointer-events: none;
 }
 
 .target-illus {
-  position: absolute;
-  bottom: 1.1rem;
-  right: 1.1rem;
-  z-index: 2;
+  bottom: 1.25rem;
+  right: 1.25rem;
 }
 
-.devices-illus {
-  margin-top: auto;
-  align-self: flex-end;
-}
-
-.cloud-illus {
-  align-self: center;
-  margin-right: 0.35rem;
-}
-
-.chevrons-illus {
-  align-self: center;
-  margin-right: 0.35rem;
-}
-
-/* 8. Subtle Organic Corner Shapes */
 .bento-corner-shape {
   position: absolute;
   bottom: 0;
@@ -425,102 +279,440 @@
   height: 72px;
   pointer-events: none;
   z-index: 1;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-  will-change: transform;
 }
 
-.corner-left {
-  left: 0;
-  right: auto;
-  transform: scaleX(-1);
-}
-
-/* 9. Tablet Responsive Layout (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .why-choose-bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE SYSTEM (< 1024px)
+   Matches Uploaded Reference Image Spec
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .why-choose-desktop-view {
+    display: none !important;
   }
 
-  .bento-card-1 {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    padding: 2rem 1.85rem;
-    border-radius: 24px;
+  .why-choose-mobile-view {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
-  .bento-card-2,
-  .bento-card-3,
-  .bento-card-4,
-  .bento-card-5,
-  .bento-card-6,
-  .bento-card-7 {
-    grid-column: span 1;
-    grid-row: auto;
+  /* 1. Mobile Pill Badge */
+  .why-choose-mobile-badge-wrap {
+    margin-bottom: 0.65rem;
   }
 
-  .bento-card-8 {
-    grid-column: 1 / -1;
-    grid-row: auto;
-  }
-}
-
-/* 10. Mobile Responsive Layout (< 768px) */
-@media (max-width: 767px) {
-  .why-choose-section {
-    padding: 1rem 0 2.5rem;
-  }
-
-  .why-choose-heading-wrap {
-    gap: 0.75rem;
-  }
-
-  .heading-dash-accent svg {
-    width: 28px;
+  .why-choose-mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.28);
+    border-radius: 9999px;
+    padding: 0.32rem 0.85rem;
+    color: var(--primary, #ea580c);
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+    animation: csBadgeFadeIn 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .why-choose-bento-grid {
+  .why-choose-badge-icon {
+    display: inline-block;
+    color: var(--primary, #ea580c);
+  }
+
+  /* 2. Hero Row: Title & 3D Laptop */
+  .why-choose-mobile-hero-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-choose-mobile-title-col {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .why-choose-mobile-title {
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #141518;
+    margin: 0;
+    animation: csHeadingReveal 500ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+  }
+
+  .why-choose-mobile-accent-wrap {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .why-choose-mobile-accent-word {
+    color: var(--primary, #ea580c);
+  }
+
+  /* 3 Radiating Sparks / Burst above Tech? */
+  .why-choose-sparks-burst {
+    position: absolute;
+    top: -14px;
+    right: -24px;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+  }
+
+  /* Curved Underline below Tech? */
+  .why-choose-underline-svg {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 13px;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .why-choose-underline-svg path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: csDrawUnderline 700ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
+  }
+
+  /* 3D Laptop Illustration Container */
+  .why-choose-mobile-illus-col {
+    width: 135px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: -10px;
+  }
+
+  .why-choose-hero-illus-box {
+    width: 100%;
+    height: auto;
+  }
+
+  .why-choose-laptop-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 24px rgba(234, 88, 12, 0.16));
+  }
+
+  /* 3. Description */
+  .why-choose-mobile-desc {
+    font-size: 0.94rem;
+    color: #55493d;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+    text-align: left;
+    animation: csDescFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+  }
+
+  /* 4. Filter Row */
+  .why-choose-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 2px 6px;
+    margin-bottom: 1.25rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .why-choose-filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .why-choose-filter-btn {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.52rem 1.05rem;
+    font-size: 0.84rem;
+    font-weight: 650;
+    border-radius: 9999px;
+    border: 1px solid #e2d6c8;
+    background: #ffffff;
+    color: #1a1510;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    transition: all 0.22s ease;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .why-choose-filter-btn.active {
+    background: var(--primary, #ea580c);
+    border-color: var(--primary, #ea580c);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
+  }
+
+  .why-choose-filter-btn.active .why-choose-filter-icon {
+    color: #ffffff;
+  }
+
+  /* 5. Mobile Cards Stack */
+  .why-choose-mobile-cards-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .bento-card {
     width: 100%;
-    padding: 1.4rem 1.35rem;
-    border-radius: 20px !important;
-    transform: none !important;
+    margin-bottom: 1.5rem;
   }
 
-  .bento-card-1 {
-    padding: 1.6rem 1.4rem;
+  .why-choose-mobile-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid rgba(226, 215, 202, 0.7);
+    border-radius: 22px;
+    padding: 10px 12px 10px 10px;
+    box-shadow: 0 4px 18px rgba(45, 30, 18, 0.05), 0 1px 3px rgba(45, 30, 18, 0.03);
+    animation: csCardEntrance 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--card-idx, 0) * 80ms);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .target-illus {
-    width: 65px;
-    height: 65px;
-    bottom: 0.85rem;
-    right: 0.85rem;
+  .why-choose-mobile-card:hover {
+    border-color: rgba(234, 88, 12, 0.35);
+    box-shadow: 0 10px 28px -4px rgba(60, 40, 20, 0.1), 0 2px 8px -2px rgba(60, 40, 20, 0.05);
   }
 
-  .devices-illus svg {
-    width: 85px;
-    height: 58px;
+  .why-choose-mobile-card:active {
+    transform: scale(0.985);
+  }
+
+  /* Left Column: 3D Illustration inside warm rounded container */
+  .why-choose-card-media-box {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fff7f0 0%, #ffe9d6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .why-choose-card-3d-svg {
+    width: 78px;
+    height: 78px;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .why-choose-mobile-card:hover .why-choose-card-3d-svg {
+    transform: scale(1.06);
+  }
+
+  .why-choose-media-corner-accent {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle at bottom right, rgba(234, 88, 12, 0.25), transparent 70%);
+    border-radius: 0 0 18px 0;
+    pointer-events: none;
+  }
+
+  .why-choose-icon-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Right Column: Title, Description & Arrow */
+  .why-choose-card-content-box {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px 0;
+  }
+
+  .why-choose-card-title-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 4px;
+  }
+
+  .why-choose-check-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary, #ea580c);
+    color: #ffffff;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .why-choose-card-heading {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: #141518;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .why-choose-card-description {
+    font-size: 0.74rem;
+    font-weight: 450;
+    color: #5a524a;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* Circular Action Arrow Button */
+  .why-choose-card-arrow-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #faede2;
+    color: var(--primary, #ea580c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .why-choose-mobile-card:hover .why-choose-card-arrow-btn,
+  .why-choose-mobile-card:active .why-choose-card-arrow-btn {
+    background: var(--primary, #ea580c);
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  /* 6. Bottom CTA Button */
+  .why-choose-cta-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .why-choose-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #ffffff;
+    border: 1.2px solid rgba(226, 215, 202, 0.85);
+    border-radius: 9999px;
+    padding: 0.55rem 0.7rem 0.55rem 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #141518;
+    box-shadow: 0 4px 16px rgba(45, 30, 18, 0.06);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .why-choose-cta-btn:hover {
+    border-color: var(--primary, #ea580c);
+    color: var(--primary, #ea580c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.15);
+  }
+
+  .why-choose-cta-icon-box {
+    color: var(--primary, #ea580c);
+    display: flex;
+    align-items: center;
+  }
+
+  .why-choose-cta-text {
+    display: inline-block;
+  }
+
+  .why-choose-cta-arrow-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary, #ea580c);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .why-choose-cta-btn:hover .why-choose-cta-arrow-box {
+    transform: translateX(3px);
   }
 }
 
-/* 11. Accessibility: Prefers-Reduced-Motion */
+/* ==========================================================================
+   NARROW MOBILE SCREENS (320px–374px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .why-choose-mobile-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .why-choose-card-media-box {
+    width: 100%;
+    height: 100px;
+  }
+
+  .why-choose-card-content-box {
+    padding: 0 4px;
+  }
+
+  .why-choose-card-arrow-btn {
+    align-self: flex-end;
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS & ACCESSIBILITY
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .bento-card,
-  .bento-icon-box,
-  .card-tech-illus,
-  .bento-corner-shape,
-  .bento-card-title,
-  .bento-card-desc,
-  .bento-card-spotlight,
-  .bento-card-border-glow {
-    transition: none !important;
-    transform: none !important;
+  .why-choose-underline-svg path {
+    stroke-dashoffset: 0 !important;
     animation: none !important;
+  }
+  .why-choose-mobile-badge,
+  .why-choose-mobile-title,
+  .why-choose-mobile-desc,
+  .why-choose-mobile-card {
+    animation: none !important;
+  }
+  .why-choose-mobile-card,
+  .why-choose-card-arrow-btn,
+  .why-choose-card-3d-svg,
+  .why-choose-cta-btn {
+    transition: none !important;
   }
 }

@@ -646,6 +646,36 @@
   }
 }
 
+@media (max-width: 360px) {
+  .pfh-cards-composition {
+    max-width: 280px;
+    height: 310px;
+  }
+
+  .pfh-card-center {
+    width: 180px;
+    height: 260px;
+    left: 50px;
+  }
+
+  .pfh-card-left {
+    width: 105px;
+    height: 155px;
+    left: 0;
+  }
+
+  .pfh-card-right {
+    width: 105px;
+    height: 155px;
+    left: calc(100% - 100px);
+  }
+
+  .pfh-side-scroll-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pfh-card,
   .pfh-floating-pill,

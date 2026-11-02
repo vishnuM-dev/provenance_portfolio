@@ -573,6 +573,29 @@
   background: #c2410c;
 }
 
+/* Mobile specific subcomponents (Hidden on Desktop >= 1024px) */
+.wwb-mobile-card-header {
+  display: none;
+}
+
+.desktop-only-meta {
+  display: flex;
+}
+
+.desktop-only-title {
+  display: block;
+}
+
+.wwb-card-expandable-content {
+  display: block;
+  width: 100%;
+}
+
+.wwb-mobile-decor-dots,
+.wwb-mobile-decor-circle {
+  display: none;
+}
+
 /* Right Illustration Container */
 .wwb-stage-visual-container {
   position: relative;
@@ -1204,73 +1227,544 @@
 
 /* ==========================================================================
    RESPONSIVE LAYOUT & MEDIA QUERIES
+   Matches Mobile Reference Design:
+   - Eyebrow with orange dot
+   - Bold black + orange highlight headline
+   - Lead description
+   - Background orange dot matrix & organic circle
+   - Floating Active Stage card with glowing pulse dot, stage number (03 / 06),
+     service title, subtitle, and dynamic animated orange progress bar
+   - Interactive single-column vertical timeline with thin orange connecting line
+   - Circular markers: orange active badge with glow, neutral inactive badges
+   - White rounded service cards with soft shadow
+   - Card content: Title on left, rounded icon badge on right, description,
+     checkmarked capability pills, and Explore Capability with orange circle arrow
+   - Smooth tap expand/collapse and active stage synchronization
    ========================================================================== */
+
+/* Staged load & entrance animation sequence */
+@keyframes wwbFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csStageDescReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csStagePillReveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes csStageBtnReveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Tablet & Smaller Screens (< 1024px) */
 @media (max-width: 1023px) {
+  .wwb-journey-container {
+    padding: 1.25rem 0 1rem;
+    overflow: hidden;
+  }
+
   .wwb-editorial-grid {
     grid-template-columns: 1fr;
-    gap: 2.75rem;
+    gap: 2rem;
   }
 
   .wwb-intro-sticky-col {
     position: static;
     top: auto;
+    width: 100%;
   }
 
   .wwb-sticky-inner {
-    max-width: 720px;
+    max-width: 100%;
+    width: 100%;
   }
 
+  /* Decorative Background Elements (Reference Match) */
+  .wwb-mobile-decor-dots {
+    display: block !important;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 86px;
+    height: 86px;
+    background-image: radial-gradient(rgba(235, 120, 33, 0.32) 1.5px, transparent 1.5px);
+    background-size: 13px 13px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  .wwb-mobile-decor-circle {
+    display: block !important;
+    position: absolute;
+    top: -25px;
+    right: -45px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(235, 120, 33, 0.15);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Eyebrow Pill Animation */
+  .wwb-eyebrow-pill {
+    animation: wwbFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+  }
+
+  /* Headline: Bold Black + Orange Accent (Reference Match) */
   .wwb-editorial-headline {
-    font-size: clamp(2rem, 4.5vw, 2.6rem);
+    font-size: clamp(2.1rem, 5.2vw, 2.75rem);
+    font-weight: 850;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: #141518;
+    margin: 0 0 1rem;
+    animation: wwbFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
   }
 
+  .wwb-headline-accent {
+    color: #ea580c;
+  }
+
+  /* Lead Description (Reference Match) */
+  .wwb-editorial-lead {
+    font-size: 0.98rem;
+    color: #4a3e35;
+    line-height: 1.65;
+    font-weight: 450;
+    margin: 0 0 1.5rem;
+    animation: wwbFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
+  }
+
+  /* Active Stage Floating Card (Reference Match) */
   .wwb-active-tracker-card {
-    display: none; /* Streamline on tablet/mobile */
+    display: block !important;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(220, 195, 170, 0.65);
+    border-radius: 20px;
+    padding: 1.25rem 1.35rem 1.15rem;
+    margin: 0 0 2.25rem 0;
+    box-shadow: 0 10px 28px rgba(45, 35, 27, 0.05);
+    animation: wwbFadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards;
   }
 
+  .wwb-tracker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.55rem;
+  }
+
+  .wwb-tracker-label {
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ea580c;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .wwb-tracker-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ea580c;
+    box-shadow: 0 0 10px rgba(234, 88, 12, 0.7);
+    animation: wwbDotPulse 2s infinite ease-in-out;
+    margin-right: 0.5rem;
+  }
+
+  .wwb-tracker-count {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #6e6054;
+  }
+
+  .wwb-tracker-title {
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #141518;
+    line-height: 1.25;
+    margin: 0 0 0.25rem;
+  }
+
+  .wwb-tracker-desc {
+    font-size: 0.85rem;
+    color: #6e6054;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 0.95rem;
+  }
+
+  .wwb-tracker-progress-track {
+    width: 100%;
+    height: 4.5px;
+    background: #eee7df;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .wwb-tracker-progress-bar {
+    height: 100%;
+    background: #ea580c;
+    border-radius: 9999px;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Streamline stats stack on tablet/mobile to keep focus on timeline */
   .wwb-stats-stack {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.85rem;
+    display: none !important;
   }
 
-  .wwb-stat-item {
-    flex: 1;
-    min-width: 180px;
+  /* Right Column Timeline System */
+  .wwb-journey-stages-col {
+    position: relative;
+    width: 100%;
   }
 
-  .wwb-stage-card {
-    padding: 2rem 1.75rem;
+  .wwb-stages-list {
     gap: 1.5rem;
   }
-}
 
-/* Mobile Screens (< 768px) */
-@media (max-width: 767px) {
-  .wwb-journey-container {
-    padding: 1rem 0 0.75rem;
+  /* Vertical Journey Connecting Line (Reference Match: Progress-Filling Orange Line) */
+  .wwb-journey-spine-track {
+    top: 22px;
+    bottom: 35px;
+    left: 18px;
+    width: 2.5px;
+    background: rgba(234, 88, 12, 0.18);
+    border-radius: 9999px;
+    z-index: 1;
   }
 
-  .wwb-editorial-grid {
-    gap: 2.25rem;
+  .wwb-journey-spine-fill {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(234, 88, 12, 0.5);
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  /* Stage Item Layout */
   .wwb-stage-item {
-    grid-template-columns: 34px minmax(0, 1fr);
-    gap: 0.85rem;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: flex-start;
   }
 
+  .wwb-stage-node-col {
+    position: relative;
+    z-index: 3;
+    padding-top: 4px;
+  }
+
+  /* Marker Badges (Reference Match) */
   .wwb-stage-badge {
-    width: 34px;
-    height: 34px;
-    font-size: 0.78rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: #ffffff;
+    border: 1.8px solid #e7ded4;
+    color: #786a5e;
+    box-shadow: 0 2px 6px rgba(45, 35, 27, 0.04);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  /* Active Marker Badge */
+  .wwb-stage-badge.is-active,
+  .wwb-stage-item.is-active .wwb-stage-badge {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+    border-color: #ea580c !important;
+    color: #ffffff !important;
+    font-weight: 850;
+    transform: scale(1.12);
+    box-shadow: 
+      0 0 0 3.5px rgba(234, 88, 12, 0.22),
+      0 4px 14px rgba(234, 88, 12, 0.4) !important;
+    animation: none;
   }
 
   .wwb-stage-connector-arm {
-    width: 0.85rem;
-    right: -0.85rem;
+    display: none;
+  }
+
+  /* Stage Cards Base (Reference Match) */
+  .wwb-stage-card {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    padding: 1.15rem 1.25rem !important;
+    border-radius: 20px !important;
+    gap: 0 !important;
+    box-shadow: 0 2px 10px rgba(45, 35, 27, 0.03) !important;
+    border: 1.2px solid rgba(220, 195, 170, 0.55) !important;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease !important;
+    background: #ffffff !important;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .wwb-stage-card-body {
+    width: 100%;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* Inactive Card Style: Clear, Crisp & Compact */
+  .wwb-stage-item:not(.is-active) .wwb-stage-card,
+  .wwb-stage-card.is-card-inactive {
+    background: #ffffff !important;
+    border-color: rgba(220, 195, 170, 0.55) !important;
+    box-shadow: 0 2px 10px rgba(45, 35, 27, 0.03) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .wwb-stage-item:not(.is-active) .wwb-stage-card:hover {
+    border-color: rgba(234, 88, 12, 0.35) !important;
+  }
+
+  .wwb-stage-item:not(.is-active) .wwb-stage-card:active {
+    transform: scale(0.98) !important;
+  }
+
+  /* Active Card Style (Reference Match: Prominent elevation & brand orange border) */
+  .wwb-stage-card.is-card-active,
+  .wwb-stage-item.is-active .wwb-stage-card {
+    background: #ffffff !important;
+    border-color: #ea580c !important;
+    box-shadow: 0 12px 32px rgba(234, 88, 12, 0.12), 0 2px 10px rgba(45, 35, 27, 0.04) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Desktop elements hidden on mobile */
+  .desktop-only-meta,
+  .desktop-only-title,
+  .wwb-stage-visual-container {
+    display: none !important;
+  }
+
+  /* Mobile Card Header (Title on Left, Rounded Icon on Right) */
+  .wwb-mobile-card-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .wwb-mobile-card-header .wwb-stage-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #141518 !important;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .wwb-mobile-card-header .wwb-stage-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #fff4ed;
+    border: 1px solid rgba(234, 88, 12, 0.18);
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .wwb-stage-card.is-card-active .wwb-mobile-card-header .wwb-stage-icon-wrap {
+    transform: scale(1.06);
+    background: #ffebe0;
+    border-color: rgba(234, 88, 12, 0.32);
+  }
+
+  /* Expandable Content Container on Mobile: Guaranteed Zero Reserved Space When Inactive */
+  .wwb-card-expandable-content {
+    display: block !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transition: max-height 380ms cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 280ms ease,
+                margin-top 280ms ease,
+                visibility 380ms !important;
+  }
+
+  .wwb-card-expandable-content.is-expanded,
+  .wwb-stage-item.is-active .wwb-card-expandable-content {
+    max-height: 520px !important;
+    opacity: 1 !important;
+    margin-top: 0.85rem !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+
+  .wwb-card-expandable-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* Content Sequence Animations When Active */
+  .wwb-stage-item.is-active .wwb-stage-desc {
+    animation: csStageDescReveal 360ms cubic-bezier(0.16, 1, 0.3, 1) 50ms both;
+  }
+
+  .wwb-stage-item.is-active .wwb-capability-pill:nth-child(1) {
+    animation: csStagePillReveal 300ms ease 110ms both;
+  }
+
+  .wwb-stage-item.is-active .wwb-capability-pill:nth-child(2) {
+    animation: csStagePillReveal 300ms ease 170ms both;
+  }
+
+  .wwb-stage-item.is-active .wwb-capability-pill:nth-child(3) {
+    animation: csStagePillReveal 300ms ease 230ms both;
+  }
+
+  .wwb-stage-item.is-active .wwb-stage-action-row {
+    animation: csStageBtnReveal 320ms ease 280ms both;
+  }
+
+  /* Description */
+  .wwb-stage-desc {
+    font-size: 0.88rem;
+    color: #4a3e35;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+    font-weight: 450;
+  }
+
+  /* Capability checklist pills (Vertical stack matching reference) */
+  .wwb-stage-capabilities-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .wwb-capability-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fdfaf6;
+    border: 1px solid rgba(220, 195, 170, 0.5);
+    padding: 0.38rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #1a130e;
+    width: fit-content;
+    box-shadow: 0 2px 6px rgba(45, 35, 27, 0.02);
+  }
+
+  .wwb-capability-check {
+    color: #ea580c;
+    font-weight: 800;
+    font-size: 0.75rem;
+  }
+
+  /* Action Row & Button (Reference Match) */
+  .wwb-stage-action-row {
+    margin-top: 0.25rem;
+  }
+
+  .wwb-stage-learn-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.9rem;
+    font-weight: 750;
+    color: #141518;
+    text-decoration: none;
+    min-height: 44px;
+    transition: color 0.2s ease, transform 0.15s ease;
+  }
+
+  .wwb-stage-learn-btn:active {
+    transform: scale(0.97);
+  }
+
+  .wwb-stage-arrow-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ea580c;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.22s ease, background-color 0.22s ease;
+  }
+
+  .wwb-stage-learn-btn:hover .wwb-stage-arrow-circle,
+  .wwb-stage-learn-btn:active .wwb-stage-arrow-circle {
+    transform: translateX(4px);
+    background: #c2410c;
+  }
+}
+
+/* Specific Mobile Refinements (< 600px) */
+@media (max-width: 600px) {
+  .wwb-stage-item {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 0.85rem;
   }
 
   .wwb-journey-spine-track {
@@ -1278,30 +1772,39 @@
   }
 
   .wwb-stage-card {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.65rem 1.35rem;
-    border-radius: 20px;
+    padding: 1.25rem 1.15rem !important;
   }
 
-  .wwb-stage-item:not(.is-active) .wwb-stage-card {
-    transform: scale(0.985) translateX(0);
+  .wwb-mobile-card-header .wwb-stage-title {
+    font-size: 1.1rem;
   }
 
-  .wwb-stage-title {
-    font-size: 1.25rem;
+  .wwb-editorial-headline {
+    font-size: clamp(1.9rem, 7.4vw, 2.35rem);
+  }
+}
+
+/* Small Mobile Viewports (320px – 374px) */
+@media (max-width: 374px) {
+  .wwb-editorial-headline {
+    font-size: 1.75rem;
   }
 
-  .wwb-stage-visual-container {
-    min-height: 180px;
+  .wwb-mobile-card-header .wwb-stage-title {
+    font-size: 1.02rem;
   }
 
-  .wwb-stats-stack {
-    flex-direction: column;
+  .wwb-capability-pill {
+    font-size: 0.72rem;
+    padding: 0.32rem 0.7rem;
   }
 
-  .wwb-stat-item {
-    width: 100%;
+  .wwb-stage-card {
+    padding: 1.15rem 0.95rem !important;
+  }
+
+  .wwb-active-tracker-card {
+    padding: 1.1rem 1rem 1rem;
   }
 }
 

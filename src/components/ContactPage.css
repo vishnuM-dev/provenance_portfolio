@@ -55,7 +55,7 @@
    ========================================================================== */
 .cp-main-grid {
   display: grid;
-  grid-template-columns: minmax(420px, 1.18fr) minmax(290px, 330px) minmax(420px, 1.18fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(270px, 330px) minmax(0, 1.18fr);
   gap: 2rem;
   align-items: start;
   position: relative;
@@ -1090,3 +1090,147 @@
 .cp-inquiry-form-element {
   width: 100%;
 }
+
+@media (max-width: 640px) {
+  .cp-container {
+    padding: 0 1.15rem;
+  }
+
+  .cp-headline {
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
+  }
+
+  .cp-inquiry-title {
+    font-size: clamp(1.75rem, 6vw, 2.1rem);
+  }
+
+  .cp-connect-title {
+    font-size: 1.55rem;
+  }
+
+  .cp-arch-stage,
+  .cp-arch-wrap {
+    max-width: 290px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cp-container {
+    padding: 0 1rem;
+  }
+
+  .cp-headline {
+    font-size: clamp(1.85rem, 7vw, 2.35rem);
+  }
+
+  .cp-connect-card {
+    padding: 1.5rem 1rem;
+    border-radius: 18px;
+  }
+
+  .cp-offices-card {
+    padding: 1.25rem 1.1rem;
+    border-radius: 18px;
+  }
+
+  .cp-arch-stage,
+  .cp-arch-wrap {
+    max-width: 260px;
+    height: 320px;
+    border-radius: 120px 120px 20px 70px;
+  }
+
+  .cp-dot-grid-svg {
+    left: -10px;
+    opacity: 0.35;
+  }
+
+  .cp-curve-btn-phone {
+    left: 4px;
+    top: 90px;
+  }
+
+  .cp-floating-speech {
+    max-width: 180px;
+    left: 8px;
+    top: 45px;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .cp-speech-text {
+    font-size: 0.7rem;
+  }
+
+  .cp-wall-sign {
+    font-size: 1.25rem;
+    padding: 0.35rem 0.85rem;
+  }
+
+  .cp-quick-dialog-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .cp-quick-dialog-val {
+    font-size: 1.05rem;
+    word-break: break-all;
+  }
+
+  .cp-inquiry-card {
+    padding: 1.65rem 1rem;
+    border-radius: 20px;
+  }
+
+  .cp-date-pill {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .cp-time-slot-btn {
+    padding: 0.55rem 0.4rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .cp-container {
+    padding: 0 0.75rem;
+  }
+
+  .cp-arch-stage,
+  .cp-arch-wrap {
+    max-width: 230px;
+    height: 290px;
+  }
+
+  .cp-time-slots-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .cp-inquiry-card {
+    padding: 1.35rem 0.75rem;
+  }
+
+  .cp-connect-card {
+    padding: 1.25rem 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-arch-img,
+  .cp-curve-btn,
+  .cp-option-card,
+  .cp-option-icon-box,
+  .cp-option-arrow-box,
+  .cp-whatsapp-panel,
+  .cp-social-btn,
+  .cp-floating-speech {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

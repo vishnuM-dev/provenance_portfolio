@@ -168,6 +168,32 @@
   white-space: nowrap;
 }
 
+.hero-title-spark-accent {
+  position: absolute;
+  top: -8px;
+  right: -24px;
+  display: inline-flex;
+  pointer-events: none;
+  animation: heroSparklePulse 3.2s ease-in-out infinite alternate;
+}
+
+@media (max-width: 767px) {
+  .hero-title-spark-accent {
+    top: -6px;
+    right: -18px;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title-flow-highlight {
+    white-space: normal;
+  }
+  .hero-title-spark-accent {
+    display: none;
+  }
+}
+
 .hero-title-flow-highlight:hover .hero-title-underline-svg {
   filter: drop-shadow(0 4px 10px rgba(234, 88, 12, 0.42));
   transform: scaleY(1.06);

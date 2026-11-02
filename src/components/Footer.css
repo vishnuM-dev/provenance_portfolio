@@ -1,0 +1,589 @@
+/* ==========================================================================
+   PROVENANCETECH - FOOTER STYLES (DESKTOP & MOBILE)
+   ========================================================================== */
+
+/* Main Footer Container */
+.provenance-footer {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 75% 20%, #fcf9f4 0%, #f6f0e6 48%, #ede4d4 100%);
+  padding: 2.5rem 0 2rem;
+  margin-top: 0.75rem;
+}
+
+/* Vector Silk Waves Background */
+.footer-silk-waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Watermark Monogram Emblem */
+.footer-watermark {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 380px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   DESKTOP FOOTER FLOW (>= 1024px) - 100% PRESERVED
+   ========================================================================== */
+.footer-desktop-flow {
+  display: block;
+}
+
+.footer-mobile-flow {
+  display: none !important;
+}
+
+.footer-grid-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr 1.4fr;
+  gap: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-link-item {
+  color: #38312b;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 480;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-link-item:hover {
+  color: var(--primary, #ea580c) !important;
+  transform: translateX(3px);
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #4a423a;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social-link:hover {
+  color: var(--primary, #ea580c) !important;
+  transform: translateY(-1px);
+}
+
+/* Redesigned Contact Option Cards */
+.footer-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(220, 195, 170, 0.65);
+  border-radius: 14px;
+  padding: 0.65rem 0.95rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 8px rgba(45, 35, 27, 0.02);
+}
+
+.footer-contact-card:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: #dfc8b4;
+  box-shadow: 0 6px 16px rgba(45, 35, 27, 0.06);
+}
+
+.footer-contact-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.footer-contact-card:hover .footer-contact-icon-box {
+  transform: scale(1.08);
+}
+
+.footer-contact-icon-box.phone {
+  background: rgba(234, 88, 12, 0.1);
+  border: 1px solid rgba(234, 88, 12, 0.22);
+  color: #ea580c;
+}
+
+.footer-contact-icon-box.whatsapp {
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.28);
+  color: #25D366;
+}
+
+.footer-contact-icon-box.email {
+  background: rgba(234, 88, 12, 0.08);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  color: #ea580c;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.footer-contact-label {
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8c7e70;
+  line-height: 1.2;
+}
+
+.footer-contact-value {
+  font-size: 0.92rem;
+  font-weight: 750;
+  color: #1a1612;
+  margin-top: 2px;
+  line-height: 1.25;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-card:hover .footer-contact-value {
+  color: #ea580c;
+}
+
+.footer-contact-card:hover .footer-contact-icon-box.whatsapp + .footer-contact-info .footer-contact-value {
+  color: #128c7e;
+}
+
+
+/* ==========================================================================
+   MOBILE & TABLET FOOTER FLOW (< 1024px)
+   Matches Reference Image Spec
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .footer-desktop-flow {
+    display: none !important;
+  }
+
+  .footer-mobile-flow {
+    display: block !important;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+  }
+
+  .provenance-footer {
+    padding: 1.75rem 0 1.25rem;
+    background: radial-gradient(ellipse at 50% 15%, #fdfbf8 0%, #f7f1e7 55%, #ede3d2 100%);
+  }
+
+  /* 1. Company Introduction */
+  .mobile-footer-intro {
+    margin-bottom: 1.65rem;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .mobile-footer-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.95rem;
+    text-decoration: none;
+  }
+
+  .mobile-footer-brand-logo {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .mobile-footer-brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-footer-brand-title {
+    font-size: 1.32rem;
+    font-weight: 850;
+    letter-spacing: -0.025em;
+    color: #141518;
+    line-height: 1.15;
+  }
+
+  .mobile-footer-orange {
+    color: #ea580c;
+  }
+
+  .mobile-footer-brand-tagline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #786a5e;
+    margin-top: 3px;
+    letter-spacing: 0.01em;
+  }
+
+  .mobile-footer-desc {
+    color: #554a40;
+    font-size: 0.88rem;
+    line-height: 1.62;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .mobile-footer-about-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: #ea580c;
+    border: 1.5px solid #fed7aa;
+    border-radius: 9999px;
+    padding: 0.75rem 1.45rem;
+    font-size: 0.85rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.08);
+    transition: all 0.22s ease;
+  }
+
+  .mobile-footer-about-btn:hover {
+    border-color: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.16);
+  }
+
+  .mobile-footer-about-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* 2. Common Card Style (Quick Links & Get in Touch) */
+  .mobile-footer-card {
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.15);
+    border-radius: 22px;
+    padding: 1.35rem 1.25rem;
+    box-shadow: 0 4px 16px rgba(45, 35, 27, 0.04);
+    margin-bottom: 1.15rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mobile-footer-card:hover {
+    border-color: rgba(234, 88, 12, 0.28);
+    box-shadow: 0 6px 20px rgba(45, 35, 27, 0.07);
+  }
+
+  .mobile-footer-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mobile-footer-card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .mobile-footer-card-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+  }
+
+  .mobile-footer-card-title {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #141518;
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+
+  .mobile-footer-chevron-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #fff3ea;
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, background 0.2s ease;
+  }
+
+  .mobile-footer-chevron-btn.is-open {
+    transform: rotate(90deg);
+  }
+
+  /* Quick Links Two-Column Grid */
+  .mobile-footer-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 1.25rem;
+    animation: csFadeInDown 0.28s ease both;
+  }
+
+  .mobile-footer-links-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-footer-link {
+    display: block;
+    padding: 0.65rem 0;
+    color: #1f1b17;
+    font-size: 0.94rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .mobile-footer-link:hover {
+    color: #ea580c;
+    transform: translateX(3px);
+  }
+
+  .mobile-footer-link-sep {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+
+  /* 3. Get in Touch Contact Rows */
+  .mobile-footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .mobile-footer-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: #fffbf8;
+    border: 1.2px solid #f3e5d7;
+    border-radius: 16px;
+    padding: 0.65rem 0.95rem;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    box-shadow: 0 1px 3px rgba(45, 35, 27, 0.02);
+  }
+
+  .mobile-footer-contact-row:hover {
+    background: #ffffff;
+    border-color: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.1);
+  }
+
+  .mobile-footer-contact-row:active {
+    transform: scale(0.98);
+  }
+
+  .mobile-footer-contact-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #fff1e7;
+    border: 1px solid rgba(234, 88, 12, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ea580c;
+    flex-shrink: 0;
+  }
+
+  .mobile-footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mobile-footer-contact-label {
+    font-size: 0.72rem;
+    font-weight: 650;
+    color: #8c7e70;
+    line-height: 1.2;
+  }
+
+  .mobile-footer-contact-value {
+    font-size: 0.94rem;
+    font-weight: 800;
+    color: #141518;
+    margin-top: 2px;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mobile-footer-contact-row:hover .mobile-footer-contact-value {
+    color: #ea580c;
+  }
+
+  /* 4. Follow Us Section */
+  .mobile-footer-follow-wrap {
+    margin: 1.65rem 0 1.45rem;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .mobile-footer-follow-title {
+    font-size: 1.15rem;
+    font-weight: 850;
+    color: #141518;
+    margin: 0 0 0.95rem 0;
+    letter-spacing: -0.015em;
+  }
+
+  .mobile-footer-social-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+    width: 100%;
+  }
+
+  .mobile-footer-social-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1.2px solid rgba(234, 88, 12, 0.16);
+    box-shadow: 0 2px 8px rgba(45, 35, 27, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #141518;
+    text-decoration: none;
+    transition: all 0.22s ease;
+  }
+
+  .mobile-footer-social-btn:hover {
+    transform: translateY(-3px);
+    border-color: #ea580c;
+    color: #ea580c;
+    box-shadow: 0 6px 16px rgba(234, 88, 12, 0.15);
+  }
+
+  .mobile-footer-social-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* 5. Copyright Section */
+  .mobile-footer-copyright-wrap {
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(220, 195, 170, 0.45);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-footer-accent-line {
+    width: 44px;
+    height: 3.5px;
+    background: #ea580c;
+    border-radius: 999px;
+    margin-bottom: 0.95rem;
+  }
+
+  .mobile-footer-copyright-text {
+    font-size: 0.78rem;
+    color: #71675f;
+    line-height: 1.45;
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+   TABLET RESPONSIVE SYSTEM (601px - 1023px)
+   ========================================================================== */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .footer-mobile-flow {
+    max-width: 720px;
+    padding: 0 1rem;
+  }
+
+  .mobile-footer-cards-tablet-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+
+  .mobile-footer-card {
+    margin-bottom: 0;
+    height: 100%;
+  }
+}
+
+/* ==========================================================================
+   NARROW MOBILE SCREENS (< 374px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .mobile-footer-social-row {
+    gap: 0.85rem;
+  }
+
+  .mobile-footer-contact-value {
+    font-size: 0.84rem;
+  }
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes csFadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION PREFERENCE
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-footer-about-btn,
+  .mobile-footer-card,
+  .mobile-footer-link,
+  .mobile-footer-contact-row,
+  .mobile-footer-social-btn,
+  .mobile-footer-chevron-btn {
+    transition: none !important;
+  }
+
+  .mobile-footer-links-grid {
+    animation: none !important;
+  }
+}

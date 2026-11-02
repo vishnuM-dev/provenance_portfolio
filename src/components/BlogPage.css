@@ -1155,6 +1155,14 @@
   .bp-detail-hero-img-wrap {
     height: 250px;
   }
+
+  .bp-btn-prev {
+    left: 8px;
+  }
+
+  .bp-btn-next {
+    right: 8px;
+  }
 }
 
 /* ==========================================================================
@@ -1342,3 +1350,124 @@
   transform: translateY(-3px);
   box-shadow: 0 10px 28px rgba(234, 88, 12, 0.35);
 }
+
+@media (max-width: 640px) {
+  .bp-container {
+    padding: 0 1.15rem;
+  }
+
+  .bp-headline {
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
+  }
+
+  .bp-modal-title {
+    font-size: 1.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bp-container {
+    padding: 0 1rem;
+  }
+
+  .bp-headline {
+    font-size: clamp(1.85rem, 7vw, 2.35rem);
+  }
+
+  .bp-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .bp-btn-primary,
+  .bp-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bp-search-bar {
+    max-width: 100%;
+  }
+
+  .bp-featured-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .bp-featured-title {
+    font-size: clamp(1.2rem, 5vw, 1.45rem);
+  }
+
+  .bp-floating-insight-badge {
+    top: -12px;
+    right: 8px;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .bp-newsletter-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .bp-newsletter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bp-modal-box {
+    padding: 1.75rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .bp-back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bp-container {
+    padding: 0 0.75rem;
+  }
+
+  .bp-featured-content {
+    padding: 1rem 0.85rem;
+  }
+
+  .bp-modal-box {
+    padding: 1.5rem 0.85rem;
+  }
+
+  .bp-btn-prev {
+    left: 4px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .bp-btn-next {
+    right: 4px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-featured-main-card,
+  .bp-featured-img,
+  .bp-carousel-btn,
+  .bp-article-card,
+  .bp-article-img,
+  .bp-btn-primary,
+  .bp-btn-secondary,
+  .bp-back-to-top {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

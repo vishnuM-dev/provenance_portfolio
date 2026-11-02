@@ -167,8 +167,8 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Row of Three Distinct Key Benefits */}
-              <div className="hero-benefits-strip">
+              {/* Desktop-Only Row of Three Distinct Key Benefits (>= 1024px) */}
+              <div className="hero-benefits-strip desktop-only-benefits">
                 <div className="hero-benefit-item">
                   <div className="hero-benefit-icon-box">
                     <Rocket size={18} strokeWidth={2.2} />
@@ -205,9 +205,105 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: 3D Laptop, Smartphone, Floating Icons, Growth Pill, Plant & Handwritten Note */}
+            {/* Right Column: 3D Laptop, Smartphone, Floating Icons & Handwritten Note */}
             <div className="hero-visual-col">
               <HeroDevicesAnimation />
+            </div>
+          </div>
+
+          {/* Responsive Bottom Feature Strip & Carousel Dots (Tablet & Mobile Hero Layout) */}
+          <div className="hero-responsive-bottom-group" aria-label="Key ProvenanceTech Highlights">
+            {/* Tablet 4-Column Feature Strip (768px - 1023px) */}
+            <div className="hero-tablet-feature-strip">
+              <div className="hero-tablet-feature-item">
+                <div className="hero-tablet-feature-icon">
+                  <Rocket size={19} strokeWidth={2.2} />
+                </div>
+                <div className="hero-tablet-feature-text">
+                  <span className="hero-tablet-feature-title">Modern</span>
+                  <span className="hero-tablet-feature-sub">Tech Stack</span>
+                </div>
+              </div>
+
+              <div className="hero-tablet-feature-item">
+                <div className="hero-tablet-feature-icon">
+                  <ShieldCheck size={19} strokeWidth={2.2} />
+                </div>
+                <div className="hero-tablet-feature-text">
+                  <span className="hero-tablet-feature-title">Clean &amp;</span>
+                  <span className="hero-tablet-feature-sub">Scalable Code</span>
+                </div>
+              </div>
+
+              <div className="hero-tablet-feature-item">
+                <div className="hero-tablet-feature-icon">
+                  <Heart size={19} strokeWidth={2.2} />
+                </div>
+                <div className="hero-tablet-feature-text">
+                  <span className="hero-tablet-feature-title">On-Time</span>
+                  <span className="hero-tablet-feature-sub">Delivery</span>
+                </div>
+              </div>
+
+              <div className="hero-tablet-feature-item">
+                <div className="hero-tablet-feature-icon">
+                  <Layers size={19} strokeWidth={2.2} />
+                </div>
+                <div className="hero-tablet-feature-text">
+                  <span className="hero-tablet-feature-title">Better Tools.</span>
+                  <span className="hero-tablet-feature-sub">Bigger Growth.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Carousel Indicators (Visible on Tablet below strip, and on Mobile below devices) */}
+            <div className="hero-carousel-dots" aria-hidden="true">
+              <span className="hero-dot hero-dot--active" />
+              <span className="hero-dot" />
+              <span className="hero-dot" />
+            </div>
+
+            {/* Mobile Feature Strip: Clean 2-Column Compact Grid (320px - 767px) */}
+            <div className="hero-mobile-feature-grid">
+              <div className="hero-mobile-feature-card">
+                <div className="hero-mobile-feature-icon">
+                  <Rocket size={17} strokeWidth={2.2} />
+                </div>
+                <div className="hero-mobile-feature-text">
+                  <span className="hero-mobile-feature-title">Modern</span>
+                  <span className="hero-mobile-feature-sub">Tech Stack</span>
+                </div>
+              </div>
+
+              <div className="hero-mobile-feature-card">
+                <div className="hero-mobile-feature-icon">
+                  <ShieldCheck size={17} strokeWidth={2.2} />
+                </div>
+                <div className="hero-mobile-feature-text">
+                  <span className="hero-mobile-feature-title">Clean &amp;</span>
+                  <span className="hero-mobile-feature-sub">Scalable Code</span>
+                </div>
+              </div>
+
+              <div className="hero-mobile-feature-card">
+                <div className="hero-mobile-feature-icon">
+                  <Heart size={17} strokeWidth={2.2} />
+                </div>
+                <div className="hero-mobile-feature-text">
+                  <span className="hero-mobile-feature-title">On-Time</span>
+                  <span className="hero-mobile-feature-sub">Delivery</span>
+                </div>
+              </div>
+
+              <div className="hero-mobile-feature-card">
+                <div className="hero-mobile-feature-icon">
+                  <Layers size={17} strokeWidth={2.2} />
+                </div>
+                <div className="hero-mobile-feature-text">
+                  <span className="hero-mobile-feature-title">Better Tools.</span>
+                  <span className="hero-mobile-feature-sub">Bigger Growth.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

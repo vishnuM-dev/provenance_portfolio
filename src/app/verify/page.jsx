@@ -110,7 +110,7 @@ function VerifyContent() {
 
       {/* Input Form */}
       <div className="glass-panel" style={{
-        padding: '2rem',
+        padding: 'clamp(1.25rem, 4vw, 2rem)',
         marginBottom: '2.5rem',
         background: '#ffffff',
         borderRadius: '28px',
@@ -207,7 +207,7 @@ function VerifyContent() {
             </div>
           ) : result?.verified ? (
             <div className="glass-panel" style={{
-              padding: '2.5rem',
+              padding: 'clamp(1.25rem, 4vw, 2.5rem)',
               borderRadius: '28px',
               border: '1px solid rgba(46, 125, 90, 0.35)',
               background: '#ffffff',
