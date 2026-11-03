@@ -2004,6 +2004,13 @@ input::-ms-clear {
     grid-template-columns: 1fr;
     gap: 0.6rem;
   }
+  /* Allow highlight text to wrap on very narrow screens */
+  .hero-title-highlight-box {
+    white-space: normal;
+  }
+  .hero-title-spark-accent {
+    display: none;
+  }
 }
 
 /* Reduced Motion Preference */

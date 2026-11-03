@@ -13,6 +13,8 @@
   border: none;
   box-shadow: none;
   overflow: visible;
+  /* Clip ambient decorations that bleed outside viewport */
+  overflow-x: clip;
 }
 
 /* Abstract Ambient Decorative Shapes */

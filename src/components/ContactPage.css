@@ -325,6 +325,10 @@
   z-index: 3;
   pointer-events: none;
   white-space: nowrap;
+  /* Prevent overflow if arch is narrow */
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cp-wall-sign-accent {

@@ -8,6 +8,8 @@
   width: 100%;
   padding: 2rem 0 2.25rem;
   overflow: visible;
+  /* Clip decorative elements bleeding outside viewport */
+  overflow-x: clip;
   background: transparent;
 }
 

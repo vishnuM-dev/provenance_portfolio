@@ -11,6 +11,8 @@
   background: transparent;
   color: #1a130e;
   overflow: hidden;
+  /* Clip floating decorations */
+  overflow-x: clip;
   scroll-margin-top: 100px;
 }
 

@@ -6,6 +6,8 @@
 .provenance-footer {
   position: relative;
   overflow: hidden;
+  /* Ensure decorative watermark doesn't bleed */
+  overflow-x: clip;
   background: radial-gradient(ellipse at 75% 20%, #fcf9f4 0%, #f6f0e6 48%, #ede4d4 100%);
   padding: 2.5rem 0 2rem;
   margin-top: 0.75rem;
@@ -441,6 +443,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-variant-numeric: tabular-nums;
+    /* Allow shrinking on very narrow screens */
+    min-width: 0;
   }
 
   .mobile-footer-contact-row:hover .mobile-footer-contact-value {

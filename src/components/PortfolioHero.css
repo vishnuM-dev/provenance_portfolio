@@ -10,6 +10,8 @@
   padding: 1rem 0 2rem;
   position: relative;
   overflow: visible;
+  /* Clip floating card badges that may bleed outside on narrow screens */
+  overflow-x: clip;
   background: transparent;
 }
 
@@ -673,6 +675,22 @@
   .pfh-side-scroll-btn {
     width: 32px;
     height: 32px;
+  }
+
+  /* Tuck floating pills inside the composition to prevent bleed */
+  .pfh-pill-left {
+    left: 0;
+    bottom: 10px;
+  }
+
+  .pfh-pill-right {
+    right: 0;
+    bottom: 10px;
+  }
+
+  .pfh-pill-center {
+    left: 0;
+    top: 10px;
   }
 }
 

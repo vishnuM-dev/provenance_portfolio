@@ -714,6 +714,21 @@
     width: 32px;
     height: 32px;
   }
+
+  /* On very narrow screens, hide the rocket illustration to free space */
+  .agile-cta-rocket-box,
+  .agile-cta-divider {
+    display: none;
+  }
+
+  .agile-cta-text-box {
+    padding: 0 2px;
+  }
+
+  .agile-cta-banner {
+    padding: 10px 10px 10px 14px;
+    gap: 8px;
+  }
 }
 
 /* ==========================================================================
