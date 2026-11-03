@@ -12,6 +12,8 @@
   border: none;
   box-shadow: none;
   overflow: visible;
+  /* Prevent decorative elements from creating horizontal scroll */
+  overflow-x: clip;
 }
 
 .wwb-ambient-mesh-warm {
@@ -1336,6 +1338,8 @@
     border: 1.5px solid rgba(235, 120, 33, 0.15);
     pointer-events: none;
     z-index: 0;
+    /* Prevent bleed; parent already clips via overflow-x: clip */
+    overflow: hidden;
   }
 
   /* Eyebrow Pill Animation */
@@ -1428,6 +1432,10 @@
     font-weight: 500;
     line-height: 1.4;
     margin: 0 0 0.95rem;
+    /* Allow wrapping on mobile to prevent horizontal overflow */
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .wwb-tracker-progress-track {

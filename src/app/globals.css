@@ -1100,6 +1100,8 @@ input::-ms-clear {
   padding: 2.5rem 0 0.5rem;
   overflow: visible;
   width: 100%;
+  /* Prevent ambient background bleed from creating horizontal scroll */
+  overflow-x: clip;
 }
 
 /* Seamless, compact transition into Services section (Removes empty gap) */

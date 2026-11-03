@@ -10,6 +10,8 @@
   width: 100%;
   padding: 1.25rem 0 2rem;
   overflow: hidden;
+  /* Clip decorative elements that bleed outside viewport on mobile */
+  overflow-x: clip;
 }
 
 /* Background Soft Orange Gradient & Atmospheric Glow */
