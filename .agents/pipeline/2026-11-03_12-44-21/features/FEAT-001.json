@@ -1,0 +1,24 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Apply Fix 1 (accent-wrap nowrap override at ≤374px), Fix 3 (filter-row right padding), and Fix 2 (hero highlight-box wrap at ≤479px) — all three are independent of FEAT-002 and can be committed first.",
+  "status": "pending",
+  "steps": [
+    "In src/components/WhyChooseUsSection.css: locate the @media (max-width: 374px) block at line 679. It currently contains .why-choose-mobile-card, .why-choose-card-media-box, .why-choose-card-content-box, and .why-choose-card-arrow-btn rule sets, closing at line 698. Append a new rule set inside that block (before its closing brace): .why-choose-mobile-accent-wrap { white-space: normal; }",
+    "In src/components/WhyChooseUsSection.css: locate the .why-choose-filter-row rule inside @media (max-width: 1023px) (near line 431). Change 'padding: 2px 2px 6px' to 'padding: 2px 1rem 6px 2px'. Leave all other properties (overflow-x: auto, scrollbar-width: none, etc.) unchanged.",
+    "In src/app/globals.css: locate the comment '/* Compact Mobile (320px – 374px) */' at line 1990. Insert a new block immediately before that comment: '/* Allow hero highlight text to wrap at 375px–479px */\\n@media (max-width: 479px) {\\n  .hero-title-highlight-box {\\n    white-space: normal;\\n  }\\n}'. Do not remove or modify the existing @media (max-width: 374px) rule for .hero-title-highlight-box (line 2008).",
+    "Run: npm run build — confirm exit code 0."
+  ],
+  "acceptance_criteria": [
+    "npm run build exits 0 with no new errors (CSS vendor-prefix warnings are acceptable).",
+    "The @media (max-width: 374px) block in WhyChooseUsSection.css now contains five rule sets including .why-choose-mobile-accent-wrap { white-space: normal; }",
+    ".why-choose-filter-row padding inside @media (max-width: 1023px) reads 'padding: 2px 1rem 6px 2px'.",
+    "globals.css contains a new @media (max-width: 479px) block for .hero-title-highlight-box placed immediately before '/* Compact Mobile (320px – 374px) */'.",
+    "The existing @media (max-width: 374px) block for .hero-title-highlight-box in globals.css is untouched."
+  ],
+  "verification": [
+    "npm run build (from repo root c:\\Users\\Lenovo\\git\\provenance_portfolio) — exit code must be 0."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

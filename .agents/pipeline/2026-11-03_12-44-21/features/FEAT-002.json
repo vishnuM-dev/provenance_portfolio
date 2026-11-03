@@ -1,0 +1,25 @@
+{
+  "id": "FEAT-002",
+  "type": "fix",
+  "description": "Apply Fix 4 (cs-filter-row right padding), Fix 5 (cs-mobile-title 2-line clamp), and Fix 6 (cta-mobile-services-grid widened to 480px breakpoint). Independent of FEAT-001; can be applied in any order relative to it.",
+  "status": "pending",
+  "steps": [
+    "In src/components/CaseStudiesSection.css: locate the .cs-filter-row rule inside @media (max-width: 1023px) (near line 704–715). Change 'padding: 2px 2px 6px' to 'padding: 2px 1rem 6px 2px'. Leave overflow-x: auto, scrollbar-width: none, and all other properties unchanged.",
+    "In src/components/CaseStudiesSection.css: locate the .cs-mobile-title rule inside @media (max-width: 1023px) (near line 874). It currently contains font-size, font-weight, color, letter-spacing, line-height, margin. Append four declarations to that rule: 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;'. A -webkit-box-orient lint warning is expected and non-fatal.",
+    "In src/components/ProjectCtaSection.css: locate the @media (max-width: 374px) block at line 1091. It contains four rule sets: (a) .cta-mobile-services-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }, (b) .cta-mobile-btn-group { flex-direction: column; align-items: stretch; }, (c) .cta-mobile-btn-primary, .cta-mobile-btn-secondary { max-width: 100%; width: 100%; }, (d) .cta-mobile-trust-label { font-size: 0.68rem; }. Remove ONLY rule set (a) — the entire .cta-mobile-services-grid sub-rule. Leave rule sets (b), (c), (d) exactly as they are.",
+    "In src/components/ProjectCtaSection.css: immediately before the (now-edited) @media (max-width: 374px) block, insert a new block: '/* 2-column service grid at 375px–480px (was 374px only) */\\n@media (max-width: 480px) {\\n  .cta-mobile-services-grid {\\n    grid-template-columns: repeat(2, 1fr);\\n    gap: 8px;\\n  }\\n}'. This places the 480px block before the 374px block, following the project convention of narrowest breakpoints last.",
+    "Run: npm run build — confirm exit code 0."
+  ],
+  "acceptance_criteria": [
+    "npm run build exits 0 with no new errors (CSS vendor-prefix warnings are acceptable).",
+    ".cs-filter-row padding inside @media (max-width: 1023px) reads 'padding: 2px 1rem 6px 2px'.",
+    ".cs-mobile-title inside @media (max-width: 1023px) contains 'display: -webkit-box', '-webkit-line-clamp: 2', '-webkit-box-orient: vertical', 'overflow: hidden'.",
+    "The @media (max-width: 374px) block in ProjectCtaSection.css contains exactly three rule sets (.cta-mobile-btn-group, .cta-mobile-btn-primary/.cta-mobile-btn-secondary, .cta-mobile-trust-label) — the .cta-mobile-services-grid sub-rule has been removed.",
+    "A new @media (max-width: 480px) block exists in ProjectCtaSection.css, placed immediately before the @media (max-width: 374px) block, containing .cta-mobile-services-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }."
+  ],
+  "verification": [
+    "npm run build (from repo root c:\\Users\\Lenovo\\git\\provenance_portfolio) — exit code must be 0."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "task-mobile-responsiveness-fixes",
+  "task_description": "Apply six targeted CSS-only mobile responsiveness fixes to the ProvenanceTech portfolio. All changes are scoped to @media (max-width: ...) blocks in four component CSS files. No base styles, animations, colours, or desktop/tablet layouts are modified.",
+  "status": "pending",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

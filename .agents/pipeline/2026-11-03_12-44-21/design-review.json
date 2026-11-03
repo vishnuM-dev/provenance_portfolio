@@ -1,0 +1,26 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "NIT",
+      "location": "02-design.md — Fix 1, paragraph beginning 'The .why-choose-sparks-burst burst SVG…'",
+      "problem": "The design states 'the overflow: visible on the SVG means it does not clip.' No explicit overflow: visible is set on .why-choose-sparks-burst or its container .why-choose-mobile-accent-wrap (verified in WhyChooseUsSection.css). The burst is visible because no ancestor sets overflow: hidden, not because of an explicit rule.",
+      "fix": "Replace the sentence with: 'The .why-choose-sparks-burst SVG will remain visible because no ancestor of .why-choose-mobile-accent-wrap sets overflow: hidden. No overflow rule change is needed.'"
+    },
+    {
+      "id": 2,
+      "severity": "NIT",
+      "location": "02-design.md — Fix 5, 'Target' sentence",
+      "problem": ".cs-mobile-title has a second rule inside @media (max-width: 374px) that overrides font-size: 1.05rem. The design does not acknowledge this rule, which may confuse an implementer who sees two .cs-mobile-title rules and wonders whether the clamp should be added to both.",
+      "fix": "Add a note: 'There is also a .cs-mobile-title { font-size: 1.05rem; } rule inside the 374px block. Do not add the clamp there; the 1023px rule already establishes the clamp for all widths ≤ 1023px, and the 374px rule only overrides font-size, which is unrelated.'"
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "location": "02-design.md — Fix 2, paragraph beginning 'The underline SVG…'",
+      "problem": "The claim that the SVG 'scales correctly when the text wraps onto two lines' overstates the case. When the inline-block .hero-title-highlight-box wraps, its width collapses to the widest wrapped line and the SVG draws under only that portion of the phrase, not the full phrase. No overflow results, but 'scales correctly' is misleading.",
+      "fix": "Replace 'so it scales correctly when the text wraps onto two lines' with: 'When the text wraps, .hero-title-highlight-box (an inline-block) narrows to the widest wrapped line. The SVG therefore draws under only that portion of the phrase — visually acceptable and consistent with the requirement to eliminate overflow.'"
+    }
+  ]
+}
