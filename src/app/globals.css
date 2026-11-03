@@ -179,17 +179,17 @@ a {
   padding: 0 1.5rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container,
   .container-narrow {
-    padding: 0 1.15rem;
+    padding: 0 20px;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
   .container,
   .container-narrow {
-    padding: 0 0.85rem;
+    padding: 0 16px;
   }
 }
 
@@ -833,58 +833,99 @@ a {
   border-radius: var(--radius-full, 9999px);
 }
 
-/* Responsive Navbar System Across All Viewports */
+/* Responsive Navbar System Across All Viewports (Matching Reference Header Spec) */
 @media (max-width: 768px) {
   .floating-header-wrapper {
-    padding: 0.5rem 0.85rem 0.2rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: rgba(251, 247, 241, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(224, 212, 198, 0.55);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 4px 18px rgba(45, 30, 20, 0.04);
+    z-index: 9999;
   }
-  .floating-navbar-container {
-    height: 54px;
-    padding: 0.25rem 0.85rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .floating-header-wrapper {
-    padding: 0.35rem 0.6rem 0.15rem;
-  }
   .floating-navbar-container {
-    height: 50px;
-    padding: 0.2rem 0.75rem;
+    height: 58px;
+    padding: 0 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
   .brand-logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
+
   .brand-title {
-    font-size: 1.05rem;
+    font-size: 1.12rem;
+    font-weight: 800;
   }
+
+  /* Clean Rounded Hamburger Button on Right */
   .mobile-toggle-btn {
-    padding: 0.35rem;
-    min-width: 44px;
-    min-height: 44px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid rgba(220, 205, 190, 0.75);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(45, 30, 20, 0.04);
+    color: #141518;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
   }
+
+  .mobile-toggle-btn:active {
+    transform: scale(0.94);
+    background: #fdfaf6;
+    border-color: #ea580c;
+  }
+
   .mobile-floating-drawer {
+    margin: 0.5rem 20px 0.75rem;
+    width: calc(100% - 40px);
     padding: 0.85rem 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(224, 212, 198, 0.8);
     border-radius: 16px;
-    margin-top: 0.35rem;
+    box-shadow: 0 14px 32px rgba(45, 30, 20, 0.1);
+    animation: drawerSlideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .mobile-floating-link {
     padding: 0.75rem 0.85rem;
     font-size: 0.92rem;
     min-height: 44px;
+    border-radius: 10px;
   }
 }
 
 @media (max-width: 360px) {
-  .floating-header-wrapper {
-    padding: 0.25rem 0.45rem 0.15rem;
-  }
   .floating-navbar-container {
-    padding: 0.2rem 0.55rem;
+    padding: 0 16px;
   }
   .brand-title {
-    font-size: 0.92rem;
+    font-size: 0.98rem;
   }
 }
 

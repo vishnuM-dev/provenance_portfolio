@@ -146,32 +146,33 @@ export default function AboutHeroSection() {
           <div className="about-hero-editorial-col">
             {/* Small Rounded Orange Outline Badge */}
             <div className="about-hero-badge">
-              <Sparkles size={14} className="about-hero-badge-spark" aria-hidden="true" />
+              <Code2 size={13} className="about-hero-badge-spark" aria-hidden="true" />
               <span>PROVENANCETECH SOFTWARE ENGINEERING</span>
             </div>
 
             {/* Large Bold Heading */}
             <h1 className="about-hero-title">
-              About
-              <br />
-              Provenance
-              <span className="about-title-tech">
-                Tech
-                {/* Subtle curved underline beneath Tech */}
-                <svg
-                  className="about-tech-curve"
-                  viewBox="0 0 110 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M 4 12 C 35 22, 75 18, 106 6"
-                    stroke="#ea580c"
-                    strokeWidth="4.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+              <span className="about-title-line1">About</span>
+              <span className="about-title-line2">
+                Provenance
+                <span className="about-title-tech">
+                  Tech
+                  {/* Subtle curved underline beneath Tech */}
+                  <svg
+                    className="about-tech-curve"
+                    viewBox="0 0 110 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M 4 12 C 35 22, 75 18, 106 6"
+                      stroke="#ea580c"
+                      strokeWidth="4.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
               </span>
             </h1>
 
@@ -204,14 +205,14 @@ export default function AboutHeroSection() {
                 aria-label="Watch ProvenanceTech company overview video"
               >
                 <span className="about-play-icon-box" aria-hidden="true">
-                  <Play size={13} fill="#ea580c" color="#ea580c" />
+                  <Play size={11} fill="#ea580c" color="#ea580c" style={{ marginLeft: '1px' }} />
                 </span>
                 <span>Watch Overview</span>
               </button>
             </div>
 
-            {/* Company Statistics Row */}
-            <div className="about-hero-stats-row">
+            {/* Company Statistics Row (Desktop Only) */}
+            <div className="about-hero-stats-row about-stats-desktop">
               <div className="about-hero-stat-item">
                 <div className="about-stat-icon-wrap" aria-hidden="true">
                   <Users size={22} color="#ea580c" strokeWidth={2.4} />
@@ -257,6 +258,58 @@ export default function AboutHeroSection() {
           {/* Right Column: Premium 3D Technology Illustration */}
           <div className="about-hero-showcase-col">
             <AboutHero3DShowcase />
+
+            {/* Mobile Company Statistics Card (Matching Reference Image) */}
+            <div className="about-mobile-stats-wrapper">
+              <div className="about-mobile-stats-card">
+                <div className="about-mobile-stat-col">
+                  <div className="about-stat-icon-wrap" aria-hidden="true">
+                    <Users size={17} color="#ea580c" strokeWidth={2.4} />
+                  </div>
+                  <div className="about-stat-details">
+                    <div className="about-stat-number">
+                      <CountUpNumber target={5} suffix="+" />
+                    </div>
+                    <div className="about-stat-label">Years of<br />Experience</div>
+                  </div>
+                </div>
+
+                <div className="about-mobile-stat-divider" aria-hidden="true" />
+
+                <div className="about-mobile-stat-col">
+                  <div className="about-stat-icon-wrap" aria-hidden="true">
+                    <Layers size={17} color="#ea580c" strokeWidth={2.4} />
+                  </div>
+                  <div className="about-stat-details">
+                    <div className="about-stat-number">
+                      <CountUpNumber target={100} suffix="+" />
+                    </div>
+                    <div className="about-stat-label">Projects<br />Delivered</div>
+                  </div>
+                </div>
+
+                <div className="about-mobile-stat-divider" aria-hidden="true" />
+
+                <div className="about-mobile-stat-col">
+                  <div className="about-stat-icon-wrap" aria-hidden="true">
+                    <HeartHandshake size={17} color="#ea580c" strokeWidth={2.4} />
+                  </div>
+                  <div className="about-stat-details">
+                    <div className="about-stat-number">
+                      <CountUpNumber target={50} suffix="+" />
+                    </div>
+                    <div className="about-stat-label">Happy<br />Clients</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3 Mobile Carousel Indicators */}
+              <div className="about-mobile-dots" aria-hidden="true">
+                <span className="about-mobile-dot" />
+                <span className="about-mobile-dot about-mobile-dot--active" />
+                <span className="about-mobile-dot" />
+              </div>
+            </div>
           </div>
         </div>
 

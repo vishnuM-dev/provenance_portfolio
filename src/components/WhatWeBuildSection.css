@@ -4,6 +4,64 @@
    ========================================================================== */
 
 /* 1. Main Container & Ambient Lighting */
+.wwb-services-section {
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .wwb-services-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wwb-services-section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .wwb-journey-container {
+    padding: 0.85rem 0 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wwb-editorial-headline {
+    font-size: clamp(1.85rem, 6.8vw, 2.35rem) !important;
+    line-height: 1.18 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    max-width: 100% !important;
+    margin: 0 0 0.85rem !important;
+  }
+
+  .wwb-editorial-lead {
+    font-size: 0.95rem !important;
+    line-height: 1.62 !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+    margin: 0 0 1.5rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .wwb-services-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .wwb-editorial-headline {
+    font-size: 1.62rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
 .wwb-journey-container {
   position: relative;
   width: 100%;

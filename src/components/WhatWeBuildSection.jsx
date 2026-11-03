@@ -828,7 +828,7 @@ export default function WhatWeBuildSection() {
       : 0;
 
   return (
-    <section ref={sectionRef} className="container" id="services" style={{ padding: '0.5rem 0 1rem' }}>
+    <section ref={sectionRef} className="container wwb-services-section" id="services" style={{ paddingTop: '0.5rem', paddingBottom: '1rem' }}>
       <div className="wwb-journey-container">
         {/* Soft background ambient lighting meshes (Warm ivory / amber only) */}
         <div className="wwb-ambient-mesh-warm" aria-hidden="true" />
