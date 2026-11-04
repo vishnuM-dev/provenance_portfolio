@@ -85,8 +85,7 @@
   position: relative;
   width: 100%;
   padding: 1.25rem 0 1.75rem;
-  overflow: visible;
-  /* Clip silk ribbons and decorations that bleed outside viewport */
+  overflow: hidden;
   overflow-x: clip;
 }
 
@@ -108,7 +107,7 @@
   pointer-events: none;
   opacity: 0.85;
   filter: drop-shadow(0 12px 30px rgba(234, 88, 12, 0.08));
-  animation: aboutSilkFloatTop 8s ease-in-out infinite alternate;
+  animation: aboutSilkFloatTop 20s ease-in-out infinite alternate;
 }
 
 .about-silk-curve-bottom {
@@ -120,7 +119,7 @@
   pointer-events: none;
   opacity: 0.75;
   filter: drop-shadow(0 10px 25px rgba(234, 88, 12, 0.06));
-  animation: aboutSilkFloatBottom 9s ease-in-out infinite alternate;
+  animation: aboutSilkFloatBottom 22s ease-in-out infinite alternate;
 }
 
 @keyframes aboutSilkFloatTop {
@@ -143,7 +142,7 @@
   background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(244, 151, 79, 0.04) 55%, transparent 72%);
   filter: blur(65px);
   pointer-events: none;
-  animation: aboutGlowPulse 6s ease-in-out infinite alternate;
+  animation: aboutGlowPulse 16s ease-in-out infinite alternate;
 }
 
 @keyframes aboutGlowPulse {
@@ -164,8 +163,11 @@
 .about-hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 2.5rem;
+  gap: 1.5rem;
   align-items: center;
+  /* Prevent either column from overflowing the grid */
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* Left Column: Editorial Typography & Statistics */
@@ -756,7 +758,7 @@
   margin-top: 0.5rem;
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: aboutPlayPulse 2.5s infinite;
+  animation: aboutPlayPulse 5s infinite;
 }
 
 .about-video-play-pulse:hover {
@@ -828,21 +830,27 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  /* Contain the showcase — prevent floating cards from bleeding into viewport edge */
+  overflow: visible;
+  /* Clamp the column so it never pushes the grid wider than available space */
+  min-width: 0;
   animation: aboutScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
-  /* Column-level shadow so illustration has depth without a rectangular image boundary */
-  filter: drop-shadow(0 18px 40px rgba(45, 25, 15, 0.06));
 }
 
 .about-3d-showcase-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 600px;
+  /* Use clamp so the wrapper scales down gracefully at any viewport width */
+  width: clamp(300px, 90%, 560px);
+  /* Keep square proportions */
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1200px;
   user-select: none;
+  /* Extra breathing room so floating cards don't get cropped */
+  padding: 2.5rem;
+  box-sizing: content-box;
 }
 
 /* Ambient Radial Halo */
@@ -870,7 +878,7 @@
   height: 96%;
   pointer-events: none;
   z-index: 1;
-  animation: aboutOrbitRotate 80s linear infinite;
+  animation: aboutOrbitRotate 180s linear infinite;
 }
 
 @keyframes aboutOrbitRotate {
@@ -903,7 +911,6 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  /* drop-shadow removed — applied via wrapper below to avoid clipping mix-blend-mode */
 }
 
 .about-3d-image {
@@ -916,6 +923,9 @@
   /* Blend the image's cream/ivory background seamlessly into the page background.
      multiply makes white/near-white pixels transparent without affecting dark elements. */
   mix-blend-mode: multiply;
+  /* Ensure the image never overflows its container */
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* --------------------------------------------------------------------------
@@ -980,23 +990,23 @@
 
 /* Card 1: People First (Upper Right) */
 .about-val-card--people {
-  top: 7%;
-  right: 17%;
-  animation: aboutCardFloat1 4.5s ease-in-out infinite alternate;
+  top: 8%;
+  right: 10%;
+  animation: aboutCardFloat1 10s ease-in-out infinite alternate;
 }
 
 /* Card 2: Reliable Engineering (Left Side) */
 .about-val-card--engineering {
-  top: 32%;
-  left: 2%;
-  animation: aboutCardFloat2 5.2s ease-in-out infinite alternate;
+  top: 34%;
+  left: 4%;
+  animation: aboutCardFloat2 12s ease-in-out infinite alternate;
 }
 
 /* Card 3: Long-term Growth (Right Side) */
 .about-val-card--growth {
-  top: 39%;
-  right: -2%;
-  animation: aboutCardFloat3 4.8s ease-in-out infinite alternate;
+  top: 40%;
+  right: 4%;
+  animation: aboutCardFloat3 11s ease-in-out infinite alternate;
 }
 
 @keyframes aboutCardFloat1 {
@@ -1202,22 +1212,22 @@
    -------------------------------------------------------------------------- */
 .about-target-ring-1 {
   transform-origin: 70px 70px;
-  animation: targetRingPulse 4.2s ease-in-out infinite alternate;
+  animation: targetRingPulse 10s ease-in-out infinite alternate;
 }
 
 .about-target-ring-2 {
   transform-origin: 70px 70px;
-  animation: targetRingPulse 4.2s ease-in-out infinite alternate 0.4s;
+  animation: targetRingPulse 10s ease-in-out infinite alternate 0.4s;
 }
 
 .about-target-ring-3 {
   transform-origin: 70px 70px;
-  animation: targetRingPulse 4.2s ease-in-out infinite alternate 0.8s;
+  animation: targetRingPulse 10s ease-in-out infinite alternate 0.8s;
 }
 
 .about-target-center {
   transform-origin: 70px 70px;
-  animation: targetCenterGlow 3s ease-in-out infinite alternate;
+  animation: targetCenterGlow 8s ease-in-out infinite alternate;
 }
 
 @keyframes targetRingPulse {
@@ -1246,7 +1256,7 @@
 .about-target-arrow {
   transform-origin: 70px 70px;
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: targetArrowFloat 3.6s ease-in-out infinite alternate;
+  animation: targetArrowFloat 9s ease-in-out infinite alternate;
 }
 
 @keyframes targetArrowFloat {
@@ -1283,15 +1293,15 @@
 }
 
 .about-chart-bar-1 {
-  animation: barHeightWave 3.5s ease-in-out infinite alternate;
+  animation: barHeightWave 9s ease-in-out infinite alternate;
 }
 
 .about-chart-bar-2 {
-  animation: barHeightWave 3.5s ease-in-out infinite alternate 0.35s;
+  animation: barHeightWave 9s ease-in-out infinite alternate 0.35s;
 }
 
 .about-chart-bar-3 {
-  animation: barHeightWave 3.5s ease-in-out infinite alternate 0.7s;
+  animation: barHeightWave 9s ease-in-out infinite alternate 0.7s;
 }
 
 @keyframes barHeightWave {
@@ -1318,7 +1328,7 @@
 /* Upward Trend Line & Arrow */
 .about-chart-trend-group {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: trendBob 3.2s ease-in-out infinite alternate;
+  animation: trendBob 9s ease-in-out infinite alternate;
 }
 
 @keyframes trendBob {
@@ -1336,7 +1346,7 @@
 
 .about-chart-trend-line {
   stroke-dasharray: 6 5;
-  animation: trendLineDashFlow 12s linear infinite;
+  animation: trendLineDashFlow 30s linear infinite;
 }
 
 @keyframes trendLineDashFlow {
@@ -1460,7 +1470,7 @@
   width: 28px;
   height: 28px;
   pointer-events: none;
-  animation: aboutCapSparkPulse 3s ease-in-out infinite alternate;
+  animation: aboutCapSparkPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes aboutCapSparkPulse {
@@ -2105,7 +2115,7 @@
   width: 28px;
   height: 28px;
   pointer-events: none;
-  animation: aboutValSparkPulse 3s ease-in-out infinite alternate;
+  animation: aboutValSparkPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes aboutValSparkPulse {
@@ -2527,7 +2537,7 @@
   width: 28px;
   height: 28px;
   pointer-events: none;
-  animation: aboutWhySparkPulse 3s ease-in-out infinite alternate;
+  animation: aboutWhySparkPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes aboutWhySparkPulse {
@@ -3073,7 +3083,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: ctaIllustrationFloat 6s ease-in-out infinite;
+  animation: ctaIllustrationFloat 14s ease-in-out infinite;
 }
 
 @keyframes ctaIllustrationFloat {
@@ -3097,7 +3107,7 @@
   filter: blur(24px);
   pointer-events: none;
   z-index: 0;
-  animation: ctaPlatformPulse 4s ease-in-out infinite alternate;
+  animation: ctaPlatformPulse 10s ease-in-out infinite alternate;
 }
 
 @keyframes ctaPlatformPulse {
@@ -3159,6 +3169,16 @@
   .about-tech-groups-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  /* Shrink showcase wrapper so floating cards don't clip at viewport edge */
+  .about-3d-showcase-wrapper {
+    width: clamp(260px, 85%, 480px);
+    padding: 2rem;
+  }
+
+  .about-hero-grid {
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 960px) {
@@ -3210,43 +3230,84 @@
 
 @media (max-width: 768px) {
   .about-container {
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
+  /* ── Hero Section ── */
   .about-hero-section {
-    padding: 0.65rem 0 1.5rem;
+    padding: 0.5rem 0 1.25rem;
+    overflow: hidden;
+  }
+
+  /* Hide silk background decorations on mobile - they cause overflow */
+  .about-hero-silk-bg,
+  .about-hero-ambient-glow {
+    display: none;
   }
 
   .about-hero-inner {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
-  /* 1. Top Eyebrow Badge */
+  /* Stack hero grid: text on top, showcase below */
+  .about-hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* ── Left / Text Column ── */
+  .about-hero-editorial-col {
+    width: 100%;
+    animation: none;
+  }
+
+  /* 1. Badge — truncate long text */
   .about-hero-badge {
-    padding: 0.38rem 0.95rem;
-    font-size: 0.72rem;
+    padding: 0.34rem 0.85rem;
+    font-size: 0.65rem;
     font-weight: 750;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     background: rgba(234, 88, 12, 0.08);
     border: 1.2px solid rgba(234, 88, 12, 0.32);
     border-radius: 9999px;
-    margin-bottom: 0.95rem;
+    margin-bottom: 0.85rem;
     box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
-    gap: 0.45rem;
+    gap: 0.4rem;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* Show shorter label on mobile */
+  .about-hero-badge span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    max-width: calc(100% - 24px);
+  }
+
+  .about-hero-badge-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .about-hero-badge-spark {
     color: #ea580c;
+    flex-shrink: 0;
   }
 
   /* 2. Main Heading */
   .about-hero-title {
-    font-size: clamp(2.35rem, 8.5vw, 3rem);
+    font-size: clamp(2.1rem, 8vw, 2.8rem);
     font-weight: 850;
-    line-height: 1.12;
+    line-height: 1.1;
     letter-spacing: -0.035em;
     color: #141518;
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.75rem;
   }
 
   .about-title-line1 {
@@ -3263,7 +3324,7 @@
     color: #ea580c;
     position: relative;
     display: inline-block;
-    margin-left: 0.12em;
+    margin-left: 0.1em;
   }
 
   .about-tech-curve {
@@ -3279,21 +3340,21 @@
 
   /* 3. Subtitle */
   .about-hero-subtitle {
-    font-size: clamp(1.02rem, 3.8vw, 1.15rem);
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
     color: #ea580c;
     font-weight: 750;
     line-height: 1.35;
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.75rem;
     letter-spacing: -0.01em;
   }
 
   /* 4. Description Paragraph */
   .about-hero-p {
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     line-height: 1.62;
     color: #4a3e35;
     font-weight: 450;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.35rem;
     max-width: 100%;
   }
 
@@ -3307,8 +3368,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 1.75rem;
+    gap: 0.75rem;
+    margin-bottom: 0;
     flex-wrap: wrap;
   }
 
@@ -3316,16 +3377,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
+    gap: 0.5rem;
     background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
     color: #ffffff;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 750;
-    padding: 0.74rem 1.5rem;
+    padding: 0.7rem 1.4rem;
     border-radius: 9999px;
     text-decoration: none;
     box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
-    min-height: 46px;
+    min-height: 44px;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
@@ -3342,16 +3403,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     background: #ffffff;
     color: #141518;
     border: 1.5px solid rgba(234, 88, 12, 0.45);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 750;
-    padding: 0.7rem 1.4rem;
+    padding: 0.65rem 1.3rem;
     border-radius: 9999px;
     cursor: pointer;
-    min-height: 46px;
+    min-height: 44px;
     box-shadow: 0 2px 8px rgba(45, 30, 20, 0.04);
     transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
   }
@@ -3363,8 +3424,8 @@
   }
 
   .about-play-icon-box {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: #fff0e6;
     display: flex;
@@ -3373,12 +3434,25 @@
     flex-shrink: 0;
   }
 
-  /* 6. 3D Technology Showcase & Floating Cards */
-  .about-3d-showcase-wrapper {
-    max-width: 400px;
+  /* Hide desktop stats row */
+  .about-stats-desktop {
+    display: none !important;
+  }
+
+  /* ── Right / Showcase Column ── */
+  .about-hero-showcase-col {
     width: 100%;
-    aspect-ratio: 1 / 0.88;
+    animation: none;
+    filter: none;
+  }
+
+  /* 6. 3D Technology Showcase — fixed height, no overflow */
+  .about-3d-showcase-wrapper {
+    max-width: 340px;
+    width: 100%;
+    aspect-ratio: 1 / 0.85;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .about-3d-stage {
@@ -3392,66 +3466,16 @@
     background: radial-gradient(circle, rgba(235, 120, 33, 0.16) 0%, rgba(244, 151, 79, 0.05) 55%, transparent 72%);
   }
 
-  .about-val-card {
-    padding: 0.45rem 0.72rem 0.45rem 0.52rem;
-    border-radius: 13px;
-    border: 1.2px solid rgba(228, 215, 201, 0.85);
-    box-shadow: 0 4px 16px rgba(45, 30, 20, 0.08);
-    gap: 0.48rem;
-    background: #ffffff;
-    z-index: 10;
-  }
-
-  .about-val-icon-box {
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    background: #fff2e8;
-    border: 1px solid rgba(234, 88, 12, 0.2);
-    color: #ea580c;
-  }
-
-  .about-val-icon-box svg {
-    width: 14px;
-    height: 14px;
-  }
-
-  .about-val-text {
-    font-size: 0.76rem;
-    font-weight: 750;
-    color: #141518;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  /* Floating Card Positions Matching Reference */
-  .about-val-card--people {
-    top: 6%;
-    right: 14%;
-  }
-
-  .about-val-card--engineering {
-    top: 38%;
-    left: 1%;
-  }
-
-  .about-val-card--engineering .about-val-text {
-    max-width: 80px;
-    white-space: normal;
-  }
-
+  /* Hide ALL floating value cards — they overlap stats on mobile */
+  .about-val-card--people,
+  .about-val-card--engineering,
   .about-val-card--growth {
-    top: 52%;
-    right: 1%;
-  }
-
-  .about-val-card--growth .about-val-text {
-    max-width: 75px;
-    white-space: normal;
+    display: none !important;
   }
 
   /* 7. Mobile Company Statistics Card */
   .about-mobile-stats-wrapper {
+    display: block;
     width: 100%;
     margin-top: 0.85rem;
     margin-bottom: 0.5rem;
@@ -3462,7 +3486,7 @@
     background: #ffffff;
     border: 1px solid rgba(226, 212, 196, 0.75);
     border-radius: 20px;
-    padding: 1.1rem 0.85rem;
+    padding: 1rem 0.75rem;
     box-shadow: 0 4px 18px rgba(45, 30, 20, 0.04);
     display: flex;
     align-items: center;
@@ -3472,15 +3496,15 @@
   .about-mobile-stat-col {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.5rem;
     flex: 1;
     min-width: 0;
   }
 
   .about-mobile-stat-col .about-stat-icon-wrap {
-    width: 36px;
-    height: 36px;
-    border-radius: 11px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
     background: #fff2e8;
     border: 1px solid rgba(234, 88, 12, 0.18);
     color: #ea580c;
@@ -3497,7 +3521,7 @@
   }
 
   .about-mobile-stat-col .about-stat-number {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 850;
     color: #141518;
     line-height: 1.1;
@@ -3505,7 +3529,7 @@
   }
 
   .about-mobile-stat-col .about-stat-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 550;
     color: #786d63;
     line-height: 1.25;
@@ -3514,35 +3538,15 @@
 
   .about-mobile-stat-divider {
     width: 1px;
-    height: 38px;
+    height: 36px;
     background: rgba(226, 212, 196, 0.8);
-    margin: 0 0.5rem;
+    margin: 0 0.4rem;
     flex-shrink: 0;
   }
 
-  /* 8. 3 Mobile Carousel Indicators */
+  /* 8. Carousel dots — hide them (not functional) */
   .about-mobile-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 1.15rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .about-mobile-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #dfd6cb;
-    transition: all 0.3s ease;
-  }
-
-  .about-mobile-dot--active {
-    width: 8px;
-    height: 8px;
-    background: #ea580c;
-    box-shadow: 0 0 6px rgba(234, 88, 12, 0.45);
+    display: none;
   }
 
   /* ==========================================================================
@@ -4643,70 +4647,51 @@
 /* Small Mobile Viewports (<= 380px) */
 @media (max-width: 380px) {
   .about-container {
-    padding: 0 16px;
+    padding: 0 14px;
   }
 
   .about-hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .about-hero-badge {
-    font-size: 0.67rem;
-    padding: 0.32rem 0.8rem;
+    font-size: 0.62rem;
+    padding: 0.3rem 0.75rem;
   }
 
   .about-hero-actions {
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
 
   .about-hero-btn-primary,
   .about-hero-btn-secondary {
-    padding: 0.68rem 1.15rem;
-    font-size: 0.86rem;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.84rem;
   }
 
   .about-3d-showcase-wrapper {
-    max-width: 330px;
-  }
-
-  .about-val-card {
-    padding: 0.38rem 0.58rem 0.38rem 0.45rem;
-    gap: 0.4rem;
-  }
-
-  .about-val-text {
-    font-size: 0.7rem;
-  }
-
-  .about-val-icon-box {
-    width: 22px;
-    height: 22px;
-  }
-
-  .about-val-icon-box svg {
-    width: 12px;
-    height: 12px;
+    max-width: 300px;
   }
 
   .about-mobile-stats-card {
-    padding: 0.95rem 0.65rem;
+    padding: 0.9rem 0.6rem;
   }
 
   .about-mobile-stat-col .about-stat-number {
-    font-size: 1.12rem;
+    font-size: 1.1rem;
   }
 
   .about-mobile-stat-col .about-stat-label {
-    font-size: 0.64rem;
+    font-size: 0.63rem;
   }
 
   .about-mobile-stat-col .about-stat-icon-wrap {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
 
   .about-mobile-stat-divider {
-    margin: 0 0.35rem;
+    margin: 0 0.3rem;
   }
 
   /* Feature Strip & Mission-Vision Compact Scaling for <= 380px */

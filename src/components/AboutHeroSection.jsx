@@ -147,7 +147,7 @@ export default function AboutHeroSection() {
             {/* Small Rounded Orange Outline Badge */}
             <div className="about-hero-badge">
               <Code2 size={13} className="about-hero-badge-spark" aria-hidden="true" />
-              <span>PROVENANCETECH SOFTWARE ENGINEERING</span>
+              <span className="about-hero-badge-label">PROVENANCETECH SOFTWARE ENGINEERING</span>
             </div>
 
             {/* Large Bold Heading */}

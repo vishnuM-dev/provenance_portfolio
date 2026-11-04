@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  LayoutGrid,
-  ChevronRight,
   ArrowRight,
   Phone,
   Mail,
@@ -13,8 +11,6 @@ import {
 import './Footer.css';
 
 export default function Footer() {
-  const [quickLinksOpen, setQuickLinksOpen] = useState(true);
-
   return (
     <footer className="provenance-footer">
       {/* 1. Subtle Silk Waves Vector Background */}
@@ -128,58 +124,6 @@ export default function Footer() {
 
           {/* Tablet Side-by-Side Wrapper (Stacked on Standard Mobile) */}
           <div className="mobile-footer-cards-tablet-row">
-            {/* Quick Links Card */}
-            <div className="mobile-footer-card">
-              <div
-                className="mobile-footer-card-header"
-                onClick={() => setQuickLinksOpen(!quickLinksOpen)}
-                role="button"
-                tabIndex={0}
-                aria-expanded={quickLinksOpen}
-                aria-label="Toggle Quick Links"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setQuickLinksOpen(!quickLinksOpen);
-                  }
-                }}
-              >
-                <div className="mobile-footer-card-title-group">
-                  <div className="mobile-footer-card-icon-box" aria-hidden="true">
-                    <LayoutGrid size={19} strokeWidth={2.2} />
-                  </div>
-                  <h3 className="mobile-footer-card-title">Quick Links</h3>
-                </div>
-
-                <div
-                  className={`mobile-footer-chevron-btn ${quickLinksOpen ? 'is-open' : ''}`}
-                  aria-hidden="true"
-                >
-                  <ChevronRight size={15} strokeWidth={2.6} />
-                </div>
-              </div>
-
-              {quickLinksOpen && (
-                <div className="mobile-footer-links-grid">
-                  <div className="mobile-footer-links-col">
-                    <Link href="/" className="mobile-footer-link">Home</Link>
-                    <div className="mobile-footer-link-sep" />
-                    <Link href="/services" className="mobile-footer-link">Services</Link>
-                    <div className="mobile-footer-link-sep" />
-                    <Link href="/blog" className="mobile-footer-link">Blog</Link>
-                  </div>
-
-                  <div className="mobile-footer-links-col">
-                    <Link href="/about" className="mobile-footer-link">About Us</Link>
-                    <div className="mobile-footer-link-sep" />
-                    <Link href="/portfolio" className="mobile-footer-link">Projects</Link>
-                    <div className="mobile-footer-link-sep" />
-                    <Link href="/contact" className="mobile-footer-link">Contact</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* Get in Touch Contact Card */}
             <div className="mobile-footer-card">
               <div className="mobile-footer-card-header" style={{ cursor: 'default' }}>
