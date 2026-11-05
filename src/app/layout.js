@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import ScrollReveal from '@/components/ScrollReveal';
 import CustomCursor from '@/components/CustomCursor';
+import ClientWrapper from '@/components/ClientWrapper';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -84,7 +85,9 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main-content" className="main-content">
           <PageTransition>
-            {children}
+            <ClientWrapper>
+              {children}
+            </ClientWrapper>
           </PageTransition>
         </main>
         <Footer />
