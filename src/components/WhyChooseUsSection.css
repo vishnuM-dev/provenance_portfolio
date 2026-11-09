@@ -431,23 +431,9 @@
     animation: csDescFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
   }
 
-  /* 4. Filter Row */
+  /* 4. Filter Row - Hidden on Mobile View */
   .why-choose-filter-row {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 2px 2px 6px;
-    margin-bottom: 1.25rem;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .why-choose-filter-row::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
 
   .why-choose-filter-btn {

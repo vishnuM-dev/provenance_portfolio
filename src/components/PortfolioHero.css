@@ -527,6 +527,43 @@
     padding: 1rem 0 2.5rem;
   }
 
+  /* Call To Action Buttons - Positioned beside each other & perfectly aligned */
+  .pfh-actions-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 440px;
+    flex-wrap: nowrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .pfh-btn-primary,
+  .pfh-btn-secondary {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.78rem 0.65rem;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    min-height: 46px;
+  }
+
+  .pfh-btn-primary {
+    gap: 0.45rem;
+  }
+
+  .pfh-btn-primary svg {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+  }
+
   .pfh-visual-col {
     min-height: 400px;
   }
@@ -608,6 +645,17 @@
 }
 
 @media (max-width: 480px) {
+  .pfh-actions-row {
+    gap: 0.55rem;
+  }
+
+  .pfh-btn-primary,
+  .pfh-btn-secondary {
+    padding: 0.74rem 0.5rem;
+    font-size: 0.84rem;
+    min-height: 44px;
+  }
+
   .pfh-visual-col {
     min-height: 360px;
   }
@@ -661,6 +709,26 @@
 }
 
 @media (max-width: 360px) {
+  .pfh-actions-row {
+    gap: 0.45rem;
+  }
+
+  .pfh-btn-primary,
+  .pfh-btn-secondary {
+    padding: 0.68rem 0.35rem;
+    font-size: 0.78rem;
+    min-height: 42px;
+  }
+
+  .pfh-btn-primary {
+    gap: 0.3rem;
+  }
+
+  .pfh-btn-primary svg {
+    width: 13px;
+    height: 13px;
+  }
+
   .pfh-cards-composition {
     max-width: 280px;
     height: 310px;
