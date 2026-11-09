@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import '@/components/ServicesPage.css';
+import ServicesProcessRoadmap from '@/components/ServicesProcessRoadmap';
 import {
   Globe,
   Smartphone,
@@ -124,44 +125,6 @@ export default function ServicesPage() {
           <path d="M7 11L13 16L7 21M16 21H25" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
-    },
-  ];
-
-  const processSteps = [
-    {
-      step: '01',
-      title: 'Discovery & Planning',
-      desc: 'Understand business goals, user requirements, technical feasibility, and project roadmap.',
-      icon: <Lightbulb size={20} />,
-      highlight: false,
-    },
-    {
-      step: '02',
-      title: 'Design & Architecture',
-      desc: 'Define data models, system architecture, user journeys, wireframes, and design components.',
-      icon: <FileText size={20} />,
-      highlight: false,
-    },
-    {
-      step: '03',
-      title: 'Development & Integration',
-      desc: 'Build frontend interfaces, backend endpoints, and third-party integrations using modern engineering practices.',
-      icon: <Code2 size={20} />,
-      highlight: true,
-    },
-    {
-      step: '04',
-      title: 'Testing & Quality Assurance',
-      desc: 'Verify functional correctness, cross-device responsiveness, security considerations, and edge cases.',
-      icon: <CheckCircle2 size={20} />,
-      highlight: false,
-    },
-    {
-      step: '05',
-      title: 'Deployment & Support',
-      desc: 'Deploy the solution to production, verify configuration, document the release, and provide agreed ongoing support.',
-      icon: <Rocket size={20} />,
-      highlight: false,
     },
   ];
 
@@ -678,8 +641,14 @@ export default function ServicesPage() {
                         <div className="sp-node-sub">AWS S3 / Cloudinary</div>
                       </div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '36px', background: '#faf7f2', borderRadius: '6px' }}>
-                      <Box size={22} color="#ea580c" />
+                    <div className="sp-storage-visual">
+                      <div className="sp-storage-icon-box">
+                        <Box size={16} color="#ea580c" />
+                      </div>
+                      <div className="sp-storage-pills">
+                        <span className="sp-storage-tag">S3 Buckets</span>
+                        <span className="sp-storage-tag">Global CDN</span>
+                      </div>
                     </div>
                   </div>
 
@@ -719,50 +688,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* 4. HOW WE DELIVER (5-STEP PROCESS TIMELINE)               */}
+      {/* 4. HOW WE DELIVER (INTERACTIVE ANIMATED TIMELINE ROADMAP) */}
       {/* ========================================================= */}
-      <section className="sp-delivery-section">
-        <div className="sp-container">
-          {/* Section Header */}
-          <div className="sp-section-header">
-            <div className="sp-badge">
-              <Rocket size={14} className="sp-badge-icon" />
-              <span>How We Deliver</span>
-            </div>
-
-            <h2 className="sp-section-title">
-              A Clear Process From Idea to Launch
-            </h2>
-
-            <p className="sp-section-subtitle">
-              Our structured development methodology ensures clear communication, predictable milestones, and reliable software delivery.
-            </p>
-          </div>
-
-          {/* 5-Step Horizontal Timeline Track */}
-          <div className="sp-timeline-track">
-            {processSteps.map((step, index) => (
-              <div
-                key={step.step}
-                className={`sp-step-card ${step.highlight ? 'sp-step-card-highlight' : ''}`}
-              >
-                <div className="sp-step-icon-wrap">
-                  {step.icon}
-                </div>
-
-                <div className="sp-step-num">{step.step}</div>
-                <h3 className="sp-step-title">{step.title}</h3>
-                <p className="sp-step-desc">{step.desc}</p>
-
-                {/* Connecting arrow line on desktop (except for the last item) */}
-                {index < processSteps.length - 1 && (
-                  <div className="sp-step-connector" aria-hidden="true" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesProcessRoadmap />
 
       {/* ========================================================= */}
       {/* 5. FINAL CALL TO ACTION (BEFORE FOOTER)                   */}

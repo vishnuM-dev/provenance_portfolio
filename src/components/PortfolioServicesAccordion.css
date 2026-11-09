@@ -1,0 +1,535 @@
+/* ==========================================================================
+   PORTFOLIO SERVICES ACCORDION
+   Clean, Slow, Smooth Scroll-Driven Reveal & Expansion Animation
+   ========================================================================== */
+
+.psa-section {
+  padding: 4.5rem 0 3.75rem;
+  scroll-margin-top: 100px;
+  position: relative;
+  background: transparent;
+}
+
+/* Header */
+.psa-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 2.75rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.psa-section.is-in-view .psa-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.psa-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  border: 1.2px solid rgba(234, 88, 12, 0.32);
+  border-radius: 9999px;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.74rem;
+  font-weight: 750;
+  color: #ea580c;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.06);
+  margin-bottom: 0.75rem;
+}
+
+.psa-badge-icon {
+  color: #ea580c;
+}
+
+.psa-title {
+  font-size: clamp(1.9rem, 4.2vw, 2.75rem);
+  font-weight: 850;
+  color: #1a130e;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  margin: 0 0 0.85rem;
+}
+
+.psa-subtitle {
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  color: #5a4c3e;
+  line-height: 1.65;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   1. DESKTOP VIEW (>= 1024px) - 4-Column Feature Grid
+   ========================================================================== */
+.psa-desktop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.75rem;
+}
+
+.psa-desktop-card {
+  background: #ffffff;
+  border: 1.2px solid rgba(220, 195, 170, 0.55);
+  border-radius: 22px;
+  padding: 2rem 1.6rem;
+  box-shadow: 0 4px 18px rgba(45, 30, 20, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+}
+
+.psa-section.is-in-view .psa-desktop-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.psa-section.is-in-view .psa-desktop-card:nth-child(1) { transition-delay: 0.08s; }
+.psa-section.is-in-view .psa-desktop-card:nth-child(2) { transition-delay: 0.16s; }
+.psa-section.is-in-view .psa-desktop-card:nth-child(3) { transition-delay: 0.24s; }
+.psa-section.is-in-view .psa-desktop-card:nth-child(4) { transition-delay: 0.32s; }
+
+.psa-desktop-card:hover {
+  transform: translateY(-5px);
+  border-color: #ea580c;
+  box-shadow: 0 12px 32px rgba(234, 88, 12, 0.14),
+              0 2px 8px rgba(45, 30, 20, 0.04);
+}
+
+.psa-desktop-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+}
+
+.psa-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #fff3ea;
+  border: 1.2px solid rgba(234, 88, 12, 0.2);
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+
+.psa-desktop-card:hover .psa-icon-box {
+  transform: scale(1.08) rotate(3deg);
+  background: #ffe8d6;
+}
+
+.psa-step-num {
+  font-size: 0.8rem;
+  font-weight: 850;
+  color: #ea580c;
+  background: #fff0e3;
+  border: 1px solid rgba(234, 88, 12, 0.25);
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+  letter-spacing: 0.02em;
+}
+
+.psa-card-tag {
+  font-size: 0.7rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  color: #ea580c;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.psa-card-title {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #1a130e;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.65rem;
+  line-height: 1.28;
+}
+
+.psa-card-desc {
+  font-size: 0.88rem;
+  color: #5c5248;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.psa-highlights-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.psa-pill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: #3b352e;
+}
+
+.psa-pill-check {
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.psa-learn-btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 750;
+  color: #ea580c;
+  text-decoration: none;
+  transition: transform 0.2s ease, gap 0.2s ease;
+}
+
+.psa-learn-btn:hover {
+  gap: 0.65rem;
+  transform: translateX(2px);
+}
+
+/* Hide mobile list on desktop */
+.psa-mobile-list {
+  display: none !important;
+}
+
+/* ==========================================================================
+   2. MOBILE & TABLET VIEW (< 1024px) - Slow Smooth Expandable Accordion
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .psa-section {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .psa-desktop-grid {
+    display: none !important;
+  }
+
+  .psa-mobile-list {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+    margin-top: 2rem;
+    box-sizing: border-box;
+  }
+
+  /* Closed/Open Base Card */
+  .psa-mobile-card {
+    background: #ffffff;
+    border: 1.2px solid rgba(220, 195, 170, 0.55);
+    border-radius: 20px;
+    box-shadow: 0 4px 18px rgba(45, 30, 20, 0.04);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: border-color 0.45s ease,
+                box-shadow 0.45s ease,
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.35s ease;
+  }
+
+  /* Active / Open Illuminated Card */
+  .psa-mobile-card.is-open {
+    border-color: rgba(234, 88, 12, 0.85);
+    box-shadow: 0 8px 28px -2px rgba(234, 88, 12, 0.22),
+                0 2px 8px rgba(45, 30, 20, 0.04);
+    transform: translateY(-2px) scale(1.008);
+  }
+
+  /* Clickable Header Button */
+  .psa-mobile-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 1.1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  .psa-mobile-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .psa-mobile-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #fff3ea;
+    border: 1.2px solid rgba(234, 88, 12, 0.2);
+    color: #ea580c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.35s ease,
+                border-color 0.35s ease;
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-icon-box {
+    background: #ffe6d4;
+    border-color: rgba(234, 88, 12, 0.45);
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  .psa-mobile-headings {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .psa-mobile-num {
+    font-size: 0.7rem;
+    font-weight: 850;
+    color: #ea580c;
+    letter-spacing: 0.05em;
+  }
+
+  .psa-mobile-title {
+    font-size: clamp(0.96rem, 3.8vw, 1.1rem);
+    font-weight: 800;
+    color: #1a130e;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+
+  /* Chevron Button Indicator */
+  .psa-mobile-chevron-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #faf7f2;
+    border: 1px solid rgba(220, 195, 170, 0.6);
+    color: #786d63;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 0.65rem;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.45s ease,
+                border-color 0.45s ease,
+                color 0.45s ease,
+                box-shadow 0.45s ease;
+  }
+
+  .psa-mobile-chevron {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-chevron-box {
+    background: #ea580c;
+    border-color: #ea580c;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(234, 88, 12, 0.35);
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-chevron {
+    transform: rotate(90deg);
+  }
+
+  /* ==========================================================================
+     SLOW, SILKY ACCORDION EXPANSION ANIMATION (650ms - 700ms)
+     ========================================================================== */
+  .psa-expandable-content {
+    display: grid !important;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    box-sizing: border-box;
+    will-change: grid-template-rows, opacity;
+    transition: grid-template-rows 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 600ms ease;
+  }
+
+  .psa-mobile-card.is-open .psa-expandable-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 550ms cubic-bezier(0.22, 1, 0.36, 1) 80ms,
+                visibility 700ms ease;
+  }
+
+  .psa-expandable-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 1.15rem 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .psa-mobile-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 750;
+    color: #ea580c;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+
+  .psa-mobile-desc {
+    font-size: 0.84rem;
+    color: #554e46;
+    line-height: 1.55;
+    margin: 0 0 0.85rem;
+    font-weight: 450;
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-desc {
+    animation: psaDescReveal 550ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+  }
+
+  /* Staggered Capability Pills */
+  .psa-mobile-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+  }
+
+  .psa-mobile-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #faf7f2;
+    border: 1px solid rgba(220, 195, 170, 0.7);
+    border-radius: 9999px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.74rem;
+    font-weight: 650;
+    color: #3b352e;
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-pill:nth-child(1) {
+    animation: psaPillReveal 480ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-pill:nth-child(2) {
+    animation: psaPillReveal 480ms cubic-bezier(0.22, 1, 0.36, 1) 230ms both;
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-pill:nth-child(3) {
+    animation: psaPillReveal 480ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+  }
+
+  /* Action Row */
+  .psa-mobile-action-row {
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(220, 195, 170, 0.55);
+  }
+
+  .psa-mobile-card.is-open .psa-mobile-action-row {
+    animation: psaBtnReveal 500ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both;
+  }
+
+  .psa-mobile-learn-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: #fff3ea;
+    border: 1.2px solid rgba(234, 88, 12, 0.3);
+    color: #ea580c;
+    border-radius: 9999px;
+    padding: 0.68rem 1.25rem;
+    font-size: 0.84rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.08);
+    transition: all 0.22s ease;
+  }
+
+  .psa-mobile-learn-btn:hover {
+    background: #ea580c;
+    color: #ffffff;
+    border-color: #ea580c;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
+  }
+}
+
+/* Keyframe Animations for Slow, Clean Opening */
+@keyframes psaDescReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes psaPillReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes psaBtnReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .psa-header,
+  .psa-desktop-card,
+  .psa-mobile-card,
+  .psa-expandable-content,
+  .psa-mobile-chevron-box,
+  .psa-mobile-chevron {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

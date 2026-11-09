@@ -17,6 +17,31 @@
   padding: 1.25rem 0 1.5rem;
 }
 
+/* Desktop & Mobile Flow Switching (Exclusively < 768px for Mobile) */
+.bp-mobile-flow {
+  display: none;
+}
+
+.bp-desktop-flow {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .bp-desktop-flow {
+    display: none !important;
+  }
+
+  .bp-mobile-flow {
+    display: block !important;
+    width: 100%;
+  }
+
+  .bp-page-wrapper {
+    padding: 0 !important;
+  }
+}
+
 .bp-container {
   width: 100%;
   max-width: 1360px;

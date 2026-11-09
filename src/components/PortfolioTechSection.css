@@ -2,27 +2,39 @@
    PORTFOLIO TECHNOLOGY EXPERTISE SECTION
    Matches reference: 4 Cards (Row 1), 2 Wide Cards (Row 2),
    3D floating tilted icons, corner crests, bottom waves, and glowing hover.
+   Enhanced with scroll-driven entrance reveals and active focal topic illumination.
    ========================================================================== */
 .portfolio-tech-section {
   position: relative;
   width: 100%;
-  padding: 2rem 0 2.25rem;
+  padding: 2.75rem 0 3rem;
   overflow: visible;
   /* Clip decorative elements bleeding outside viewport */
   overflow-x: clip;
   background: transparent;
+  scroll-margin-top: 90px;
 }
 
 /* Section Header */
 .portfolio-tech-header {
   text-align: center;
   max-width: 840px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.25rem;
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.portfolio-tech-section.is-in-view .portfolio-tech-header {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .portfolio-tech-pill-badge {
@@ -94,6 +106,18 @@
   background: #ea580c;
   border-radius: 2px;
   transform-origin: bottom center;
+  animation: csWhiskerPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes csWhiskerPulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
 }
 
 .ptw-1 {
@@ -102,6 +126,7 @@
   top: 4px;
   left: 6px;
   transform: rotate(-30deg);
+  animation-delay: 0s;
 }
 
 .ptw-2 {
@@ -110,6 +135,7 @@
   top: 0;
   left: 12px;
   transform: rotate(0deg);
+  animation-delay: 0.3s;
 }
 
 .ptw-3 {
@@ -118,6 +144,7 @@
   top: 4px;
   left: 18px;
   transform: rotate(30deg);
+  animation-delay: 0.6s;
 }
 
 .portfolio-tech-desc {
@@ -135,6 +162,67 @@
   margin-top: 0.6rem;
   font-style: italic;
   font-weight: 450;
+}
+
+/* Quick Interactive Mobile Topic Pills */
+.portfolio-tech-mobile-pills {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .portfolio-tech-mobile-pills {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.4rem 0.25rem;
+    margin-top: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portfolio-tech-mobile-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-tech-topic-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.85rem;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 1.2px solid rgba(228, 215, 201, 0.9);
+    font-size: 0.76rem;
+    font-weight: 750;
+    color: #4b5563;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(45, 30, 20, 0.04);
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    outline: none;
+  }
+
+  .portfolio-tech-topic-pill .topic-pill-num {
+    color: #ea580c;
+    font-size: 0.7rem;
+    font-weight: 850;
+  }
+
+  .portfolio-tech-topic-pill.is-active {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    border-color: #ea580c;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.32);
+    transform: translateY(-1px) scale(1.03);
+  }
+
+  .portfolio-tech-topic-pill.is-active .topic-pill-num {
+    color: #ffffff;
+  }
 }
 
 /* ==========================================================================
@@ -161,7 +249,7 @@
 }
 
 /* ==========================================================================
-   CARD ANATOMY
+   CARD ANATOMY & SCROLL EFFECTS
    ========================================================================== */
 .portfolio-tech-card {
   background: linear-gradient(145deg, #ffffff 0%, #fffbf8 50%, #fef7f0 100%);
@@ -172,19 +260,35 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(45, 30, 20, 0.04), 0 2px 6px rgba(234, 88, 12, 0.04);
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   height: 100%;
   padding: 1.85rem 1.65rem 2.2rem;
+  cursor: pointer;
+  outline: none;
+  /* Entrance animation default state */
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--stagger-delay, 0ms),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--stagger-delay, 0ms),
+              box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity, box-shadow;
 }
 
-.portfolio-tech-card:hover {
-  transform: translateY(-7px);
+/* Entrance reveal when section enters view */
+.portfolio-tech-section.is-in-view .portfolio-tech-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-Driven Focal Active State & Hover State */
+.portfolio-tech-card:hover,
+.portfolio-tech-section.is-in-view .portfolio-tech-card.is-scrolled-active {
+  transform: translateY(-7px) scale(1.018);
   border-color: #ea580c;
-  box-shadow: 0 24px 54px -6px rgba(234, 88, 12, 0.35),
-              0 0 0 1.5px rgba(234, 88, 12, 0.3),
+  box-shadow: 0 22px 50px -6px rgba(234, 88, 12, 0.34),
+              0 0 0 1.8px rgba(234, 88, 12, 0.36),
               0 6px 18px rgba(234, 88, 12, 0.12);
+  z-index: 2;
 }
 
 /* Card 01 Special Prominence */
@@ -195,7 +299,8 @@
               0 4px 16px rgba(234, 88, 12, 0.08);
 }
 
-.portfolio-tech-card-primary:hover {
+.portfolio-tech-card-primary:hover,
+.portfolio-tech-section.is-in-view .portfolio-tech-card-primary.is-scrolled-active {
   border-color: #ea580c;
   box-shadow: 0 28px 58px -6px rgba(234, 88, 12, 0.42),
               0 0 0 2px rgba(234, 88, 12, 0.32);
@@ -216,6 +321,14 @@
   box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
   letter-spacing: 0.04em;
   z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portfolio-tech-card:hover .portfolio-tech-crest,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-crest {
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45);
+  transform: scale(1.04);
 }
 
 /* Card Header: 3D Floating Icon Tile + Title/Badge */
@@ -289,7 +402,7 @@
   transform: rotate(-8deg);
   border: 1px solid rgba(234, 88, 12, 0.22);
   box-shadow: 0 4px 14px rgba(234, 88, 12, 0.12);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
 }
 
 .portfolio-tech-icon-frontplate {
@@ -310,18 +423,49 @@
               border-color 0.35s ease;
 }
 
-.portfolio-tech-card:hover .portfolio-tech-icon-stage {
+.portfolio-tech-card:hover .portfolio-tech-icon-stage,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-icon-stage {
   transform: translateY(-2px);
 }
 
-.portfolio-tech-card:hover .portfolio-tech-icon-backplate {
-  transform: rotate(-13deg) scale(1.05);
+.portfolio-tech-card:hover .portfolio-tech-icon-backplate,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-icon-backplate {
+  transform: rotate(-14deg) scale(1.08);
+  background: linear-gradient(135deg, rgba(254, 215, 170, 0.95) 0%, rgba(255, 237, 213, 0.6) 100%);
 }
 
-.portfolio-tech-card:hover .portfolio-tech-icon-frontplate {
-  transform: rotate(4deg) scale(1.06);
-  border-color: rgba(234, 88, 12, 0.58);
-  box-shadow: 0 12px 24px rgba(234, 88, 12, 0.24), inset 0 1px 2px #ffffff;
+.portfolio-tech-card:hover .portfolio-tech-icon-frontplate,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-icon-frontplate {
+  transform: rotate(5deg) scale(1.08);
+  border-color: rgba(234, 88, 12, 0.65);
+  box-shadow: 0 12px 26px rgba(234, 88, 12, 0.28), inset 0 1px 2px #ffffff;
+}
+
+/* ==========================================================================
+   DROPDOWN TRAY & MOBILE ACCORDION STYLES
+   ========================================================================== */
+/* Dropdown Tray Defaults (Desktop: Always Open, Grid Layout Intact) */
+.portfolio-tech-dropdown-tray {
+  display: block;
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+  transform: none;
+  margin-top: 0;
+  width: 100%;
+}
+
+.portfolio-tech-dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.portfolio-tech-tray-label,
+.portfolio-tech-tray-footer,
+.portfolio-tech-chevron-btn,
+.portfolio-tech-count-chip {
+  display: none;
 }
 
 /* Technology Badges Wrap */
@@ -353,11 +497,17 @@
   cursor: default;
 }
 
+.portfolio-tech-badge-item:hover,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-badge-item {
+  border-color: rgba(234, 88, 12, 0.45);
+  background: #fffcf9;
+  box-shadow: 0 3px 10px rgba(234, 88, 12, 0.1);
+}
+
 .portfolio-tech-badge-item:hover {
   transform: translateY(-2.5px);
-  border-color: rgba(234, 88, 12, 0.5);
-  background: #fffaf5;
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.14);
+  border-color: #ea580c;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.18);
 }
 
 .portfolio-tech-badge-icon {
@@ -370,8 +520,9 @@
   transition: transform 0.25s ease;
 }
 
-.portfolio-tech-badge-item:hover .portfolio-tech-badge-icon {
-  transform: scale(1.12);
+.portfolio-tech-badge-item:hover .portfolio-tech-badge-icon,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-badge-icon {
+  transform: scale(1.08);
 }
 
 .portfolio-tech-badge-name {
@@ -395,7 +546,8 @@
   height: 85px;
 }
 
-.portfolio-tech-card:hover .portfolio-tech-bottom-wave {
+.portfolio-tech-card:hover .portfolio-tech-bottom-wave,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-bottom-wave {
   transform: scale(1.06) translateY(2px);
   opacity: 0.95;
 }
@@ -420,19 +572,18 @@
   text-decoration: none;
 }
 
-.portfolio-tech-arrow-primary {
-  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
-  border-color: transparent;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.32);
-}
-
+.portfolio-tech-arrow-primary,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-arrow-circle,
 .portfolio-tech-card:hover .portfolio-tech-arrow-circle {
   background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
   border-color: transparent;
   color: #ffffff;
-  transform: translateX(3px) scale(1.1);
   box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
+}
+
+.portfolio-tech-card:hover .portfolio-tech-arrow-circle,
+.portfolio-tech-card.is-scrolled-active .portfolio-tech-arrow-circle {
+  transform: translateX(3px) scale(1.1);
 }
 
 /* Bottom CTA Button */
@@ -485,25 +636,309 @@
 
 @media (max-width: 860px) {
   .portfolio-tech-section {
-    padding: 1.5rem 0 1.75rem;
+    padding: 2rem 0 2.25rem;
   }
 
   .portfolio-tech-header {
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.75rem;
+  }
+
+  .portfolio-tech-row-1 {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+    margin-bottom: 1.15rem;
   }
 
   .portfolio-tech-row-2 {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .portfolio-tech-row-1 {
-    grid-template-columns: 1fr;
+    gap: 1.15rem;
+    margin-bottom: 2rem;
   }
 
+  /* Quick Interactive Mobile Topic Pills with Centering & Polish */
+  .portfolio-tech-mobile-pills {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.45rem 0.35rem 0.65rem;
+    margin-top: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    scroll-behavior: smooth;
+  }
+
+  .portfolio-tech-mobile-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-tech-topic-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.42rem 0.95rem;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 1.4px solid rgba(228, 215, 201, 0.9);
+    font-size: 0.78rem;
+    font-weight: 750;
+    color: #4b5563;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(45, 30, 20, 0.04);
+    transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    outline: none;
+    flex-shrink: 0;
+  }
+
+  .portfolio-tech-topic-pill .topic-pill-num {
+    color: #ea580c;
+    font-size: 0.72rem;
+    font-weight: 850;
+  }
+
+  .portfolio-tech-topic-pill.is-active {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    border-color: #ea580c;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+    transform: translateY(-1px) scale(1.03);
+  }
+
+  .portfolio-tech-topic-pill.is-active .topic-pill-num {
+    color: #ffffff;
+  }
+
+  /* Card Anatomy on Mobile: Accordion Dropdown */
   .portfolio-tech-card {
-    padding: 1.65rem 1.35rem 2rem;
+    padding: 1.15rem 1.2rem;
+    border-radius: 22px;
+    transition: padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+  }
+
+  .portfolio-tech-card.is-scrolled-active,
+  .portfolio-tech-card.is-open {
+    padding: 1.35rem 1.2rem 2.1rem;
+    border-color: #ea580c;
+    box-shadow: 0 20px 48px -6px rgba(234, 88, 12, 0.32),
+                0 0 0 1.8px rgba(234, 88, 12, 0.36);
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  .portfolio-tech-card-header {
+    margin-bottom: 0;
+    padding-right: 0.5rem;
+    gap: 0.85rem;
+    transition: margin-bottom 0.4s ease;
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-card-header,
+  .portfolio-tech-card.is-open .portfolio-tech-card-header {
+    margin-bottom: 0.35rem;
+  }
+
+  .portfolio-tech-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .portfolio-tech-card-title {
+    font-size: 1.08rem;
+    margin: 0 0 0.3rem;
+  }
+
+  /* Card Meta Row: Category Badge + Count Chip */
+  .portfolio-tech-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .portfolio-tech-count-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.55rem;
+    background: rgba(243, 244, 246, 0.85);
+    border: 1px solid rgba(209, 213, 219, 0.8);
+    border-radius: 9999px;
+    color: #6b7280;
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-count-chip,
+  .portfolio-tech-card.is-open .portfolio-tech-count-chip {
+    background: rgba(255, 237, 213, 0.75);
+    border-color: rgba(234, 88, 12, 0.35);
+    color: #c2410c;
+  }
+
+  /* Dropdown Toggle Chevron Button */
+  .portfolio-tech-chevron-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 245, 235, 0.95);
+    border: 1.2px solid rgba(234, 88, 12, 0.28);
+    color: #ea580c;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 2.4rem;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.08);
+    transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-chevron-btn,
+  .portfolio-tech-card.is-open .portfolio-tech-chevron-btn {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    color: #ffffff;
+    border-color: #ea580c;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+  }
+
+  .portfolio-tech-chevron-icon {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: rotate(0deg);
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-chevron-icon,
+  .portfolio-tech-card.is-open .portfolio-tech-chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown Tray with Slow, Smooth Height Unfolding */
+  .portfolio-tech-dropdown-tray {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    margin-top: 0;
+    transition: max-height 0.52s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                margin-top 0.4s ease;
+    will-change: max-height, opacity, transform;
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-dropdown-tray,
+  .portfolio-tech-card.is-open .portfolio-tech-dropdown-tray {
+    max-height: 520px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 1.15rem;
+  }
+
+  /* Tray Section Label */
+  .portfolio-tech-tray-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ea580c;
+    margin-bottom: 0.65rem;
+  }
+
+  /* Badges spacing on mobile inside tray */
+  .portfolio-tech-badges-wrap {
+    margin-bottom: 0;
+  }
+
+  /* Tray Footer with Focal Status Hint */
+  .portfolio-tech-tray-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed rgba(234, 88, 12, 0.22);
+    position: relative;
+    z-index: 2;
+  }
+
+  .portfolio-tech-status-hint {
+    font-size: 0.74rem;
+    color: #8d7d6f;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .portfolio-tech-status-hint::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+    animation: pfpDotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pfpDotPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+    }
+    50% {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 5px rgba(234, 88, 12, 0.35);
+    }
+  }
+
+  .portfolio-tech-tray-count {
+    font-size: 0.74rem;
+    font-weight: 750;
+    color: #ea580c;
+    background: rgba(255, 245, 235, 0.95);
+    padding: 0.22rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(234, 88, 12, 0.25);
+  }
+
+  /* Bottom Wave and Arrow Circle in Collapsed vs Open */
+  .portfolio-tech-bottom-wave {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.38s ease, transform 0.38s ease;
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-bottom-wave,
+  .portfolio-tech-card.is-open .portfolio-tech-bottom-wave {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+
+  .portfolio-tech-arrow-circle {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.85);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .portfolio-tech-card.is-scrolled-active .portfolio-tech-arrow-circle,
+  .portfolio-tech-card.is-open .portfolio-tech-arrow-circle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
   }
 
   .portfolio-tech-cta-btn {
@@ -527,19 +962,35 @@
   }
 
   .portfolio-tech-card {
-    padding: 1.35rem 1rem 1.65rem;
+    padding: 1.1rem 1rem;
     border-radius: 20px;
+  }
+
+  .portfolio-tech-card.is-scrolled-active,
+  .portfolio-tech-card.is-open {
+    padding: 1.25rem 1rem 1.95rem;
   }
 
   .portfolio-tech-badge-item {
     font-size: 0.76rem;
     padding: 0.38rem 0.72rem;
   }
+
+  .portfolio-tech-chevron-btn {
+    width: 28px;
+    height: 28px;
+    margin-right: 2.1rem;
+  }
 }
 
 @media (max-width: 360px) {
   .portfolio-tech-card {
-    padding: 1.15rem 0.85rem 1.5rem;
+    padding: 1rem 0.85rem;
+  }
+
+  .portfolio-tech-card.is-scrolled-active,
+  .portfolio-tech-card.is-open {
+    padding: 1.15rem 0.85rem 1.75rem;
   }
 
   .portfolio-tech-badge-item {
@@ -548,18 +999,23 @@
   }
 
   .portfolio-tech-icon-stage {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
   }
 
   .portfolio-tech-icon-frontplate {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .portfolio-tech-chevron-btn {
+    margin-right: 1.9rem;
   }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+  .portfolio-tech-header,
   .portfolio-tech-card,
   .portfolio-tech-icon-stage,
   .portfolio-tech-icon-backplate,
@@ -568,9 +1024,11 @@
   .portfolio-tech-bottom-wave,
   .portfolio-tech-arrow-circle,
   .portfolio-tech-cta-btn,
-  .portfolio-tech-cta-arrow {
+  .portfolio-tech-cta-arrow,
+  .portfolio-tech-whisker {
     transition: none !important;
     transform: none !important;
     animation: none !important;
+    opacity: 1 !important;
   }
 }

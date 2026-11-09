@@ -723,14 +723,16 @@ export default function TechnologiesSection({ id = 'technologies' }) {
 
           {/* Bottom Banner: Let's Build Your Next Solution */}
           <div className="tech-mobile-bottom-banner">
-            <div className="tech-banner-rocket-box">
-              <CtaRocketIllustration />
-            </div>
+            <div className="tech-banner-top-row">
+              <div className="tech-banner-rocket-box">
+                <CtaRocketIllustration />
+              </div>
 
-            <div className="tech-banner-text-box">
-              <h3 className="tech-banner-title">
-                Let&apos;s Build<br />Your Next Solution
-              </h3>
+              <div className="tech-banner-text-box">
+                <h3 className="tech-banner-title">
+                  Let&apos;s Build<br />Your Next Solution
+                </h3>
+              </div>
             </div>
 
             <div className="tech-banner-btn-box">

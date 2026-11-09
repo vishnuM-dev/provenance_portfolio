@@ -95,32 +95,116 @@ function CtaRocketIllustration() {
 export default function AgileLifecycleRoadmap() {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
-  const [activeStage, setActiveStage] = useState(null);
+  const [activeStage, setActiveStage] = useState('01');
+  const [revealedSteps, setRevealedSteps] = useState(new Set());
+  const isManualSelectingRef = useRef(false);
+  const manualTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const observer = new IntersectionObserver(
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // 1. Overall section entrance observer
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            observer.disconnect();
           }
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.05,
         rootMargin: '0px 0px -40px 0px',
       }
     );
+    sectionObserver.observe(section);
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    // 2. Individual mobile timeline item scroll-reveal observer
+    const items = Array.from(section.querySelectorAll('.agile-mobile-timeline-item'));
+    const itemObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const step = entry.target.getAttribute('data-step');
+            if (step) {
+              setRevealedSteps((prev) => {
+                if (prev.has(step)) return prev;
+                const next = new Set(prev);
+                next.add(step);
+                return next;
+              });
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
 
-    return () => observer.disconnect();
+    items.forEach((item) => itemObserver.observe(item));
+
+    // 3. Scroll tracking for active step on mobile
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      window.requestAnimationFrame(() => {
+        ticking = false;
+        if (isManualSelectingRef.current) return;
+        if (window.innerWidth >= 1024) return;
+
+        const focalLine = window.innerHeight * 0.44;
+        let closestStep = null;
+        let minDistance = Infinity;
+
+        items.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          const itemCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(itemCenter - focalLine);
+
+          if (rect.top <= focalLine + 120 && rect.bottom >= focalLine - 120) {
+            if (dist < minDistance) {
+              minDistance = dist;
+              closestStep = item.getAttribute('data-step');
+            }
+          }
+        });
+
+        if (closestStep) {
+          setActiveStage((prev) => (prev !== closestStep ? closestStep : prev));
+        }
+      });
+      ticking = true;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      sectionObserver.disconnect();
+      itemObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
+    };
   }, []);
+
+  const handleStepSelect = (step) => {
+    setActiveStage(step);
+    isManualSelectingRef.current = true;
+    if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
+    manualTimeoutRef.current = setTimeout(() => {
+      isManualSelectingRef.current = false;
+    }, 1400);
+  };
+
+  const activeIndex = STAGES.findIndex((s) => s.step === activeStage);
+  const progressPercent = activeIndex >= 0 ? (activeIndex / (STAGES.length - 1)) * 100 : 0;
 
   return (
     <section
@@ -170,19 +254,27 @@ export default function AgileLifecycleRoadmap() {
 
         {/* Vertical 5-Step Connected Timeline */}
         <div className="agile-mobile-timeline">
-          {/* Vertical dashed orange connecting line */}
-          <div className="agile-mobile-timeline-dashed-line" aria-hidden="true" />
+          {/* Vertical connected track with dashed base and solid progress beam */}
+          <div className="agile-mobile-timeline-track" aria-hidden="true">
+            <div className="agile-mobile-timeline-dashed-line" />
+            <div
+              className="agile-mobile-timeline-progress-line"
+              style={{ height: `${progressPercent}%` }}
+            />
+          </div>
 
           {STAGES.map((stage, idx) => {
             const Icon = stage.icon;
             const isActive = activeStage === stage.step;
+            const isRevealed = revealedSteps.has(stage.step) || isInView;
 
             return (
               <div
                 key={`mob-step-${stage.step}`}
-                className={`agile-mobile-timeline-item ${isActive ? 'is-active' : ''}`}
+                data-step={stage.step}
+                className={`agile-mobile-timeline-item ${isRevealed ? 'is-revealed' : ''} ${isActive ? 'is-active' : ''}`}
                 style={{ '--step-idx': idx }}
-                onClick={() => setActiveStage(activeStage === stage.step ? null : stage.step)}
+                onClick={() => handleStepSelect(stage.step)}
               >
                 {/* Numbered Orange Marker: 01 - 05 */}
                 <div className="agile-mobile-marker" aria-hidden="true">

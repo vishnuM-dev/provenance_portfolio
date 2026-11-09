@@ -635,7 +635,7 @@ export default function WhatWeBuildSection() {
     if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
     manualTimeoutRef.current = setTimeout(() => {
       isManualSelectingRef.current = false;
-    }, 1200);
+    }, 1400);
   }, []);
 
   // Robust, responsive scroll-based single-card activation (supports downward & upward scrolling)
@@ -647,7 +647,7 @@ export default function WhatWeBuildSection() {
     let lastSwitchTime = 0;
 
     const evaluateActiveStage = () => {
-      // 1. If user manually tapped a card, don't override for 1200ms
+      // 1. If user manually tapped a card, don't override for 1400ms
       if (isManualSelectingRef.current) return;
 
       const section = sectionRef.current;
@@ -669,7 +669,7 @@ export default function WhatWeBuildSection() {
 
       if (isMobile) {
         // Cooldown between automatic switches gives card expansion/collapse time to transition smoothly
-        if (now - lastSwitchTime < 280) return;
+        if (now - lastSwitchTime < 480) return;
 
         const firstRect = stageItems[0].getBoundingClientRect();
         // Sticky mobile header is ~66px. Focal trigger line sits at 40% of screen height.

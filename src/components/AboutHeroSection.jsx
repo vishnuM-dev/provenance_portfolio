@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -19,14 +19,32 @@ import AboutHero3DShowcase from './AboutHero3DShowcase';
 
 /**
  * Animated number counter component for company statistics
+ * Triggers counting animation when start is true, respects reduced-motion.
  */
-function CountUpNumber({ target, suffix = '+' }) {
-  const [count, setCount] = useState(0);
+function CountUpNumber({ target, suffix = '+', start = true }) {
+  const [count, setCount] = useState(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return target;
+    }
+    return 0;
+  });
 
   useEffect(() => {
+    if (!start) return;
+
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
     let startTime = null;
     let animationFrameId = null;
-    const duration = 1500;
+    const duration = 1400;
 
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
@@ -46,7 +64,7 @@ function CountUpNumber({ target, suffix = '+' }) {
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [target]);
+  }, [target, start]);
 
   return (
     <span>
@@ -58,6 +76,57 @@ function CountUpNumber({ target, suffix = '+' }) {
 
 export default function AboutHeroSection() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const statsRef = useRef(null);
+  const stripRef = useRef(null);
+  const [isStatsInView, setIsStatsInView] = useState(() => {
+    if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+      return true;
+    }
+    return false;
+  });
+  const [isStripInView, setIsStripInView] = useState(() => {
+    if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+      return true;
+    }
+    return false;
+  });
+
+  // Scroll / Intersection observer for smooth reveals and dynamic counter animations
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const statsElem = statsRef.current;
+    const stripElem = stripRef.current;
+
+    const statsObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          setIsStatsInView(true);
+          if (statsElem) statsObserver.unobserve(statsElem);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    const stripObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          setIsStripInView(true);
+          if (stripElem) stripObserver.unobserve(stripElem);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (statsElem) statsObserver.observe(statsElem);
+    if (stripElem) stripObserver.observe(stripElem);
+
+    return () => {
+      if (statsElem) statsObserver.unobserve(statsElem);
+      if (stripElem) stripObserver.unobserve(stripElem);
+    };
+  }, []);
 
   // Smooth scroll to the existing company story/mission section
   const handleScrollToStory = (e) => {
@@ -211,56 +280,11 @@ export default function AboutHeroSection() {
               </button>
             </div>
 
-            {/* Company Statistics Row (Desktop Only) */}
-            <div className="about-hero-stats-row about-stats-desktop">
-              <div className="about-hero-stat-item">
-                <div className="about-stat-icon-wrap" aria-hidden="true">
-                  <Users size={22} color="#ea580c" strokeWidth={2.4} />
-                </div>
-                <div className="about-stat-details">
-                  <div className="about-stat-number">
-                    <CountUpNumber target={5} suffix="+" />
-                  </div>
-                  <div className="about-stat-label">Years of Experience</div>
-                </div>
-              </div>
-
-              <div className="about-stat-separator" aria-hidden="true" />
-
-              <div className="about-hero-stat-item">
-                <div className="about-stat-icon-wrap" aria-hidden="true">
-                  <Layers size={22} color="#ea580c" strokeWidth={2.4} />
-                </div>
-                <div className="about-stat-details">
-                  <div className="about-stat-number">
-                    <CountUpNumber target={100} suffix="+" />
-                  </div>
-                  <div className="about-stat-label">Projects Delivered</div>
-                </div>
-              </div>
-
-              <div className="about-stat-separator" aria-hidden="true" />
-
-              <div className="about-hero-stat-item">
-                <div className="about-stat-icon-wrap" aria-hidden="true">
-                  <HeartHandshake size={22} color="#ea580c" strokeWidth={2.4} />
-                </div>
-                <div className="about-stat-details">
-                  <div className="about-stat-number">
-                    <CountUpNumber target={50} suffix="+" />
-                  </div>
-                  <div className="about-stat-label">Happy Clients</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Premium 3D Technology Illustration */}
-          <div className="about-hero-showcase-col">
-            <AboutHero3DShowcase />
-
-            {/* Mobile Company Statistics Card (Matching Reference Image) */}
-            <div className="about-mobile-stats-wrapper">
+            {/* Mobile Company Statistics Card (Directly Below CTA Buttons, Centered & Full-Width) */}
+            <div
+              ref={statsRef}
+              className={`about-mobile-stats-wrapper ${isStatsInView ? 'about-in-view' : ''}`}
+            >
               <div className="about-mobile-stats-card">
                 <div className="about-mobile-stat-col">
                   <div className="about-stat-icon-wrap" aria-hidden="true">
@@ -268,7 +292,7 @@ export default function AboutHeroSection() {
                   </div>
                   <div className="about-stat-details">
                     <div className="about-stat-number">
-                      <CountUpNumber target={5} suffix="+" />
+                      <CountUpNumber target={5} suffix="+" start={isStatsInView} />
                     </div>
                     <div className="about-stat-label">Years of<br />Experience</div>
                   </div>
@@ -282,7 +306,7 @@ export default function AboutHeroSection() {
                   </div>
                   <div className="about-stat-details">
                     <div className="about-stat-number">
-                      <CountUpNumber target={100} suffix="+" />
+                      <CountUpNumber target={100} suffix="+" start={isStatsInView} />
                     </div>
                     <div className="about-stat-label">Projects<br />Delivered</div>
                   </div>
@@ -296,26 +320,70 @@ export default function AboutHeroSection() {
                   </div>
                   <div className="about-stat-details">
                     <div className="about-stat-number">
-                      <CountUpNumber target={50} suffix="+" />
+                      <CountUpNumber target={50} suffix="+" start={isStatsInView} />
                     </div>
                     <div className="about-stat-label">Happy<br />Clients</div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* 3 Mobile Carousel Indicators */}
-              <div className="about-mobile-dots" aria-hidden="true">
-                <span className="about-mobile-dot" />
-                <span className="about-mobile-dot about-mobile-dot--active" />
-                <span className="about-mobile-dot" />
+            {/* Company Statistics Row (Desktop Only) */}
+            <div className="about-hero-stats-row about-stats-desktop">
+              <div className="about-hero-stat-item">
+                <div className="about-stat-icon-wrap" aria-hidden="true">
+                  <Users size={22} color="#ea580c" strokeWidth={2.4} />
+                </div>
+                <div className="about-stat-details">
+                  <div className="about-stat-number">
+                    <CountUpNumber target={5} suffix="+" start={isStatsInView} />
+                  </div>
+                  <div className="about-stat-label">Years of Experience</div>
+                </div>
+              </div>
+
+              <div className="about-stat-separator" aria-hidden="true" />
+
+              <div className="about-hero-stat-item">
+                <div className="about-stat-icon-wrap" aria-hidden="true">
+                  <Layers size={22} color="#ea580c" strokeWidth={2.4} />
+                </div>
+                <div className="about-stat-details">
+                  <div className="about-stat-number">
+                    <CountUpNumber target={100} suffix="+" start={isStatsInView} />
+                  </div>
+                  <div className="about-stat-label">Projects Delivered</div>
+                </div>
+              </div>
+
+              <div className="about-stat-separator" aria-hidden="true" />
+
+              <div className="about-hero-stat-item">
+                <div className="about-stat-icon-wrap" aria-hidden="true">
+                  <HeartHandshake size={22} color="#ea580c" strokeWidth={2.4} />
+                </div>
+                <div className="about-stat-details">
+                  <div className="about-stat-number">
+                    <CountUpNumber target={50} suffix="+" start={isStatsInView} />
+                  </div>
+                  <div className="about-stat-label">Happy Clients</div>
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Right Column: Premium 3D Technology Illustration (Desktop Only) */}
+          <div className="about-hero-showcase-col">
+            <AboutHero3DShowcase />
           </div>
         </div>
 
         {/* Bottom Feature Strip: 4 Premium Capability Pillars */}
-        <div className="about-feature-strip">
-          <div className="about-strip-card">
+        <div
+          ref={stripRef}
+          className={`about-feature-strip ${isStripInView ? 'about-in-view' : ''}`}
+        >
+          <div className="about-strip-card about-strip-quad-1">
             <div className="about-strip-icon-box" aria-hidden="true">
               <Box size={22} strokeWidth={2.2} />
             </div>
@@ -327,7 +395,7 @@ export default function AboutHeroSection() {
 
           <div className="about-strip-separator" aria-hidden="true" />
 
-          <div className="about-strip-card">
+          <div className="about-strip-card about-strip-quad-2">
             <div className="about-strip-icon-box" aria-hidden="true">
               <Code2 size={22} strokeWidth={2.2} />
             </div>
@@ -339,7 +407,7 @@ export default function AboutHeroSection() {
 
           <div className="about-strip-separator" aria-hidden="true" />
 
-          <div className="about-strip-card">
+          <div className="about-strip-card about-strip-quad-3">
             <div className="about-strip-icon-box" aria-hidden="true">
               <Zap size={22} strokeWidth={2.2} />
             </div>
@@ -351,7 +419,7 @@ export default function AboutHeroSection() {
 
           <div className="about-strip-separator" aria-hidden="true" />
 
-          <div className="about-strip-card">
+          <div className="about-strip-card about-strip-quad-4">
             <div className="about-strip-icon-box" aria-hidden="true">
               <Headphones size={22} strokeWidth={2.2} />
             </div>

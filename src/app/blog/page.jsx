@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import '@/components/BlogPage.css';
+import BlogMobileView from '@/components/BlogMobileView';
 import {
   BLOG_CATEGORIES,
   BLOG_ARTICLES,
@@ -34,23 +35,18 @@ import {
 } from 'lucide-react';
 
 function SafeBlogImage({ src, alt, fill, priority, sizes, className }) {
-  const [currentSrc, setCurrentSrc] = useState(src);
-
-  useEffect(() => {
-    setCurrentSrc(src);
-  }, [src]);
+  const [imgError, setImgError] = useState(false);
+  const fallback = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80';
 
   return (
     <Image
-      src={currentSrc || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80'}
+      src={imgError ? fallback : src || fallback}
       alt={alt || 'Blog article image'}
       fill={fill}
       priority={priority}
       sizes={sizes}
       className={className}
-      onError={() => {
-        setCurrentSrc('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80');
-      }}
+      onError={() => setImgError(true)}
     />
   );
 }
@@ -197,7 +193,30 @@ export default function BlogPage() {
 
   return (
     <div className="bp-page-wrapper">
-      <div className="bp-container">
+      {/* ========================================================= */}
+      {/* 1. MOBILE-ONLY VIEW (< 768px) - Reference Redesign        */}
+      {/* ========================================================= */}
+      <div className="bp-mobile-flow">
+        <BlogMobileView
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          featuredIdx={featuredIdx}
+          setFeaturedIdx={setFeaturedIdx}
+          featuredArticles={featuredArticles}
+          activeFeatured={activeFeatured}
+          filteredArticles={filteredArticles}
+          onOpenNewsletter={() => setNewsletterOpen(true)}
+          SafeBlogImage={SafeBlogImage}
+        />
+      </div>
+
+      {/* ========================================================= */}
+      {/* 2. DESKTOP & TABLET VIEW (>= 768px) - 100% Preserved      */}
+      {/* ========================================================= */}
+      <div className="bp-desktop-flow">
+        <div className="bp-container">
         {/* ========================================================= */}
         {/* SECTION 1: TWO-COLUMN EDITORIAL HERO                      */}
         {/* ========================================================= */}
@@ -488,6 +507,7 @@ export default function BlogPage() {
           )}
         </section>
       </div>
+    </div>
 
       {/* ========================================================= */}
       {/* NEWSLETTER SUBSCRIPTION MODAL                             */}

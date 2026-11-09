@@ -1,0 +1,766 @@
+/* ==========================================================================
+   BLOG MOBILE VIEW (EXCLUSIVELY 320px – 767px)
+   Matches mobile reference UI:
+   - Soft peach ambient wave backdrop
+   - Blog & Insights typography
+   - Search pill + filter slider icon
+   - Horizontal category chip scroll
+   - Featured card with wave-masked image & touch carousel
+   - Latest articles horizontal cards with thumbnail, badge, bookmark & meta
+   - Bottom floating newsletter card with 3D mail illustration
+   ========================================================================== */
+
+/* Only rendered on mobile screens (< 768px) */
+.bmv-container {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 1rem 1rem 3.5rem;
+  background: radial-gradient(circle at 92% 10%, rgba(249, 115, 22, 0.22) 0%, rgba(254, 215, 170, 0.32) 36%, transparent 72%),
+              linear-gradient(180deg, #fcf9f5 0%, #fbf8f4 60%, #f8f4ee 100%);
+}
+
+/* ==========================================================================
+   1. HERO HEADER
+   ========================================================================== */
+.bmv-hero-header {
+  padding: 0.5rem 0.25rem 0.85rem;
+}
+
+.bmv-hero-title {
+  font-size: clamp(2rem, 7.8vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  color: #141518;
+  margin: 0 0 0.35rem;
+  line-height: 1.15;
+}
+
+.bmv-title-accent {
+  color: #ea580c;
+  display: inline-block;
+}
+
+.bmv-hero-desc {
+  font-size: 0.95rem;
+  color: #5a4e44;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 320px;
+  font-weight: 450;
+}
+
+/* ==========================================================================
+   2. SEARCH & FILTER BAR
+   ========================================================================== */
+.bmv-search-section {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.bmv-search-bar {
+  width: 100%;
+  height: 50px;
+  background: #ffffff;
+  border: 1.4px solid rgba(220, 205, 190, 0.8);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.15rem;
+  gap: 0.75rem;
+  box-shadow: 0 4px 14px rgba(45, 30, 20, 0.04);
+  margin-top: 0.65rem;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bmv-search-bar:focus-within {
+  border-color: #ea580c;
+  box-shadow: 0 4px 18px rgba(234, 88, 12, 0.18);
+}
+
+.bmv-search-icon {
+  color: #ea580c;
+  flex-shrink: 0;
+}
+
+.bmv-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #141518;
+  min-width: 0;
+  font-weight: 500;
+}
+
+.bmv-search-input::placeholder {
+  color: #8a7a6c;
+  font-size: 0.84rem;
+}
+
+.bmv-search-clear {
+  background: rgba(234, 88, 12, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bmv-search-filter-icon {
+  color: #786a5d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Horizontal Category Chips */
+.bmv-categories-scroll {
+  display: flex;
+  gap: 0.55rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.95rem 0.15rem 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bmv-categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.bmv-cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.52rem 1.05rem;
+  background: #ffffff;
+  border: 1.2px solid rgba(220, 205, 190, 0.85);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2e261f;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(45, 30, 20, 0.03);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bmv-cat-chip:active {
+  transform: scale(0.96);
+}
+
+.bmv-cat-chip.is-active {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
+}
+
+.bmv-chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+}
+
+.bmv-cat-chip.is-active .bmv-chip-icon {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   3. FEATURED ARTICLE SECTION
+   ========================================================================== */
+.bmv-featured-section {
+  margin-top: 0.65rem;
+  width: 100%;
+}
+
+.bmv-featured-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid rgba(220, 205, 190, 0.7);
+  border-radius: 26px;
+  box-shadow: 0 8px 26px rgba(45, 30, 20, 0.06);
+  padding: 1.45rem 1.15rem 1.35rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  min-height: 255px;
+  box-sizing: border-box;
+}
+
+.bmv-featured-content {
+  flex: 1.15;
+  z-index: 2;
+  padding-right: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-width: 0;
+}
+
+.bmv-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff3ea;
+  border: 1px solid rgba(234, 88, 12, 0.28);
+  color: #ea580c;
+  border-radius: 9999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  width: fit-content;
+  margin-bottom: 0.55rem;
+}
+
+.bmv-featured-title {
+  font-size: clamp(1.02rem, 3.8vw, 1.18rem);
+  font-weight: 850;
+  color: #141518;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.015em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bmv-featured-desc {
+  font-size: 0.78rem;
+  color: #5a4e44;
+  line-height: 1.45;
+  margin: 0 0 0.95rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 450;
+}
+
+.bmv-featured-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.32);
+  width: fit-content;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.bmv-featured-btn:active {
+  transform: scale(0.96);
+}
+
+/* Wave-Masked Image Box on Right */
+.bmv-featured-img-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 44%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bmv-featured-img-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: url(#bmv-curve-clip);
+  background: #f3ede6;
+}
+
+.bmv-featured-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.bmv-mask-contour {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Carousel Dots */
+.bmv-dots-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.bmv-dot {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: #fed7aa;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bmv-dot.is-active {
+  width: 24px;
+  border-radius: 4px;
+  background: #ea580c;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+}
+
+/* ==========================================================================
+   4. LATEST ARTICLES SECTION
+   ========================================================================== */
+.bmv-latest-section {
+  margin-top: 1.45rem;
+  width: 100%;
+}
+
+.bmv-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.95rem;
+  padding: 0 0.15rem;
+}
+
+.bmv-header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.bmv-header-pill {
+  width: 4.5px;
+  height: 18px;
+  border-radius: 3px;
+  background: #ea580c;
+  display: inline-block;
+}
+
+.bmv-section-title {
+  font-size: 1.22rem;
+  font-weight: 850;
+  color: #141518;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.bmv-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #ea580c;
+  font-size: 0.84rem;
+  font-weight: 750;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Horizontal Article Cards List */
+.bmv-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.bmv-article-card {
+  background: #ffffff;
+  border: 1.3px solid rgba(220, 205, 190, 0.65);
+  border-radius: 20px;
+  padding: 0.85rem 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(45, 30, 20, 0.03);
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              background-color 0.35s ease;
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Staggered transition delay on initial render */
+.bmv-article-card:nth-child(1) { transition-delay: 0.04s; }
+.bmv-article-card:nth-child(2) { transition-delay: 0.08s; }
+.bmv-article-card:nth-child(3) { transition-delay: 0.12s; }
+.bmv-article-card:nth-child(4) { transition-delay: 0.16s; }
+.bmv-article-card:nth-child(5) { transition-delay: 0.20s; }
+
+/* Revealed state triggered by IntersectionObserver on scroll */
+.bmv-article-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Active touch press */
+.bmv-article-card:active {
+  transform: scale(0.982);
+  border-color: #ea580c;
+}
+
+/* Scroll-Driven Focal Spotlight: illuminates smoothly when passing center eye level */
+.bmv-article-card.is-focal {
+  border-color: rgba(234, 88, 12, 0.45) !important;
+  box-shadow: 0 10px 28px rgba(234, 88, 12, 0.1), 0 3px 10px rgba(45, 30, 20, 0.05) !important;
+  background: #ffffff !important;
+  transform: translateY(-2px) scale(1.01) !important;
+}
+
+.bmv-article-card.is-focal .bmv-thumb-img {
+  transform: scale(1.06);
+}
+
+.bmv-article-card.is-focal .bmv-card-cat-badge {
+  border-color: #ea580c;
+  background: #ffe8d6;
+}
+
+/* Left Thumbnail */
+.bmv-card-thumb {
+  width: 104px;
+  height: 82px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f3ede6;
+  box-shadow: 0 2px 8px rgba(45, 30, 20, 0.05);
+}
+
+.bmv-thumb-img {
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Right Details */
+.bmv-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bmv-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.bmv-card-cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #fff3ea;
+  border: 1px solid rgba(234, 88, 12, 0.25);
+  color: #ea580c;
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+
+.bmv-cat-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bmv-bookmark-btn {
+  background: transparent;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bmv-bookmark-btn.is-bookmarked {
+  color: #ea580c;
+  transform: scale(1.12);
+}
+
+.bmv-card-title {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #141518;
+  line-height: 1.28;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.015em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bmv-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  color: #786a5d;
+  font-weight: 550;
+}
+
+.bmv-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.bmv-meta-icon {
+  color: #a89a8c;
+}
+
+/* Empty State */
+.bmv-empty-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(220, 205, 190, 0.7);
+  border-radius: 20px;
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(45, 30, 20, 0.04);
+}
+
+.bmv-empty-icon {
+  color: #ea580c;
+  margin-bottom: 0.65rem;
+}
+
+.bmv-empty-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #141518;
+  margin: 0 0 0.35rem;
+}
+
+.bmv-empty-desc {
+  font-size: 0.85rem;
+  color: #6e6054;
+  margin: 0 0 1.15rem;
+  line-height: 1.45;
+}
+
+.bmv-empty-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+}
+
+/* ==========================================================================
+   5. NEWSLETTER CARD AT BOTTOM
+   ========================================================================== */
+.bmv-newsletter-section {
+  margin-top: 1.5rem;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.bmv-newsletter-section.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bmv-newsletter-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(220, 205, 190, 0.7);
+  border-radius: 22px;
+  padding: 1.15rem 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 6px 24px rgba(45, 30, 20, 0.05);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  box-sizing: border-box;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.bmv-newsletter-card:hover,
+.bmv-newsletter-card:active {
+  border-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(234, 88, 12, 0.16);
+}
+
+.bmv-nl-illu-box {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bmv-mail-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(234, 88, 12, 0.15));
+}
+
+.bmv-nl-text-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.bmv-nl-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #141518;
+  margin: 0 0 0.2rem;
+  line-height: 1.25;
+}
+
+.bmv-nl-sub {
+  font-size: 0.75rem;
+  color: #6b5e52;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.bmv-nl-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.32);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bmv-newsletter-card:hover .bmv-nl-arrow-btn,
+.bmv-newsletter-card:active .bmv-nl-arrow-btn {
+  transform: translateX(3px) scale(1.05);
+}
+
+/* ==========================================================================
+   EXTRA RESPONSIVE SCREEN BREAKPOINTS (< 375px)
+   ========================================================================== */
+@media (max-width: 374px) {
+  .bmv-container {
+    padding: 0.85rem 0.75rem 2.5rem;
+  }
+
+  .bmv-featured-card {
+    padding: 1.15rem 0.95rem;
+    min-height: 240px;
+  }
+
+  .bmv-featured-title {
+    font-size: 0.98rem;
+  }
+
+  .bmv-featured-btn {
+    padding: 0.48rem 0.95rem;
+    font-size: 0.76rem;
+  }
+
+  .bmv-card-thumb {
+    width: 90px;
+    height: 74px;
+  }
+
+  .bmv-card-title {
+    font-size: 0.88rem;
+  }
+
+  .bmv-nl-illu-box {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .bmv-cat-chip,
+  .bmv-dot,
+  .bmv-article-card,
+  .bmv-thumb-img,
+  .bmv-featured-btn,
+  .bmv-newsletter-section,
+  .bmv-newsletter-card,
+  .bmv-nl-arrow-btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+

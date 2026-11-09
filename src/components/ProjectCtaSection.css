@@ -785,10 +785,17 @@
   /* 1. Four Top Service Highlight Cards */
   .cta-mobile-services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     margin-bottom: 1.25rem;
     width: 100%;
+  }
+
+  @media (min-width: 560px) {
+    .cta-mobile-services-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
   }
 
   .cta-mobile-service-card {
@@ -797,8 +804,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0.95rem 0.35rem 0.85rem;
-    border-radius: 18px;
+    padding: 0.85rem 0.65rem 0.75rem;
+    border-radius: 16px;
     background: #ffffff;
     border: 1.2px solid #ebd8c8;
     box-shadow: 0 2px 8px rgba(45, 35, 27, 0.04);
@@ -852,11 +859,14 @@
   }
 
   .cta-mobile-service-label {
-    font-size: 0.72rem;
+    font-size: clamp(0.72rem, 2.4vw, 0.82rem);
     font-weight: 750;
     color: #1a130e;
     line-height: 1.25;
-    word-break: break-word;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
   }
 
   /* 2. Main Rounded CTA Container */
